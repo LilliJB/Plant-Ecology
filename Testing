@@ -1,0 +1,8 @@
+export default {
+  title: "My awesome app",
+  pages: [
+    {name: "Getting ever more awesome", path: "/getting-awesome"},
+    {name: "Being totally awesome", path: "/being-awesome"},
+    {name: "Staying as awesome as ever", path: "/staying-awesome"}
+  ]
+};
