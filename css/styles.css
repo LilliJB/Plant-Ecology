@@ -148,6 +148,20 @@ button:hover {
     text-align: left;
 }
 
+
+/* matching summary to header sizes */
+details summary {
+    font-size: 1em;
+    font-weight: bold;
+    color: #2f5d3a;
+    cursor: pointer;
+    margin: 1em 0 0.5em 0;
+    list-style: none; /* optional: removes the default triangle on some browsers */
+}
+
+details summary:hover {
+    color: #3d7349;
+}
 /* 10. FOOTER */
 footer {
     text-align: center;
