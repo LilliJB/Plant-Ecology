@@ -12,15 +12,14 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     margin-top: 30px;
-    text-align: center;
 }
 .chapter-card {
-    padding: 20px;
     background-color: #2f5d3a;
     color: white;
     border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
     transition: transform 0.2s, background-color 0.2s;
 }
 .chapter-card:hover {
@@ -31,23 +30,32 @@
     margin: 0 0 10px 0;
     font-size: 18px;
 }
+.chapter-card p {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
 .chapter-card ul {
     list-style: none;
     padding-left: 0;
-    margin: 5px 0 0 0;
-    text-align: left;
+    margin: 0;
 }
 .chapter-card ul li {
-    font-weight: normal;
-    font-size: 14px;
     margin: 3px 0;
 }
 .chapter-card ul li a {
     color: #fff;
     text-decoration: underline;
+    font-size: 13px;
 }
 .chapter-card ul li a:hover {
     color: #acd8af;
+}
+.chapter-title-link {
+    color: #fff;
+    text-decoration: none;
+}
+.chapter-title-link:hover {
+    text-decoration: underline;
 }
 </style>
 </head>
@@ -67,29 +75,29 @@
     <div class="chapter-grid">
 
         <!-- Chapter 1 -->
-        <a class="chapter-card" href="chapters/chapter1.html">
-            <h3>Chapter 1</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter1.html">Chapter 1</a></h3>
             <p>The Description of Vegetation</p>
             <ul>
                 <li><a href="#">1. Life form</a></li>
                 <li><a href="#">2. Structure</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 2 -->
-        <a class="chapter-card" href="chapters/chapter2.html">
-            <h3>Chapter 2</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter2.html">Chapter 2</a></h3>
             <p>Sampling, Tests of Comparison, Application of Quadrat Measures</p>
             <ul>
                 <li><a href="#">1. Statistical methods</a></li>
                 <li><a href="#">2. Sampling methods</a></li>
                 <li><a href="#">3. Transect and isonome studies</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 3 -->
-        <a class="chapter-card" href="chapters/chapter3.html">
-            <h3>Chapter 3</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter3.html">Chapter 3</a></h3>
             <p>Vegetational Change. Plant Succession and the Climax</p>
             <ul>
                 <li><a href="#">1. The classical view of succession</a></li>
@@ -98,22 +106,22 @@
                 <li><a href="#">4. Alternative models of succession</a></li>
                 <li><a href="#">5. The recovery succession of spruce-lichen woodland following fire</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 4 -->
-        <a class="chapter-card" href="chapters/chapter4.html">
-            <h3>Chapter 4</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter4.html">Chapter 4</a></h3>
             <p>Cyclic Vegetational Change</p>
             <ul>
                 <li><a href="#">1. Hummock and hollow cycle</a></li>
                 <li><a href="#">2. Marginal effects</a></li>
                 <li><a href="#">3. Interaction of age and performance</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 5 -->
-        <a class="chapter-card" href="chapters/chapter5.html">
-            <h3>Chapter 5</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter5.html">Chapter 5</a></h3>
             <p>The Causal Factors of Positive and Negative Association between Species</p>
             <ul>
                 <li><a href="#">1. Similar or dissimilar environmental requirements</a></li>
@@ -121,11 +129,11 @@
                 <li><a href="#">3. Production of toxic substances by plants</a></li>
                 <li><a href="#">4. Competition leading to negative and positive correlation or association</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 6 -->
-        <a class="chapter-card" href="chapters/chapter6.html">
-            <h3>Chapter 6</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter6.html">Chapter 6</a></h3>
             <p>Plant Population Dynamics</p>
             <ul>
                 <li><a href="#">1. Events in the soil</a></li>
@@ -134,11 +142,11 @@
                 <li><a href="#">4. Depletion and survivorship curves in natural populations</a></li>
                 <li><a href="#">5. Genetic control, seed production and total system interaction</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 7 -->
-        <a class="chapter-card" href="chapters/chapter7.html">
-            <h3>Chapter 7</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter7.html">Chapter 7</a></h3>
             <p>The Poisson Series and the Detection of</p>
             <ul>
                 <li><a href="#">1. Non-randomness</a></li>
@@ -148,59 +156,59 @@
                 <li><a href="#">5. The effect of quadrat size on the detection of non-randomness</a></li>
                 <li><a href="#">6. The analysis of a contiguous grid of quadrats and the detection of pattern</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 8 -->
-        <a class="chapter-card" href="chapters/chapter8.html">
-            <h3>Chapter 8</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter8.html">Chapter 8</a></h3>
             <p>The Causal Factors of Pattern</p>
             <ul>
                 <li><a href="#">1. Morphological pattern</a></li>
                 <li><a href="#">2. Environmental pattern</a></li>
                 <li><a href="#">3. Sociological pattern</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 9 -->
-        <a class="chapter-card" href="chapters/chapter9.html">
-            <h3>Chapter 9</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter9.html">Chapter 9</a></h3>
             <p>The Detection of Natural Groupings of Species</p>
             <ul>
                 <li><a href="#">1. Classification Methods</a></li>
                 <li><a href="#">2. The Braun-Blanquet school of plant sociology</a></li>
                 <li><a href="#">3. Early objective methods</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 10 -->
-        <a class="chapter-card" href="chapters/chapter10.html">
-            <h3>Chapter 10</h3>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter10.html">Chapter 10</a></h3>
             <p>Ordination Methods I</p>
             <ul>
                 <li><a href="#">1. Early techniques</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 11 -->
-        <a class="chapter-card" href="chapters/chapter11.html">
-            <h3>Chapter 11</h3>
-            <p>Ordination Methods II: The Limitations of Component Analysis as an Ordination Technique</p>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter11.html">Chapter 11</a></h3>
+            <p>Ordination Methods II: Limitations of Component Analysis</p>
             <ul>
                 <li><a href="#">1. The salt marsh data set</a></li>
                 <li><a href="#">2. The raised-beach data set</a></li>
             </ul>
-        </a>
+        </div>
 
         <!-- Chapter 12 -->
-        <a class="chapter-card" href="chapters/chapter12.html">
-            <h3>Chapter 12</h3>
-            <p>Ordination Methods III: Reciprocal Averaging, Detrended Correspondence Analysis and TWINSPAN</p>
+        <div class="chapter-card">
+            <h3><a class="chapter-title-link" href="chapters/chapter12.html">Chapter 12</a></h3>
+            <p>Ordination Methods III: Reciprocal Averaging, DCA and TWINSPAN</p>
             <ul>
-                <li><a href="#">1. Ordination of the salt marsh and raised-beach data using reciprocal averaging</a></li>
+                <li><a href="#">1. Ordination of salt marsh and raised-beach data using reciprocal averaging</a></li>
                 <li><a href="#">2. Detrended correspondence analysis</a></li>
                 <li><a href="#">3. TWINSPAN - two-way indicator species analysis</a></li>
             </ul>
-        </a>
+        </div>
 
     </div>
 </main>
