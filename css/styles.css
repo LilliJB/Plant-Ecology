@@ -43,6 +43,13 @@ header {
     padding: 35px 20px;
     text-align: center;
 }
+h5 {
+    font-size: 1em; /* same as body text */
+    font-weight: bold; /* optional, can keep emphasis */
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
 
 /* 6. MAIN CONTENT */
 main {
