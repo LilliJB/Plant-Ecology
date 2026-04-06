@@ -5,6 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 1 - Quantitative and Dynamic Plant Ecology</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Table reference links - no underline, colour indicator only */
+        a.table-link {
+            color: #2f5d3a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.table-link:hover {
+            color: #3d7349;
+            text-decoration: none;
+        }
+
+        /* Section summary styling with arrow */
+        details.section > summary {
+            font-size: 1.17em;
+            font-weight: bold;
+            color: #2f5d3a;
+            cursor: pointer;
+            margin: 1em 0 0.5em 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        details.section > summary::-webkit-details-marker {
+            display: none;
+        }
+        details.section > summary::after {
+            content: '▼';
+            font-size: 0.75em;
+            color: #2f5d3a;
+            transition: transform 0.2s;
+        }
+        details.section[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        details.section > summary:hover {
+            color: #3d7349;
+        }
+
+        /* abc list styling - no bullet, bold caps label with space */
+        .abc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .abc-list li {
+            margin-bottom: 0.6em;
+        }
+        .abc-list li .label {
+            font-weight: normal;
+        }
+    </style>
 </head>
 <body>
 
@@ -30,31 +82,23 @@
                 the present time, has been directed towards the description of vegetation. The object of 
                 such description is to enable people other than the observer to build a mental picture 
                 of an area and its vegetation and to allow the comparison and ultimate classification 
-                of different units of vegetation.
-            </p>
-            <p>
-                Before any serious or detailed work can be commenced in an area it is necessary to know 
+                of different units of vegetation. Before any serious or detailed work can be commenced in an area it is necessary to know 
                 what species are present, their distribution and the relative degree of abundance of each 
                 species. Additional information on the morphology of the species characteristic of the 
-                area and a general account of the environment are also essential.
-            </p>
-            <p>
-                Thus the <strong><em>floristic</em></strong> composition, simply expressed as a list of species, <strong><em>life form</em></strong> composition 
+                area and a general account of the environment are also essential. Thus the <strong><em>floristic</em></strong> composition, simply expressed as a list of species, <strong><em>life form</em></strong> composition 
                 and <strong><em>structure</em></strong> of vegetation are a necessary basis of all ecological work; this approach to 
                 ecology has dominated the subject until quite recently and will continue to be prominent 
                 until an adequate description of all vegetation both on a regional and on a world-wide 
                 basis is completed.
             </p>
 
-            <details>
+            <!-- LIFE FORM SECTION -->
+            <details class="section" id="life-form">
                 <summary>Life form</summary>
 
                 <p>
                     The best-known description and classification of life forms, and the use of life form to 
-                    construct a <strong><em>biological spectrum</em></strong> are due to Raunkiaer (1909, 1928, 1934).
-                </p>
-                <p>
-                    He arranged the life forms of species in a natural series in which the main criterion 
+                    construct a <strong><em>biological spectrum</em></strong> are due to Raunkiaer (1909, 1928, 1934). He arranged the life forms of species in a natural series in which the main criterion 
                     was the height of perennating buds, and he showed that this criterion appeared to reflect 
                     adaptation to climate.
                 </p>
@@ -68,20 +112,15 @@
                 </ul>
                 <p>
                     Each of the above groups can be sub-divided into Nanophanerophytes (&lt;2 m in height), 
-                    Microphanerophytes (2-8 m), Mesophanerophytes (8-30 m) and Megaphanerophytes (&gt;30 m).
+                    Microphanerophytes (2-8 m), Mesophanerophytes (8-30 m) and Megaphanerophytes (&gt;30 m). Two further groups are usually included – epiphytic Phanerophytes and stem-succulent Phanerophytes.
                 </p>
-                <p>Two further groups are usually included – epiphytic Phanerophytes and stem-succulent Phanerophytes.</p>
 
                 <h5><em>Chamaephytes</em></h5>
                 <p>Perennating buds or shoot apices borne very close to the ground.</p>
 
-                <h6>(a) SUFFRUTICOSE CHAMAEPHYTES</h6>
-                <p>
-                    Characterized by more or less erect aerial shoots which die away in part at the onset 
-                    of an unfavourable season of the year. Perennating buds arise on the lower portions of 
-                    the erect stems where they are less exposed to the environment. Very characteristic 
-                    of many parts of the Mediterranean.
-                </p>
+                <ul class="abc-list">
+                    <li><span class="label">(a) SUFFRUTICOSE CHAMAEPHYTES</span>&nbsp;&nbsp;Characterized by more or less erect aerial shoots which die away in part at the onset of an unfavourable season of the year. Perennating buds arise on the lower portions of the erect stems where they are less exposed to the environment. Very characteristic of many parts of the Mediterranean.</li>
+                </ul>
 
                 <figure class="figure-break">
                     <img src="../images/Fig1.1.jpg" alt="Relative positions of perennating parts of plant life forms">
@@ -93,35 +132,32 @@
                     </figcaption>
                 </figure>
 
-                <h6>(b) PASSIVE CHAMAEPHYTES</h6>
-                <p>Similar to the last group but at the onset of adverse conditions the weakened erect axes fall over and buds arise along the horizontal stems where at ground level they obtain some protection from the environment; e.g. <em>Stellaria holostea.</em></p>
-
-                <h6>(c) ACTIVE CHAMAEPHYTES</h6>
-                <p>The vegetative shoots are persistently orientated along the ground usually rooting along their length; e.g. <em>Lysimachia nummularia, Empetrum nigrum.</em></p>
-
-                <h6>(d) CUSHION PLANTS</h6>
-                <p>Basically a reduced and very compacted form of the last group.</p>
+                <ul class="abc-list">
+                    <li><span class="label">(b) PASSIVE CHAMAEPHYTES</span>&nbsp;&nbsp;Similar to the last group but at the onset of adverse conditions the weakened erect axes fall over and buds arise along the horizontal stems where at ground level they obtain some protection from the environment; e.g. <em>Stellaria holostea.</em></li>
+                    <li><span class="label">(c) ACTIVE CHAMAEPHYTES</span>&nbsp;&nbsp;The vegetative shoots are persistently orientated along the ground usually rooting along their length; e.g. <em>Lysimachia nummularia, Empetrum nigrum.</em></li>
+                    <li><span class="label">(d) CUSHION PLANTS</span>&nbsp;&nbsp;Basically a reduced and very compacted form of the last group.</li>
+                </ul>
 
                 <h5><em>Hemicryptophytes</em></h5>
                 <p>Perennating buds at ground level, all above ground parts dying back at the onset of unfavourable conditions. Stolons may or may not be present.</p>
 
-                <h6>(a) PROTO HEMICRYPTOPHYTES</h6>
-                <p>The lowermost leaves on the stem are less perfectly developed than the upper ones, the perennating buds arise at ground level; e.g. <em>Rubus idaeus.</em></p>
-
-                <h6>(b) PARTIAL ROSETTE PLANTS</h6>
-                <p>The best developed leaves form a rosette at the base of the aerial shoot, but some leaves are present on the aerial stems; e.g. <em>Ajuga reptans, Achillea millefolium</em>.</p>
-
-                <h6>(c) ROSETTE PLANTS</h6>
-                <p>The leaves are restricted to a rosette at the base of the aerial shoot; e.g. <em>Bellis perennis, Taraxacum officinale, Hypochaeris radicata</em>.</p>
+                <ul class="abc-list">
+                    <li><span class="label">(a) PROTO HEMICRYPTOPHYTES</span>&nbsp;&nbsp;The lowermost leaves on the stem are less perfectly developed than the upper ones, the perennating buds arise at ground level; e.g. <em>Rubus idaeus.</em></li>
+                    <li><span class="label">(b) PARTIAL ROSETTE PLANTS</span>&nbsp;&nbsp;The best developed leaves form a rosette at the base of the aerial shoot, but some leaves are present on the aerial stems; e.g. <em>Ajuga reptans, Achillea millefolium</em>.</li>
+                    <li><span class="label">(c) ROSETTE PLANTS</span>&nbsp;&nbsp;The leaves are restricted to a rosette at the base of the aerial shoot; e.g. <em>Bellis perennis, Taraxacum officinale, Hypochaeris radicata</em>.</li>
+                </ul>
 
                 <h5><em>Cryptophytes</em></h5>
                 <p>Perennating buds below ground level or submerged in water.</p>
-                <p>(a) GEOPHYTES – Rhizome, bulb or tuber geophytes, over-wintering by food stores under ground from which arise the buds to produce the next season's aerial shoots.</p>
-                <p>(b) HELOPHYTES – Those plants which have their perennating organs in soil or much below water-level with aerial shoots above water-level; e.g. <em>Typha, Alisma</em>.</p>
-                <p>(c) HYDROPHYTES – Those plants with their perennating buds under water, and with their leaves submerged or floating. Buds may occur on rhizomes as in <em>Nuphar, Nymphaea</em>, or winter buds may become detached from the plant and sink to the bottom and survive the unfavourable season; e.g. <em>Potamogeton obtusifolius, P. pusillus</em>.</p>
+
+                <ul class="abc-list">
+                    <li><span class="label">(a) GEOPHYTES</span>&nbsp;&nbsp;Rhizome, bulb or tuber geophytes, over-wintering by food stores under ground from which arise the buds to produce the next season's aerial shoots.</li>
+                    <li><span class="label">(b) HELOPHYTES</span>&nbsp;&nbsp;Those plants which have their perennating organs in soil or much below water-level with aerial shoots above water-level; e.g. <em>Typha, Alisma</em>.</li>
+                    <li><span class="label">(c) HYDROPHYTES</span>&nbsp;&nbsp;Those plants with their perennating buds under water, and with their leaves submerged or floating. Buds may occur on rhizomes as in <em>Nuphar, Nymphaea</em>, or winter buds may become detached from the plant and sink to the bottom and survive the unfavourable season; e.g. <em>Potamogeton obtusifolius, P. pusillus</em>.</li>
+                </ul>
 
                 <h5><em>Therophytes</em></h5>
-                <p>Annual species which complete a life history from seed to seed during the favourable season of the year. Their life span can be as short as a few weeks, and they are characteristic of desert regions and cultivated soil where the interference of man protects them from slower growing natural competitors. Using the life form as a basis of comparison it is possible to compare areas which are widely separated geographically and do not contain species common to both (the normal basis of comparison of areas). The life form is assumed to have evolved in direct response to the climatic environment and accordingly the proportion of life forms in an area will give a good indication of its climatic zone. Thus the biological spectrum is a useful measure for comparison on a geographical scale and shows the number of species within each life form group (<a href="#table-1-1">Table 1.1</a>).</p>
+                <p>Annual species which complete a life history from seed to seed during the favourable season of the year. Their life span can be as short as a few weeks, and they are characteristic of desert regions and cultivated soil where the interference of man protects them from slower growing natural competitors. Using the life form as a basis of comparison it is possible to compare areas which are widely separated geographically and do not contain species common to both (the normal basis of comparison of areas). The life form is assumed to have evolved in direct response to the climatic environment and accordingly the proportion of life forms in an area will give a good indication of its climatic zone. Thus the biological spectrum is a useful measure for comparison on a geographical scale and shows the number of species within each life form group (<a class="table-link" href="#table-1-1">Table 1.1</a>).</p>
 
                 <figure class="figure-break" id="table-1-1">
                     <figcaption><strong>Table 1.1</strong> The percentage representation of different life forms in the flora of Denmark (1084 species) and St. Thomas and St. Jan, West Indies (904 species). (From Raunkiaer 1934; courtesy of Clarendon Press, Oxford.)</figcaption>
@@ -149,7 +185,7 @@
                 </figure>
 
                 <p>
-                    Raunkiaer gives several interesting examples from which he concludes that the zonation of vegetation progresses from a phanerophytic type in the tropical zone to therophytic in the sub-tropical desert areas, hemicryptophytic in the cold temperature and finally a chamaephytic type in the cold zone (<a href="#table-1-2">Table 1.2</a>). Similar trends can be seen with increase in altitude which reflects the increasing severity.
+                    Raunkiaer gives several interesting examples from which he concludes that the zonation of vegetation progresses from a phanerophytic type in the tropical zone to therophytic in the sub-tropical desert areas, hemicryptophytic in the cold temperature and finally a chamaephytic type in the cold zone (<a class="table-link" href="#table-1-2">Table 1.2</a>). Similar trends can be seen with increase in altitude which reflects the increasing severity of the climate. Thus there are more Chamaephytes and correspondingly fewer Hemicryptophytes, with increase in altitude in the Alps (<a class="table-link" href="#table-1-3">Table 1.3</a>). In general the life form spectrum is not of great significance in comparing adjacent areas of vegetation but is of value in the realm of 'Plant Geography'.
                 </p>
 
                 <figure class="figure-break" id="table-1-2">
@@ -226,6 +262,97 @@
                     </table>
                 </figure>
 
+                <figure class="figure-break" id="table-1-3">
+                    <figcaption><strong>Table 1.3</strong> The biological spectrum at different altitudes in the Alps. (From Raunkiaer 1934; courtesy of Clarendon Press, Oxford.)</figcaption>
+                    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <th style="padding: 6px 10px;" rowspan="3">The nival region<br>of the Alps</th>
+                                <th colspan="10" style="padding: 6px 10px; text-align: center; border-top: 2px solid #333;">Percentage distribution of the species among the life forms</th>
+                            </tr>
+                            <tr>
+                                <td colspan="10" style="text-align:center; font-size: 13px; padding: 2px 10px;">(key to symbols in Table 1.1)</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <th style="padding: 4px 6px; text-align:center;">S</th>
+                                <th style="padding: 4px 6px; text-align:center;">E</th>
+                                <th style="padding: 4px 6px; text-align:center;">MM</th>
+                                <th style="padding: 4px 6px; text-align:center;">M</th>
+                                <th style="padding: 4px 6px; text-align:center;">N</th>
+                                <th style="padding: 4px 6px; text-align:center;">Ch</th>
+                                <th style="padding: 4px 6px; text-align:center;">H</th>
+                                <th style="padding: 4px 6px; text-align:center;">G</th>
+                                <th style="padding: 4px 6px; text-align:center;">HH</th>
+                                <th style="padding: 4px 6px; text-align:center;">Th</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 5px 10px;">Above 3600 m</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">67</td>
+                                <td style="text-align:center;">33</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 10px;">3300–3600 m</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">58</td>
+                                <td style="text-align:center;">42</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 10px;">3150–3300 m</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">58</td>
+                                <td style="text-align:center;">42</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 10px;">3000–3150 m</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">52.5</td>
+                                <td style="text-align:center;">45</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">2.5</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 10px;">2850–3000 m</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">33</td>
+                                <td style="text-align:center;">62</td><td style="text-align:center;">2</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">3</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 10px;">2700–2850 m</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">33</td>
+                                <td style="text-align:center;">61</td><td style="text-align:center;">3</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">3</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 10px;">2550–2700 m</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">0.5</td><td style="text-align:center;">28</td>
+                                <td style="text-align:center;">65.5</td><td style="text-align:center;">2</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">4</td>
+                            </tr>
+                            <tr style="border-bottom: 2px solid #333;">
+                                <td style="padding: 5px 10px;">2400–2550 m</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">—</td><td style="text-align:center;">—</td>
+                                <td style="text-align:center;">—</td><td style="text-align:center;">1</td><td style="text-align:center;">24</td>
+                                <td style="text-align:center;">67</td><td style="text-align:center;">4</td><td style="text-align:center;">0.3</td>
+                                <td style="text-align:center;">4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </figure>
+
+            </details>
+
+            <!-- STRUCTURE SECTION -->
+            <details class="section" id="structure">
+                <summary>Structure</summary>
+                <p>The structure of vegetation is defined by the general appearance, the vertical arrangement of the component species and the horizontal distribution of individuals. Add the content for this section here.</p>
             </details>
 
         </div>
