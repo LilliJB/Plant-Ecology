@@ -1,0 +1,150 @@
+/* 1. GLOBAL SAFETY */
+* {
+    box-sizing: border-box;
+}
+
+/* 2. GLOBAL IMAGE RULE */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 3. BODY */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #acd8af; /* unified color across site */
+    color: #2f3b2f;
+}
+
+/* 4. NAVIGATION */
+nav {
+    background-color: #2f5d3a;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 18px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* 5. HEADER */
+header {
+    background-color: #2f5d3a;
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+/* 6. MAIN CONTENT */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    text-align: center; /* home page centered; chapters can override if needed */
+}
+
+/* 7. BUTTONS */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #2f5d3a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #3d7349;
+}
+
+/* 8. CHAPTER PAGE STYLES */
+.chapter-links {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.chapter-links h2 {
+    margin-bottom: 20px;
+}
+
+.chapter-links a {
+    display: inline-block;
+    margin: 6px;
+    padding: 10px 14px;
+    background-color: #2f5d3a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.chapter-links a:hover {
+    background-color: #3d7349;
+}
+
+.chapter {
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d8d0b0;
+    text-align: left; /* chapters left-aligned */
+}
+
+.chapter h2 {
+    color: #2f5d3a;
+}
+
+.back-to-top {
+    display: inline-block;
+    margin-top: 10px;
+    color: #2f5d3a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-to-top:hover {
+    text-decoration: underline;
+}
+
+/* 9. FIGURE STYLES */
+.figure-break {
+    text-align: center;
+    margin: 30px 0;
+    padding: 15px;
+    background-color: #f4f7f4;
+    border-radius: 8px;
+}
+
+.figure-break img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.figure-break figcaption {
+    margin-top: 10px;
+    font-size: 14px;
+    font-style: italic;
+    text-align: left;
+}
+
+/* 10. FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #2f3b2f;
+}
