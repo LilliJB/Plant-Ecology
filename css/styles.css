@@ -171,28 +171,19 @@ footer {
     color: #2f3b2f;
 }
 
-
 .brace {
-    position: relative;
-    width: 20px;
-    min-width: 20px;
+    width: 18px;
+    padding: 0;
+    vertical-align: middle;
 }
 
-.brace span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 34px;      /* bigger = visible */
-    color: #2f3b2f;       /* matches your theme */
-    line-height: 1;
+.brace-svg {
+    display: block;
+    width: 12px;
+    stroke: #333;
 }
 
-/* stretch braces to match groups */
-.brace-2 span {
-    transform: scaleY(2.2);
-}
-
-.brace-3 span {
-    transform: scaleY(3.3);
-}
+/* Height matches the number of rows spanned × row height */
+tr:has(.brace[rowspan="2"]) .brace-svg { height: 52px; }
+tr:has(.brace[rowspan="3"]) .brace-svg { height: 78px; }
+tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
