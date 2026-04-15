@@ -536,17 +536,11 @@ used scales, i.e. the Domin scale, is set out in <a class="table-link" href="#ta
   .scale-table th { padding: 6px 10px; font-weight: 500; }
   .scale-table td { padding: 5px 10px; vertical-align: middle; }
   .scale-table tbody tr:last-child { border-bottom: 2px solid currentColor; }
-
-  .brace-cell {
-    width: 18px;
-    padding: 0 2px;
-    vertical-align: middle;
-  }
+  .brace-cell { width: 18px; padding: 0 2px; vertical-align: middle; }
 </style>
 
 <table class="scale-table">
   <caption><strong>Table 1.5</strong> The Domin and Braun-Blanquet scales.</caption>
-
   <thead>
     <tr>
       <th></th>
@@ -555,59 +549,36 @@ used scales, i.e. the Domin scale, is set out in <a class="table-link" href="#ta
       <th style="text-align:center;">Braun-Blanquet scale</th>
     </tr>
   </thead>
-
   <tbody id="tableBody"></tbody>
 </table>
 
 <script>
 const rows = [
   { label: "Cover about 100%",           domin: "10", bb: "5",  group: "A", groupStart: true },
-  { label: "Cover > 75%",                domin: "9",  bb: null, group: "A", groupEnd: true },
-
-  { label: "Cover 50–75%",               domin: "8",  bb: "4" },
-
+  { label: "Cover > 75%",                domin: "9",  bb: null, group: "A", groupEnd: true   },
+  { label: "Cover 50–75%",               domin: "8",  bb: "4",  group: "B", groupStart: true, groupEnd: true },
   { label: "Cover 33–50%",               domin: "7",  bb: "3",  group: "C", groupStart: true },
-  { label: "Cover 25–33%",               domin: "6",  bb: null, group: "C", groupEnd: true },
-
+  { label: "Cover 25–33%",               domin: "6",  bb: null, group: "C", groupEnd: true   },
   { label: "Abundant, cover about 20%",  domin: "5",  bb: "2",  group: "D", groupStart: true },
-  { label: "Abundant, cover about 5%",   domin: "4",  bb: null, group: "D", groupEnd: true },
-
+  { label: "Abundant, cover about 5%",   domin: "4",  bb: null, group: "D", groupEnd: true   },
   { label: "Scattered, cover small",     domin: "3",  bb: "1",  group: "E", groupStart: true },
-  { label: "Very scattered, cover small",domin: "2",  bb: null, group: "E" },
-  { label: "Scarce, cover small",        domin: "1",  bb: null, group: "E", groupEnd: true },
-
-  { label: "Isolated, cover small",      domin: "x",  bb: "x" },
+  { label: "Very scattered, cover small",domin: "2",  bb: null, group: "E"                   },
+  { label: "Scarce, cover small",        domin: "1",  bb: null, group: "E", groupEnd: true   },
+  { label: "Isolated, cover small",      domin: "x",  bb: "x",  group: "F", groupStart: true, groupEnd: true },
 ];
 
-function groupSize(g) {
-  return rows.filter(r => r.group === g).length;
-}
+function groupSize(g) { return rows.filter(r => r.group === g).length; }
 
 function makeBrace(height) {
   const mid = height / 2;
-  const curve = Math.min(6, height * 0.15);
-
-  return `<svg viewBox="0 0 14 ${height}" 
-               style="height:${height}px;width:14px;display:block;" 
-               preserveAspectRatio="none">
-    <path d="
-      M3,${curve}
-      Q9,${curve} 9,${curve*2}
-      L9,${mid - curve}
-      Q9,${mid} 12,${mid}
-      Q9,${mid} 9,${mid + curve}
-      L9,${height - curve*2}
-      Q9,${height - curve} 3,${height - curve}
-    "
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1"
-    stroke-linecap="round"
-    stroke-linejoin="round"/>
+  const curve = Math.min(8, height * 0.18);
+  return `<svg viewBox="0 0 14 ${height}" style="height:${height}px;width:14px;display:block;" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2,${curve} Q8,${curve} 8,${curve*2} L8,${mid - curve} Q8,${mid} 12,${mid} Q8,${mid} 8,${mid + curve} L8,${height - curve*2} Q8,${height - curve} 2,${height - curve}"
+      fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round"/>
   </svg>`;
 }
 
-const ROW_HEIGHT = 26;
+const ROW_HEIGHT = 28;
 const tbody = document.getElementById("tableBody");
 const rendered = new Set();
 
@@ -626,12 +597,10 @@ rows.forEach(row => {
   if (row.groupStart && !rendered.has(row.group)) {
     rendered.add(row.group);
     const size = groupSize(row.group);
-
     const tdBrace = document.createElement("td");
     tdBrace.className = "brace-cell";
     tdBrace.rowSpan = size;
     tdBrace.innerHTML = makeBrace(size * ROW_HEIGHT);
-
     tr.appendChild(tdBrace);
   }
 
