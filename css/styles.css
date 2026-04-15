@@ -153,12 +153,13 @@ button:hover {
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  margin: 1.5em 0; /* paragraph spacing */
+  margin: 1.5em 0;
 }
 
 .media-block .figure-break {
-  flex: 0 0 220px; /* controls image block width */
-  margin: 0;       /* override your 30px margin */
+  flex: 0 0 40%;     
+  max-width: 400px;  
+  margin: 0;
   padding: 10px;
 }
 
@@ -168,6 +169,7 @@ button:hover {
 }
 
 .media-block p {
+  flex: 1;          
   margin: 0;
 }
 
