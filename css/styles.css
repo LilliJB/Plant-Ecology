@@ -175,14 +175,24 @@ footer {
 .brace {
     position: relative;
     width: 20px;
+    min-width: 20px;
 }
 
-.brace::before {
-    content: "}";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%) scaleY(3);
-    font-size: 18px;
+.brace span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 34px;      /* bigger = visible */
+    color: #2f3b2f;       /* matches your theme */
     line-height: 1;
+}
+
+/* stretch braces to match groups */
+.brace-2 span {
+    transform: scaleY(2.2);
+}
+
+.brace-3 span {
+    transform: scaleY(3.3);
 }
