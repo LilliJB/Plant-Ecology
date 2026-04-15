@@ -555,26 +555,67 @@ used scales, i.e. the Domin scale, is set out in <a class="table-link" href="#ta
       <th style="text-align:center;">Braun-Blanquet scale</th>
     </tr>
   </thead>
-  <tbody id="tableBody"></tbody>
+  <tbody>
+    <tr>
+      <td>Cover about 100%</td>
+      <td style="text-align:center;">10</td>
+      <td class="brace-cell" rowspan="2" id="brace-A"></td>
+      <td style="text-align:center;" rowspan="2">5</td>
+    </tr>
+    <tr>
+      <td>Cover &gt; 75%</td>
+      <td style="text-align:center;">9</td>
+    </tr>
+    <tr>
+      <td>Cover 50–75%</td>
+      <td style="text-align:center;">8</td>
+      <td></td>
+      <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+      <td>Cover 33–50%</td>
+      <td style="text-align:center;">7</td>
+      <td class="brace-cell" rowspan="2" id="brace-C"></td>
+      <td style="text-align:center;" rowspan="2">3</td>
+    </tr>
+    <tr>
+      <td>Cover 25–33%</td>
+      <td style="text-align:center;">6</td>
+    </tr>
+    <tr>
+      <td>Abundant, cover about 20%</td>
+      <td style="text-align:center;">5</td>
+      <td class="brace-cell" rowspan="2" id="brace-D"></td>
+      <td style="text-align:center;" rowspan="2">2</td>
+    </tr>
+    <tr>
+      <td>Abundant, cover about 5%</td>
+      <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+      <td>Scattered, cover small</td>
+      <td style="text-align:center;">3</td>
+      <td class="brace-cell" rowspan="3" id="brace-E"></td>
+      <td style="text-align:center;" rowspan="3">1</td>
+    </tr>
+    <tr>
+      <td>Very scattered, cover small</td>
+      <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+      <td>Scarce, cover small</td>
+      <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+      <td>Isolated, cover small</td>
+      <td style="text-align:center;">x</td>
+      <td></td>
+      <td style="text-align:center;">x</td>
+    </tr>
+  </tbody>
 </table>
 
 <script>
-const rows = [
-  { label: "Cover about 100%",           domin: "10", bb: "5",  group: "A", groupStart: true },
-  { label: "Cover > 75%",                domin: "9",  bb: null, group: "A", groupEnd: true   },
-  { label: "Cover 50–75%",               domin: "8",  bb: "4",  group: "B", groupStart: true, groupEnd: true },
-  { label: "Cover 33–50%",               domin: "7",  bb: "3",  group: "C", groupStart: true },
-  { label: "Cover 25–33%",               domin: "6",  bb: null, group: "C", groupEnd: true   },
-  { label: "Abundant, cover about 20%",  domin: "5",  bb: "2",  group: "D", groupStart: true },
-  { label: "Abundant, cover about 5%",   domin: "4",  bb: null, group: "D", groupEnd: true   },
-  { label: "Scattered, cover small",     domin: "3",  bb: "1",  group: "E", groupStart: true },
-  { label: "Very scattered, cover small",domin: "2",  bb: null, group: "E"                   },
-  { label: "Scarce, cover small",        domin: "1",  bb: null, group: "E", groupEnd: true   },
-  { label: "Isolated, cover small",      domin: "x",  bb: "x",  group: "F", groupStart: true, groupEnd: true },
-];
-
-function groupSize(g) { return rows.filter(r => r.group === g).length; }
-
 function makeBrace(height) {
   const mid = height / 2;
   const curve = Math.min(8, height * 0.18);
@@ -584,40 +625,12 @@ function makeBrace(height) {
   </svg>`;
 }
 
-const ROW_HEIGHT = 28;
-const tbody = document.getElementById("tableBody");
-const rendered = new Set();
-
-rows.forEach(row => {
-  const tr = document.createElement("tr");
-
-  const tdLabel = document.createElement("td");
-  tdLabel.textContent = row.label;
-  tr.appendChild(tdLabel);
-
-  const tdDomin = document.createElement("td");
-  tdDomin.style.textAlign = "center";
-  tdDomin.textContent = row.domin;
-  tr.appendChild(tdDomin);
-
-  if (row.groupStart && !rendered.has(row.group)) {
-    rendered.add(row.group);
-    const size = groupSize(row.group);
-    const tdBrace = document.createElement("td");
-    tdBrace.className = "brace-cell";
-    tdBrace.rowSpan = size;
-    tdBrace.innerHTML = makeBrace(size * ROW_HEIGHT);
-    tr.appendChild(tdBrace);
-  }
-
-  const tdBB = document.createElement("td");
-  tdBB.style.textAlign = "center";
-  if (row.bb !== null) tdBB.textContent = row.bb;
-  tr.appendChild(tdBB);
-
-  tbody.appendChild(tr);
+["brace-A","brace-C","brace-D","brace-E"].forEach(id => {
+  const cell = document.getElementById(id);
+  if (cell) cell.innerHTML = makeBrace(cell.rowSpan * 28);
 });
 </script>
+    
 <p>The increased number of divisions enables a more detailed assessment to be made of plant coverage and field workers claim a high degree of accuracy can be obtained with sufficient experience. The Domin scale has the additional advantage in that it can be directly converted into the Braun-Blanquet scale wherever necessary and enable direct comparison of different sets of data.</p>
 
 
