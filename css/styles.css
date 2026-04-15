@@ -170,3 +170,19 @@ footer {
     font-size: 14px;
     color: #2f3b2f;
 }
+
+
+.brace {
+    position: relative;
+    width: 20px;
+}
+
+.brace::before {
+    content: "}";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) scaleY(3);
+    font-size: 18px;
+    line-height: 1;
+}
