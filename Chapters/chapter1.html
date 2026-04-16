@@ -59,6 +59,20 @@
         }
     </style>
 </head>
+
+    
+<script>
+function toggleLayer(layerId, checkbox) {
+    const layer = document.getElementById(layerId);
+
+    if (checkbox.checked) {
+        layer.classList.add("active");
+    } else {
+        layer.classList.remove("active");
+    }
+}
+</script>
+    
 <body>
 
 <nav>
@@ -408,6 +422,38 @@ Thus a complex community with two tree layers, three shrub layers and two grass 
     <p>The detailed mapping of vegetation is obviously a very laborious and time-consuming operation and its use is normally reserved for the detailed study of small areas of vegetation made over a period of years. The mapped areas are in the form of 'permanent quadrats'. Permanent quadrats are established and carefully marked out in such a manner as to enable the exact position to be located again in subsequent years. Each individual plant, or shoot, or clump of shoots is recorded accurately. This enables a composite picture of change in vegetation with time to be built up. It is advisable to sub-divide the permanent quadrat to facilitate the positioning of individuals within the area, and similarly it is more convenient to record the actual positions of the individual plants on 'ruled square' paper. The relationship between <em>Festuca ovina</em> and <em>Hieracium pilosella</em> in grassland after the removal of rabbit grazing has been investigated by Watt (1962) who gives a series of permanent quadrats recorded at intervals from 1946 onwards (<a class="table-link" href="#fig-1-5">Fig. 1.5</a>). The permanent quadrats show quite clearly the change over the years of the relative abundance of the two species. Austin (1981) has usefully summarized the continued importance of permanent quadrat studies and has outlined the required experimental designs which allow the
 roles of location, contiguity, perturbation or synthetic experimentation, and demographic measurement, to be examined. In general, the use of both permanent quadrats and the mapping of vegetation, as descriptive techniques, should be limited to those problems where the vegetational change is likely to be fairly rapid and at the same time very marked. Where vegetational change is less marked more refined techniques are necessary (see <a href="#refined-techniques">p. 11</a>).</p>
 
+<figure class="figure-break" id="fig-1-5">
+    <div class="image-layer-container">
+
+        <!-- Background (always visible) -->
+        <img src="../images/Fig.1.5.background.png" class="layer base">
+
+        <!-- Toggle layers -->
+        <img src="../images/Fig.1.5.layer-1946.png" class="layer toggle active" id="layer1946">
+        <img src="../images/Fig.1.5.layer-1948.png" class="layer toggle" id="layer1948">
+        <img src="../images/Fig.1.5.layer-1953.png" class="layer toggle" id="layer1953">
+        <img src="../images/Fig.1.5.layer-1956.png" class="layer toggle" id="layer1956">
+        <img src="../images/Fig.1.5.layer-1958.png" class="layer toggle" id="layer1960">
+
+    </div>
+
+    <!-- Legend-style controls -->
+    <div class="layer-legend">
+        <label><input type="checkbox" checked onchange="toggleLayer('layer1946', this)"> 1946</label>
+        <label><input type="checkbox" onchange="toggleLayer('layer1948', this)"> 1948</label>
+        <label><input type="checkbox" onchange="toggleLayer('layer1953', this)"> 1953</label>
+        <label><input type="checkbox" onchange="toggleLayer('layer1956', this)"> 1956</label>
+        <label><input type="checkbox" onchange="toggleLayer('layer1960', this)"> 1960</label>
+    </div>
+
+    <figcaption>
+        <strong>Fig. 1.5</strong> The use of permanent quadrats to show the change of abundance of <em>Festuca</em> (shaded) and <em>Hieracium</em> (H) in enclosed (A) and control (B) plots.
+(From Watt, 1962; courtesy of <em>J. Ecol.</em>)
+    </figcaption>
+</figure>
+
+    
+    
 <h5>The subjective assessment of abundance</h5>
 
 <h6><em>Frequency symbols</em></h6>
