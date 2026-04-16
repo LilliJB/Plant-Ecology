@@ -210,3 +210,45 @@ footer {
 tr:has(.brace[rowspan="2"]) .brace-svg { height: 52px; }
 tr:has(.brace[rowspan="3"]) .brace-svg { height: 78px; }
 tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
+
+
+
+.image-layer-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+}
+
+.image-layer-container img {
+    width: 100%;
+    display: block;
+}
+
+/* All layers stacked */
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Background always visible */
+.base {
+    position: relative;
+    z-index: 1;
+}
+
+/* Toggle layers */
+.toggle {
+    z-index: 2;
+    display: none; /* hidden by default */
+}
+
+/* Buttons styling (match your theme) */
+.layer-controls {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.layer-controls button {
+    margin: 5px;
+}
