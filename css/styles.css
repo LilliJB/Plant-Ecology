@@ -235,7 +235,40 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     cursor: pointer;
 }
 
+
 .layer-legend input {
     margin-right: 5px;
     cursor: pointer;
+}
+
+
+/* REQUIRED for layering */
+.image-layer-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Stack all images */
+.image-layer-container .layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Background stays in normal flow */
+.image-layer-container .base {
+    position: relative;
+    z-index: 1;
+}
+
+/* Toggle layers */
+.toggle {
+    display: none;
+    z-index: 2;
+}
+
+.toggle.active {
+    display: block;
 }
