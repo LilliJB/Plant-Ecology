@@ -272,3 +272,9 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
 .toggle.active {
     display: block;
 }
+
+#layer1946 { z-index: 2; }
+#layer1948 { z-index: 3; }
+#layer1953 { z-index: 4; }
+#layer1956 { z-index: 5; }
+#layer1960 { z-index: 6; }
