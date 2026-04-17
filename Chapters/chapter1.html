@@ -851,20 +851,21 @@ single quadrat is required it can be simply obtained by sub-dividing the quadrat
     </div>
 </main>
 
-<footer>
-    <p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p>
-</footer>
-
-    <script>
-function toggleLayer(layerId, checkbox) {
+<script>
+window.toggleLayer = function(layerId, checkbox) {
     const layer = document.getElementById(layerId);
+
+    if (!layer) {
+        console.error("Layer not found:", layerId);
+        return;
+    }
 
     if (checkbox.checked) {
         layer.classList.add("active");
     } else {
         layer.classList.remove("active");
     }
-}
+};
 </script>
 </body>
 </html>
