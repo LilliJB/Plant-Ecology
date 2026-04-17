@@ -263,13 +263,14 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     z-index: 1;
 }
 
-.toggle {
-    display: none;
-    z-index: 2;
+/* Hide all toggle layers by default */
+.image-layer-container .toggle {
+    display: none !important;
 }
 
-.toggle.active {
-    display: block;
+/* Show when active */
+.image-layer-container .toggle.active {
+    display: block !important;
 }
 
 #layer1946 { z-index: 2; }
