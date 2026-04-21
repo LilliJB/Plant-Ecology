@@ -1,12 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 2 - Quantitative and Dynamic Plant Ecology</title>
     <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        a.table-link {
+            color: #2f5d3a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.table-link:hover {
+            color: #3d7349;
+            text-decoration: none;
+        }
+
+        details.section > summary {
+            font-size: 1.17em;
+            font-weight: bold;
+            color: #2f5d3a;
+            cursor: pointer;
+            margin: 1em 0 0.5em 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        details.section > summary::-webkit-details-marker {
+            display: none;
+        }
+        details.section > summary::after {
+            content: '▼';
+            font-size: 0.75em;
+            color: #2f5d3a;
+            transition: transform 0.2s;
+        }
+        details.section[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        details.section > summary:hover {
+            color: #3d7349;
+        }
+
+        .abc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .abc-list li {
+            margin-bottom: 0.6em;
+        }
+
+        /* Data table for aligned values */
+        .data-table {
+            margin: 15px 0;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .data-table td {
+            padding: 4px 10px;
+            text-align: center;
+        }
+        .data-table td.label {
+            text-align: left;
+            font-weight: bold;
+            padding-right: 15px;
+        }
+    </style>
 </head>
-<body>
+
+<body id="top">
 
 <nav>
     <a href="../index.html">Home</a>
@@ -16,15 +81,74 @@
 
 <main>
     <div class="chapter" id="chapter2">
+
         <h2>Chapter 2: SAMPLING, TESTS OF COMPARISON AND APPLICATION OF QUADRAT MEASURES</h2>
-        <p>Statistical methods-variance and standard error, <em>t</em>-tests, x<sup>2</sup>-test for Sampling methods. Random sampling, sample size, quadrat size. Regular sampling. Partial random sampling. Transect and isonome studies.</p>
+
+        <p>
+            The importance of sampling a plant community so as to obtain the maximum amount of information from one set of samples, has been emphasized by numerous workers and Greig-Smith (1957; 1983) gives a comprehensive and detailed account of the problems involved. However, it is necessary to outline the more important aspects since a series of conclusions will be based on a single sample, and if the sampling procedure is incorrect, then the derived conclusions may be invalid. The importance of sampling has been stressed to the point where an impression is gained that the procedure is very complicated and in the hands of the uninitiated a dangerous tool. This is only partly true, since the approaches to this problem are all based on common sense. Often the correct procedure and also the one that will give the maximum amount of information on the problem in hand, can be readily devised by careful thought beforehand and with only an elementary knowledge of statistical methods. On the other hand since complex sampling methods are widely used advice from a statistician at an early stage may save wasted labour in the field. The necessity to carefully plan the sampling beforehand is important in yet another sense; recording the contents of a quadrat is nearly always a lengthy and a tedious operation and it is very much better to obtain all the required information from one set of quadrats rather than to have to go back and repeat the sample so as to obtain additional information. Thus no hard and fast rules can be laid down; each sampling procedure should be thought out in relation to a specific problem, the information required being borne in mind.
+        </p>
+
+        <div class="chapter-section">
+
+            <details class="section">
+                <summary>Statistical methods</summary>
+
+                <p>
+                    In all ecological work there is a certain error involved in any field observations or experimental results. This error is partly due to the inadequacies of the equipment and, more important, to an unknown amount of variation always found in biological material. Thus it is necessary to know whether the difference between, for example, the number of buttercups in two plots is a real difference reflecting some variation in the environment of the two plots, or whether in fact this difference is more than covered by the error attached to the data. In order to assess the reality of the results it is necessary to compare the difference between them with an estimate of the error, or in other words to test the significance of the result.
+                </p>
+
+                <p>
+                    Normally it is impractical to count every individual present within an area and accordingly a sample of the density is taken from the total population by using a number of randomly placed quadrats.
+                </p>
+
+                <h5>Variance and standard error</h5>
+
+                <p>
+                    The following data represent the number of individuals of a species in ten quadrats placed at random in two sample areas:
+                </p>
+
+                <table class="data-table">
+                    <tr>
+                        <td class="label">Plot I</td>
+                        <td>6</td><td>3</td><td>0</td><td>1</td><td>8</td>
+                        <td>2</td><td>7</td><td>0</td><td>1</td><td>4</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Plot II</td>
+                        <td>7</td><td>11</td><td>15</td><td>8</td><td>14</td>
+                        <td>9</td><td>12</td><td>14</td><td>15</td><td>10</td>
+                    </tr>
+                </table>
+
+            </details>
+
+        </div>
+
         <a class="back-to-top" href="#top">Back to top</a>
+
     </div>
 </main>
 
 <footer>
     <p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p>
 </footer>
+
+<script>
+window.toggleLayer = function(layerId, checkbox) {
+    const layer = document.getElementById(layerId);
+
+    if (!layer) {
+        console.error("Layer not found:", layerId);
+        return;
+    }
+
+    if (checkbox.checked) {
+        layer.classList.add("active");
+    } else {
+        layer.classList.remove("active");
+    }
+};
+</script>
 
 </body>
 </html>
