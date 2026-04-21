@@ -1,759 +1,731 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-
-/* SEARCH */
-#searchBox {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-/* A-Z NAV */
-.az-nav {
-    margin-bottom: 20px;
-}
-.az-nav a {
-    margin-right: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    color: #2f5d3a;
-}
-.az-nav a:hover {
-    text-decoration: underline;
-}
-
-/* COLUMNS */
-.index-container {
-    column-count: 2;
-    column-gap: 40px;
-}
-
-/* ENTRIES */
-.entry { margin-bottom: 6px; }
-.indent-1 { margin-left: 2em; }
-.indent-2 { margin-left: 4em; }
-
-/* HIGHLIGHT */
-mark { background: yellow; }
-.letter {
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 20px;
-    break-before: column;
-}
-</style>
-
-<script>
-function searchIndex() {
-    let input = document.getElementById("searchBox").value.toLowerCase();
-    let entries = document.getElementsByClassName("entry");
-
-    for (let i = 0; i < entries.length; i++) {
-        let original = entries[i].getAttribute("data-original");
-        if (!original) {
-            original = entries[i].innerHTML;
-            entries[i].setAttribute("data-original", original);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index – Quantitative and Dynamic Plant Ecology</title>
+    <style>
+ 
+        /* GLOBAL */
+        * { box-sizing: border-box; }
+        img { max-width: 100%; height: auto; }
+ 
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #acd8af;
+            color: #2f3b2f;
         }
-
-        let text = original.toLowerCase();
-
-        if (text.includes(input) && input !== "") {
-            entries[i].style.display = "";
-            let regex = new RegExp("(" + input + ")", "gi");
-            entries[i].innerHTML = original.replace(regex, "<mark>$1</mark>");
-        } else if (input === "") {
-            entries[i].style.display = "";
-            entries[i].innerHTML = original;
-        } else {
-            entries[i].style.display = "none";
+ 
+        /* NAV */
+        nav {
+            background-color: #2f5d3a;
+            padding: 15px;
+            text-align: center;
         }
-    }
-}
-</script>
-
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 18px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        nav a:hover { text-decoration: underline; }
+ 
+        /* HEADER */
+        header {
+            background-color: #2f5d3a;
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+        header h1 { margin: 0; }
+ 
+        /* MAIN */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+        main h2 {
+            color: #2f5d3a;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+ 
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #2f3b2f;
+        }
+ 
+        /* SEARCH BOX */
+        #searchBox {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #b0c8b0;
+            border-radius: 5px;
+            background-color: #f4f7f4;
+            color: #2f3b2f;
+            box-sizing: border-box;
+        }
+        #searchBox:focus {
+            outline: none;
+            border-color: #2f5d3a;
+            background-color: #fff;
+        }
+ 
+        /* A–Z NAV */
+        .az-nav {
+            margin-bottom: 25px;
+            padding: 14px 16px;
+            background-color: #f4f7f4;
+            border: 1px solid #d0e4d0;
+            border-radius: 6px;
+        }
+        .az-nav a {
+            display: inline-block;
+            margin: 3px 4px;
+            padding: 5px 10px;
+            background-color: #2f5d3a;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .az-nav a:hover { background-color: #3d7349; }
+ 
+        /* INDEX COLUMNS */
+        .index-container {
+            column-count: 2;
+            column-gap: 50px;
+            margin-top: 10px;
+        }
+ 
+        /* LETTER HEADINGS */
+        .letter {
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+            background-color: #2f5d3a;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-top: 22px;
+            margin-bottom: 8px;
+            break-after: avoid;
+            break-inside: avoid;
+            display: inline-block;
+            min-width: 32px;
+            text-align: center;
+        }
+ 
+        /* ENTRIES */
+        .entry {
+            margin-bottom: 4px;
+            font-size: 14.5px;
+            line-height: 1.5;
+            break-inside: avoid;
+        }
+        .indent-1 { margin-left: 1.8em; }
+        .indent-2 { margin-left: 3.6em; }
+ 
+        .subentry {
+            margin-left: 1.8em;
+            margin-bottom: 3px;
+            font-size: 14px;
+            line-height: 1.5;
+            break-inside: avoid;
+        }
+        .subsubentry {
+            margin-left: 3.6em;
+            margin-bottom: 3px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            break-inside: avoid;
+        }
+ 
+        /* SEARCH HIGHLIGHT */
+        mark {
+            background-color: #ffe066;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+ 
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .index-container { column-count: 1; }
+        }
+ 
+    </style>
 </head>
 <body>
-
-<input type="text" id="searchBox" onkeyup="searchIndex()" placeholder="Search index...">
-
-<div class="az-nav">
-<a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
-<a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a>
-<a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a>
-<a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a>
-<a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
-<a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#X">X</a>
-<a href="#Y">Y</a><a href="#Z">Z</a>
-</div>
-
-<div class="index-container">
-
-<div class="letter" id="A">A</div>
-
-<div class="entry">Abundance 4,9,1l</div>
-<div class="entry">Accidental species 162</div>
-<div class="entry">Active chamaephytes 2</div>
-<div class="entry">Adaptation number 183, 184, 189, 190</div>
-<div class="entry">Advancing front 63, 67-9, 151</div>
-<div class="entry">Age-performance interaction 40, 63, 69-77,151</div>
-<div class="entry">Agglomerative classification methods 174</div>
-<div class="entry">Alaska, glacial moraines 36</div>
-<div class="entry">Albedo 56-60</div>
-<div class="entry">Algorithms <em>see</em> Programs</div>
-
-<div class="entry">Allelopathy 79,83</div>
-<div class="entry indent-1">and micro-organisms 83,85, 94</div>
-<div class="entry indent-1">and succession 86</div>
-
-<div class="entry">Allogenic succession</div>
-<div class="entry">Alpha diversity 211 35</div>
-<div class="entry">Annuals</div>
-<div class="entry">Arch distortion in ordination 209,219,222, 224, 229-31</div>
-<div class="entry">Ash-beech cycle 62</div>
-
-<div class="entry">Association</div>
-<div class="entry indent-1">and competition 89</div>
-<div class="entry indent-1">in classification 156-60, 162-4</div>
-<div class="entry indent-1">level 172</div>
-<div class="entry indent-1">negative 22, 18, 133-4, 164, 168, 169, 171, 231</div>
-<div class="entry indent-1">of <em>Calamagrostis neglecta</em> 48-50</div>
-<div class="entry indent-1">positive 22. 78, 80-82, 133-4, 164, 165, 169, 231-5</div>
-<div class="entry indent-1">table 157</div>
-
-<div class="entry">Association analysis 164-72,200</div>
-<div class="entry indent-1">inverse 171-3</div>
-<div class="entry indent-1">normal 171-2</div>
-<div class="entry indent-1">wet and dry heath 168-73</div>
-
-<div class="entry">Association, between species 21,176</div>
-<div class="entry indent-1"><em>Eucalyptus</em> 164-7</div>
-<div class="entry indent-1"><em>Juncus effusus</em> 176-9</div>
-<div class="entry indent-1"><em>Rhacomitrium/Carex</em> 156-9</div>
-
-<div class="entry">Autogenic succession 35</div>
-
-<div class="letter" id="B">B</div>
-
-<div class="entry">Beaches</div>
-<div class="entry indent-1">raised, data set 216, 225,262</div>
-<div class="entry indent-1">Lake Michigan</div>
-<div class="entry">Beta diversity 211, 222</div>
-<div class="entry">Biological spectrum 1,3,4</div>
-<div class="entry">Biotic factors 43</div>
-<div class="entry">Block sizes 129</div>
-
-<div class="entry">Braun-Blanquet</div>
-<div class="entry indent-1">abundance, sociability scales 10</div>
-<div class="entry indent-1">degree of presence 156-7</div>
-<div class="entry indent-1">school of phytosociology 156</div>
-
-<div class="entry">Building phase 61,62</div>
-<div class="entry indent-1">and microclimate 75</div>
-
-<div class="letter" id="C">C</div>
-
-<div class="entry">Canopy 4</div>
-<div class="entry indent-1">and competition 91</div>
-<div class="entry">Centering of data, ordination 201,215</div>
-<div class="entry">Centre of importance 197</div>
-
-  <!-- CONTINUED INDEX CONTENT -->
-
-<div class="entry">Data, in ordination</div>
-<div class="subentry">centering 201,215</div>
-<div class="subentry">normal distribution and 209</div>
-<div class="subentry">sets</div>
-<div class="subsubentry">raised beach 216, 225,231, 236, 262</div>
-<div class="subsubentry">salt marsh 213, 225, 230, 233, 258</div>
-<div class="subentry">simulation matrix 209,212,224</div>
-<div class="subentry">standardization 201,215</div>
-<div class="subentry">transformation 215</div>
-
-<div class="entry">DECORANA</div>
-
-<div class="entry">Degenerate phase 61, 62, 69</div>
-<div class="subentry">and compensation point 72</div>
-<div class="subentry">and microclimate 75-7</div>
-
-<div class="entry">Degree</div>
-<div class="subentry">of constancy 157</div>
-<div class="subentry">of freedom 18, 23-4, 124</div>
-<div class="subentry">of presence 156-7</div>
-
-<div class="entry">Density 4, 6, 12, 18, 123, 182</div>
-<div class="subentry">and competition 90</div>
-<div class="subentry">relative 182</div>
-
-<div class="entry">Depletion curves 110-12</div>
-<div class="entry">Detection of pattern 128-9</div>
-<div class="entry">Deterministic model, succession 34, 52</div>
-<div class="entry">Detrended Correspondence Analysis (DCA) 224, 228-31</div>
-
-<div class="entry">Deviation, standard 20</div>
-<div class="entry">Difference between means 18-19</div>
-<div class="entry">Differential species 163</div>
-<div class="entry">Directional change 35, 44-6, 61</div>
-<div class="entry">Disclimax 43</div>
-
-<div class="entry">Distortion 191-2, 209-13, 214, 222</div>
-
-<div class="entry">Distribution</div>
-<div class="subentry">contagious 121-3, 125-8</div>
-<div class="subentry">contoured 31</div>
-<div class="subentry">horizontal 6</div>
-<div class="subentry">of chi square 241</div>
-<div class="subentry">random 12, 48, 122-5</div>
-<div class="subentry">regular 121, 152</div>
-<div class="subentry">vertical 4</div>
-
-<div class="entry">Disturbance 34, 53, 118</div>
-
-<div class="entry">Diversity</div>
-<div class="subentry">alpha 211</div>
-<div class="subentry">beta 211, 222</div>
-
-<div class="entry">Divisive classification methods 174</div>
-<div class="entry">Domin scale 11</div>
-<div class="entry">Dominance 182</div>
-<div class="entry">Dominant 9-10</div>
-
-<div class="entry">Dormancy 95</div>
-<div class="subentry">breaking of 95</div>
-
-<div class="entry">Downgrade 63, 65</div>
-<div class="entry">Dry weight 4, 16, 95, 102, 104</div>
-<div class="entry">Dynamic phases 61</div>
-
-<!-- E SECTION -->
-
-<div class="entry">Ecesis 34</div>
-<div class="entry">Ecotypic variation 113</div>
-<div class="entry">Edaphic factors 43, 95</div>
-
-<div class="entry">Eigen value 198, 224-5</div>
-<div class="subentry">vector 198</div>
-
-<div class="entry">Emergents 5</div>
-<div class="entry">Energy balance equation</div>
-
-<div class="entry">Environment</div>
-<div class="subentry">cyclic changes 75-7</div>
-<div class="subentry">equilibrium 42, 61</div>
-<div class="subentry">gradients 28, 181, 209</div>
-<div class="subentry">interactions 108</div>
-
-<div class="entry">Error 9, 11, 13, 17</div>
-<div class="entry">Estimate of error 17-20</div>
-
-<div class="entry">Evergreen phanerophytes 1</div>
-<div class="entry">Exclusive species 162</div>
-<div class="entry">Extrinsic factors 35</div>
-
-<div class="entry">Exudates toxic to plants 83-9</div>
-
-<!-- F SECTION -->
-
-<div class="entry">Factor analysis 198</div>
-<div class="entry">Fidelity 162-3</div>
-<div class="entry">Fiducial limits 20</div>
-
-<div class="entry">Floristic composition 1,164</div>
-
-<div class="entry">Frequency 9, 14, 131, 182</div>
-<div class="subentry">pattern 14-15</div>
-<div class="subentry">plant size 14</div>
-<div class="subentry">quadrat size 14</div>
-<div class="subentry">relative 182</div>
-
-<div class="entry">Frost hummock-polygon cycle 62-3</div>
-
-<!-- G SECTION -->
-
-<div class="entry">Gap, forest cycle</div>
-<div class="entry">Gaussian species distributions 224</div>
-<div class="entry">Genets 111</div>
-<div class="entry">Geophytes 2</div>
-
-<div class="entry">Germination 34, 82-7, 95-7</div>
-
-<div class="entry">Glacial moraines, succession 36</div>
-<div class="entry">Gradients 28, 30</div>
-<div class="entry">Grid analysis of pattern 28, 129</div>
-<div class="entry">Growth and populations 102-3</div>
-
-<!-- H SECTION -->
-
-<div class="entry">Halosere 34</div>
-<div class="entry">Herb layer 4</div>
-<div class="entry">Helophytes 2</div>
-<div class="entry">Hemicryptophytes 2-4</div>
-
-<div class="entry">Hierarchical classification 163, 168-9, 174</div>
-
-<div class="entry">Hollow 61</div>
-
-<div class="entry">Horizontal distribution 4, 6</div>
-
-<div class="entry">Hummocks 6, 61-3</div>
-
-<div class="entry">Hydrophytes 2</div>
-<div class="entry">Hydrosere 34-5, 52</div>
-
-  <!-- I SECTION -->
-
-<div class="entry">Importance value</div>
-
-<div class="entry">Indicator species 182-90, 192, 198</div>
-<div class="subentry">values 233</div>
-
-<div class="entry">Indifferent species 162</div>
-<div class="entry">Individualistic concept 46-7, 156</div>
-
-<div class="entry">Induced dormancy 95</div>
-<div class="entry">Inhibition model 52-4</div>
-<div class="entry">Innate dormancy 95</div>
-
-<div class="entry">Interference 84, 89, 103</div>
-<div class="entry">Interpretation of ordination diagrams 236</div>
-
-<div class="entry">Intrinsic factors 35, 61, 63</div>
-
-<div class="entry">Inverse</div>
-<div class="subentry">association analysis 171-3</div>
-<div class="subentry">classification 172-3</div>
-
-<div class="entry">Involutions in ordination 224</div>
-<div class="entry">Isonomes 28-9, 31-3</div>
-
-<!-- J -->
-
-<div class="entry">J-shaped curve 15-16</div>
-
-<!-- L -->
-
-<div class="entry">Lake Michigan, sand dune succession 36, 39-42</div>
-
-<div class="entry">Latent heat of evapotranspiration</div>
-
-<div class="entry">Latent root 198, 58</div>
-<div class="subentry">vector 198</div>
-
-<div class="entry">Law of frequencies 15</div>
-
-<div class="entry">Leachates and allelopathy 84</div>
-
-<div class="entry">Leading dominant 182, 189</div>
-
-<div class="entry">Leaf</div>
-<div class="subentry">area 16, 69, 102</div>
-<div class="subsubentry">index 72, 102, 106</div>
-<div class="subentry">length 16, 26, 69</div>
-<div class="subentry">width 16, 69</div>
-
-<div class="entry">Lichen succession 30, 54-60</div>
-
-<div class="entry">Life form 1-4</div>
-<div class="entry">Life history characteristics 52</div>
-
-<div class="entry">Linear</div>
-<div class="subentry">regression 25</div>
-<div class="subentry">species relationships, ordination 209</div>
-
-<div class="entry">Lithosere 34</div>
-<div class="entry">Local frequency 14</div>
-
-<!-- M -->
-
-<div class="entry">Marginal effect 63</div>
-<div class="subentry">of bracken 63, 151</div>
-<div class="subentry">of <em>Eriophorum</em> 66</div>
-
-<div class="entry">Marginal zone 63</div>
-
-<div class="entry">Mathematical artifacts, in ordination 225</div>
-
-<div class="entry">Matrix 198</div>
-<div class="subentry">correlation 198-9</div>
-<div class="subentry">covariance 199</div>
-<div class="subentry">data 224</div>
-<div class="subentry">similarity 199, 214</div>
-
-<div class="entry">Mature phase 61-2</div>
-<div class="subentry">and microclimate 75-7</div>
-
-<div class="entry">Mean value 18, 20, 26, 123</div>
-
-<div class="entry">Microclimate 41, 56-60, 75-7, 101, 105-8, 113, 151</div>
-
-<div class="entry">Micro-organisms and allelopathy 85, 94</div>
-
-<div class="entry">Microtopography 61, 78-9, 101, 134-7, 146-7</div>
-
-<div class="entry">Migration and ecesis 35</div>
-<div class="entry">Migrules 34</div>
-
-<div class="entry">Minimal area 160</div>
-<div class="subentry">and homogeneity 160-2</div>
-
-<div class="entry">Models 164</div>
-<div class="subentry">dimensional 192-3</div>
-<div class="subentry">mathematical, ordination 204</div>
-<div class="subentry">nodum 164, 169, 176, 191-5</div>
-<div class="subentry">of climax state 42, 51</div>
-<div class="subentry">of succession</div>
-<div class="subsubentry">alternative 52</div>
-<div class="subsubentry">classical 34</div>
-<div class="subsubentry">deterministic 34, 52</div>
-<div class="subsubentry">inhibition 52-4</div>
-<div class="subsubentry">tolerance 52-4, 60</div>
-<div class="subentry">ordination 176, 191-5, 204</div>
-<div class="subentry">population 117</div>
-<div class="subentry">triangular, strategy 118</div>
-
-<div class="entry">Monoclimax theory 43</div>
-<div class="entry">Monothetic classification 173</div>
-
-<div class="entry">Morphological pattern 128, 138-43</div>
-
-<div class="entry">Mosaic</div>
-<div class="subentry">of microclimate 76</div>
-<div class="subentry">of patches 61</div>
-<div class="subentry">of phases 65, 70</div>
-
-<div class="entry">Multiple regression 25</div>
-
-<!-- N -->
-
-<div class="entry">Nanophanerophytes</div>
-
-<div class="entry">Nearest neighbour analysis 12, 78, 133-4</div>
-
-<div class="entry">Negative association 22, 127, 168, 171, 231-5</div>
-<div class="subentry">and competition 89</div>
-
-<div class="entry">Net radiation 58</div>
-<div class="entry">Niche 34, 41, 54</div>
-
-<div class="entry">Nodum 164, 169, 175, 176</div>
-
-<div class="entry">Noise, in ordination 231</div>
-
-<div class="entry">Non-randomness 71, 121, 128</div>
-
-<div class="entry">Normal</div>
-<div class="subentry">association analysis 171-2</div>
-<div class="subentry">classification 168</div>
-<div class="subentry">distribution of data 209</div>
-
-<div class="entry">Nudation 34, 53</div>
-
-<!-- O -->
-
-<div class="entry">Optical sighting for cover 13</div>
-
-<div class="entry">Ordination</div>
-<div class="subentry">axes 191, 156, 175-6, 181, 198, 208, 224</div>
-<div class="subentry">data centering 201</div>
-<div class="subentry">standardization 201</div>
-<div class="subentry">interpretation 236</div>
-<div class="subentry">model 191-5, 198, 204</div>
-<div class="subentry">noise 231</div>
-<div class="subentry">of plots 193-5, 203</div>
-<div class="subentry">of species 192, 203</div>
-
-<div class="entry">Orthogonal axes 204, 208</div>
-<div class="entry">Outliers 222, 231</div>
-<div class="entry">Overdispersion 121, 138</div>
-
-<div class="entry">Overlaying</div>
-<div class="subentry">environmental measures 199, 204</div>
-<div class="subentry">species abundance 199, 202, 204, 222</div>
-
-<!-- P -->
-
-<div class="entry">PCA 194, 198-207, 208-23</div>
-<div class="subentry">of climatic data 202</div>
-
-<div class="entry">Partial</div>
-<div class="subentry">random sampling 29, 218</div>
-
-<div class="entry">Passive chamaephytes 2</div>
-
-<div class="entry">Pattern 15, 22, 27, 47, 78, 121</div>
-<div class="subentry">causality of 78, 132, 138</div>
-<div class="subentry">covariance and 133-7</div>
-<div class="subentry">correlation and 78-9</div>
-<div class="subentry">detection of 129</div>
-<div class="subentry">environmental 143</div>
-
-<div class="entry">Percentage cover 12-13</div>
-
-<div class="entry">Perennating buds 1-4</div>
-
-<div class="entry">Performance 16, 26, 66, 90</div>
-<div class="subentry">and age interaction 40, 63, 69-77</div>
-
-<div class="entry">Permanent quadrats 6</div>
-
-<div class="entry">Phanerophytes 1-4</div>
-<div class="subentry">deciduous 1</div>
-<div class="subentry">evergreen 1</div>
-
-<div class="entry">Phases of succession 34, 54-5</div>
-
-<div class="entry">Phasic development 61, 66-70</div>
-
-<div class="entry">Physiographic succession 35</div>
-
-<div class="entry">Pioneer phase 62, 63, 67</div>
-
-<div class="entry">Plant geography 4</div>
-
-<div class="entry">Plot sample 4, 172-3, 181</div>
-
-<div class="entry">Poisson series 121</div>
-
-<div class="entry">Polyclimax 43</div>
-
-<div class="entry">Population dynamics 95</div>
-
-<div class="entry">Positive association 22, 78, 80-2, 133-4</div>
-
-<div class="entry">Primary succession 35</div>
-<div class="entry">Productivity 62, 73</div>
-
-<div class="entry">Programs</div>
-<div class="subentry">DECORANA 230</div>
-<div class="subentry">TABORD 233</div>
-<div class="subentry">TWINSPAN 233</div>
-
-  <!-- Q -->
-
-<div class="entry">Q* net radiation 58</div>
-<div class="entry">Q-techniques 172</div>
-
-<div class="entry">Quadrat</div>
-<div class="subentry">shape 27</div>
-<div class="subentry">size 25, 27</div>
-<div class="subsubentry">effect on frequency 14</div>
-<div class="subsubentry">effect on variance 128-9</div>
-
-<div class="entry">Quantitative abundance 11</div>
-<div class="entry">Quasi-organism 46, 156</div>
-
-<!-- R -->
-
-<div class="entry">R-techniques 172</div>
-<div class="entry">R-values 24</div>
-
-<div class="entry">Radiation, net (Q*) 58</div>
-
-<div class="entry">Raised beaches</div>
-<div class="subentry">data set 216, 226, 233</div>
-<div class="subentry">Lake Michigan 40</div>
-
-<div class="entry">Random distribution 12, 48, 71</div>
-<div class="entry">Random sampling 25-6, 29-30</div>
-
-<div class="entry">Rare species removal in ordination 201, 214, 231</div>
-
-<div class="entry">Raunkiaer's Law of frequencies 15-16</div>
-
-<div class="entry">Reaction 34-5, 60, 79</div>
-
-<div class="entry">Reciprocal Averaging (RA)</div>
-
-<div class="entry">Recovery sequence 54-60</div>
-
-<div class="entry">Regression</div>
-<div class="subentry">linear 25</div>
-<div class="subentry">multiple 25</div>
-
-<div class="entry">Relative density 182</div>
-
-<div class="entry">Reproduction circle 62</div>
-
-<div class="entry">Retrogressive succession 35</div>
-
-<div class="entry">Rhizomes 40, 50, 63-5</div>
-
-<div class="entry">Rooted frequency 14</div>
-
-<div class="entry">Rosette plants 2</div>
-
-<div class="entry">Ruderal species 118</div>
-
-<!-- S -->
-
-<div class="entry">Salt marsh</div>
-<div class="subentry">data set 213, 225, 230</div>
-<div class="subentry">succession 34, 50</div>
-
-<div class="entry">Sampling 17</div>
-<div class="subentry">error 18</div>
-<div class="subentry">size 26</div>
-
-<div class="entry">Sand-dune succession 34-6, 39-42</div>
-
-<div class="entry">Scatter diagrams 21</div>
-
-<div class="entry">Secondary succession 35</div>
-
-<div class="entry">Seed production 113</div>
-
-<div class="entry">Seedling establishment 79, 102</div>
-
-<div class="entry">Selective species 162</div>
-
-<div class="entry">Self thinning 102</div>
-
-<div class="entry">Sensible heat (H) 58</div>
-
-<div class="entry">Sere 34</div>
-
-<div class="entry">Shape of quadrat 27</div>
-
-<div class="entry">Shoot frequency 14</div>
-
-<div class="entry">Significance 18-19</div>
-
-<div class="entry">Similarity matrix 199</div>
-
-<div class="entry">Simulated data 209</div>
-
-<div class="entry">Size of quadrat 27</div>
-
-<div class="entry">Sociological pattern 148</div>
-
-<div class="entry">Soil effects on populations 95</div>
-
-<div class="entry">Spatial distribution 4</div>
-
-<div class="entry">Species</div>
-<div class="subentry">characteristic 162</div>
-<div class="subentry">classification 172</div>
-<div class="subentry">turnover 24</div>
-
-<div class="entry">Species-area curves 160-1</div>
-
-<div class="entry">Spruce-lichen woodland 147-8</div>
-
-<div class="entry">Stages</div>
-<div class="subentry">seral 34</div>
-
-<div class="entry">Standard deviation 20</div>
-<div class="entry">Standard error 17-20</div>
-
-<div class="entry">Standardization of data 201</div>
-
-<div class="entry">Strategies 117</div>
-
-<div class="entry">Stress 117</div>
-
-<div class="entry">Structure 1, 4</div>
-
-<div class="entry">Subclimax 43</div>
-
-<div class="entry">Succession 34</div>
-<div class="subentry">primary 35</div>
-<div class="subentry">secondary 35</div>
-<div class="subentry">models 52-4</div>
-
-<div class="entry">Survivorship curves 110-12</div>
-
-<!-- T -->
-
-<div class="entry">Tables</div>
-<div class="subentry">correlation coefficients 245</div>
-
-<div class="entry">TABORD 233</div>
-
-<div class="entry">Therophytes 3, 4</div>
-
-<div class="entry">Time scale 43</div>
-
-<div class="entry">Tolerance model 52-4</div>
-
-<div class="entry">Transects 28-30</div>
-
-<div class="entry">Transformations of data 215</div>
-
-<div class="entry">Triangular model 118</div>
-
-<div class="entry">TWINSPAN 232-6</div>
-
-<!-- U -->
-
-<div class="entry">Underdispersion 121</div>
-
-<!-- V -->
-
-<div class="entry">Variance 17-21</div>
-<div class="subentry">mean ratio 121</div>
-
-<div class="entry">Variation continuous 156</div>
-
-<div class="entry">Vegetation changes</div>
-<div class="subentry">successional 34</div>
-
-<div class="entry">Vegetation surveys 6</div>
-
-<div class="entry">Vertical stratification 4</div>
-
-<div class="entry">Visual assessment 9</div>
-
-<!-- W -->
-
-<div class="entry">Weighting factors 190</div>
-
-<!-- X -->
-
-<div class="entry">x² goodness of fit</div>
-
-<!-- Y -->
-
-<div class="entry">Yield 4, 16, 90</div>
-
-</div> <!-- END index-container -->
-
-
-<!-- SEARCH SCRIPT WITH HIGHLIGHTING -->
+ 
+<nav>
+    <a href="index.html">Home</a>
+    <a href="Chapters.html">Chapters</a>
+    <a href="Data.html">Data</a>
+    <a href="Index-page.html">Index</a>
+</nav>
+ 
+<header>
+    <h1>Quantitative and Dynamic Plant Ecology</h1>
+</header>
+ 
+<main>
+ 
+    <h2>Index</h2>
+ 
+    <input type="text" id="searchBox" onkeyup="searchIndex()" placeholder="Search index...">
+ 
+    <div class="az-nav">
+        <a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
+        <a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a>
+        <a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a>
+        <a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a>
+        <a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
+        <a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#X">X</a>
+        <a href="#Y">Y</a><a href="#Z">Z</a>
+    </div>
+ 
+    <div class="index-container">
+ 
+        <!-- A -->
+        <div class="letter" id="A">A</div>
+ 
+        <div class="entry">Abundance 4, 9, 11</div>
+        <div class="entry">Accidental species 162</div>
+        <div class="entry">Active chamaephytes 2</div>
+        <div class="entry">Adaptation number 183, 184, 189, 190</div>
+        <div class="entry">Advancing front 63, 67–9, 151</div>
+        <div class="entry">Age-performance interaction 40, 63, 69–77, 151</div>
+        <div class="entry">Agglomerative classification methods 174</div>
+        <div class="entry">Alaska, glacial moraines 36</div>
+        <div class="entry">Albedo 56–60</div>
+        <div class="entry">Algorithms <em>see</em> Programs</div>
+        <div class="entry">Allelopathy 79, 83</div>
+        <div class="entry indent-1">and micro-organisms 83, 85, 94</div>
+        <div class="entry indent-1">and succession 86</div>
+        <div class="entry">Allogenic succession 35</div>
+        <div class="entry">Alpha diversity 211</div>
+        <div class="entry">Annuals 35</div>
+        <div class="entry">Arch distortion in ordination 209, 219, 222, 224, 229–31</div>
+        <div class="entry">Ash-beech cycle 62</div>
+        <div class="entry">Association</div>
+        <div class="entry indent-1">and competition 89</div>
+        <div class="entry indent-1">in classification 156–60, 162–4</div>
+        <div class="entry indent-1">level 172</div>
+        <div class="entry indent-1">negative 22, 18, 133–4, 164, 168, 169, 171, 231</div>
+        <div class="entry indent-1">of <em>Calamagrostis neglecta</em> 48–50</div>
+        <div class="entry indent-1">positive 22, 78, 80–82, 133–4, 164, 165, 169, 231–5</div>
+        <div class="entry indent-1">table 157</div>
+        <div class="entry">Association analysis 164–72, 200</div>
+        <div class="entry indent-1">inverse 171–3</div>
+        <div class="entry indent-1">normal 171–2</div>
+        <div class="entry indent-1">wet and dry heath 168–73</div>
+        <div class="entry">Association, between species 21, 176</div>
+        <div class="entry indent-1"><em>Eucalyptus</em> 164–7</div>
+        <div class="entry indent-1"><em>Juncus effusus</em> 176–9</div>
+        <div class="entry indent-1"><em>Rhacomitrium/Carex</em> 156–9</div>
+        <div class="entry">Autogenic succession 35</div>
+ 
+        <!-- B -->
+        <div class="letter" id="B">B</div>
+ 
+        <div class="entry">Beaches</div>
+        <div class="entry indent-1">raised, data set 216, 225, 262</div>
+        <div class="entry indent-1">Lake Michigan</div>
+        <div class="entry">Beta diversity 211, 222</div>
+        <div class="entry">Biological spectrum 1, 3, 4</div>
+        <div class="entry">Biotic factors 43</div>
+        <div class="entry">Block sizes 129</div>
+        <div class="entry">Braun-Blanquet</div>
+        <div class="entry indent-1">abundance, sociability scales 10</div>
+        <div class="entry indent-1">degree of presence 156–7</div>
+        <div class="entry indent-1">school of phytosociology 156</div>
+        <div class="entry">Building phase 61, 62</div>
+        <div class="entry indent-1">and microclimate 75</div>
+ 
+        <!-- C -->
+        <div class="letter" id="C">C</div>
+ 
+        <div class="entry">Canopy 4</div>
+        <div class="entry indent-1">and competition 91</div>
+        <div class="entry">Centering of data, ordination 201, 215</div>
+        <div class="entry">Centre of importance 197</div>
+ 
+        <!-- D -->
+        <div class="letter" id="D">D</div>
+ 
+        <div class="entry">Data, in ordination</div>
+        <div class="subentry">centering 201, 215</div>
+        <div class="subentry">normal distribution and 209</div>
+        <div class="subentry">sets</div>
+        <div class="subsubentry">raised beach 216, 225, 231, 236, 262</div>
+        <div class="subsubentry">salt marsh 213, 225, 230, 233, 258</div>
+        <div class="subentry">simulation matrix 209, 212, 224</div>
+        <div class="subentry">standardization 201, 215</div>
+        <div class="subentry">transformation 215</div>
+        <div class="entry">DECORANA</div>
+        <div class="entry">Degenerate phase 61, 62, 69</div>
+        <div class="subentry">and compensation point 72</div>
+        <div class="subentry">and microclimate 75–7</div>
+        <div class="entry">Degree</div>
+        <div class="subentry">of constancy 157</div>
+        <div class="subentry">of freedom 18, 23–4, 124</div>
+        <div class="subentry">of presence 156–7</div>
+        <div class="entry">Density 4, 6, 12, 18, 123, 182</div>
+        <div class="subentry">and competition 90</div>
+        <div class="subentry">relative 182</div>
+        <div class="entry">Depletion curves 110–12</div>
+        <div class="entry">Detection of pattern 128–9</div>
+        <div class="entry">Deterministic model, succession 34, 52</div>
+        <div class="entry">Detrended Correspondence Analysis (DCA) 224, 228–31</div>
+        <div class="entry">Deviation, standard 20</div>
+        <div class="entry">Difference between means 18–19</div>
+        <div class="entry">Differential species 163</div>
+        <div class="entry">Directional change 35, 44–6, 61</div>
+        <div class="entry">Disclimax 43</div>
+        <div class="entry">Distortion 191–2, 209–13, 214, 222</div>
+        <div class="entry">Distribution</div>
+        <div class="subentry">contagious 121–3, 125–8</div>
+        <div class="subentry">contoured 31</div>
+        <div class="subentry">horizontal 6</div>
+        <div class="subentry">of chi square 241</div>
+        <div class="subentry">random 12, 48, 122–5</div>
+        <div class="subentry">regular 121, 152</div>
+        <div class="subentry">vertical 4</div>
+        <div class="entry">Disturbance 34, 53, 118</div>
+        <div class="entry">Diversity</div>
+        <div class="subentry">alpha 211</div>
+        <div class="subentry">beta 211, 222</div>
+        <div class="entry">Divisive classification methods 174</div>
+        <div class="entry">Domin scale 11</div>
+        <div class="entry">Dominance 182</div>
+        <div class="entry">Dominant 9–10</div>
+        <div class="entry">Dormancy 95</div>
+        <div class="subentry">breaking of 95</div>
+        <div class="entry">Downgrade 63, 65</div>
+        <div class="entry">Dry weight 4, 16, 95, 102, 104</div>
+        <div class="entry">Dynamic phases 61</div>
+ 
+        <!-- E -->
+        <div class="letter" id="E">E</div>
+ 
+        <div class="entry">Ecesis 34</div>
+        <div class="entry">Ecotypic variation 113</div>
+        <div class="entry">Edaphic factors 43, 95</div>
+        <div class="entry">Eigen value 198, 224–5</div>
+        <div class="subentry">vector 198</div>
+        <div class="entry">Emergents 5</div>
+        <div class="entry">Energy balance equation</div>
+        <div class="entry">Environment</div>
+        <div class="subentry">cyclic changes 75–7</div>
+        <div class="subentry">equilibrium 42, 61</div>
+        <div class="subentry">gradients 28, 181, 209</div>
+        <div class="subentry">interactions 108</div>
+        <div class="entry">Error 9, 11, 13, 17</div>
+        <div class="entry">Estimate of error 17–20</div>
+        <div class="entry">Evergreen phanerophytes 1</div>
+        <div class="entry">Exclusive species 162</div>
+        <div class="entry">Extrinsic factors 35</div>
+        <div class="entry">Exudates toxic to plants 83–9</div>
+ 
+        <!-- F -->
+        <div class="letter" id="F">F</div>
+ 
+        <div class="entry">Factor analysis 198</div>
+        <div class="entry">Fidelity 162–3</div>
+        <div class="entry">Fiducial limits 20</div>
+        <div class="entry">Floristic composition 1, 164</div>
+        <div class="entry">Frequency 9, 14, 131, 182</div>
+        <div class="subentry">pattern 14–15</div>
+        <div class="subentry">plant size 14</div>
+        <div class="subentry">quadrat size 14</div>
+        <div class="subentry">relative 182</div>
+        <div class="entry">Frost hummock-polygon cycle 62–3</div>
+ 
+        <!-- G -->
+        <div class="letter" id="G">G</div>
+ 
+        <div class="entry">Gap, forest cycle</div>
+        <div class="entry">Gaussian species distributions 224</div>
+        <div class="entry">Genets 111</div>
+        <div class="entry">Geophytes 2</div>
+        <div class="entry">Germination 34, 82–7, 95–7</div>
+        <div class="entry">Glacial moraines, succession 36</div>
+        <div class="entry">Gradients 28, 30</div>
+        <div class="entry">Grid analysis of pattern 28, 129</div>
+        <div class="entry">Growth and populations 102–3</div>
+ 
+        <!-- H -->
+        <div class="letter" id="H">H</div>
+ 
+        <div class="entry">Halosere 34</div>
+        <div class="entry">Herb layer 4</div>
+        <div class="entry">Helophytes 2</div>
+        <div class="entry">Hemicryptophytes 2–4</div>
+        <div class="entry">Hierarchical classification 163, 168–9, 174</div>
+        <div class="entry">Hollow 61</div>
+        <div class="entry">Horizontal distribution 4, 6</div>
+        <div class="entry">Hummocks 6, 61–3</div>
+        <div class="entry">Hydrophytes 2</div>
+        <div class="entry">Hydrosere 34–5, 52</div>
+ 
+        <!-- I -->
+        <div class="letter" id="I">I</div>
+ 
+        <div class="entry">Importance value</div>
+        <div class="entry">Indicator species 182–90, 192, 198</div>
+        <div class="subentry">values 233</div>
+        <div class="entry">Indifferent species 162</div>
+        <div class="entry">Individualistic concept 46–7, 156</div>
+        <div class="entry">Induced dormancy 95</div>
+        <div class="entry">Inhibition model 52–4</div>
+        <div class="entry">Innate dormancy 95</div>
+        <div class="entry">Interference 84, 89, 103</div>
+        <div class="entry">Interpretation of ordination diagrams 236</div>
+        <div class="entry">Intrinsic factors 35, 61, 63</div>
+        <div class="entry">Inverse</div>
+        <div class="subentry">association analysis 171–3</div>
+        <div class="subentry">classification 172–3</div>
+        <div class="entry">Involutions in ordination 224</div>
+        <div class="entry">Isonomes 28–9, 31–3</div>
+ 
+        <!-- J -->
+        <div class="letter" id="J">J</div>
+ 
+        <div class="entry">J-shaped curve 15–16</div>
+ 
+        <!-- K -->
+        <div class="letter" id="K">K</div>
+ 
+        <!-- L -->
+        <div class="letter" id="L">L</div>
+ 
+        <div class="entry">Lake Michigan, sand dune succession 36, 39–42</div>
+        <div class="entry">Latent heat of evapotranspiration</div>
+        <div class="entry">Latent root 198, 58</div>
+        <div class="subentry">vector 198</div>
+        <div class="entry">Law of frequencies 15</div>
+        <div class="entry">Leachates and allelopathy 84</div>
+        <div class="entry">Leading dominant 182, 189</div>
+        <div class="entry">Leaf</div>
+        <div class="subentry">area 16, 69, 102</div>
+        <div class="subsubentry">index 72, 102, 106</div>
+        <div class="subentry">length 16, 26, 69</div>
+        <div class="subentry">width 16, 69</div>
+        <div class="entry">Lichen succession 30, 54–60</div>
+        <div class="entry">Life form 1–4</div>
+        <div class="entry">Life history characteristics 52</div>
+        <div class="entry">Linear</div>
+        <div class="subentry">regression 25</div>
+        <div class="subentry">species relationships, ordination 209</div>
+        <div class="entry">Lithosere 34</div>
+        <div class="entry">Local frequency 14</div>
+ 
+        <!-- M -->
+        <div class="letter" id="M">M</div>
+ 
+        <div class="entry">Marginal effect 63</div>
+        <div class="subentry">of bracken 63, 151</div>
+        <div class="subentry">of <em>Eriophorum</em> 66</div>
+        <div class="entry">Marginal zone 63</div>
+        <div class="entry">Mathematical artifacts, in ordination 225</div>
+        <div class="entry">Matrix 198</div>
+        <div class="subentry">correlation 198–9</div>
+        <div class="subentry">covariance 199</div>
+        <div class="subentry">data 224</div>
+        <div class="subentry">similarity 199, 214</div>
+        <div class="entry">Mature phase 61–2</div>
+        <div class="subentry">and microclimate 75–7</div>
+        <div class="entry">Mean value 18, 20, 26, 123</div>
+        <div class="entry">Microclimate 41, 56–60, 75–7, 101, 105–8, 113, 151</div>
+        <div class="entry">Micro-organisms and allelopathy 85, 94</div>
+        <div class="entry">Microtopography 61, 78–9, 101, 134–7, 146–7</div>
+        <div class="entry">Migration and ecesis 35</div>
+        <div class="entry">Migrules 34</div>
+        <div class="entry">Minimal area 160</div>
+        <div class="subentry">and homogeneity 160–2</div>
+        <div class="entry">Models 164</div>
+        <div class="subentry">dimensional 192–3</div>
+        <div class="subentry">mathematical, ordination 204</div>
+        <div class="subentry">nodum 164, 169, 176, 191–5</div>
+        <div class="subentry">of climax state 42, 51</div>
+        <div class="subentry">of succession</div>
+        <div class="subsubentry">alternative 52</div>
+        <div class="subsubentry">classical 34</div>
+        <div class="subsubentry">deterministic 34, 52</div>
+        <div class="subsubentry">inhibition 52–4</div>
+        <div class="subsubentry">tolerance 52–4, 60</div>
+        <div class="subentry">ordination 176, 191–5, 204</div>
+        <div class="subentry">population 117</div>
+        <div class="subentry">triangular, strategy 118</div>
+        <div class="entry">Monoclimax theory 43</div>
+        <div class="entry">Monothetic classification 173</div>
+        <div class="entry">Morphological pattern 128, 138–43</div>
+        <div class="entry">Mosaic</div>
+        <div class="subentry">of microclimate 76</div>
+        <div class="subentry">of patches 61</div>
+        <div class="subentry">of phases 65, 70</div>
+        <div class="entry">Multiple regression 25</div>
+ 
+        <!-- N -->
+        <div class="letter" id="N">N</div>
+ 
+        <div class="entry">Nanophanerophytes</div>
+        <div class="entry">Nearest neighbour analysis 12, 78, 133–4</div>
+        <div class="entry">Negative association 22, 127, 168, 171, 231–5</div>
+        <div class="subentry">and competition 89</div>
+        <div class="entry">Net radiation 58</div>
+        <div class="entry">Niche 34, 41, 54</div>
+        <div class="entry">Nodum 164, 169, 175, 176</div>
+        <div class="entry">Noise, in ordination 231</div>
+        <div class="entry">Non-randomness 71, 121, 128</div>
+        <div class="entry">Normal</div>
+        <div class="subentry">association analysis 171–2</div>
+        <div class="subentry">classification 168</div>
+        <div class="subentry">distribution of data 209</div>
+        <div class="entry">Nudation 34, 53</div>
+ 
+        <!-- O -->
+        <div class="letter" id="O">O</div>
+ 
+        <div class="entry">Optical sighting for cover 13</div>
+        <div class="entry">Ordination</div>
+        <div class="subentry">axes 191, 156, 175–6, 181, 198, 208, 224</div>
+        <div class="subentry">data centering 201</div>
+        <div class="subentry">standardization 201</div>
+        <div class="subentry">interpretation 236</div>
+        <div class="subentry">model 191–5, 198, 204</div>
+        <div class="subentry">noise 231</div>
+        <div class="subentry">of plots 193–5, 203</div>
+        <div class="subentry">of species 192, 203</div>
+        <div class="entry">Orthogonal axes 204, 208</div>
+        <div class="entry">Outliers 222, 231</div>
+        <div class="entry">Overdispersion 121, 138</div>
+        <div class="entry">Overlaying</div>
+        <div class="subentry">environmental measures 199, 204</div>
+        <div class="subentry">species abundance 199, 202, 204, 222</div>
+ 
+        <!-- P -->
+        <div class="letter" id="P">P</div>
+ 
+        <div class="entry">PCA 194, 198–207, 208–23</div>
+        <div class="subentry">of climatic data 202</div>
+        <div class="entry">Partial</div>
+        <div class="subentry">random sampling 29, 218</div>
+        <div class="entry">Passive chamaephytes 2</div>
+        <div class="entry">Pattern 15, 22, 27, 47, 78, 121</div>
+        <div class="subentry">causality of 78, 132, 138</div>
+        <div class="subentry">covariance and 133–7</div>
+        <div class="subentry">correlation and 78–9</div>
+        <div class="subentry">detection of 129</div>
+        <div class="subentry">environmental 143</div>
+        <div class="entry">Percentage cover 12–13</div>
+        <div class="entry">Perennating buds 1–4</div>
+        <div class="entry">Performance 16, 26, 66, 90</div>
+        <div class="subentry">and age interaction 40, 63, 69–77</div>
+        <div class="entry">Permanent quadrats 6</div>
+        <div class="entry">Phanerophytes 1–4</div>
+        <div class="subentry">deciduous 1</div>
+        <div class="subentry">evergreen 1</div>
+        <div class="entry">Phases of succession 34, 54–5</div>
+        <div class="entry">Phasic development 61, 66–70</div>
+        <div class="entry">Physiographic succession 35</div>
+        <div class="entry">Pioneer phase 62, 63, 67</div>
+        <div class="entry">Plant geography 4</div>
+        <div class="entry">Plot sample 4, 172–3, 181</div>
+        <div class="entry">Poisson series 121</div>
+        <div class="entry">Polyclimax 43</div>
+        <div class="entry">Population dynamics 95</div>
+        <div class="entry">Positive association 22, 78, 80–2, 133–4</div>
+        <div class="entry">Primary succession 35</div>
+        <div class="entry">Productivity 62, 73</div>
+        <div class="entry">Programs</div>
+        <div class="subentry">DECORANA 230</div>
+        <div class="subentry">TABORD 233</div>
+        <div class="subentry">TWINSPAN 233</div>
+ 
+        <!-- Q -->
+        <div class="letter" id="Q">Q</div>
+ 
+        <div class="entry">Q* net radiation 58</div>
+        <div class="entry">Q-techniques 172</div>
+        <div class="entry">Quadrat</div>
+        <div class="subentry">shape 27</div>
+        <div class="subentry">size 25, 27</div>
+        <div class="subsubentry">effect on frequency 14</div>
+        <div class="subsubentry">effect on variance 128–9</div>
+        <div class="entry">Quantitative abundance 11</div>
+        <div class="entry">Quasi-organism 46, 156</div>
+ 
+        <!-- R -->
+        <div class="letter" id="R">R</div>
+ 
+        <div class="entry">R-techniques 172</div>
+        <div class="entry">R-values 24</div>
+        <div class="entry">Radiation, net (Q*) 58</div>
+        <div class="entry">Raised beaches</div>
+        <div class="subentry">data set 216, 226, 233</div>
+        <div class="subentry">Lake Michigan 40</div>
+        <div class="entry">Random distribution 12, 48, 71</div>
+        <div class="entry">Random sampling 25–6, 29–30</div>
+        <div class="entry">Rare species removal in ordination 201, 214, 231</div>
+        <div class="entry">Raunkiaer's Law of frequencies 15–16</div>
+        <div class="entry">Reaction 34–5, 60, 79</div>
+        <div class="entry">Reciprocal Averaging (RA)</div>
+        <div class="entry">Recovery sequence 54–60</div>
+        <div class="entry">Regression</div>
+        <div class="subentry">linear 25</div>
+        <div class="subentry">multiple 25</div>
+        <div class="entry">Relative density 182</div>
+        <div class="entry">Reproduction circle 62</div>
+        <div class="entry">Retrogressive succession 35</div>
+        <div class="entry">Rhizomes 40, 50, 63–5</div>
+        <div class="entry">Rooted frequency 14</div>
+        <div class="entry">Rosette plants 2</div>
+        <div class="entry">Ruderal species 118</div>
+ 
+        <!-- S -->
+        <div class="letter" id="S">S</div>
+ 
+        <div class="entry">Salt marsh</div>
+        <div class="subentry">data set 213, 225, 230</div>
+        <div class="subentry">succession 34, 50</div>
+        <div class="entry">Sampling 17</div>
+        <div class="subentry">error 18</div>
+        <div class="subentry">size 26</div>
+        <div class="entry">Sand-dune succession 34–6, 39–42</div>
+        <div class="entry">Scatter diagrams 21</div>
+        <div class="entry">Secondary succession 35</div>
+        <div class="entry">Seed production 113</div>
+        <div class="entry">Seedling establishment 79, 102</div>
+        <div class="entry">Selective species 162</div>
+        <div class="entry">Self thinning 102</div>
+        <div class="entry">Sensible heat (H) 58</div>
+        <div class="entry">Sere 34</div>
+        <div class="entry">Shape of quadrat 27</div>
+        <div class="entry">Shoot frequency 14</div>
+        <div class="entry">Significance 18–19</div>
+        <div class="entry">Similarity matrix 199</div>
+        <div class="entry">Simulated data 209</div>
+        <div class="entry">Size of quadrat 27</div>
+        <div class="entry">Sociological pattern 148</div>
+        <div class="entry">Soil effects on populations 95</div>
+        <div class="entry">Spatial distribution 4</div>
+        <div class="entry">Species</div>
+        <div class="subentry">characteristic 162</div>
+        <div class="subentry">classification 172</div>
+        <div class="subentry">turnover 24</div>
+        <div class="entry">Species-area curves 160–1</div>
+        <div class="entry">Spruce-lichen woodland 147–8</div>
+        <div class="entry">Stages</div>
+        <div class="subentry">seral 34</div>
+        <div class="entry">Standard deviation 20</div>
+        <div class="entry">Standard error 17–20</div>
+        <div class="entry">Standardization of data 201</div>
+        <div class="entry">Strategies 117</div>
+        <div class="entry">Stress 117</div>
+        <div class="entry">Structure 1, 4</div>
+        <div class="entry">Subclimax 43</div>
+        <div class="entry">Succession 34</div>
+        <div class="subentry">primary 35</div>
+        <div class="subentry">secondary 35</div>
+        <div class="subentry">models 52–4</div>
+        <div class="entry">Survivorship curves 110–12</div>
+ 
+        <!-- T -->
+        <div class="letter" id="T">T</div>
+ 
+        <div class="entry">Tables</div>
+        <div class="subentry">correlation coefficients 245</div>
+        <div class="entry">TABORD 233</div>
+        <div class="entry">Therophytes 3, 4</div>
+        <div class="entry">Time scale 43</div>
+        <div class="entry">Tolerance model 52–4</div>
+        <div class="entry">Transects 28–30</div>
+        <div class="entry">Transformations of data 215</div>
+        <div class="entry">Triangular model 118</div>
+        <div class="entry">TWINSPAN 232–6</div>
+ 
+        <!-- U -->
+        <div class="letter" id="U">U</div>
+ 
+        <div class="entry">Underdispersion 121</div>
+ 
+        <!-- V -->
+        <div class="letter" id="V">V</div>
+ 
+        <div class="entry">Variance 17–21</div>
+        <div class="subentry">mean ratio 121</div>
+        <div class="entry">Variation continuous 156</div>
+        <div class="entry">Vegetation changes</div>
+        <div class="subentry">successional 34</div>
+        <div class="entry">Vegetation surveys 6</div>
+        <div class="entry">Vertical stratification 4</div>
+        <div class="entry">Visual assessment 9</div>
+ 
+        <!-- W -->
+        <div class="letter" id="W">W</div>
+ 
+        <div class="entry">Weighting factors 190</div>
+ 
+        <!-- X -->
+        <div class="letter" id="X">X</div>
+ 
+        <div class="entry">x² goodness of fit</div>
+ 
+        <!-- Y -->
+        <div class="letter" id="Y">Y</div>
+ 
+        <div class="entry">Yield 4, 16, 90</div>
+ 
+        <!-- Z -->
+        <div class="letter" id="Z">Z</div>
+ 
+    </div><!-- end index-container -->
+ 
+</main>
+ 
+<footer>
+    <p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p>
+</footer>
+ 
 <script>
-const searchInput = document.getElementById('search');
-const entries = document.querySelectorAll('.entry, .subentry, .subsubentry');
-
-searchInput.addEventListener('input', function () {
-    const term = this.value.toLowerCase();
-
-    entries.forEach(el => {
-        const text = el.textContent.toLowerCase();
-
-        // reset
-        el.innerHTML = el.textContent;
-
-        if (text.includes(term) && term !== "") {
-            el.style.display = "block";
-
-            // highlight
-            const regex = new RegExp(`(${term})`, "gi");
-            el.innerHTML = el.textContent.replace(regex, '<span class="highlight">$1</span>');
-        } else if (term !== "") {
-            el.style.display = "none";
-        } else {
-            el.style.display = "block";
-        }
-    });
-});
+    function searchIndex() {
+        const input = document.getElementById("searchBox").value.toLowerCase();
+        const entries = document.querySelectorAll(".entry, .subentry, .subsubentry");
+ 
+        entries.forEach(function(el) {
+            if (!el.getAttribute("data-original")) {
+                el.setAttribute("data-original", el.innerHTML);
+            }
+            const original = el.getAttribute("data-original");
+            const text = el.textContent.toLowerCase();
+ 
+            if (input === "") {
+                el.style.display = "";
+                el.innerHTML = original;
+            } else if (text.includes(input)) {
+                el.style.display = "";
+                const escaped = input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp("(" + escaped + ")", "gi");
+                el.innerHTML = original.replace(regex, "<mark>$1</mark>");
+            } else {
+                el.style.display = "none";
+            }
+        });
+    }
 </script>
-
+ 
 </body>
 </html>
