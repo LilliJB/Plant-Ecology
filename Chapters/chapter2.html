@@ -77,7 +77,7 @@
     <a href="../index.html">Home</a>
     <a href="../Chapters.html">Chapters</a>
     <a href="../Data.html">Data</a>
-<a href="Index-page.html">Index</a>
+<a href="../Index-page.html">Index</a>
 </nav>
 
 <main>
@@ -192,9 +192,8 @@ V = \frac{
 V = \frac{77.6 + 78.5}{18} = 8.67
 \]
 <p>This is the variance of the total data, and the variance of the <em><b>difference of the means</b></em> ​​accordingly is 
-\[
-\frac{V=\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
-\]
+
+\[ V = \left(\frac{1}{n_1} + \frac{1}{n_2}\right) \]
 
 \[
 \sqrt{V \left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
@@ -204,7 +203,7 @@ V = \frac{77.6 + 78.5}{18} = 8.67
 \]
 
 
-            <h5> <em>t>/em>Tests</h5>
+            <h5><em>t</em>Tests</h5>
 <p>The standard error of the difference is now used to assess the difference between the means by a <em>t</em>-test:</p>
 \[
 t = \frac{\text{Difference between the means}}{\text{Standard error of the difference}}
@@ -222,7 +221,7 @@ t = \frac{\text{Difference between the means}}{\text{Standard error of the diffe
 
                 <h5>Confidence limits or fiducial limits</h5>
 
-                <figure class="figure-break">
+                <figure class="figure-break" id="fig-2-1">
                     <img src="../images/Fig.2.1.jpg" alt="The normal distribution curve">
                     <figcaption>
                         <strong>Fig. 2.1</strong> The normal distribution curve with mean \( \bar{x} \) and linear scale of unit standard deviations  \( \sigma \)
@@ -231,15 +230,15 @@ t = \frac{\text{Difference between the means}}{\text{Standard error of the diffe
 
 
 <p>In a normal population with a mean of \( \bar{x} \) the shape of the curve simply relates individual sizes or numbers to this mean value. Thus most of the population is roughly equal to the mean value but a proportion of the individuals are much larger or smaller. Just as the variance of the population is a measure of the variability then
-the <em><strong>standard deviation</strong></em> (standard deviation = \( \sqrt{\phantom{x}} \)  variance) is a linear standard of measurement along the  \( x \) -axis (Fig. 2.1). The total population of individuals in fact is ​​contained in approximately three standard deviations either side of the mean. The majority of values lie close to the population mean x and it can be shown from a table of  \( C \) (see Fisher and Yates, 1957) that 68.26% of the population falls within one standard deviation either side of the mean. Identical considerations apply to populations of <em><strong>mean values</strong></em> where 68.26% of the population of sample means falls within one standard error of the true population mean value (S.E.M.). The 68.26% <em><strong>confidence limits</strong></em> are then simply:</p>
+the <em><strong>standard deviation</strong></em> (standard deviation = \( \sqrt{\phantom{x}} \)  variance) is a linear standard of measurement along the  \( x \) -axis (<a class="table-link" href="#fig-2-1">Fig. 2.1</a>). The total population of individuals in fact is ​​contained in approximately three standard deviations either side of the mean. The majority of values lie close to the population mean x and it can be shown from a table of  \( C \) (see Fisher and Yates, 1957) that 68.26% of the population falls within one standard deviation either side of the mean. Identical considerations apply to populations of <em><strong>mean values</strong></em> where 68.26% of the population of sample means falls within one standard error of the true population mean value (S.E.M.). The 68.26% <em><strong>confidence limits</strong></em> are then simply:</p>
                 <table class="data-table">
                     <tr>
                         <td class="label">Upper limit</td>
-                        <td>=</td><td>\( \bar{x} \)</td><td>\( \m \)</td><td>1</td><td>S.E.M</td>
+                        <td>=</td><td>\( \bar{x} \)</td><td>\( \- \)</td><td>1</td><td>S.E.M</td>
                     </tr>
                     <tr>
                         <td class="label">Lower limit</td>
-                        <td>=</td><td>\( \bar{x} \)</td><td>\( \p \)</td><td>1</td><td>S.E.M</td>
+                        <td>=</td><td>\( \bar{x} \)</td><td>\( \+ \)</td><td>1</td><td>S.E.M</td>
                  </tr>
                 </table>
 
@@ -247,18 +246,18 @@ the <em><strong>standard deviation</strong></em> (standard deviation = \( \sqrt{
                 <table class="data-table">
                     <tr>
                         <td class="label">Upper limit</td>
-                        <td>=</td><td>\( \bar{x} \)</td><td>\( \m \)</td><td>1.96</td><td>S.E.M</td>
+                        <td>=</td><td>\( \bar{x} \)</td><td>\( \- \)</td><td>1.96</td><td>S.E.M</td>
                     </tr>
                     <tr>
                         <td class="label">Lower limit</td>
-                        <td>=</td><td>\( \bar{x} \)</td><td>\( \p \)</td><td>1.96</td><td>S.E.M</td>
+                        <td>=</td><td>\( \bar{x} \)</td><td>\( \+ \)</td><td>1.96</td><td>S.E.M</td>
                  </tr>
                 </table>
 
 and the 99% confidence limits
                 <table class="data-table">
                     <tr>
-                     <td>\( \bar{x} \)</td><td>\( \p \)</td><td>2.58</td><td>S.E.M</td>
+                     <td>\( \bar{x} \)</td><td>\( \+ \)</td><td>2.58</td><td>S.E.M</td>
                     </tr>
                 </table>
 
@@ -271,8 +270,8 @@ and the 99% confidence limits
 
 \[
 \bar{x} \pm 1.96 \cdot \text{S.E.M.}
-= 3.2 \pm 1.96 \times 0.93
-= 3.2 \pm 1.82
+= 3.2 \pm 1.96 \times 0.93\]
+\[= 3.2 \pm 1.82
 \]
 
 <p>The probability is 0.95 that 1.4 and 5.0 include the true population mean.<br>
@@ -281,54 +280,53 @@ Similarly the 99% confidence limits are 3.2 \( \pm \) 2.40. A statement of the c
 
 Useful information can be obtained from field data on the possible interrelationships between different species by counting the number of quadrats out of the total in which one or both of a pair of species are found. For example in n quadrats, a contained species \( A \) and \( B \), \( b \) species \( B \) alone, \( c \) species \( A \) alone and \( d \) quadrats contained neither species \( A \) or \( B \). A 2 x 2 contingency table is then made up as follows:</p>
 
-<table style="border-collapse: collapse; margin: 20px auto; text-align: center;">
+<table style="border-collapse: collapse; margin: 20px auto; text-align: center; font-style: italic;">
   <thead>
     <tr>
       <th style="border: none;"></th>
       <th style="border: none;"></th>
-      <th colspan="2" style="border: none; font-style: italic;">Species <i>A</i></th>
-      <th style="border: none;"></th>
+      <th colspan="3" style="border-bottom: 1px solid black; padding: 8px 20px;">Species <i>A</i></th>
     </tr>
     <tr>
       <th style="border: none;"></th>
       <th style="border: none;"></th>
-      <th style="border: 1px solid black; padding: 8px 20px;">+</th>
-      <th style="border: 1px solid black; padding: 8px 20px;">−</th>
-      <th style="border: none;"></th>
+      <th style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;">+</th>
+      <th style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;">&minus;</th>
+      <th style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2" style="border: none; font-style: italic; padding-right: 10px;">Species <i>B</i></td>
-      <td style="border: 1px solid black; padding: 8px 20px;">+</td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i></td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>b</i></td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>b</i></td>
+      <td rowspan="3" style="border: none; padding-right: 15px; vertical-align: middle;">Species <i>B</i></td>
+      <td style="border-bottom: 1px solid black; border-right: 1px solid black; padding: 8px 20px;">+</td>
+      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>a</i></td>
+      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>b</i></td>
+      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>b</i></td>
     </tr>
     <tr>
-      <td style="border: 1px solid black; padding: 8px 20px;">−</td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>c</i></td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>d</i></td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>c</i> + <i>d</i></td>
+      <td style="border-bottom: 1px solid black; border-right: 1px solid black; padding: 8px 20px;">&minus;</td>
+      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>c</i></td>
+      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>d</i></td>
+      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>c</i> + <i>d</i></td>
     </tr>
     <tr>
-      <td style="border: none;"></td>
-      <td style="border: none;"></td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>c</i></td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>b</i> + <i>d</i></td>
-      <td style="border: 1px solid black; padding: 8px 20px;"><i>n</i></td>
+      <td style="border-right: 1px solid black; padding: 8px 20px;"></td>
+      <td style="border-left: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>c</i></td>
+      <td style="border-left: 1px solid black; padding: 8px 20px;"><i>b</i> + <i>d</i></td>
+      <td style="border-left: 1px solid black; padding: 8px 20px;"><i>n</i></td>
     </tr>
   </tbody>
 </table>
 
-<p>It can be calculated that the number of quadrats containing both \( A \) and \( B \), provided they are not associated in any way, should be [(a \( \p \) b)(a \( \m \) c)]/n. Thus we have a, the observed number of quadrats containing both species and we can calculate the expected number assuming an independent relationship between the two species. The other expected frequencies of the different \( A \) and \( B \) quadrat combinations can readily be obtained simply by subtraction from the marginal totals. Thus the expected number of quadrats \( \p \) \( A \), \( \m \) \( B \) would be</p>
+
+<p>It can be calculated that the number of quadrats containing both \( A \) and \( B \), provided they are not associated in any way, should be [(a \( \+ \) b)(a \( \- \) c)]/n. Thus we have a, the observed number of quadrats containing both species and we can calculate the expected number assuming an independent relationship between the two species. The other expected frequencies of the different \( A \) and \( B \) quadrat combinations can readily be obtained simply by subtraction from the marginal totals. Thus the expected number of quadrats \( \+ \) \( A \), \( \ -\) \( B \) would be</p>
 
 \[
 (a + c) - \frac{(a + b)(a + c)}{n}
 \]
 
 <p>The number of observed quadrat combinations of A and B can now be compared with the expected number by a \( x^2 \)-test. <br>
-The calculation of \( x \) is conveniently done from the formula
+The calculation of \( x \) is conveniently done from the formula</p>
 
 \[
 \chi^2 =
@@ -337,7 +335,16 @@ The calculation of \( x \) is conveniently done from the formula
 \]
 
 
+<p>The \( x^2 \) tables are entered with one degree of freedom. The \( x^2 \) value shows whether the difference between the observed and expected numbers of quadrats is significant or merely due to a chance fluctuation. The trend of the association, i.e. whether the association is positive or negative, is given by a comparison of the expected and observed values for the joint occurrence of \( A \) and \( B \). Thus if \( A \) and \( B \) occur together <em>more</em> frequently than the expected number of joint occurrences, then \( A \) and \( B \) are positively associated. Similarly if \( A \) and \( B \) occur together <em>less</em> than expected they are negatively associated. <br>
+The level of association between species is very quickly calculated but since the data are basically a measure of frequency the result obtained is dependent on quadrat size. Consider the relationship of species \( A \), \( B \) and \( C \) as shown below (<a href="#fig-2-2">Fig. 2.2</a>).
+Clearly by inspection \( A \) and B are markedly positively associated; \( A \) and \( C \) and similarly \( B \) and \( C \), negatively associated. Now consider the effect of sampling in a random fashion such a population with quadrat size 1, roughly equal in size to the individuals \( A \), B and \( C \). Most quadrats would contain either \( A \) or \( B \) or \( C \) or none of them, but hardly any quadrats with \( A \)\( B \), \( A \)\( C \) or \( B \)\( C \). Accordingly the \( x^2 \)-test would show strong negative association between all species. With quadrat size 2, \( A \) and \( B \) would on the average be found frequently together and species \( C \) on its own. A \( x^2 \)-test would confirm the obvious trends of association between \( A \), \( B \) and \( C \). However consider finally the sampling of the layout with quadrat size 3. Nearly all quadrats would contain species \( A \), \( B \) and \( C \) and, in this instance, the number of quadrats containing neither of the pairs of species would be zero and \( x \) cannot then be calculated. However, assume the same pattern but with a much lower density of individuals, then the final size of quadrat would show nil association or possibly a positive association between all paired combinations of the three species. It is possible to get three trends of association merely by changing the size of sample quadrat and considerable care must be taken in interpreting a set of positive and negative associations.</p>
 
+                <figure class="figure-break" id="fig-2-2">
+                    <img src="../images/Fig.2.2.jpg" alt="relationship between quadrat size and trend">
+                    <figcaption>
+                        <strong>Fig. 2.2</strong> The relationship between quadrat size and trend of association between three species \( A \), \( B \) and \( C \) (see text).
+                        </figcaption>
+                </figure>
 
 
             </details>
