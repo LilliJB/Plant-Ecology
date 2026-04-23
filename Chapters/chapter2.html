@@ -77,6 +77,7 @@
     <a href="../index.html">Home</a>
     <a href="../Chapters.html">Chapters</a>
     <a href="../Data.html">Data</a>
+<a href="Index-page.html">Index</a>
 </nav>
 
 <main>
@@ -192,7 +193,7 @@ V = \frac{77.6 + 78.5}{18} = 8.67
 \]
 <p>This is the variance of the total data, and the variance of the <em><b>difference of the means</b></em> ​​accordingly is 
 \[
-V= \frac{\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
+\frac{V=\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
 \]
 
 \[
@@ -201,6 +202,143 @@ V= \frac{\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
 = \sqrt{1.734}
 = 1.317
 \]
+
+
+            <h5> <em>t>/em>Tests</h5>
+<p>The standard error of the difference is now used to assess the difference between the means by a <em>t</em>-test:</p>
+\[
+t = \frac{\text{Difference between the means}}{\text{Standard error of the difference}}
+\]
+
+<p>i.e.</p>
+\[
+\frac{11.5 - 3.2}{1.317} = 6.302 {\text{with 18 degrees of freedom.}}
+\]
+
+<p>i.e. the difference between the means is more than six times as great as the standard error of the difference and this difference is highly significant. The level of significance is readily obtained from a table of <em>t</em> (Fisher and Yates, 1957). With \( n \) = 18 the probability of exceeding a value of <em>t</em> of 3.92 by chance is very small (\( p \) =0.001). Thus with <em>t</em>=6.3 the difference between the two mean values arising by chance is very much less than 1000:1 and this difference is highly significant. [A 5% level of significance (1 in 20) is usually taken as the level of statistical significance.]</p>
+
+<p><em>It is important to realize that a significant value oft does not necessarily mean a real difference between the two values.</em> A large value of <em>t</em> can arise either by the difference between two mean values being significant, or by the variance of the two populations being significantly different, or both. Thus it may be necessary in comparing data to use a modified version of the <em>t</em>-test when the variance of the two samples is ​​significantly different. This is readily confirmed by a variance ratio test. In the above example the two sample variances were 8.6 and 8.7 respectively and the ratio of the larger variance to the smaller is approximately 1. From variance ratio tables entered with 9 × 9 degrees of freedom this difference in variance is not significant (a variance ratio of 3.2 has to be exceeded before the difference can be regarded as statistically significant) and the use of a <em>t</em>-test is quite legitimate. (For details of the modified I-test, see Snedecor and Cochran, 1980.)
+</p>
+
+                <h5>Confidence limits or fiducial limits</h5>
+
+                <figure class="figure-break">
+                    <img src="../images/Fig.2.1.jpg" alt="The normal distribution curve">
+                    <figcaption>
+                        <strong>Fig. 2.1</strong> The normal distribution curve with mean \( \bar{x} \) and linear scale of unit standard deviations  \( \sigma \)
+                        </figcaption>
+                </figure>
+
+
+<p>In a normal population with a mean of \( \bar{x} \) the shape of the curve simply relates individual sizes or numbers to this mean value. Thus most of the population is roughly equal to the mean value but a proportion of the individuals are much larger or smaller. Just as the variance of the population is a measure of the variability then
+the <em><strong>standard deviation</strong></em> (standard deviation = \( \sqrt{\phantom{x}} \)  variance) is a linear standard of measurement along the  \( x \) -axis (Fig. 2.1). The total population of individuals in fact is ​​contained in approximately three standard deviations either side of the mean. The majority of values lie close to the population mean x and it can be shown from a table of  \( C \) (see Fisher and Yates, 1957) that 68.26% of the population falls within one standard deviation either side of the mean. Identical considerations apply to populations of <em><strong>mean values</strong></em> where 68.26% of the population of sample means falls within one standard error of the true population mean value (S.E.M.). The 68.26% <em><strong>confidence limits</strong></em> are then simply:</p>
+                <table class="data-table">
+                    <tr>
+                        <td class="label">Upper limit</td>
+                        <td>=</td><td>\( \bar{x} \)</td><td>\( \m \)</td><td>1</td><td>S.E.M</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Lower limit</td>
+                        <td>=</td><td>\( \bar{x} \)</td><td>\( \p \)</td><td>1</td><td>S.E.M</td>
+                 </tr>
+                </table>
+
+<p>Similarly for a 5% level of significance, the 95% confidence limits are:</p>
+                <table class="data-table">
+                    <tr>
+                        <td class="label">Upper limit</td>
+                        <td>=</td><td>\( \bar{x} \)</td><td>\( \m \)</td><td>1.96</td><td>S.E.M</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Lower limit</td>
+                        <td>=</td><td>\( \bar{x} \)</td><td>\( \p \)</td><td>1.96</td><td>S.E.M</td>
+                 </tr>
+                </table>
+
+and the 99% confidence limits
+                <table class="data-table">
+                    <tr>
+                     <td>\( \bar{x} \)</td><td>\( \p \)</td><td>2.58</td><td>S.E.M</td>
+                    </tr>
+                </table>
+
+<p>​​From the data above</p>
+\[
+\text{S.E.M.} = \sqrt{\frac{V}{n}} = \sqrt{\frac{8.6}{10}} = 0.93
+\]
+
+<p>and the 95% confidence limits are:</p>
+
+\[
+\bar{x} \pm 1.96 \cdot \text{S.E.M.}
+= 3.2 \pm 1.96 \times 0.93
+= 3.2 \pm 1.82
+\]
+
+<p>The probability is 0.95 that 1.4 and 5.0 include the true population mean.<br>
+
+Similarly the 99% confidence limits are 3.2 \( \pm \) 2.40. A statement of the confidence limits, as a scale mark in relation to graphed data, enables a rapid visual assessment of both the significance of any differences as well as the quality of the data. \( x^2 \)-Test for association between species, scatter diagrams<br>
+
+Useful information can be obtained from field data on the possible interrelationships between different species by counting the number of quadrats out of the total in which one or both of a pair of species are found. For example in n quadrats, a contained species \( A \) and \( B \), \( b \) species \( B \) alone, \( c \) species \( A \) alone and \( d \) quadrats contained neither species \( A \) or \( B \). A 2 x 2 contingency table is then made up as follows:</p>
+
+<table style="border-collapse: collapse; margin: 20px auto; text-align: center;">
+  <thead>
+    <tr>
+      <th style="border: none;"></th>
+      <th style="border: none;"></th>
+      <th colspan="2" style="border: none; font-style: italic;">Species <i>A</i></th>
+      <th style="border: none;"></th>
+    </tr>
+    <tr>
+      <th style="border: none;"></th>
+      <th style="border: none;"></th>
+      <th style="border: 1px solid black; padding: 8px 20px;">+</th>
+      <th style="border: 1px solid black; padding: 8px 20px;">−</th>
+      <th style="border: none;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" style="border: none; font-style: italic; padding-right: 10px;">Species <i>B</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;">+</td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>b</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>b</i></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 8px 20px;">−</td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>c</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>d</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>c</i> + <i>d</i></td>
+    </tr>
+    <tr>
+      <td style="border: none;"></td>
+      <td style="border: none;"></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>c</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>b</i> + <i>d</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>n</i></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It can be calculated that the number of quadrats containing both \( A \) and \( B \), provided they are not associated in any way, should be [(a \( \p \) b)(a \( \m \) c)]/n. Thus we have a, the observed number of quadrats containing both species and we can calculate the expected number assuming an independent relationship between the two species. The other expected frequencies of the different \( A \) and \( B \) quadrat combinations can readily be obtained simply by subtraction from the marginal totals. Thus the expected number of quadrats \( \p \) \( A \), \( \m \) \( B \) would be</p>
+
+\[
+(a + c) - \frac{(a + b)(a + c)}{n}
+\]
+
+<p>The number of observed quadrat combinations of A and B can now be compared with the expected number by a \( x^2 \)-test. <br>
+The calculation of \( x \) is conveniently done from the formula
+
+\[
+\chi^2 =
+\frac{(ad - bc)^2 \cdot n}
+{(a + b)(c + d)(a + c)(b + d)}
+\]
+
+
+
+
 
             </details>
 
