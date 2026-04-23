@@ -280,46 +280,49 @@ Similarly the 99% confidence limits are 3.2 \( \pm \) 2.40. A statement of the c
 
 Useful information can be obtained from field data on the possible interrelationships between different species by counting the number of quadrats out of the total in which one or both of a pair of species are found. For example in n quadrats, a contained species \( A \) and \( B \), \( b \) species \( B \) alone, \( c \) species \( A \) alone and \( d \) quadrats contained neither species \( A \) or \( B \). A 2 x 2 contingency table is then made up as follows:</p>
 
-<table style="border-collapse: collapse; margin: 20px auto; text-align: center; font-style: italic;">
+<table style="border-collapse: collapse; margin: 20px auto; text-align: center;">
   <thead>
     <tr>
       <th style="border: none;"></th>
       <th style="border: none;"></th>
-      <th colspan="3" style="border-bottom: 1px solid black; padding: 8px 20px;">Species <i>A</i></th>
+      <th colspan="2" style="border: none;">Species <i>A</i></th>
+      <th style="border: none;"></th>
     </tr>
     <tr>
       <th style="border: none;"></th>
       <th style="border: none;"></th>
-      <th style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;">+</th>
-      <th style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;">&minus;</th>
-      <th style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"></th>
+      <th style="border: none; border-bottom: 1px solid black; padding: 8px 20px;">+</th>
+      <th style="border: none; border-bottom: 1px solid black; padding: 8px 20px;">&minus;</th>
+      <th style="border: none;"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3" style="border: none; padding-right: 15px; vertical-align: middle;">Species <i>B</i></td>
-      <td style="border-bottom: 1px solid black; border-right: 1px solid black; padding: 8px 20px;">+</td>
-      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>a</i></td>
-      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>b</i></td>
-      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>b</i></td>
+      <td rowspan="2" style="border: none; font-style: italic; padding-right: 10px;">Species <i>B</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;">+</td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>b</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>b</i></td>
     </tr>
     <tr>
-      <td style="border-bottom: 1px solid black; border-right: 1px solid black; padding: 8px 20px;">&minus;</td>
-      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>c</i></td>
-      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>d</i></td>
-      <td style="border-left: 1px solid black; border-bottom: 1px solid black; padding: 8px 20px;"><i>c</i> + <i>d</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;">&minus;</td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>c</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>d</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>c</i> + <i>d</i></td>
     </tr>
     <tr>
-      <td style="border-right: 1px solid black; padding: 8px 20px;"></td>
-      <td style="border-left: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>c</i></td>
-      <td style="border-left: 1px solid black; padding: 8px 20px;"><i>b</i> + <i>d</i></td>
-      <td style="border-left: 1px solid black; padding: 8px 20px;"><i>n</i></td>
+      <td style="border: none;"></td>
+      <td style="border: none;"></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>a</i> + <i>c</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>b</i> + <i>d</i></td>
+      <td style="border: 1px solid black; padding: 8px 20px;"><i>n</i></td>
     </tr>
   </tbody>
 </table>
 
 
-<p>It can be calculated that the number of quadrats containing both \( A \) and \( B \), provided they are not associated in any way, should be [(a +  b)(a - c)]/\( n \). Thus we have a, the observed number of quadrats containing both species and we can calculate the expected number assuming an independent relationship between the two species. The other expected frequencies of the different \( A \) and \( B \) quadrat combinations can readily be obtained simply by subtraction from the marginal totals. Thus the expected number of quadrats \( \+ \) \( A \), \( \ -\) \( B \) would be</p>
+
+<p>It can be calculated that the number of quadrats containing both \( A \) and \( B \), provided they are not associated in any way, should be [(a +  b)(a - c)]/\( n \). Thus we have a, the observed number of quadrats containing both species and we can calculate the expected number assuming an independent relationship between the two species. The other expected frequencies of the different \( A \) and \( B \) quadrat combinations can readily be obtained simply by subtraction from the marginal totals. Thus the expected number of quadrats +  \( A \), - \( B \) would be</p>
 
 \[
 (a + c) - \frac{(a + b)(a + c)}{n}
@@ -336,7 +339,7 @@ The calculation of \( x \) is conveniently done from the formula</p>
 
 
 <p>The \( x^2 \) tables are entered with one degree of freedom. The \( x^2 \) value shows whether the difference between the observed and expected numbers of quadrats is significant or merely due to a chance fluctuation. The trend of the association, i.e. whether the association is positive or negative, is given by a comparison of the expected and observed values for the joint occurrence of \( A \) and \( B \). Thus if \( A \) and \( B \) occur together <em>more</em> frequently than the expected number of joint occurrences, then \( A \) and \( B \) are positively associated. Similarly if \( A \) and \( B \) occur together <em>less</em> than expected they are negatively associated. <br>
-The level of association between species is very quickly calculated but since the data are basically a measure of frequency the result obtained is dependent on quadrat size. Consider the relationship of species \( A \), \( B \) and \( C \) as shown below (<a class="table-link" href="#ig-2-2">Fig. 2.2</a>).
+The level of association between species is very quickly calculated but since the data are basically a measure of frequency the result obtained is dependent on quadrat size. Consider the relationship of species \( A \), \( B \) and \( C \) as shown below (<a class="table-link" href="#fig-2-2">Fig. 2.2</a>).
 Clearly by inspection \( A \) and B are markedly positively associated; \( A \) and \( C \) and similarly \( B \) and \( C \), negatively associated. Now consider the effect of sampling in a random fashion such a population with quadrat size 1, roughly equal in size to the individuals \( A \), B and \( C \). Most quadrats would contain either \( A \) or \( B \) or \( C \) or none of them, but hardly any quadrats with \( A \)\( B \), \( A \)\( C \) or \( B \)\( C \). Accordingly the \( x^2 \)-test would show strong negative association between all species. With quadrat size 2, \( A \) and \( B \) would on the average be found frequently together and species \( C \) on its own. A \( x^2 \)-test would confirm the obvious trends of association between \( A \), \( B \) and \( C \). However consider finally the sampling of the layout with quadrat size 3. Nearly all quadrats would contain species \( A \), \( B \) and \( C \) and, in this instance, the number of quadrats containing neither of the pairs of species would be zero and \( x \) cannot then be calculated. However, assume the same pattern but with a much lower density of individuals, then the final size of quadrat would show nil association or possibly a positive association between all paired combinations of the three species. It is possible to get three trends of association merely by changing the size of sample quadrat and considerable care must be taken in interpreting a set of positive and negative associations.</p>
 
                 <figure class="figure-break" id="fig-2-2">
@@ -346,7 +349,71 @@ Clearly by inspection \( A \) and B are markedly positively associated; \( A \) 
                         </figcaption>
                 </figure>
 <p>Obviously in this instance the pattern of distribution relative to the size of quadrat is important and, since most if not all vegetation contains pattern (see Chapter 8), the trend of association will always vary considerably with different sizes of quadrats. As Greig-Smith (1957, 1983) points out, little attention has previously been directed to this important point and yet it has far reaching effects in the considerations of statistical analysis of community groupings (p. 156). If however the scale or scales of pattern are known, then the variation of trend of association between two species with increasing quadrat size gives valuable information as to the detailed interrelationships of the species in the area examined.
-When data is in the form of a quantitative measure as opposed to mere presence and absence, then a correlation coefficient is a more appropriate measure of the degree of association; details of the calculation are obtainable in any book of elementary statistics (but see below).
+When data is in the form of a quantitative measure as opposed to mere presence and absence, then a correlation coefficient is a more appropriate measure of the degree of association; details of the calculation are obtainable in any book of elementary statistics (but see below). </p>
+
+                <figure class="figure-break" id="fig-2-3">
+                    <img src="../images/Fig.2.3.jpg" alt="relationship between pH and base saturation">
+                    <figcaption>
+                        <strong>Fig. 2.3</strong> The relationship between pH and base saturation expressed as a scatter diagram. (From Gorham, 1953; courtesy of J. Ecol.)
+                        </figcaption>
+                </figure>
+
+
+<p>An indication of a possible relationship between two factors can be very easily obtained by means of a scatter diagram. An example is given in <a class="table-link" href="#fig-2-3">Fig. 2.3</a> showing the ​​marked relationship between pH and percentage base saturation. The relationship is so clear-cut it is probably unnecessary for a correlation coefficient to be calculated; where the scatter of points becomes greater and the degree of correlation correspondingly lower, the visual confirmation of a suspected correlation becomes impossible and it is necessary to calculate the actual coefficient. A scatter diagram showing the relationship between percentage cover of <em>Festuca</em> and <em>Agrostis</em> in chalk grassland (see also <a class="table-link" href="#fig-2-7">Fig. 2.7</a>) is given in <a class="table-link" href="#fig-2-4">Fig. 2.4</a>, and illustrates a more typical degree of scatter. In most cases it is worthwhile to calculate the correlation coefficient since it can be very tempting to place too much weight on an apparent correlation but one that only has a few degrees of freedom. The raw data from <a class="table-link" href="#fig-2-4">Fig. 2.4</a> are given in <a class="table-link" href="#table-2-1">Table 2.1</a> and the correlation coefficient is calculated as follows:
+
+
+  <p>\( n = 128 \)</p>
+
+  <p>
+    \( \Sigma x_1 = 2379, \quad \Sigma x_1^2 = 63\,803, \quad \dfrac{(\Sigma x_1)^2}{n} = 44\,216 \)
+  </p>
+
+  <p>
+    \( \Sigma(x_1 - \bar{x}_1)^2 = \Sigma x_1^2 - \dfrac{(\Sigma x_1)^2}{n} \)
+  </p>
+
+  <p>\( = 63\,803 - 44\,216 = 19\,587 \)</p>
+
+  <p>
+    \( \Sigma x_2 = 2183, \quad \Sigma x_2^2 = 50\,413, \quad \dfrac{(\Sigma x_2)^2}{n} = 37\,230 \)
+  </p>
+
+  <p>
+    \( \Sigma(x_2 - \bar{x}_2)^2 = \Sigma x_2^2 - \dfrac{(\Sigma x_2)^2}{n} \)
+  </p>
+
+  <p>\( = 50\,413 - 27\,230 = 13\,183 \)</p>
+
+  <p>
+    \( \Sigma(x_1 \cdot x_2) = 29\,829, \quad \dfrac{\Sigma x_1 \cdot \Sigma x_2}{n} = 40\,573 \)
+  </p>
+
+  <p>
+    \( \Sigma[(x_1 - \bar{x}_1)(x_2 - \bar{x}_2)] = \Sigma x_1 x_2 - \dfrac{\Sigma x_1 \cdot \Sigma x_2}{n} \)
+  </p>
+
+  <p>\( = 29\,829 - 40\,573 = -10\,744 \)</p>
+
+  <p><strong>Correlation coefficient</strong></p>
+
+  <p>
+    \[
+      r = \frac{\Sigma[(x_1 - \bar{x}_1)(x_2 - \bar{x}_2)]}{\sqrt{[\Sigma(x_1 - \bar{x}_1)^2 \cdot \Sigma(x_2 - \bar{x}_2)^2]}}
+      = \frac{-10\,744}{16\,069} = -0.669
+    \]
+  </p>
+
+<p>The number of pairs of observations is 128 and accordingly the table of  \( r \)-values is entered with 126 degrees of freedom (for table of  \( r \)-values see Fisher and Yates
+1948). For 100 degrees of freedom the probability of exceeding an r-value of 0.3211 by chance is 0.001, i.e. the negative correlation between <em>Festuca</em> and <em>Agrostis</em> is a highly significant one. <br>
+This result is not unexpected and the correlation between the two species is in fact readily appreciated from the scatter diagram (<a class="table-link" href="#fig-2-4">Fig. 2.4</a>). It is often worthwhile to plot a scatter diagram before attempting to calculate a correlation coefficient, since those cases which are clearly not related in anyway can be rejected without resorting to what can be a lengthy computation. Valuable information can thus be readily obtained of the level of association between pairs of species or of correlation between a species and the environmental factors, but such analyses can be under-taken only when the initial collection of data is adequately made. <br>
+When designing a sampling method it is always advisable to bear in mind the possibility that there will be some degree of association or correlation between the species themselves and also with the environment, and wherever possible one should obtain the field data in quantitative form. Where data exist that are partly (or wholly) qualitative, the analysis can present some difficulty and the resulting information is often limited. (For detailed consideration of such methods the student is referred to Greig-Smith (1957).) <em>It is important to realize that trends in correlation will depend on the sizes of the quadrats which are used in the sampling and results should always be considered with this fact in mind.</em> </p>
+
+<p>When one of the variables is dependent on the value of the other, an <em>alternative</em> approach is to express the relationship between them as a <strong><em>linear regression</em></strong>, effectively a linear equation that will <em>predict</em> the value of the dependent variate from the independent variate. The reader is referred to Clarke (1980), Parker (1979) for suitable treatments of regression analysis. Where the relationship in the scatter diagram is clearly not linear it is more appropriate to apply a linear regression to the <strong><em>logarithm</em></strong> of the independent variate or, in more complex situations, to utilize a <strong><em>curvilinear</em></strong> regression. In other situations where information is available perhaps on <em>a range</em> of environmental parameters (for example, soil pH, together with a number of elemental soil analyses) a <strong><em>multiple</em></strong> regression analysis is a suitable approach for examining <em>the relative importance</em> and significance of each of the variables together with their <strong><em>combinations</em></strong>. The reader is referred to Hunt (1978, 1982), Clarke (1980), and Snedecor and Cochran (1980) for an introductory treatment of curvilinear and multiple regression analysis, and to Snedecor and Cochran (1980), and Draper and Smith (1981) for a more advanced treatment. </p>
+
+
+
+
+                    
 
 
             </details>
@@ -381,4 +448,3 @@ window.toggleLayer = function(layerId, checkbox) {
 
 </body>
 </html>
-
