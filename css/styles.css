@@ -249,23 +249,73 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     margin: auto;
 }
 
-/* Stack all images */
-.image-layer-container .layer {
+/* LAYERED IMAGE FIGURES */
+.image-layer-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Base image stays in normal flow to set container height */
+.image-layer-container .base {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+/* All toggle layers sit on top, hidden by default */
+.image-layer-container .layer.toggle {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: auto;
+    display: none;
 }
 
-/* Background stays in normal flow */
-.image-layer-container .base {
-    position: relative;
-    z-index: 1;
+/* Show when active */
+.image-layer-container .layer.toggle.active {
+    display: block;
 }
 
-/* Hide all toggle layers by default */
-.image-layer-container .toggle {
-    display: none !important;
+/* z-index for stacking order */
+#layer1946 { z-index: 2; }
+#layer1948 { z-index: 3; }
+#layer1953 { z-index: 4; }
+#layer1956 { z-index: 5; }
+#layer1960 { z-index: 6; }
+
+/* Legend styling */
+.layer-legend {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.layer-legend label {
+    display: inline-block;
+    margin: 6px 10px;
+    cursor: pointer;
+}
+
+.layer-legend input {
+    margin-right: 5px;
+    cursor: pointer;
+    accent-color: #2f5d3a;
+}
+
+/* Figure pair side by side */
+.figure-pair {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.figure-pair .figure-break {
+    flex: 1;
+    margin: 0;
 }
 
 @media (max-width: 700px) {
@@ -273,14 +323,3 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
         flex-direction: column;
     }
 }
-
-/* Show when active */
-.image-layer-container .toggle.active {
-    display: block !important;
-}
-
-#layer1946 { z-index: 2; }
-#layer1948 { z-index: 3; }
-#layer1953 { z-index: 4; }
-#layer1956 { z-index: 5; }
-#layer1960 { z-index: 6; }
