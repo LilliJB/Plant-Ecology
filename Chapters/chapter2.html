@@ -616,45 +616,53 @@ Each case has to be decided independently and considered against the amount of s
 <p>This method can be extended to suitable measurements of the environment so that the distribution of a species in an area can be related to the distribution of other species or to environmental factors. The method may be made clearer by considering an actual example.
 The microtopography of an area of hummocks in limestone grassland at Malham Tarn, Yorkshire, is presented in the form of an isonome (Fig. 2.9) constructed from a series of height measurements taken from a levelled datum line. At the same time the densities of <em>Carex flacca</em> and <em>C. panicea</em> were recorded for each unit of the grid and the corresponding isonomes constructed from the density data for both species. The marked relationship of both <em>Carex</em> species with the hollows, is readily appreciated and the isonome method is in general a very convenient way of depicting relationships between species or between a species and some environmental factor. Clearly the method is only applicable where the distribution of species varies quite markedly; where the distribution is not readily appreciated by the visual inspection of an isonome it is necessary to use a more elaborate method (see Chapter 7).</p>
 
-<figure class="figure-break" id="fig-2-9-a">
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+
+  <figure class="figure-break" id="fig-2-9-a" style="flex: 1; margin: 0;">
     <div class="image-layer-container">
-
-        <!-- Background (always visible) -->
-        <img src="../images/Fig.2.9.topography.png" class="layer base">
-
-        <!-- Toggle layers -->
-        <img src="../images/Fig.2.9.layer-topography-2.png" class="layer toggle active" id="topography1">
-        <img src="../images/Fig.2.9.layer-topography-3.png" class="layer toggle active" id="topography1">
-
-
+      <img src="../images/Fig.2.9.topography.png" class="layer base" alt="Topography base map">
+      <img src="../images/Fig.2.9.layer-topography-2.png" class="layer toggle active" id="layer-topography1-1" alt="Density of Carex flacca">
+      <img src="../images/Fig.2.9.layer-topography-3.png" class="layer toggle" id="layer-topography1-2" alt="Density of Carex flacca compared to topography">
     </div>
-
-    <!-- Legend-style controls -->
+    <figcaption style="margin-top: 10px;">
+      <strong>Fig. 2.9(a)</strong> Isonomes of the density of <em>Carex flacca</em> showing the marked relationship between their relative abundance and micro-topography.
+    </figcaption>
     <div class="layer-legend">
-        <label><input type="checkbox" checked onchange="toggleLayer('topography1', this)"> <strong>Fig. 2.9(a)</strong> Isonomes of the density of <em>Carex flacca</em> showing the marked relationship between their relative abundance and micro-topography.</label>
-
-                
+      <label>
+        <input type="checkbox" checked onchange="document.getElementById('layer-topography1-1').classList.toggle('active', this.checked)">
+        Density of <em>Carex flacca</em>
+      </label>
+      <label>
+        <input type="checkbox" onchange="document.getElementById('layer-topography1-2').classList.toggle('active', this.checked)">
+        Density of <em>Carex flacca</em> in comparison to topography
+      </label>
     </div>
+  </figure>
 
-
-
-<figure class="figure-break" id="fig-2-9-b">
+  <figure class="figure-break" id="fig-2-9-b" style="flex: 1; margin: 0;">
     <div class="image-layer-container">
-
-        <!-- Background (always visible) -->
-        <img src="../images/Fig.2.9.topography2.png" class="layer base">
-
-        <!-- Toggle layers -->
-        <img src="../images/Fig.2.9.layer-topography2.1.png" class="layer toggle active" id="topography2">
-        <img src="../images/Fig.2.9.layer-topography2.2.png" class="layer toggle active" id="topography2">
-
+      <img src="../images/Fig.2.9.topography2.png" class="layer base" alt="Topography base map">
+      <img src="../images/Fig.2.9.layer-topography2.1.png" class="layer toggle active" id="layer-topography2-1" alt="Density of Carex panacea">
+      <img src="../images/Fig.2.9.layer-topography2.2.png" class="layer toggle" id="layer-topography2-2" alt="Density of Carex panacea compared to topography">
     </div>
-    <!-- Legend-style controls -->
-
+    <figcaption style="margin-top: 10px;">
+      <strong>Fig. 2.9(b)</strong> Isonomes of the density of <em>Carex panacea</em> showing the marked relationship between their relative abundance and micro-topography.
+    </figcaption>
     <div class="layer-legend">
-        <label><input type="checkbox" onchange="toggleLayer('topography2', this)"> <strong>Fig. 2.9(b)</strong> Isonomes of the density of <em>Carex panacea</em> showing the marked relationship between their relative abundance and micro-topography.</label>
-
+      <label>
+        <input type="checkbox" checked onchange="document.getElementById('layer-topography2-1').classList.toggle('active', this.checked)">
+        Density of <em>Carex panacea</em>
+      </label>
+      <label>
+        <input type="checkbox" onchange="document.getElementById('layer-topography2-2').classList.toggle('active', this.checked)">
+        Density of <em>Carex panacea</em> in comparison to topography
+      </label>
     </div>
+  </figure>
+
+</div>
+
+
 
 <p>Both transect and isonome methods illustrate the use of regularly spaced samples in describing an area and it should be again emphasized that the sampling procedure most suitable for a given problem is usually chosen or designed for that individual problem. The choice of measure, the size of quadrat, the size of sample and the random or regular position of the quadrats can all be decided more by common sense than resorting to complex statistical theory.</p>
 
@@ -696,7 +704,5 @@ window.toggleLayer = function(layerId, checkbox) {
 
 </body>
 </html>
-
-
 
 
