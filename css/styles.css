@@ -142,6 +142,15 @@ button:hover {
     margin: auto;
 }
 
+/* Override for layered images only */
+.image-layer-container img.toggle {
+    display: none;
+}
+
+.image-layer-container img.toggle.active {
+    display: block;
+}
+
 .figure-break figcaption {
     margin-top: 10px;
     font-size: 14px;
