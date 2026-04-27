@@ -13,7 +13,7 @@ img {
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #acd8af; /* unified color across site */
+    background-color: #acd8af;
     color: #2f3b2f;
 }
 
@@ -43,24 +43,23 @@ header {
     padding: 35px 20px;
     text-align: center;
 }
+
 h5 {
-    font-size: 1em; /* same as body text */
-    font-weight: bold; /* optional, can keep emphasis */
+    font-size: 1em;
+    font-weight: bold;
     margin-top: 1em;
     margin-bottom: 0.5em;
 }
 
-
 /* 6. MAIN CONTENT */
-
 main {
-    max-width: 1100px;  /* was 900px */
+    max-width: 1100px;
     margin: 40px auto;
     background-color: white;
     padding: 40px 30px;
     border-radius: 8px;
     box-sizing: border-box;
-    text-align: center; /* home page centered; chapters can override if needed */
+    text-align: center;
 }
 
 /* 7. BUTTONS */
@@ -107,7 +106,7 @@ button:hover {
     margin-bottom: 50px;
     padding-bottom: 20px;
     border-bottom: 1px solid #d8d0b0;
-    text-align: left; /* chapters left-aligned */
+    text-align: left;
 }
 
 .chapter h2 {
@@ -142,15 +141,6 @@ button:hover {
     margin: auto;
 }
 
-/* Override for layered images only */
-.image-layer-container img.toggle {
-    display: none;
-}
-
-.image-layer-container img.toggle.active {
-    display: block;
-}
-
 .figure-break figcaption {
     margin-top: 10px;
     font-size: 14px;
@@ -158,44 +148,46 @@ button:hover {
     text-align: left;
 }
 
+/* 10. MEDIA BLOCK */
 .media-block {
-  display: flex;
-  align-items: flex-start;
-  gap: 25px;
-  margin: 1.5em 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    margin: 1.5em 0;
 }
 
 .media-block .figure-break {
-  flex: 1;             
-  max-width: 500px;     
-  margin: 0;
-  padding: 10px;
+    flex: 1;
+    max-width: 500px;
+    margin: 0;
+    padding: 10px;
 }
 
 .media-block .figure-break img {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .media-block p {
-  flex: 2;              
-  margin: 0;
+    flex: 2;
+    margin: 0;
 }
 
-/* matching summary to header sizes */
+/* 11. DETAILS/SUMMARY */
 details summary {
     font-size: 1em;
     font-weight: bold;
     color: #2f5d3a;
     cursor: pointer;
     margin: 1em 0 0.5em 0;
-    list-style: none; /* optional: removes the default triangle on some browsers */
+    list-style: none;
 }
 
 details summary:hover {
     color: #3d7349;
 }
-/* 10. FOOTER */
+
+/* 12. FOOTER */
 footer {
     text-align: center;
     padding: 20px;
@@ -203,6 +195,7 @@ footer {
     color: #2f3b2f;
 }
 
+/* 13. BRACE */
 .brace {
     width: 18px;
     padding: 0;
@@ -215,57 +208,17 @@ footer {
     stroke: #333;
 }
 
-/* Height matches the number of rows spanned × row height */
 tr:has(.brace[rowspan="2"]) .brace-svg { height: 52px; }
 tr:has(.brace[rowspan="3"]) .brace-svg { height: 78px; }
 tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
 
-}
-
-/* Layer visibility */
-.toggle {
-    display: none;
-}
-
-.toggle.active {
-    display: block;
-}
-
-/* Legend styling */
-.layer-legend {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.layer-legend label {
-    display: inline-block;
-    margin: 6px 10px;
-    cursor: pointer;
-}
-
-
-.layer-legend input {
-    margin-right: 5px;
-    cursor: pointer;
-}
-
-
-/* REQUIRED for layering */
+/* 14. LAYERED IMAGE FIGURES */
 .image-layer-container {
     position: relative;
     max-width: 600px;
     margin: auto;
 }
 
-/* LAYERED IMAGE FIGURES */
-.image-layer-container {
-    position: relative;
-    max-width: 600px;
-    margin: auto;
-}
-
-/* Base image stays in normal flow to set container height */
 .image-layer-container .base {
     position: relative;
     display: block;
@@ -274,8 +227,7 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     z-index: 1;
 }
 
-/* All toggle layers sit on top, hidden by default */
-.image-layer-container .layer.toggle {
+.image-layer-container img.toggle {
     position: absolute;
     top: 0;
     left: 0;
@@ -284,8 +236,7 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     display: none;
 }
 
-/* Show when active */
-.image-layer-container .layer.toggle.active {
+.image-layer-container img.toggle.active {
     display: block;
 }
 
@@ -296,7 +247,7 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
 #layer1956 { z-index: 5; }
 #layer1960 { z-index: 6; }
 
-/* Legend styling */
+/* 15. LAYER LEGEND */
 .layer-legend {
     margin-top: 15px;
     text-align: center;
@@ -315,7 +266,7 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     accent-color: #2f5d3a;
 }
 
-/* Figure pair side by side */
+/* 16. FIGURE PAIR */
 .figure-pair {
     display: flex;
     gap: 20px;
