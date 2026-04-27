@@ -659,20 +659,6 @@ The microtopography of an area of hummocks in limestone grassland at Malham Tarn
   </figure>
 </div>
 
-<script>
-  document.getElementById('cb-topography1-1').addEventListener('change', function() {
-    document.getElementById('layer-topography1-1').classList.toggle('active', this.checked);
-  });
-  document.getElementById('cb-topography1-2').addEventListener('change', function() {
-    document.getElementById('layer-topography1-2').classList.toggle('active', this.checked);
-  });
-  document.getElementById('cb-topography2-1').addEventListener('change', function() {
-    document.getElementById('layer-topography2-1').classList.toggle('active', this.checked);
-  });
-  document.getElementById('cb-topography2-2').addEventListener('change', function() {
-    document.getElementById('layer-topography2-2').classList.toggle('active', this.checked);
-  });
-</script>
 
 
 
@@ -699,20 +685,18 @@ The microtopography of an area of hummocks in limestone grassland at Malham Tarn
 </footer>
 
 <script>
-window.toggleLayer = function(layerId, checkbox) {
-    const layer = document.getElementById(layerId);
-
-    if (!layer) {
-        console.error("Layer not found:", layerId);
-        return;
-    }
-
-    if (checkbox.checked) {
-        layer.classList.add("active");
-    } else {
-        layer.classList.remove("active");
-    }
-};
+  document.getElementById('cb-topography1-1').addEventListener('change', function() {
+    document.getElementById('layer-topography1-1').classList.toggle('active', this.checked);
+  });
+  document.getElementById('cb-topography1-2').addEventListener('change', function() {
+    document.getElementById('layer-topography1-2').classList.toggle('active', this.checked);
+  });
+  document.getElementById('cb-topography2-1').addEventListener('change', function() {
+    document.getElementById('layer-topography2-1').classList.toggle('active', this.checked);
+  });
+  document.getElementById('cb-topography2-2').addEventListener('change', function() {
+    document.getElementById('layer-topography2-2').classList.toggle('active', this.checked);
+  });
 </script>
 
 </body>
