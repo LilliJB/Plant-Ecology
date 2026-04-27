@@ -615,9 +615,7 @@ Each case has to be decided independently and considered against the amount of s
 
 <p>This method can be extended to suitable measurements of the environment so that the distribution of a species in an area can be related to the distribution of other species or to environmental factors. The method may be made clearer by considering an actual example.
 The microtopography of an area of hummocks in limestone grassland at Malham Tarn, Yorkshire, is presented in the form of an isonome (Fig. 2.9) constructed from a series of height measurements taken from a levelled datum line. At the same time the densities of <em>Carex flacca</em> and <em>C. panicea</em> were recorded for each unit of the grid and the corresponding isonomes constructed from the density data for both species. The marked relationship of both <em>Carex</em> species with the hollows, is readily appreciated and the isonome method is in general a very convenient way of depicting relationships between species or between a species and some environmental factor. Clearly the method is only applicable where the distribution of species varies quite markedly; where the distribution is not readily appreciated by the visual inspection of an isonome it is necessary to use a more elaborate method (see Chapter 7).</p>
-
 <div style="display: flex; gap: 20px; align-items: flex-start;">
-
   <figure class="figure-break" id="fig-2-9-a" style="flex: 1; margin: 0;">
     <div class="image-layer-container">
       <img src="../images/Fig.2.9.topography.png" class="layer base" alt="Topography base map">
@@ -629,11 +627,11 @@ The microtopography of an area of hummocks in limestone grassland at Malham Tarn
     </figcaption>
     <div class="layer-legend">
       <label>
-        <input type="checkbox" checked onchange="document.getElementById('layer-topography1-1').classList.toggle('active', this.checked)">
+        <input type="checkbox" checked id="cb-topography1-1">
         Density of <em>Carex flacca</em>
       </label>
       <label>
-        <input type="checkbox" onchange="document.getElementById('layer-topography1-2').classList.toggle('active', this.checked)">
+        <input type="checkbox" id="cb-topography1-2">
         Density of <em>Carex flacca</em> in comparison to topography
       </label>
     </div>
@@ -650,17 +648,32 @@ The microtopography of an area of hummocks in limestone grassland at Malham Tarn
     </figcaption>
     <div class="layer-legend">
       <label>
-        <input type="checkbox" checked onchange="document.getElementById('layer-topography2-1').classList.toggle('active', this.checked)">
+        <input type="checkbox" checked id="cb-topography2-1">
         Density of <em>Carex panacea</em>
       </label>
       <label>
-        <input type="checkbox" onchange="document.getElementById('layer-topography2-2').classList.toggle('active', this.checked)">
+        <input type="checkbox" id="cb-topography2-2">
         Density of <em>Carex panacea</em> in comparison to topography
       </label>
     </div>
   </figure>
-
 </div>
+
+<script>
+  document.getElementById('cb-topography1-1').addEventListener('change', function() {
+    document.getElementById('layer-topography1-1').classList.toggle('active', this.checked);
+  });
+  document.getElementById('cb-topography1-2').addEventListener('change', function() {
+    document.getElementById('layer-topography1-2').classList.toggle('active', this.checked);
+  });
+  document.getElementById('cb-topography2-1').addEventListener('change', function() {
+    document.getElementById('layer-topography2-1').classList.toggle('active', this.checked);
+  });
+  document.getElementById('cb-topography2-2').addEventListener('change', function() {
+    document.getElementById('layer-topography2-2').classList.toggle('active', this.checked);
+  });
+</script>
+
 
 
 
@@ -704,5 +717,8 @@ window.toggleLayer = function(layerId, checkbox) {
 
 </body>
 </html>
+
+
+
 
 
