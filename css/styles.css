@@ -217,6 +217,7 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     position: relative;
     max-width: 600px;
     margin: auto;
+    overflow: hidden;  /* ADD THIS */
 }
 
 .image-layer-container .base {
@@ -225,6 +226,8 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     width: 100%;
     height: auto;
     z-index: 1;
+    margin: 0;        /* ADD THIS */
+    padding: 0;       /* ADD THIS */
 }
 
 .image-layer-container img.toggle {
@@ -234,12 +237,13 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     width: 100%;
     height: auto;
     display: none;
+    margin: 0;        /* ADD THIS */
+    padding: 0;       /* ADD THIS */
 }
 
 .image-layer-container img.toggle.active {
     display: block;
 }
-
 /* z-index for stacking order */
 #layer1946 { z-index: 2; }
 #layer1948 { z-index: 3; }
