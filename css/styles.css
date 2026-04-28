@@ -290,3 +290,52 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
         flex-direction: column;
     }
 }
+
+#flowchart-wrapper {
+    display: flex;
+    margin: 30px 0;
+    border: 2px solid #2f5d3a;
+}
+
+#flowchart-wrapper #sidebar {
+    width: 250px;
+    background: #2f5d3a;
+    color: white;
+    padding: 15px;
+    font-size: 14px;
+}
+
+#flowchart-wrapper svg {
+    width: 100%;
+    height: 650px;
+    background: white;
+}
+
+.node rect, .node ellipse {
+    fill: #fff;
+    stroke: #333;
+    stroke-width: 1.5;
+}
+
+.initial rect { fill: #eee; }
+.process ellipse { fill: #d9edf7; }
+.pioneer rect { fill: #d4f5d4; }
+.conifer rect { fill: #fff3cd; }
+.climax rect { fill: #f8d7da; }
+
+.edge {
+    fill: none;
+    stroke: #444;
+    stroke-width: 1.6;
+    marker-end: url(#arrow);
+}
+
+.edge.dashed {
+    stroke-dasharray: 6,4;
+}
+
+.node:hover rect,
+.node:hover ellipse {
+    stroke: #2f5d3a;
+    stroke-width: 2;
+}
