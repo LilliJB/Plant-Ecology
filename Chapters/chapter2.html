@@ -71,6 +71,31 @@ Here is the complete full HTML file ready to copy and paste:
             font-weight: bold;
             padding-right: 15px;
         }
+        .image-layer-container {
+    position: relative !important;
+}
+
+.image-layer-container img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.image-layer-container img.base {
+    position: relative !important;
+}
+
+.image-layer-container img.toggle {
+    display: none !important;
+}
+
+.image-layer-container img.toggle.active {
+    display: block !important;
+}
     </style>
 </head>
 
