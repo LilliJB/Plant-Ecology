@@ -69,6 +69,96 @@
             font-weight: bold;
             padding-right: 15px;
         }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #acd8af;
+    display: flex;
+}
+
+/* ===== SIDEBAR ===== */
+#sidebar {
+    width: 260px;
+    background: #2f5d3a;
+    color: white;
+    padding: 20px;
+}
+
+#sidebar h2 {
+    margin-top: 0;
+}
+
+#info {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ===== MAIN ===== */
+#container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+svg {
+    width: 100%;
+    height: 100vh;
+    background: white;
+    cursor: grab;
+}
+
+/* ===== NODES ===== */
+.node rect {
+    stroke: #333;
+    stroke-width: 1.5;
+    rx: 6;
+    transition: 0.2s;
+}
+
+.node text {
+    font-size: 11px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+}
+
+/* STAGES */
+.initial rect { fill: #f0f0f0; }
+.process rect { fill: #d9edf7; }
+.pioneer rect { fill: #d4f5d4; }
+.conifer rect { fill: #fff3cd; }
+.climax rect { fill: #f8d7da; }
+
+/* HOVER + ACTIVE */
+.node:hover rect { stroke: #2f5d3a; stroke-width: 2; }
+.node.active rect { fill: #a8e6a3 !important; }
+
+/* ===== EDGES ===== */
+.edge {
+    stroke: #666;
+    stroke-width: 1.4;
+    marker-end: url(#arrow);
+    transition: 0.2s;
+}
+
+.edge.active {
+    stroke: #2f5d3a;
+    stroke-width: 2.5;
+}
+
+/* zoom hint */
+#hint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
     </style>
 </head>
 
@@ -106,7 +196,21 @@
 5. Reaction.<br>
 6. Final stabilization. (Clements, 1916.)<br> </p>
 
+
+<div style="overflow: hidden;">
+    <figure class="figure-break" id="fig-3-1" style="float: left; width: 45%; margin: 0 25px 15px 0;">
+        <img src="../images/Fig.3.1.jpg" alt="Dune formation">
+        <figcaption>
+            <strong>Fig. 3.1</strong> Dune formation by the gradual deposition of 
+            wind-carried sand particles around the aerial shoots of 
+            <em>Ammophila arenaria.</em>
+        </figcaption>
+    </figure>
+
 <p>The reaction of a species on the environment is one of the outstanding features of succession and constitutes the major mechanism of environmental change which allows further immigrants to enter. A very obvious example of such a reaction is found in the formation of sand-dunes. The establishment of a rhizome fragment of <em>Ammophila arenaria</em> and the subsequent production of aerial shoots constitutes a disturbance of the environment at that point. The aerial parts offer an increased impedance to the wind, any sand particles carried by the wind being deposited around the plant and gradually burying it. As the sand accumulates, continued growth of the <em>Ammophila</em> keeps it at a generally higher level than the low mound that is formed, and accumulation of wind-borne sand continues. Production of axillary buds and the development of the typical clumped habit of <em>Ammophila</em> accelerates the rate of ‘dune’ formation and gradually over a period of years the dune gets progressively larger (<a class="table-link" href="#fig-3-1">Fig. 3.1</a>). This is a very marked example of reaction of a plant on the Fig. 3.1 Dune formation by the gradual deposition of wind-carried sand particles around the aerial shoots of Maroone drohard. environment and is comparable to the increase in the rate of silting of a lake by the early colonisers, which constitute the first stage of a hydrosere. The same mechanism operates, that is increased impedance to water-borne particles. These are deposited around the vegetative parts of the plants. The depth of water decreases over a period of years until other species with their vegetative parts above water begin to invade. The rate of silt accumulation (plus vegetable remains from the plants themselves) increases and opens the way to the gradual development of reed swamp and then fen vegetation. </p>
+
+</div>
+
 
 <p>These two examples of reaction are fairly obvious, but frequently the reactions which are contributing to the impetus of what is clearly succession are far from clear. Vegetational change was divided by Clements into two kinds: <em><strong>primary succession</em></strong> initiated on a bare area where reactions are, initially at least, often fairly clear, and <em><strong>secondary succession</em></strong> initiated by a major environmental disturbance and disrupting a previously initiated succession or producing a marked modification in stable vegetation. For example removal of grazing from grassland, or a forest fire, both initiate a secondary succession and it is in such examples of succession that reactions are often very obscure. It may be that ecesis and competition play a more decisive role in such instances. </p>
 
@@ -119,24 +223,341 @@ This was admirably expressed by Cooper (1926) who stated that 'Succession is the
 One or two outstanding exceptions to this have appeared in the literature, notably colonization of glacial moraines in Alaska where the age of the moraines is known with a fair degree of exactness. This enables the plant succession and attendant modification of the substratum by the vegetation to be related to a time scale. Similarly the sand-dune succession in the Michigan Lake Basin in America has been studied in detail and related to a time scale obtained by radio-carbon dating methods.</p>
 
 <h5>Plant succession on glacial moraines in Alaska</h5>
-<p>The Glacier Bay region in south-east Alaska is typical of the large-scale glacial retreat that has occurred over the last 200 years in North America, Europe and Scandinavia. The position of the snout of the glacier in historic times can be estimated by growth ring counts of the present spruce forest. Thus ring counts of trees growing beyond the maximum extent of glacier activity (easily recognized from aerial photographs) show the oldest trees to be over 600 years of age and growing on a 'raft of fallen submerged trunks. The oldest trees on the last morainic ridge are approximately 200 years old, whilst the maximum age of trees on moraines nearer the present site of the glacier progressively decreases. Cooper (1937), Field (1947) and Lawrence (1953) all contributed to a detailed study of the recession of the glacier and a clear picture is now available (Fig. 3.2). Their findings are confirmed by comparison of written records extending back to the 1890s and photographic surveys commenced around 1916.</p>
+<p>The Glacier Bay region in south-east Alaska is typical of the large-scale glacial retreat that has occurred over the last 200 years in North America, Europe and Scandinavia. The position of the snout of the glacier in historic times can be estimated by growth ring counts of the present spruce forest. Thus ring counts of trees growing beyond the maximum extent of glacier activity (easily recognized from aerial photographs) show the oldest trees to be over 600 years of age and growing on a 'raft of fallen submerged trunks. The oldest trees on the last morainic ridge are approximately 200 years old, whilst the maximum age of trees on moraines nearer the present site of the glacier progressively decreases. Cooper (1937), Field (1947) and Lawrence (1953) all contributed to a detailed study of the recession of the glacier and a clear picture is now available (<a class="table-link" href="#fig-3-2">Fig. 3.2</a>). Their findings are confirmed by comparison of written records extending back to the 1890s and photographic surveys commenced around 1916.</p>
 
-<p>The stages of succession have been described by Cooper (1923, 1931, 1939) and by Lawrence (1953). The pioneer stage is characterized by <em>Rhacomitrium canescens</em> ​​Brid., <em>R. lanuginosum</em> (Hedw.) Brid., <em>Epilobium latifolium</em> L., <em>Equisetum variegatum</em> Schleich., <em>Dryas drummondii</em> Rich. and <em>Salix arctica</em> Pall. The next stage is the appearance of <em>Salix barclayi</em> And., <em>S. sitchensis Sans.</em> and <em>S. alexensis</em> (And.) Colville, which start as prostrate forms eventually developing an erect habit and forming dense scrub. <em>Alnus crispa</em> Ait. Pursh. dominates the next stage of the succession and eventually forms almost pure thickets (with some scattered individuals of <em>Populus trichocarpa</em> T. and G.), which are finally invaded by <em>Picea sitchensis Carr. Picea initially forms pure stands, but over a period of time <em>Tsuga heterophylla</em> Sarg. and <em>T. mertensiana</em> Carr. enter the community. On well drained slopes this stage represents the climax vegetation of the area. However, where the ground is gently sloping or flat <em>Sphagnum</em> species subsequently invade the moss mat of the forest floor and through the growth of <em>Sphagnum</em> and its ability to retain large amounts of water, the forest floor becomes soggy and root aeration decreases. This leads to the elimination of the tree species and to the establishment of muskeg dominated by <em>Sphagnum</em> species, with occasional scattered individuals of <em>Pinus contorta</em> Laws, which can apparently tolerate the wet conditions which prevail.</p>
+<figure class="figure-break" id="fig-3-2"> 
+<img src="../images/Fig.3.2.jpg" alt="study of the recession of the glacier"> 
+<figcaption> <strong>Fig. 3.2</strong> The Glacier Bay fiord complex showing the rate of ice recession. (From Crocker and Major, 1955; courtesy of J. Ecol.) </figcaption> 
+</figure>
+
+
+<p>The stages of succession have been described by Cooper (1923, 1931, 1939) and by Lawrence (1953). The pioneer stage is characterized by <em>Rhacomitrium canescens</em> ​​Brid., <em>R. lanuginosum</em> (Hedw.) Brid., <em>Epilobium latifolium</em> L., <em>Equisetum variegatum</em> Schleich., <em>Dryas drummondii</em> Rich. and <em>Salix arctica</em> Pall. The next stage is the appearance of <em>Salix barclayi</em> And., <em>S. sitchensis Sans.</em> and <em>S. alexensis</em> (And.) Colville, which start as prostrate forms eventually developing an erect habit and forming dense scrub. <em>Alnus crispa</em> Ait. Pursh. dominates the next stage of the succession and eventually forms almost pure thickets (with some scattered individuals of <em>Populus trichocarpa</em> T. and G.), which are finally invaded by <em>Picea sitchensis Carr. Picea</em> initially forms pure stands, but over a period of time <em>Tsuga heterophylla</em> Sarg. and <em>T. mertensiana</em> Carr. enter the community. On well drained slopes this stage represents the climax vegetation of the area. However, where the ground is gently sloping or flat <em>Sphagnum</em> species subsequently invade the moss mat of the forest floor and through the growth of <em>Sphagnum</em> and its ability to retain large amounts of water, the forest floor becomes soggy and root aeration decreases. This leads to the elimination of the tree species and to the establishment of muskeg dominated by <em>Sphagnum</em> species, with occasional scattered individuals of <em>Pinus contorta</em> Laws, which can apparently tolerate the wet conditions which prevail.</p>
+
+
+
+<div style="overflow: hidden;">
+    <figure class="figure-break" id="fig-3-1" style="float: left; width: 45%; margin: 0 25px 15px 0;">
+<img src="../images/Fig.3.3.jpg" alt="study of the recession of the glacier"> 
+<figcaption> <strong>Fig. 3.3</strong> pH of litter residues and surface horizons of the mineral soil with increasing age of surface. (From Crocker and Major, 1955; courtesy of J. Ecol.)
+ </figcaption> 
+</figure> 
 
 <p>Crocker and Major (1955) have studied the time sequence of this succession and the reaction of each stage on the properties of the soil. In the earliest stages of soil development following glacial recession the processes involved appear to be greatly affected by the type of vegetational cover. </p>
 
 <p>The reaction of the soil parent material is quite marked with a pH of 8.0-8.4 due to the occurrence of marble in the geological formations of the area. The soil pH falls rapidly with the establishment of the vegetation (<a class="table-link" href="#fig-3-3">Fig. 3.3</a>) and furthermore the rate of increase of acidity is markedly affected by the type of vegetational cover. Bare surfaces show almost no change of pH over a 30-year period, while <em>Populus, Dryas</em> and <em>Salix</em> sites show a more marked decrease of pH, and <em>Alnus</em> produces a striking acidifying effect, lowering the pH of the surface soil from about 8.0 to 5.0 in 30-50 years (<a class="table-link" href="#fig-3-4">Fig. 3.4</a>). This rapid decrease of pH ceases with the invasion of <em>Picea</em>, the leaf litter of this species appears to be approximately of equal acidity to <em>Alnus</em> and has no significant effect on the mineral soil. </p>
 
+</div>
+
+<div style="overflow: hidden;">
+
+    <figure class="figure-break" id="fig-3-4" style="float: left; width: 48%; margin: 0 2% 15px 0;">
+        <img src="../images/Fig.3.4.jpg" alt="study of the recession of the glacier">
+        <figcaption>
+            <strong>Fig. 3.4</strong> Rate of change of pH in 0-50mm horizon relative 
+            to different vegetational cover and rate of calcium carbonate change under 
+            Alnus. (From Crocker and Major 1955; courtesy of J. Ecol.)
+        </figcaption>
+    </figure>
+
+    <figure class="figure-break" id="fig-3-5" style="float: left; width: 48%; margin: 0 0 15px 0;">
+        <img src="../images/Fig.3.5.jpg" alt="study of the recession of the glacier">
+        <figcaption>
+            <strong>Fig. 3.5</strong> Organic carbon accumulation in mineral soil and 
+            forest floor. (From Crocker and Major, 1955; courtesy of J. Ecol.)
+        </figcaption>
+    </figure>
+
+</div>
+
+
+
 <p>The organic carbon and total nitrogen concentration in the soil shows equally marked change with time (<a class="table-link" href="#fig-3-5">Fig. 3.5</a> and <a class="table-link" href="#fig-3-6">Fig. 3.6</a>). The vast increase of soil nitrogen is related to the presence of bacterial nodules on the roots of <em>Alnus</em> which actively fix atmospheric nitrogen and contribute largely to the reserves of nitrogen in the soil via ​​leaf fall (<a class="table-link" href="#fig-3-7">Fig. 3.7</a>) (Lawrence, 1958). The invasion of spruce at this stage and the subsequent reduction of soil nitrogen strongly suggests this to be the important consideration controlling the time of entry of the spruce into the alder thickets. The elimination of the alder and its root nodules decrease the net annual addition of nitrogen as leaf litter, for spruce has no such root structures and accordingly the soil nitrogen is reduced.</p>
 
 <p>The complete succession from bare morainic detritus to mature spruce forest takes approximately 250 years during which time the most significant reaction of the vegetation appears to be the building up of soil nitrogen. The reduction of soil pH is probably also closely related to this. The building up of organic carbon will influence to a considerable extent the development of soil structure and will lead to a soil with 'crumb-structure' which is markedly different from the rather amorphous glacial till. In turn this will affect soil aeration and movement of water in the soil, and both of these factors probably influence the succession. However, very little data is available which would enable a general assessment of the effect of such factors on vegetation apart from the rather more obvious relationships that exist. Clearly a detailed study is required of the exact environmental requirements of each species contributing to the succession before the complete mechanism of the succession can be fully appreciated.</p>
 
+<div style="overflow: hidden;">
+
+    <figure class="figure-break" id="fig-3-6" style="float: left; width: 48%; margin: 0 2% 15px 0;">
+        <img src="../images/Fig.3.6.jpg" alt="niotrogen content graph">
+        <figcaption>
+            <strong>Fig. 3.6</strong> Change of total nitrogen content of soils on surfaces of varying age. (From Crocker and Major, 1955; courtesy of J. Ecol.)
+
+        </figcaption>
+    </figure>
+
+    <figure class="figure-break" id="fig-3-7" style="float: left; width: 48%; margin: 0 0 15px 0;">
+        <img src="../images/Fig.3.7.jpg" alt="nitrogen accumulation graph">
+        <figcaption>
+            <strong>Fig. 3.7</strong> Accumulation of nitrogen in the mineral soil and forest floor under Alnus crispa. (From Crocker and Major, 1955; courtesy of J. Ecol.)
+        </figcaption>
+    </figure>
+
+</div>
 
 <h5>Lake Michigan sand-dune succession</h5>
 
 <p>Cowles (1899) classic description of the sand-dune vegetation of Lake Michigan was one of the early contributions to the concept of plant successional stages in this area in relation to both the development of the soil and to the age of each dune system. During and after the retreat of the ice-age glaciers from the Great Lakes region the ​​resultant fall in the general level of the lakes left several distinct raised beaches, with their associated dune systems. These systems, running parallel to the present shore line of Lake Michigan are about 8, 13 and 18-20 m above the present level of the lake. These old dune systems have all been dated recently by radio-carbon methods and the highest system above the prèsent lake level (Glenwood) turns out to be slightly over 12 000 years of age. The more recently established dunes were aged by morphological studies of the <em>Ammophila</em> colonizing them and growth ring counts of <em>Pinus banksiana</em> which enters the succession at an early stage (<a class="table-link" href="#fig-3-8">Fig. 3.8</a>).</p>
 
+<figure class="figure-break" id="fig-3-8"> 
+<img src="../images/Fig.3.8.jpg" alt="Leaching of carbonates from the surface layers of dune soil. (From Olson, 1958; courtesy of Bot. Gaz.)"> 
+<figcaption> <strong>Fig. 3.8</strong> Schematic alternative dune successions in the Lake Michigan dune systems. (From Olson, 1958; courtesy of Bot. Gaz.) </figcaption> 
+</figure>
+
+
+<div id="sidebar">
+    <h2>Node Info</h2>
+    <div id="info">Hover or click a node</div>
+</div>
+
+<div id="container">
+<div id="hint">Scroll = zoom | Drag = pan | Click = lock</div>
+
+<svg id="svg" viewBox="0 0 1400 800">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
+<path d="M0,0 L10,3 L0,6 Z" fill="#666"/>
+</marker>
+</defs>
+
+<g id="viewport">
+
+<!-- ===== INITIAL CONDITIONS ===== -->
+<g class="node initial" id="damp" data-info="Damp depression">
+<rect x="60" y="90" width="150" height="40"/>
+<text x="135" y="110">Damp depression</text>
+</g>
+
+<g class="node initial" id="beach">
+<rect x="260" y="90" width="150" height="40"/>
+<text x="335" y="110">Upper beach</text>
+</g>
+
+<g class="node initial" id="erosion">
+<rect x="460" y="90" width="160" height="40"/>
+<text x="540" y="110">Eroding surfaces</text>
+</g>
+
+<g class="node initial" id="deposit">
+<rect x="660" y="90" width="160" height="40"/>
+<text x="740" y="110">Depositing crests</text>
+</g>
+
+<g class="node initial" id="steep">
+<rect x="880" y="90" width="170" height="40"/>
+<text x="965" y="110">Steep lee slopes</text>
+</g>
+
+<!-- ===== PROCESSES ===== -->
+<g class="node process" id="foredune">
+<ellipse cx="350" cy="200" rx="90" ry="25"/>
+<text x="350" y="200">Foredune initiation</text>
+</g>
+
+<g class="node process" id="blowout">
+<ellipse cx="780" cy="200" rx="90" ry="25"/>
+<text x="780" y="200">Blowout initiation</text>
+</g>
+
+<!-- ===== PIONEER ===== -->
+<g class="node pioneer" id="rush">
+<rect x="80" y="290" width="140" height="40"/>
+<text x="150" y="310">Rush meadow</text>
+</g>
+
+<g class="node pioneer" id="cottonwood">
+<rect x="270" y="290" width="140" height="40"/>
+<text x="340" y="310">Cottonwood</text>
+</g>
+
+<g class="node pioneer" id="grasses">
+<rect x="460" y="270" width="200" height="90"/>
+<text x="560" y="300">Marram</text>
+<text x="560" y="320">Sand reed</text>
+<text x="560" y="340">Little bluestem</text>
+</g>
+
+<g class="node pioneer" id="shrubs">
+<rect x="870" y="290" width="140" height="40"/>
+<text x="940" y="310">Shrubs</text>
+</g>
+
+<g class="node pioneer" id="basswood">
+<rect x="1050" y="290" width="140" height="40"/>
+<text x="1120" y="310">Basswood</text>
+</g>
+
+<!-- ===== CONIFERS ===== -->
+<g class="node conifer" id="pines">
+<rect x="540" y="420" width="170" height="80"/>
+<text x="625" y="445">Jack pine</text>
+<text x="625" y="465">White pine</text>
+<text x="625" y="485">Red pine</text>
+</g>
+
+<g class="node conifer" id="fir">
+<rect x="860" y="420" width="200" height="70"/>
+<text x="960" y="445">Arbor vitae</text>
+<text x="960" y="465">Balsam fir</text>
+</g>
+
+<!-- ===== CLIMAX ===== -->
+<g class="node climax" id="prairie">
+<rect x="80" y="580" width="160" height="50"/>
+<text x="160" y="605">Tall grass prairie</text>
+</g>
+
+<g class="node climax" id="swamp">
+<rect x="260" y="580" width="160" height="50"/>
+<text x="340" y="605">Red maple swamp</text>
+</g>
+
+<g class="node climax" id="oak">
+<rect x="470" y="580" width="170" height="60"/>
+<text x="555" y="605">Black oak</text>
+<text x="555" y="625">White oak</text>
+</g>
+
+<g class="node climax" id="oakmix">
+<rect x="660" y="580" width="170" height="60"/>
+<text x="745" y="605">Oaks</text>
+<text x="745" y="625">Red / White</text>
+</g>
+
+<g class="node climax" id="maple">
+<rect x="850" y="580" width="170" height="60"/>
+<text x="935" y="605">Maples</text>
+<text x="935" y="625">Sugar / Red</text>
+</g>
+
+<g class="node climax" id="beech">
+<rect x="1040" y="580" width="140" height="50"/>
+<text x="1110" y="605">Beech</text>
+</g>
+
+<g class="node climax" id="hemlock">
+<rect x="1200" y="580" width="140" height="50"/>
+<text x="1270" y="605">Hemlock</text>
+</g>
+
+<g class="node climax" id="birch">
+<rect x="1360" y="580" width="170" height="60"/>
+<text x="1445" y="605">Birches</text>
+<text x="1445" y="625">Paper / Yellow</text>
+</g>
+
+<!-- ===== MAIN FLOW (SOLID PATHS) ===== -->
+<path class="edge" d="M135 130 L150 290"/>
+<path class="edge" d="M335 130 C340 160, 340 160, 350 175"/>
+<path class="edge" d="M350 225 C400 250, 450 260, 560 270"/>
+<path class="edge" d="M560 360 C580 380, 600 400, 625 420"/>
+<path class="edge" d="M625 500 C610 530, 580 560, 555 580"/>
+<path class="edge" d="M780 225 C820 250, 880 270, 940 290"/>
+<path class="edge" d="M940 330 L960 420"/>
+<path class="edge" d="M960 490 C940 520, 930 550, 935 580"/>
+<path class="edge" d="M935 640 C1000 600, 1040 590, 1110 580"/>
+
+<!-- ===== CROSS LINKS ===== -->
+<path class="edge" d="M560 270 C700 260, 800 260, 940 290"/>
+<path class="edge" d="M625 420 C750 400, 850 400, 960 420"/>
+
+<!-- ===== DASHED (PROCESSES) ===== -->
+<path class="edge" stroke-dasharray="6,4"
+d="M540 130 C600 150, 700 170, 780 175"/>
+
+<path class="edge" stroke-dasharray="6,4"
+d="M740 130 C760 150, 770 160, 780 175"/>
+
+<path class="edge" stroke-dasharray="6,4"
+d="M965 130 C900 150, 830 170, 780 175"/>
+
+<path class="edge" stroke-dasharray="6,4"
+d="M350 200 C500 200, 650 200, 780 200"/>
+
+</g>
+
+<!-- ===== PROCESSES ===== -->
+<g class="node process" id="foredune" data-info="Formation of foredunes">
+<rect x="300" y="170" width="160" height="40"/>
+<text x="380" y="190">Foredune initiation</text>
+</g>
+
+<g class="node process" id="blowout" data-info="Wind erosion creates blowouts">
+<rect x="720" y="170" width="160" height="40"/>
+<text x="800" y="190">Blowout initiation</text>
+</g>
+
+<!-- ===== PIONEER ===== -->
+<g class="node pioneer" id="rush" data-info="Wetland pioneer vegetation">
+<rect x="70" y="260" width="140" height="40"/>
+<text x="140" y="280">Rush meadow</text>
+</g>
+
+<g class="node pioneer" id="cotton" data-info="Early woody coloniser">
+<rect x="300" y="260" width="140" height="40"/>
+<text x="370" y="280">Cottonwood</text>
+</g>
+
+<g class="node pioneer" id="marram" data-info="Sand-binding grass">
+<rect x="500" y="260" width="140" height="40"/>
+<text x="570" y="280">Marram</text>
+</g>
+
+<g class="node pioneer" id="shrubs" data-info="Shrub stage">
+<rect x="850" y="260" width="140" height="40"/>
+<text x="920" y="280">Shrubs</text>
+</g>
+
+<!-- ===== CONIFERS ===== -->
+<g class="node conifer" id="pines" data-info="Pine stage (Jack, White, Red)">
+<rect x="550" y="380" width="160" height="50"/>
+<text x="630" y="405">Pines</text>
+</g>
+
+<g class="node conifer" id="fir" data-info="Late conifers">
+<rect x="850" y="380" width="160" height="50"/>
+<text x="930" y="405">Fir / Arbor vitae</text>
+</g>
+
+<!-- ===== CLIMAX ===== -->
+<g class="node climax" id="oak" data-info="Climax oak forest">
+<rect x="650" y="550" width="160" height="50"/>
+<text x="730" y="575">Oaks</text>
+</g>
+
+<g class="node climax" id="maple" data-info="Maple dominated forest">
+<rect x="850" y="550" width="160" height="50"/>
+<text x="930" y="575">Maples</text>
+</g>
+
+<g class="node climax" id="beech" data-info="Beech climax species">
+<rect x="1050" y="550" width="160" height="50"/>
+<text x="1130" y="575">Beech</text>
+</g>
+
+<!-- ===== EDGES ===== -->
+<line class="edge" data-from="damp" data-to="rush" x1="120" y1="120" x2="140" y2="260"/>
+<line class="edge" data-from="beach" data-to="foredune" x1="320" y1="120" x2="380" y2="170"/>
+<line class="edge" data-from="foredune" data-to="marram" x1="380" y1="210" x2="570" y2="260"/>
+<line class="edge" data-from="erosion" data-to="blowout" x1="530" y1="120" x2="800" y2="170"/>
+<line class="edge" data-from="blowout" data-to="shrubs" x1="800" y1="210" x2="920" y2="260"/>
+<line class="edge" data-from="marram" data-to="pines" x1="570" y1="300" x2="630" y2="380"/>
+<line class="edge" data-from="shrubs" data-to="fir" x1="920" y1="300" x2="930" y2="380"/>
+<line class="edge" data-from="pines" data-to="oak" x1="630" y1="430" x2="730" y2="550"/>
+<line class="edge" data-from="fir" data-to="maple" x1="930" y1="430" x2="930" y2="550"/>
+<line class="edge" data-from="maple" data-to="beech" x1="1010" y1="575" x2="1050" y2="575"/>
+
+</g>
+</svg>
+</div>
+
+
+
 <p>The pioneer stage of the succession is dominated by <em>Ammophila breviligulata</em> which occasionally becomes established from seed but normally invades freshly deposited sand by rhizomes from young previously established dunes. The rate of dune formation established from a morphological examination of <em>Ammophila</em> is rapid and stable dunes are formed in about six years. Dunes which have been established for 20 years or more still have <em>Ammophila</em> but with an obviously reduced level of vigour. This loss of vigour has been related to potential leaching of nutrients over a 20-year period. Another suggestion invokes the inherent tendency of this species for internodal elongation which does not cease completely when stabilization has been reached. This results in the growing apex being pushed into the dry surface layers of the sand which are unfavourable for plant growth, with the consequent reduction of vigour of the plant as a whole. A further possibility may be found in the average age of the plants themselves, the loss of vigour being due to the slowing down of physiolgical mechanisms, resulting directly from old age (see <a class="chapter-title-link" href="Chapters/chapter4.html">Chapter 4</a>). The next stage of the main line of succession is the arrival of <em>Pinus banksiana</em> and <em>P. strobus</em> which enter immediately after dune stabilization is reached. These species eventually are replaced by the final stage dominated by <em>Quercus velutina</em>. This main succession is summarized in <a class="table-link" href="#fig-3-8">Fig. 3.8</a> together with the modifications present in those dune systems where local variation of the environment can change the course of the succession markedly. Thus damp depressions caused by impeded drainage develop into a ​​grassland community and, on the other hand, sheltered pockets on the lee slopes progress to a <em>Tilia americana</em> dominated intermediate stage. This different course of succession is related, in part at least, to the microclimate of these pockets which are largely protected from excessive solar radiation and wind effects. Accordingly moisture availability will be higher, which in addition to the obvious relation to plant growth would contribute some protection from fires which occur frequently in the area, the relatively moist pockets tending to be by-passed. In addition these dune pockets tend to accumulate fallen leaves brought in from the more exposed parts of the dune system and the general nutrient status of the soil increases at the expense of the rest of the area. The reaction of the vegetation on the properties of the soil is broadly similar to the example discussed above but the rate of change is considerably slower. The leaching of carbonate from the soil is very rapid (Fig. 3.9) and the surface layers (10 cm) are more or less devoid of carbonate from the soil after a few hundred years. There is a slow building up of organic carbon (<a class="table-link" href="#fig-3-10">Fig. 3.10</a>) and soil nitrogen (<a class="table-link" href="#fig-3-11">Fig. 3.11</a>). These three environmental changes are virtually completed in 1000 years and subsequent generations of <em>Quercus</em> have little effect on these soil properties.</p>
+
+<figure class="figure-break" id="fig-3-9"> 
+<img src="../images/Fig.3.9.jpg" alt="Leaching of carbonates from the surface layers of dune soil. (From Olson, 1958; courtesy of Bot. Gaz.)"> 
+<figcaption> <strong>Fig. 3.9</strong> Leaching of carbonates from the surface layers of dune soil. (From Olson, 1958; courtesy of Bot. Gaz.)  </figcaption> 
+</figure>
 
 <p>Again the relationships between the environment, the vegetational stages and the development of the succession through modification of the environment can only be described in a general way. The initial dune formation is clear and results in an ecological niche with low fertility which is in fact invaded by species with low nutritional requirements. The subsequent accumulation of soil nitrogen and organic carbon presumably control to some extent the time of entry of oak into the succession. What evidence there is suggests that <em>Quercus velutina</em> has relatively low nutrient requirements and accordingly is able to thrive in a habitat which remains at a very low level of soil fertility. The annual addition of leaf litter from the final stages of the succession appears to be equivalent to the amount of nutrient required to maintain the <em>Quercus</em> communities. Thus the soil conditions remain fairly constant over a long period of time (probably an indefinite period) and limit the further development of the succession. It appears very improbable that species with higher nutrient requirements will even enter the succession and the occasional and isolated hickory, beech and maple trees are restricted to sites with special topographic or drainage features. Accordingly the <em>Quercus velutina</em> represents the final stable vegetation of the area largely restricted by the edaphic features outlined above. </p>
 
@@ -291,8 +712,101 @@ window.toggleLayer = function(layerId, checkbox) {
         layer.classList.remove("active");
     }
 };
+
+
+const nodes = document.querySelectorAll(".node");
+const edges = document.querySelectorAll(".edge");
+const info = document.getElementById("info");
+
+let locked = null;
+
+nodes.forEach(node => {
+
+node.addEventListener("mouseenter", () => {
+if (locked) return;
+highlight(node);
+});
+
+node.addEventListener("mouseleave", () => {
+if (locked) return;
+clear();
+});
+
+node.addEventListener("click", () => {
+if (locked === node) {
+locked = null;
+clear();
+} else {
+locked = node;
+highlight(node);
+}
+});
+
+});
+
+function highlight(node) {
+clear();
+
+node.classList.add("active");
+info.innerHTML = node.dataset.info;
+
+edges.forEach(e => {
+if (e.dataset.from === node.id || e.dataset.to === node.id) {
+e.classList.add("active");
+}
+});
+}
+
+function clear() {
+nodes.forEach(n => n.classList.remove("active"));
+edges.forEach(e => e.classList.remove("active"));
+if (!locked) info.innerHTML = "Hover or click a node";
+}
+
+/* ===== ZOOM + PAN ===== */
+const svg = document.getElementById("svg");
+const view = document.getElementById("viewport");
+
+let scale = 1;
+let panX = 0;
+let panY = 0;
+let isDragging = false;
+let startX, startY;
+
+svg.addEventListener("wheel", e => {
+e.preventDefault();
+scale += e.deltaY * -0.001;
+scale = Math.min(Math.max(0.5, scale), 3);
+update();
+});
+
+svg.addEventListener("mousedown", e => {
+isDragging = true;
+startX = e.clientX;
+startY = e.clientY;
+});
+
+svg.addEventListener("mouseup", () => isDragging = false);
+svg.addEventListener("mouseleave", () => isDragging = false);
+
+svg.addEventListener("mousemove", e => {
+if (!isDragging) return;
+panX += (e.clientX - startX);
+panY += (e.clientY - startY);
+startX = e.clientX;
+startY = e.clientY;
+update();
+});
+
+function update() {
+view.setAttribute("transform", `translate(${panX},${panY}) scale(${scale})`);
+}
 </script>
 
 </body>
 </html>
 
+
+
+</body>
+</html>
