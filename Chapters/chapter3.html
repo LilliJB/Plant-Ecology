@@ -304,252 +304,161 @@ One or two outstanding exceptions to this have appeared in the literature, notab
 </figure>
 
 
+<!-- ===== FLOWCHART START ===== -->
+<div id="flowchart-wrapper">
+
 <div id="sidebar">
-    <h2>Node Info</h2>
-    <div id="info">Hover or click a node</div>
+<h3>Dune Succession</h3>
+<div id="info">Hover or click a node</div>
 </div>
 
 <div id="container">
-<div id="hint">Scroll = zoom | Drag = pan | Click = lock</div>
+<svg id="svg" viewBox="0 0 1600 750">
 
-<svg id="svg" viewBox="0 0 1400 800">
 <defs>
-<marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
-<path d="M0,0 L10,3 L0,6 Z" fill="#666"/>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+<path d="M0,0 L12,6 L0,12 Z" fill="#333"/>
 </marker>
 </defs>
 
 <g id="viewport">
 
-<!-- ===== INITIAL CONDITIONS ===== -->
-<g class="node initial" id="damp" data-info="Damp depression">
-<rect x="60" y="90" width="150" height="40"/>
-<text x="135" y="110">Damp depression</text>
+<!-- ===== INITIAL ===== -->
+<g class="node initial" id="damp" data-info="Low-lying damp depression">
+<rect x="80" y="90" width="140" height="38"/><text x="150" y="110">Damp depression</text>
 </g>
 
-<g class="node initial" id="beach">
-<rect x="260" y="90" width="150" height="40"/>
-<text x="335" y="110">Upper beach</text>
+<g class="node initial" id="beach" data-info="Upper beach exposed to wind">
+<rect x="260" y="90" width="140" height="38"/><text x="330" y="110">Upper beach</text>
 </g>
 
 <g class="node initial" id="erosion">
-<rect x="460" y="90" width="160" height="40"/>
-<text x="540" y="110">Eroding surfaces</text>
+<rect x="440" y="90" width="150" height="38"/><text x="515" y="110">Eroding surfaces</text>
 </g>
 
 <g class="node initial" id="deposit">
-<rect x="660" y="90" width="160" height="40"/>
-<text x="740" y="110">Depositing crests</text>
+<rect x="640" y="90" width="160" height="38"/><text x="720" y="110">Depositing crests</text>
 </g>
 
 <g class="node initial" id="steep">
-<rect x="880" y="90" width="170" height="40"/>
-<text x="965" y="110">Steep lee slopes</text>
+<rect x="860" y="90" width="170" height="38"/><text x="945" y="110">Steep lee slopes</text>
 </g>
 
 <!-- ===== PROCESSES ===== -->
 <g class="node process" id="foredune">
-<ellipse cx="350" cy="200" rx="90" ry="25"/>
-<text x="350" y="200">Foredune initiation</text>
+<ellipse cx="340" cy="200" rx="95" ry="28"/>
+<text x="340" y="200">Foredune initiation</text>
 </g>
 
 <g class="node process" id="blowout">
-<ellipse cx="780" cy="200" rx="90" ry="25"/>
+<ellipse cx="780" cy="200" rx="95" ry="28"/>
 <text x="780" y="200">Blowout initiation</text>
 </g>
 
 <!-- ===== PIONEER ===== -->
 <g class="node pioneer" id="rush">
-<rect x="80" y="290" width="140" height="40"/>
-<text x="150" y="310">Rush meadow</text>
+<rect x="100" y="300" width="150" height="40"/><text x="175" y="320">Rush meadow</text>
 </g>
 
-<g class="node pioneer" id="cottonwood">
-<rect x="270" y="290" width="140" height="40"/>
-<text x="340" y="310">Cottonwood</text>
+<g class="node pioneer" id="cotton">
+<rect x="280" y="300" width="150" height="40"/><text x="355" y="320">Cottonwood</text>
 </g>
 
 <g class="node pioneer" id="grasses">
-<rect x="460" y="270" width="200" height="90"/>
-<text x="560" y="300">Marram</text>
-<text x="560" y="320">Sand reed</text>
-<text x="560" y="340">Little bluestem</text>
+<rect x="480" y="280" width="200" height="100"/>
+<text x="580" y="305">Marram</text>
+<text x="580" y="325">Sand reed</text>
+<text x="580" y="345">Little bluestem</text>
 </g>
 
 <g class="node pioneer" id="shrubs">
-<rect x="870" y="290" width="140" height="40"/>
-<text x="940" y="310">Shrubs</text>
+<rect x="880" y="300" width="150" height="40"/><text x="955" y="320">Shrubs</text>
 </g>
 
 <g class="node pioneer" id="basswood">
-<rect x="1050" y="290" width="140" height="40"/>
-<text x="1120" y="310">Basswood</text>
+<rect x="1080" y="300" width="150" height="40"/><text x="1155" y="320">Basswood</text>
 </g>
 
 <!-- ===== CONIFERS ===== -->
 <g class="node conifer" id="pines">
-<rect x="540" y="420" width="170" height="80"/>
-<text x="625" y="445">Jack pine</text>
-<text x="625" y="465">White pine</text>
-<text x="625" y="485">Red pine</text>
+<rect x="540" y="430" width="180" height="90"/>
+<text x="630" y="455">Jack pine</text>
+<text x="630" y="475">White pine</text>
+<text x="630" y="495">Red pine</text>
 </g>
 
 <g class="node conifer" id="fir">
-<rect x="860" y="420" width="200" height="70"/>
-<text x="960" y="445">Arbor vitae</text>
-<text x="960" y="465">Balsam fir</text>
+<rect x="900" y="430" width="200" height="70"/>
+<text x="1000" y="455">Arbor vitae</text>
+<text x="1000" y="475">Balsam fir</text>
 </g>
 
 <!-- ===== CLIMAX ===== -->
 <g class="node climax" id="prairie">
-<rect x="80" y="580" width="160" height="50"/>
-<text x="160" y="605">Tall grass prairie</text>
+<rect x="100" y="600" width="160" height="50"/><text x="180" y="625">Tall grass prairie</text>
 </g>
 
 <g class="node climax" id="swamp">
-<rect x="260" y="580" width="160" height="50"/>
-<text x="340" y="605">Red maple swamp</text>
+<rect x="280" y="600" width="160" height="50"/><text x="360" y="625">Red maple swamp</text>
 </g>
 
 <g class="node climax" id="oak">
-<rect x="470" y="580" width="170" height="60"/>
-<text x="555" y="605">Black oak</text>
-<text x="555" y="625">White oak</text>
+<rect x="480" y="600" width="170" height="60"/>
+<text x="565" y="625">Black oak</text>
+<text x="565" y="645">White oak</text>
 </g>
 
 <g class="node climax" id="oakmix">
-<rect x="660" y="580" width="170" height="60"/>
-<text x="745" y="605">Oaks</text>
-<text x="745" y="625">Red / White</text>
+<rect x="680" y="600" width="170" height="60"/>
+<text x="765" y="625">Oaks</text>
+<text x="765" y="645">Red / White</text>
 </g>
 
 <g class="node climax" id="maple">
-<rect x="850" y="580" width="170" height="60"/>
-<text x="935" y="605">Maples</text>
-<text x="935" y="625">Sugar / Red</text>
+<rect x="880" y="600" width="170" height="60"/>
+<text x="965" y="625">Maples</text>
+<text x="965" y="645">Sugar / Red</text>
 </g>
 
 <g class="node climax" id="beech">
-<rect x="1040" y="580" width="140" height="50"/>
-<text x="1110" y="605">Beech</text>
+<rect x="1080" y="600" width="150" height="50"/><text x="1155" y="625">Beech</text>
 </g>
 
 <g class="node climax" id="hemlock">
-<rect x="1200" y="580" width="140" height="50"/>
-<text x="1270" y="605">Hemlock</text>
+<rect x="1240" y="600" width="150" height="50"/><text x="1315" y="625">Hemlock</text>
 </g>
 
 <g class="node climax" id="birch">
-<rect x="1360" y="580" width="170" height="60"/>
-<text x="1445" y="605">Birches</text>
-<text x="1445" y="625">Paper / Yellow</text>
+<rect x="1400" y="600" width="170" height="60"/>
+<text x="1485" y="625">Birches</text>
+<text x="1485" y="645">Paper / Yellow</text>
 </g>
 
-<!-- ===== MAIN FLOW (SOLID PATHS) ===== -->
-<path class="edge" d="M135 130 L150 290"/>
-<path class="edge" d="M335 130 C340 160, 340 160, 350 175"/>
-<path class="edge" d="M350 225 C400 250, 450 260, 560 270"/>
-<path class="edge" d="M560 360 C580 380, 600 400, 625 420"/>
-<path class="edge" d="M625 500 C610 530, 580 560, 555 580"/>
-<path class="edge" d="M780 225 C820 250, 880 270, 940 290"/>
-<path class="edge" d="M940 330 L960 420"/>
-<path class="edge" d="M960 490 C940 520, 930 550, 935 580"/>
-<path class="edge" d="M935 640 C1000 600, 1040 590, 1110 580"/>
+<!-- ===== EDGES (CURVED + MATCHED) ===== -->
+<path class="edge" d="M150 128 C160 200,170 250,175 300"/>
+<path class="edge" d="M330 128 C330 160,335 170,340 180"/>
+<path class="edge" d="M340 230 C400 260,470 280,580 280"/>
+<path class="edge" d="M580 380 C600 410,620 420,630 430"/>
+<path class="edge" d="M630 520 C600 560,580 580,565 600"/>
+<path class="edge" d="M780 230 C820 260,900 280,955 300"/>
+<path class="edge" d="M955 340 C960 380,980 400,1000 430"/>
+<path class="edge" d="M1000 500 C980 550,970 570,965 600"/>
+<path class="edge" d="M965 660 C1030 620,1100 610,1155 600"/>
 
-<!-- ===== CROSS LINKS ===== -->
-<path class="edge" d="M560 270 C700 260, 800 260, 940 290"/>
-<path class="edge" d="M625 420 C750 400, 850 400, 960 420"/>
+<!-- CROSS LINKS -->
+<path class="edge" d="M580 280 C700 260,850 260,955 300"/>
+<path class="edge" d="M630 430 C750 400,900 400,1000 430"/>
 
-<!-- ===== DASHED (PROCESSES) ===== -->
-<path class="edge" stroke-dasharray="6,4"
-d="M540 130 C600 150, 700 170, 780 175"/>
-
-<path class="edge" stroke-dasharray="6,4"
-d="M740 130 C760 150, 770 160, 780 175"/>
-
-<path class="edge" stroke-dasharray="6,4"
-d="M965 130 C900 150, 830 170, 780 175"/>
-
-<path class="edge" stroke-dasharray="6,4"
-d="M350 200 C500 200, 650 200, 780 200"/>
-
-</g>
-
-<!-- ===== PROCESSES ===== -->
-<g class="node process" id="foredune" data-info="Formation of foredunes">
-<rect x="300" y="170" width="160" height="40"/>
-<text x="380" y="190">Foredune initiation</text>
-</g>
-
-<g class="node process" id="blowout" data-info="Wind erosion creates blowouts">
-<rect x="720" y="170" width="160" height="40"/>
-<text x="800" y="190">Blowout initiation</text>
-</g>
-
-<!-- ===== PIONEER ===== -->
-<g class="node pioneer" id="rush" data-info="Wetland pioneer vegetation">
-<rect x="70" y="260" width="140" height="40"/>
-<text x="140" y="280">Rush meadow</text>
-</g>
-
-<g class="node pioneer" id="cotton" data-info="Early woody coloniser">
-<rect x="300" y="260" width="140" height="40"/>
-<text x="370" y="280">Cottonwood</text>
-</g>
-
-<g class="node pioneer" id="marram" data-info="Sand-binding grass">
-<rect x="500" y="260" width="140" height="40"/>
-<text x="570" y="280">Marram</text>
-</g>
-
-<g class="node pioneer" id="shrubs" data-info="Shrub stage">
-<rect x="850" y="260" width="140" height="40"/>
-<text x="920" y="280">Shrubs</text>
-</g>
-
-<!-- ===== CONIFERS ===== -->
-<g class="node conifer" id="pines" data-info="Pine stage (Jack, White, Red)">
-<rect x="550" y="380" width="160" height="50"/>
-<text x="630" y="405">Pines</text>
-</g>
-
-<g class="node conifer" id="fir" data-info="Late conifers">
-<rect x="850" y="380" width="160" height="50"/>
-<text x="930" y="405">Fir / Arbor vitae</text>
-</g>
-
-<!-- ===== CLIMAX ===== -->
-<g class="node climax" id="oak" data-info="Climax oak forest">
-<rect x="650" y="550" width="160" height="50"/>
-<text x="730" y="575">Oaks</text>
-</g>
-
-<g class="node climax" id="maple" data-info="Maple dominated forest">
-<rect x="850" y="550" width="160" height="50"/>
-<text x="930" y="575">Maples</text>
-</g>
-
-<g class="node climax" id="beech" data-info="Beech climax species">
-<rect x="1050" y="550" width="160" height="50"/>
-<text x="1130" y="575">Beech</text>
-</g>
-
-<!-- ===== EDGES ===== -->
-<line class="edge" data-from="damp" data-to="rush" x1="120" y1="120" x2="140" y2="260"/>
-<line class="edge" data-from="beach" data-to="foredune" x1="320" y1="120" x2="380" y2="170"/>
-<line class="edge" data-from="foredune" data-to="marram" x1="380" y1="210" x2="570" y2="260"/>
-<line class="edge" data-from="erosion" data-to="blowout" x1="530" y1="120" x2="800" y2="170"/>
-<line class="edge" data-from="blowout" data-to="shrubs" x1="800" y1="210" x2="920" y2="260"/>
-<line class="edge" data-from="marram" data-to="pines" x1="570" y1="300" x2="630" y2="380"/>
-<line class="edge" data-from="shrubs" data-to="fir" x1="920" y1="300" x2="930" y2="380"/>
-<line class="edge" data-from="pines" data-to="oak" x1="630" y1="430" x2="730" y2="550"/>
-<line class="edge" data-from="fir" data-to="maple" x1="930" y1="430" x2="930" y2="550"/>
-<line class="edge" data-from="maple" data-to="beech" x1="1010" y1="575" x2="1050" y2="575"/>
+<!-- DASHED -->
+<path class="edge dashed" d="M515 128 C620 150,700 170,780 180"/>
+<path class="edge dashed" d="M720 128 C760 150,770 160,780 180"/>
+<path class="edge dashed" d="M945 128 C880 150,820 170,780 180"/>
+<path class="edge dashed" d="M340 200 C500 200,650 200,780 200"/>
 
 </g>
 </svg>
 </div>
-
+<!-- ===== FLOWCHART END ===== -->
 
 
 <p>The pioneer stage of the succession is dominated by <em>Ammophila breviligulata</em> which occasionally becomes established from seed but normally invades freshly deposited sand by rhizomes from young previously established dunes. The rate of dune formation established from a morphological examination of <em>Ammophila</em> is rapid and stable dunes are formed in about six years. Dunes which have been established for 20 years or more still have <em>Ammophila</em> but with an obviously reduced level of vigour. This loss of vigour has been related to potential leaching of nutrients over a 20-year period. Another suggestion invokes the inherent tendency of this species for internodal elongation which does not cease completely when stabilization has been reached. This results in the growing apex being pushed into the dry surface layers of the sand which are unfavourable for plant growth, with the consequent reduction of vigour of the plant as a whole. A further possibility may be found in the average age of the plants themselves, the loss of vigour being due to the slowing down of physiolgical mechanisms, resulting directly from old age (see <a class="chapter-title-link" href="Chapters/chapter4.html">Chapter 4</a>). The next stage of the main line of succession is the arrival of <em>Pinus banksiana</em> and <em>P. strobus</em> which enter immediately after dune stabilization is reached. These species eventually are replaced by the final stage dominated by <em>Quercus velutina</em>. This main succession is summarized in <a class="table-link" href="#fig-3-8">Fig. 3.8</a> together with the modifications present in those dune systems where local variation of the environment can change the course of the succession markedly. Thus damp depressions caused by impeded drainage develop into a ​​grassland community and, on the other hand, sheltered pockets on the lee slopes progress to a <em>Tilia americana</em> dominated intermediate stage. This different course of succession is related, in part at least, to the microclimate of these pockets which are largely protected from excessive solar radiation and wind effects. Accordingly moisture availability will be higher, which in addition to the obvious relation to plant growth would contribute some protection from fires which occur frequently in the area, the relatively moist pockets tending to be by-passed. In addition these dune pockets tend to accumulate fallen leaves brought in from the more exposed parts of the dune system and the general nutrient status of the soil increases at the expense of the rest of the area. The reaction of the vegetation on the properties of the soil is broadly similar to the example discussed above but the rate of change is considerably slower. The leaching of carbonate from the soil is very rapid (Fig. 3.9) and the surface layers (10 cm) are more or less devoid of carbonate from the soil after a few hundred years. There is a slow building up of organic carbon (<a class="table-link" href="#fig-3-10">Fig. 3.10</a>) and soil nitrogen (<a class="table-link" href="#fig-3-11">Fig. 3.11</a>). These three environmental changes are virtually completed in 1000 years and subsequent generations of <em>Quercus</em> have little effect on these soil properties.</p>
