@@ -1,254 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dune Succession Mind Map</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, sans-serif;
-      background: #f7f8fb;
-      color: #1e293b;
-    }
-    header {
-      padding: 24px 32px;
-      background: #1f2937;
-      color: white;
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.12);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.7rem;
-    }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      padding: 24px 32px;
-    }
-    .panel {
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-      padding: 20px;
-    }
-    .map-panel {
-      flex: 1 1 850px;
-      min-width: 320px;
-    }
-    .info-panel {
-      width: 320px;
-      min-width: 280px;
-      max-height: 760px;
-      overflow-y: auto;
-    }
-    #mindmap {
-      width: 100%;
-      height: 760px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, #eef2ff 0%, #ffffff 100%);
-      overflow: visible;
-    }
-    .node {
-      cursor: pointer;
-      transition: transform 0.15s ease, stroke 0.15s ease;
-    }
-    .node:hover {
-      transform: scale(1.04);
-    }
-    .node rect {
-      fill: #ffffff;
-      stroke: #94a3b8;
-      stroke-width: 2;
-      filter: drop-shadow(0 10px 28px rgba(15, 23, 42, 0.06));
-    }
-    .node text {
-      font-size: 14px;
-      font-weight: 600;
-      fill: #0f172a;
-    }
-    .link {
-      stroke: #475569;
-      stroke-width: 2;
-      fill: none;
-      opacity: 0.65;
-    }
-    .link.highlighted {
-      stroke: #2563eb;
-      stroke-width: 3;
-      opacity: 1;
-    }
-    .info-panel h2 {
-      margin-top: 0;
-    }
-    .info-item {
-      margin: 16px 0;
-    }
-    .node-category {
-      display: inline-flex;
-      margin-top: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #e2e8f0;
-      color: #334155;
-      font-size: 12px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4 - Quantitative and Dynamic Plant Ecology</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Interactive Dune Succession Mind Map</h1>
-    <p>Click any node to explore the dune successional pathways from the image.</p>
-  </header>
-  <div class="container">
-    <div class="panel map-panel">
-      <svg id="mindmap" viewBox="0 0 1200 800" aria-label="Dune succession mind map"></svg>
+
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="../Chapters.html">Chapters</a>
+    <a href="../Data.html">Data</a>
+    <a href="../Index-page.html">Index</a>
+</nav>
+
+<main>
+    <div class="chapter" id="chapter4">
+        <h2>Chapter 4: Cyclic Vegetational Change</h2>
+        <p>It is commonplace to regard vegetation which is stable and in equilibrium with its environment as a static entity, which having gone through various stages of succession has finally reached an ultimate level of stability and ceases to change any further. This superficial impression is misleading since in addition to the external environmental factors which regulate the over-all composition of the vegetation, there exists a series of intrinsic factors which continues to induce vegetational change. This intrinsic vegetational change is not manifested as a continuation of succession but as a cycle of events at any particular point in a community. These events are replicated many times over the whole of the community, and are apparent as a series of phases present at a number of points at any instant in time. The over-all summation of these phases constitutes the composition of the community. Thus while plant succession is a <em>directional change</em>, cyclic changes represent <em>fluctuations about a mean value.</em></p>
+
+        <figure class="figure-break" id="fig-4-1">
+            <div id="flowchart-wrapper">
+                <div id="sidebar">
+                    <h3>Dune Succession</h3>
+                    <div id="info">Hover or click a node to learn more</div>
+                </div>
+                <div id="container">
+                    <svg id="svg" viewBox="0 0 1600 760" aria-labelledby="fig4title" role="img">
+                        <title id="fig4title">Schematic alternative dune successions in the Lake Michigan dune systems.</title>
+                        <defs>
+                            <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                                <path d="M0,0 L12,6 L0,12 Z" fill="#333"/>
+                            </marker>
+                        </defs>
+                        <g id="viewport">
+                            <g class="node initial" id="damp" data-info="Damp depressions develop where drainage is impeded.">
+                                <rect x="80" y="90" width="140" height="38"/>
+                                <text x="150" y="110">Damp depression</text>
+                            </g>
+                            <g class="node initial" id="beach" data-info="Upper beach exposed to sand and wind.">
+                                <rect x="260" y="90" width="140" height="38"/>
+                                <text x="330" y="110">Upper beach</text>
+                            </g>
+                            <g class="node initial" id="erosion" data-info="Eroding surfaces remain unstable and bare.">
+                                <rect x="440" y="90" width="150" height="38"/>
+                                <text x="515" y="110">Eroding surfaces</text>
+                            </g>
+                            <g class="node initial" id="deposit" data-info="Depositing crests build up fresh sand deposits.">
+                                <rect x="640" y="90" width="160" height="38"/>
+                                <text x="720" y="110">Depositing crests</text>
+                            </g>
+                            <g class="node initial" id="steep" data-info="Steep pockets on lee slopes are sheltered and moist.">
+                                <rect x="860" y="90" width="170" height="38"/>
+                                <text x="945" y="110">Steep pockets / lee slopes</text>
+                            </g>
+                            <g class="node process" id="foredune" data-info="Foredune initiation begins as sand accumulates around pioneer plants.">
+                                <ellipse cx="340" cy="200" rx="95" ry="28"/>
+                                <text x="340" y="200">Foredune initiation</text>
+                            </g>
+                            <g class="node process" id="blowout" data-info="Blowout initiation starts when wind removes sand from the dune face.">
+                                <ellipse cx="780" cy="200" rx="95" ry="28"/>
+                                <text x="780" y="200">Blowout initiation</text>
+                            </g>
+                            <g class="node pioneer" id="rush" data-info="Rush meadow develops in wetter depressions.">
+                                <rect x="100" y="300" width="150" height="40"/>
+                                <text x="175" y="320">Rush meadow</text>
+                            </g>
+                            <g class="node pioneer" id="cotton" data-info="Cottonwood colonizes slightly more stable sand.">
+                                <rect x="280" y="300" width="150" height="40"/>
+                                <text x="355" y="320">Cottonwood</text>
+                            </g>
+                            <g class="node pioneer" id="grasses" data-info="Grasses such as marram, sand reed and little bluestem stabilize dunes.">
+                                <rect x="480" y="280" width="200" height="100"/>
+                                <text x="580" y="305">Marram</text>
+                                <text x="580" y="325">Sand reed</text>
+                                <text x="580" y="345">Little bluestem</text>
+                            </g>
+                            <g class="node pioneer" id="shrubs" data-info="Shrubs establish on more sheltered dune slopes.">
+                                <rect x="880" y="300" width="150" height="40"/>
+                                <text x="955" y="320">Shrubs</text>
+                            </g>
+                            <g class="node pioneer" id="basswood" data-info="Basswood appears in more protected, later dune stages.">
+                                <rect x="1080" y="300" width="150" height="40"/>
+                                <text x="1155" y="320">Basswood</text>
+                            </g>
+                            <g class="node conifer" id="pines" data-info="Jack, white, and red pine occupy stabilized dunes.">
+                                <rect x="540" y="430" width="180" height="90"/>
+                                <text x="630" y="455">Jack pine</text>
+                                <text x="630" y="475">White pine</text>
+                                <text x="630" y="495">Red pine</text>
+                            </g>
+                            <g class="node conifer" id="fir" data-info="Arbor vitae and balsam fir grow in sheltered sites.">
+                                <rect x="900" y="430" width="200" height="70"/>
+                                <text x="1000" y="455">Arbor vitae</text>
+                                <text x="1000" y="475">Balsam fir</text>
+                            </g>
+                            <g class="node climax" id="prairie" data-info="Tall grass prairie represents one climax alternative.">
+                                <rect x="100" y="600" width="160" height="50"/>
+                                <text x="180" y="625">Tall grass prairie</text>
+                            </g>
+                            <g class="node climax" id="swamp" data-info="Red maple swamp develops in persistent wet depressions.">
+                                <rect x="280" y="600" width="160" height="50"/>
+                                <text x="360" y="625">Red maple swamp</text>
+                            </g>
+                            <g class="node climax" id="oak" data-info="Black oak and white oak appear on more stable dune soils.">
+                                <rect x="480" y="600" width="170" height="60"/>
+                                <text x="565" y="625">Black oak</text>
+                                <text x="565" y="645">White oak</text>
+                            </g>
+                            <g class="node climax" id="oakmix" data-info="Red and white oak forests are a common final stage.">
+                                <rect x="680" y="600" width="170" height="60"/>
+                                <text x="765" y="625">Oaks</text>
+                                <text x="765" y="645">Red / White</text>
+                            </g>
+                            <g class="node climax" id="maple" data-info="Sugar and red maple succeed in richer soils.">
+                                <rect x="880" y="600" width="170" height="60"/>
+                                <text x="965" y="625">Maples</text>
+                                <text x="965" y="645">Sugar / Red</text>
+                            </g>
+                            <g class="node climax" id="beech" data-info="Beech becomes established in mature forest stands.">
+                                <rect x="1080" y="600" width="150" height="50"/>
+                                <text x="1155" y="625">Beech</text>
+                            </g>
+                            <g class="node climax" id="hemlock" data-info="Hemlock appears in shaded, moisture-retentive soils.">
+                                <rect x="1240" y="600" width="150" height="50"/>
+                                <text x="1315" y="625">Hemlock</text>
+                            </g>
+                            <g class="node climax" id="birch" data-info="Paper and yellow birch grow in the most sheltered pockets.">
+                                <rect x="1400" y="600" width="170" height="60"/>
+                                <text x="1485" y="625">Birches</text>
+                                <text x="1485" y="645">Paper / Yellow</text>
+                            </g>
+                            <path class="edge" data-from="damp" data-to="rush" d="M150 128 C160 200,170 250,175 300" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="beach" data-to="foredune" d="M330 128 C330 160,335 170,340 180" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="foredune" data-to="grasses" d="M340 230 C400 260,470 280,580 280" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="grasses" data-to="pines" d="M580 380 C600 410,620 420,630 430" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="pines" data-to="oakmix" d="M630 520 C600 560,580 580,565 600" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="pines" data-to="oak" d="M630 520 C600 560,580 590,565 620" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="blowout" data-to="shrubs" d="M780 230 C820 260,900 280,955 300" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="shrubs" data-to="fir" d="M955 340 C960 380,980 400,1000 430" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="fir" data-to="maple" d="M1000 500 C980 550,970 570,965 600" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="maple" data-to="birch" d="M965 660 C1030 620,1100 610,1155 600" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="basswood" data-to="beech" d="M1155 320 C1155 420,1155 520,1155 600" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="basswood" data-to="hemlock" d="M1155 320 C1155 420,1315 520,1315 600" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="steep" data-to="basswood" d="M945 128 C980 180,1040 240,1110 300" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="oak" data-to="oakmix" d="M565 660 C620 660,710 660,765 620" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="grasses" data-to="shrubs" d="M580 280 C700 260,850 260,955 300" marker-end="url(#arrow)"/>
+                            <path class="edge" data-from="pines" data-to="fir" d="M630 430 C750 400,900 400,1000 430" marker-end="url(#arrow)"/>
+                            <path class="edge dashed" data-from="erosion" data-to="blowout" d="M515 128 C620 150,700 170,780 180" marker-end="url(#arrow)"/>
+                            <path class="edge dashed" data-from="deposit" data-to="blowout" d="M720 128 C760 150,770 160,780 180" marker-end="url(#arrow)"/>
+                            <path class="edge dashed" data-from="steep" data-to="blowout" d="M945 128 C880 150,820 170,780 180" marker-end="url(#arrow)"/>
+                            <path class="edge dashed" data-from="foredune" data-to="blowout" d="M340 200 C500 200,650 200,780 200" marker-end="url(#arrow)"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <figcaption>
+                <strong>Fig. 4.1</strong> Schematic alternative dune successions in the Lake Michigan dune systems. (From Olson, 1958; courtesy of Bot. Gaz.)
+            </figcaption>
+        </figure>
+
+        <a class="back-to-top" href="#top">Back to top</a>
     </div>
-    <div class="panel info-panel">
-      <h2>Node details</h2>
-      <div id="details">
-        <p>Click any node in the diagram to see the description and connections.</p>
-      </div>
-    </div>
-  </div>
+</main>
 
-  <script>
-    const data = {
-      nodes: [
-        { id: 'damp', label: 'Damp depression', category: 'Initial conditions', x: 120, y: 90 },
-        { id: 'upper_beach', label: 'Upper beach', category: 'Initial conditions', x: 120, y: 200 },
-        { id: 'eroding', label: 'Eroding surfaces', category: 'Initial conditions', x: 120, y: 330 },
-        { id: 'depositing', label: 'Depositing crests', category: 'Initial conditions', x: 120, y: 450 },
-        { id: 'steep', label: 'Steep pockets / lee slopes', category: 'Initial conditions', x: 120, y: 560 },
-        { id: 'foredune', label: 'Foredune initiation', category: 'Physiographic processes', x: 360, y: 190 },
-        { id: 'blowout', label: 'Blowout initiation', category: 'Physiographic processes', x: 360, y: 440 },
-        { id: 'rush', label: 'Rush meadow', category: 'Pioneer vegetation', x: 580, y: 110 },
-        { id: 'cottonwood', label: 'Cottonwood', category: 'Pioneer vegetation', x: 580, y: 220 },
-        { id: 'marram', label: 'Marram', category: 'Pioneer vegetation', x: 580, y: 340 },
-        { id: 'sand_reed', label: 'Sand reed', category: 'Pioneer vegetation', x: 580, y: 420 },
-        { id: 'little_bluestem', label: 'Little bluestem', category: 'Pioneer vegetation', x: 580, y: 520 },
-        { id: 'shrubs', label: 'Shrubs', category: 'Pioneer vegetation', x: 760, y: 340 },
-        { id: 'basswood', label: 'Basswood', category: 'Pioneer vegetation', x: 760, y: 520 },
-        { id: 'jack', label: 'Jack pine', category: 'Conifers', x: 940, y: 200 },
-        { id: 'white', label: 'White pine', category: 'Conifers', x: 940, y: 290 },
-        { id: 'red', label: 'Red pine', category: 'Conifers', x: 940, y: 380 },
-        { id: 'arbor', label: 'Arbor vitae', category: 'Conifers', x: 940, y: 500 },
-        { id: 'balsam', label: 'Balsam fir', category: 'Conifers', x: 940, y: 580 },
-        { id: 'grass_prairie', label: 'Tall grass prairie', category: 'Climax dominants', x: 1130, y: 110 },
-        { id: 'red_swamp', label: 'Red maple swamp', category: 'Climax dominants', x: 1130, y: 210 },
-        { id: 'black_oak', label: 'Black oak / White oak', category: 'Climax dominants', x: 1130, y: 310 },
-        { id: 'oaks', label: 'Oaks (red / white)', category: 'Climax dominants', x: 1130, y: 410 },
-        { id: 'maples', label: 'Maples (sugar / red)', category: 'Climax dominants', x: 1130, y: 490 },
-        { id: 'beech', label: 'Beech', category: 'Climax dominants', x: 1130, y: 580 },
-        { id: 'hemlock', label: 'Hemlock', category: 'Climax dominants', x: 1130, y: 650 },
-        { id: 'birches', label: 'Birches (paper / yellow)', category: 'Climax dominants', x: 1130, y: 720 }
-      ],
-      links: [
-        { source: 'damp', target: 'rush' },
-        { source: 'upper_beach', target: 'foredune' },
-        { source: 'eroding', target: 'marram' },
-        { source: 'depositing', target: 'blowout' },
-        { source: 'steep', target: 'basswood' },
-        { source: 'foredune', target: 'cottonwood' },
-        { source: 'foredune', target: 'marram' },
-        { source: 'foredune', target: 'sand_reed' },
-        { source: 'blowout', target: 'shrubs' },
-        { source: 'blowout', target: 'little_bluestem' },
-        { source: 'rush', target: 'grass_prairie' },
-        { source: 'cottonwood', target: 'red_swamp' },
-        { source: 'marram', target: 'jack' },
-        { source: 'sand_reed', target: 'white' },
-        { source: 'little_bluestem', target: 'red' },
-        { source: 'shrubs', target: 'arbor' },
-        { source: 'basswood', target: 'balsam' },
-        { source: 'jack', target: 'black_oak' },
-        { source: 'white', target: 'oaks' },
-        { source: 'red', target: 'maples' },
-        { source: 'arbor', target: 'beech' },
-        { source: 'balsam', target: 'hemlock' },
-        { source: 'basswood', target: 'birches' }
-      ]
-    };
+<footer>
+    <p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p>
+</footer>
 
-    const svg = document.getElementById('mindmap');
-    const nodeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    const linkGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    const detailPanel = document.getElementById('details');
+<script>
+const nodes = document.querySelectorAll(".node");
+const edges = document.querySelectorAll(".edge");
+const info = document.getElementById("info");
+let locked = null;
 
-    function drawLink(link) {
-      const source = data.nodes.find((n) => n.id === link.source);
-      const target = data.nodes.find((n) => n.id === link.target);
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      const startX = source.x + 160;
-      const startY = source.y + 22;
-      const endX = target.x - 20;
-      const endY = target.y + 22;
-      const midX = (startX + endX) / 2;
-      const path = `M ${startX} ${startY} C ${midX} ${startY} ${midX} ${endY} ${endX} ${endY}`;
-      line.setAttribute('d', path);
-      line.setAttribute('class', 'link');
-      line.dataset.source = source.id;
-      line.dataset.target = target.id;
-      linkGroup.appendChild(line);
-    }
+nodes.forEach(node => {
+    node.addEventListener("mouseenter", () => {
+        if (locked) return;
+        highlight(node);
+    });
 
-    function drawNode(node) {
-      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      group.setAttribute('class', 'node');
-      group.setAttribute('transform', `translate(${node.x}, ${node.y})`);
-      group.dataset.nodeId = node.id;
+    node.addEventListener("mouseleave", () => {
+        if (locked) return;
+        clearHighlights();
+    });
 
-      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      rect.setAttribute('width', 220);
-      rect.setAttribute('height', 44);
-      rect.setAttribute('rx', 16);
-      rect.setAttribute('ry', 16);
-      group.appendChild(rect);
-
-      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      text.setAttribute('x', 12);
-      text.setAttribute('y', 28);
-      text.textContent = node.label;
-      group.appendChild(text);
-
-      group.addEventListener('click', () => selectNode(node));
-      group.addEventListener('mouseenter', () => highlightEdges(node.id, true));
-      group.addEventListener('mouseleave', () => highlightEdges(node.id, false));
-      nodeGroup.appendChild(group);
-    }
-
-    function highlightEdges(nodeId, on) {
-      const allLinks = svg.querySelectorAll('.link');
-      allLinks.forEach((link) => {
-        if (link.dataset.source === nodeId || link.dataset.target === nodeId) {
-          link.classList.toggle('highlighted', on);
+    node.addEventListener("click", () => {
+        if (locked === node) {
+            locked = null;
+            clearHighlights();
+        } else {
+            locked = node;
+            highlight(node);
         }
-      });
-    }
+    });
+});
 
-    function selectNode(node) {
-      const outgoing = data.links.filter((link) => link.source === node.id).map((link) => data.nodes.find((n) => n.id === link.target).label);
-      const incoming = data.links.filter((link) => link.target === node.id).map((link) => data.nodes.find((n) => n.id === link.source).label);
-      detailPanel.innerHTML = `
-        <div class="info-item"><strong>${node.label}</strong></div>
-        <div class="info-item"><span class="node-category">${node.category}</span></div>
-        <div class="info-item"><strong>Feeds from:</strong><br>${incoming.length ? incoming.join(', ') : 'None'}</div>
-        <div class="info-item"><strong>Feeds to:</strong><br>${outgoing.length ? outgoing.join(', ') : 'None'}</div>
-      `;
-    }
+function highlight(node) {
+    clearHighlights();
+    node.classList.add("active");
+    info.textContent = node.dataset.info || "No information available.";
+    edges.forEach(edge => {
+        if (edge.dataset.from === node.id || edge.dataset.to === node.id) {
+            edge.classList.add("active");
+        }
+    });
+}
 
-    function render() {
-      svg.innerHTML = '';
-      svg.appendChild(linkGroup);
-      svg.appendChild(nodeGroup);
-      linkGroup.innerHTML = '';
-      nodeGroup.innerHTML = '';
-      data.links.forEach(drawLink);
-      data.nodes.forEach(drawNode);
+function clearHighlights() {
+    nodes.forEach(n => n.classList.remove("active"));
+    edges.forEach(e => e.classList.remove("active"));
+    if (!locked) {
+        info.textContent = "Hover or click a node to learn more";
     }
+}
 
-    render();
-  </script>
+const svg = document.getElementById("svg");
+const view = document.getElementById("viewport");
+let scale = 1;
+let panX = 0;
+let panY = 0;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+
+svg.addEventListener("wheel", e => {
+    e.preventDefault();
+    scale += e.deltaY * -0.001;
+    scale = Math.min(Math.max(0.6, scale), 2.2);
+    updateTransform();
+});
+
+svg.addEventListener("mousedown", e => {
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+});
+
+svg.addEventListener("mouseup", () => isDragging = false);
+svg.addEventListener("mouseleave", () => isDragging = false);
+
+svg.addEventListener("mousemove", e => {
+    if (!isDragging) return;
+    panX += e.clientX - startX;
+    panY += e.clientY - startY;
+    startX = e.clientX;
+    startY = e.clientY;
+    updateTransform();
+});
+
+function updateTransform() {
+    view.setAttribute("transform", `translate(${panX},${panY}) scale(${scale})`);
+}
+</script>
+
 </body>
 </html>

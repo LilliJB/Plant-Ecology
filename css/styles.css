@@ -293,16 +293,25 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
 
 #flowchart-wrapper {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     margin: 30px 0;
     border: 2px solid #2f5d3a;
 }
 
 #flowchart-wrapper #sidebar {
+    flex: 0 0 250px;
     width: 250px;
+    min-width: 220px;
     background: #2f5d3a;
     color: white;
     padding: 15px;
     font-size: 14px;
+}
+
+#flowchart-wrapper #container {
+    flex: 1 1 0;
+    min-width: 320px;
 }
 
 #flowchart-wrapper svg {
@@ -311,10 +320,37 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     background: white;
 }
 
+#flowchart-wrapper svg text {
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
 .node rect, .node ellipse {
     fill: #fff;
     stroke: #333;
     stroke-width: 1.5;
+}
+
+.node {
+    cursor: pointer;
+}
+
+.node.active rect,
+.node.active ellipse {
+    stroke: #2f5d3a;
+    stroke-width: 2.5;
+    fill: #e8f7e9;
+}
+
+.edge.active {
+    stroke: #2f5d3a;
+    stroke-width: 2.5;
+}
+
+.edge.dashed.active {
+    stroke-dasharray: 6,4;
 }
 
 .initial rect { fill: #eee; }
