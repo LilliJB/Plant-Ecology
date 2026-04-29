@@ -1,31 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 4 - Quantitative and Dynamic Plant Ecology</title>
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dune Succession Mind Map</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: #f7f8fb;
+      color: #1e293b;
+    }
+    header {
+      padding: 24px 32px;
+      background: #1f2937;
+      color: white;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.12);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.7rem;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 24px 32px;
+    }
+    .panel {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      padding: 20px;
+    }
+    .map-panel {
+      flex: 1 1 850px;
+      min-width: 320px;
+    }
+    .info-panel {
+      width: 320px;
+      min-width: 280px;
+      max-height: 760px;
+      overflow-y: auto;
+    }
+    #mindmap {
+      width: 100%;
+      height: 760px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #eef2ff 0%, #ffffff 100%);
+      overflow: visible;
+    }
+    .node {
+      cursor: pointer;
+      transition: transform 0.15s ease, stroke 0.15s ease;
+    }
+    .node:hover {
+      transform: scale(1.04);
+    }
+    .node rect {
+      fill: #ffffff;
+      stroke: #94a3b8;
+      stroke-width: 2;
+      filter: drop-shadow(0 10px 28px rgba(15, 23, 42, 0.06));
+    }
+    .node text {
+      font-size: 14px;
+      font-weight: 600;
+      fill: #0f172a;
+    }
+    .link {
+      stroke: #475569;
+      stroke-width: 2;
+      fill: none;
+      opacity: 0.65;
+    }
+    .link.highlighted {
+      stroke: #2563eb;
+      stroke-width: 3;
+      opacity: 1;
+    }
+    .info-panel h2 {
+      margin-top: 0;
+    }
+    .info-item {
+      margin: 16px 0;
+    }
+    .node-category {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      color: #334155;
+      font-size: 12px;
+    }
+  </style>
 </head>
 <body>
-
-<nav>
-    <a href="../index.html">Home</a>
-    <a href="../Chapters.html">Chapters</a>
-    <a href="../Data.html">Data</a>
-</nav>
-
-<main>
-    <div class="chapter" id="chapter4">
-        <h2>Chapter 4: CYCLIC VEGETATIONAL CHANGE</h2>
-        <p>Hummock and hollow cycle. Marginal effects. Interaction of age and performance.</p>
-        <a class="back-to-top" href="#top">Back to top</a>
+  <header>
+    <h1>Interactive Dune Succession Mind Map</h1>
+    <p>Click any node to explore the dune successional pathways from the image.</p>
+  </header>
+  <div class="container">
+    <div class="panel map-panel">
+      <svg id="mindmap" viewBox="0 0 1200 800" aria-label="Dune succession mind map"></svg>
     </div>
-</main>
+    <div class="panel info-panel">
+      <h2>Node details</h2>
+      <div id="details">
+        <p>Click any node in the diagram to see the description and connections.</p>
+      </div>
+    </div>
+  </div>
 
-<footer>
-    <p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p>
-</footer>
+  <script>
+    const data = {
+      nodes: [
+        { id: 'damp', label: 'Damp depression', category: 'Initial conditions', x: 120, y: 90 },
+        { id: 'upper_beach', label: 'Upper beach', category: 'Initial conditions', x: 120, y: 200 },
+        { id: 'eroding', label: 'Eroding surfaces', category: 'Initial conditions', x: 120, y: 330 },
+        { id: 'depositing', label: 'Depositing crests', category: 'Initial conditions', x: 120, y: 450 },
+        { id: 'steep', label: 'Steep pockets / lee slopes', category: 'Initial conditions', x: 120, y: 560 },
+        { id: 'foredune', label: 'Foredune initiation', category: 'Physiographic processes', x: 360, y: 190 },
+        { id: 'blowout', label: 'Blowout initiation', category: 'Physiographic processes', x: 360, y: 440 },
+        { id: 'rush', label: 'Rush meadow', category: 'Pioneer vegetation', x: 580, y: 110 },
+        { id: 'cottonwood', label: 'Cottonwood', category: 'Pioneer vegetation', x: 580, y: 220 },
+        { id: 'marram', label: 'Marram', category: 'Pioneer vegetation', x: 580, y: 340 },
+        { id: 'sand_reed', label: 'Sand reed', category: 'Pioneer vegetation', x: 580, y: 420 },
+        { id: 'little_bluestem', label: 'Little bluestem', category: 'Pioneer vegetation', x: 580, y: 520 },
+        { id: 'shrubs', label: 'Shrubs', category: 'Pioneer vegetation', x: 760, y: 340 },
+        { id: 'basswood', label: 'Basswood', category: 'Pioneer vegetation', x: 760, y: 520 },
+        { id: 'jack', label: 'Jack pine', category: 'Conifers', x: 940, y: 200 },
+        { id: 'white', label: 'White pine', category: 'Conifers', x: 940, y: 290 },
+        { id: 'red', label: 'Red pine', category: 'Conifers', x: 940, y: 380 },
+        { id: 'arbor', label: 'Arbor vitae', category: 'Conifers', x: 940, y: 500 },
+        { id: 'balsam', label: 'Balsam fir', category: 'Conifers', x: 940, y: 580 },
+        { id: 'grass_prairie', label: 'Tall grass prairie', category: 'Climax dominants', x: 1130, y: 110 },
+        { id: 'red_swamp', label: 'Red maple swamp', category: 'Climax dominants', x: 1130, y: 210 },
+        { id: 'black_oak', label: 'Black oak / White oak', category: 'Climax dominants', x: 1130, y: 310 },
+        { id: 'oaks', label: 'Oaks (red / white)', category: 'Climax dominants', x: 1130, y: 410 },
+        { id: 'maples', label: 'Maples (sugar / red)', category: 'Climax dominants', x: 1130, y: 490 },
+        { id: 'beech', label: 'Beech', category: 'Climax dominants', x: 1130, y: 580 },
+        { id: 'hemlock', label: 'Hemlock', category: 'Climax dominants', x: 1130, y: 650 },
+        { id: 'birches', label: 'Birches (paper / yellow)', category: 'Climax dominants', x: 1130, y: 720 }
+      ],
+      links: [
+        { source: 'damp', target: 'rush' },
+        { source: 'upper_beach', target: 'foredune' },
+        { source: 'eroding', target: 'marram' },
+        { source: 'depositing', target: 'blowout' },
+        { source: 'steep', target: 'basswood' },
+        { source: 'foredune', target: 'cottonwood' },
+        { source: 'foredune', target: 'marram' },
+        { source: 'foredune', target: 'sand_reed' },
+        { source: 'blowout', target: 'shrubs' },
+        { source: 'blowout', target: 'little_bluestem' },
+        { source: 'rush', target: 'grass_prairie' },
+        { source: 'cottonwood', target: 'red_swamp' },
+        { source: 'marram', target: 'jack' },
+        { source: 'sand_reed', target: 'white' },
+        { source: 'little_bluestem', target: 'red' },
+        { source: 'shrubs', target: 'arbor' },
+        { source: 'basswood', target: 'balsam' },
+        { source: 'jack', target: 'black_oak' },
+        { source: 'white', target: 'oaks' },
+        { source: 'red', target: 'maples' },
+        { source: 'arbor', target: 'beech' },
+        { source: 'balsam', target: 'hemlock' },
+        { source: 'basswood', target: 'birches' }
+      ]
+    };
 
+    const svg = document.getElementById('mindmap');
+    const nodeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    const linkGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    const detailPanel = document.getElementById('details');
+
+    function drawLink(link) {
+      const source = data.nodes.find((n) => n.id === link.source);
+      const target = data.nodes.find((n) => n.id === link.target);
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      const startX = source.x + 160;
+      const startY = source.y + 22;
+      const endX = target.x - 20;
+      const endY = target.y + 22;
+      const midX = (startX + endX) / 2;
+      const path = `M ${startX} ${startY} C ${midX} ${startY} ${midX} ${endY} ${endX} ${endY}`;
+      line.setAttribute('d', path);
+      line.setAttribute('class', 'link');
+      line.dataset.source = source.id;
+      line.dataset.target = target.id;
+      linkGroup.appendChild(line);
+    }
+
+    function drawNode(node) {
+      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      group.setAttribute('class', 'node');
+      group.setAttribute('transform', `translate(${node.x}, ${node.y})`);
+      group.dataset.nodeId = node.id;
+
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('width', 220);
+      rect.setAttribute('height', 44);
+      rect.setAttribute('rx', 16);
+      rect.setAttribute('ry', 16);
+      group.appendChild(rect);
+
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', 12);
+      text.setAttribute('y', 28);
+      text.textContent = node.label;
+      group.appendChild(text);
+
+      group.addEventListener('click', () => selectNode(node));
+      group.addEventListener('mouseenter', () => highlightEdges(node.id, true));
+      group.addEventListener('mouseleave', () => highlightEdges(node.id, false));
+      nodeGroup.appendChild(group);
+    }
+
+    function highlightEdges(nodeId, on) {
+      const allLinks = svg.querySelectorAll('.link');
+      allLinks.forEach((link) => {
+        if (link.dataset.source === nodeId || link.dataset.target === nodeId) {
+          link.classList.toggle('highlighted', on);
+        }
+      });
+    }
+
+    function selectNode(node) {
+      const outgoing = data.links.filter((link) => link.source === node.id).map((link) => data.nodes.find((n) => n.id === link.target).label);
+      const incoming = data.links.filter((link) => link.target === node.id).map((link) => data.nodes.find((n) => n.id === link.source).label);
+      detailPanel.innerHTML = `
+        <div class="info-item"><strong>${node.label}</strong></div>
+        <div class="info-item"><span class="node-category">${node.category}</span></div>
+        <div class="info-item"><strong>Feeds from:</strong><br>${incoming.length ? incoming.join(', ') : 'None'}</div>
+        <div class="info-item"><strong>Feeds to:</strong><br>${outgoing.length ? outgoing.join(', ') : 'None'}</div>
+      `;
+    }
+
+    function render() {
+      svg.innerHTML = '';
+      svg.appendChild(linkGroup);
+      svg.appendChild(nodeGroup);
+      linkGroup.innerHTML = '';
+      nodeGroup.innerHTML = '';
+      data.links.forEach(drawLink);
+      data.nodes.forEach(drawNode);
+    }
+
+    render();
+  </script>
 </body>
 </html>
-
