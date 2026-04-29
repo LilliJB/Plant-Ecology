@@ -4,160 +4,856 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fig. 3.8 – Lake Michigan Dune Successions</title>
-
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:Arial;background:#fff;}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #fff; color: #222; }
 
-.figure-break{
-  background:#f4f7f4;
-  padding:20px;
-  border-radius:8px;
-}
+  figure.figure-break {
+    background: #f4f7f4;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px 0;
+  }
 
-.n{cursor:pointer;}
-.n:hover rect,.n:hover ellipse{filter:brightness(.9);}
+  .fig-controls {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin-bottom: 10px; font-size: 13px;
+  }
+  .fig-controls strong { color: #2f5d3a; font-size: 12px; margin-right: 2px; }
+  .fig-controls button {
+    padding: 4px 11px; font-size: 12px; border: 1px solid #b0c4b0;
+    border-radius: 4px; background: #fff; cursor: pointer; transition: background 0.15s;
+  }
+  .fig-controls button:hover { background: #e8f3e8; border-color: #2f5d3a; }
+  .fig-controls button.active { background: #2f5d3a; color: #fff; border-color: #2f5d3a; }
 
-.al{
-  fill:none;
-  stroke:#333;
-  stroke-width:1.3;
-  stroke-linecap:round;
-}
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 6px 16px;
+    font-size: 11px; color: #555; margin-bottom: 10px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 4px; }
+  .lsw { width: 18px; height: 10px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.18); display: inline-block; }
 
+  #fig38-tip {
+    position: fixed; background: #1a2e1a; color: #fff;
+    font-size: 12px; padding: 5px 10px; border-radius: 5px;
+    pointer-events: none; opacity: 0; transition: opacity 0.1s;
+    z-index: 9999; max-width: 210px; line-height: 1.35;
+  }
+  #fig38-panel {
+    display: none; background: #fff; border: 1px solid #c0d4c0;
+    border-radius: 6px; padding: 11px 14px; margin-top: 10px;
+    font-size: 13px; line-height: 1.6; color: #222; position: relative;
+  }
+  #fig38-panel.open { display: block; }
+  #fig38-panel strong { color: #2f5d3a; display: block; margin-bottom: 3px; }
+  #panel-close {
+    position: absolute; top: 7px; right: 11px;
+    cursor: pointer; font-size: 17px; color: #aaa; line-height: 1;
+  }
+  #panel-close:hover { color: #333; }
+
+  /* SVG interactivity */
+  .n { cursor: pointer; }
+  .n rect, .n ellipse { transition: filter 0.12s; }
+  .n:hover rect, .n:hover ellipse { filter: brightness(0.84); }
+  .n.sel rect, .n.sel ellipse { stroke: #c0392b !important; stroke-width: 2px !important; }
+
+  .al { transition: opacity 0.18s, stroke 0.18s, stroke-width 0.18s; }
+  .al.dim { opacity: 0.08; }
+  .al.hi  { stroke: #d35400 !important; stroke-width: 2.2px !important; opacity: 1 !important; }
+
+  figcaption {
+    margin-top: 12px; font-size: 13px; font-style: italic;
+    color: #555; line-height: 1.5;
+  }
+  figcaption strong { font-style: normal; }
 </style>
 </head>
-
 <body>
 
-<figure class="figure-break">
+<figure class="figure-break" id="fig-3-8">
 
-<svg viewBox="0 0 1050 660" width="100%">
+  <div class="fig-controls">
+    <strong>Highlight pathway:</strong>
+    <button onclick="hilite('damp')"    id="b-damp">Damp depression</button>
+    <button onclick="hilite('upper')"   id="b-upper">Upper beach / Foredune</button>
+    <button onclick="hilite('blowout')" id="b-blowout">Blowout</button>
+    <button onclick="hilite('lee')"     id="b-lee">Lee slopes</button>
+    <button onclick="hilite(null)"      id="b-all" class="active">Show all</button>
+  </div>
 
-<!-- ARROW -->
-<defs>
-<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
-markerWidth="5" markerHeight="5" orient="auto">
-<path d="M1,2 L9,5 L1,8" stroke="#333" fill="none" stroke-width="1.5"/>
-</marker>
-</defs>
+  <div class="legend">
+    <span><span class="lsw" style="background:#e4efe4"></span>Initial conditions</span>
+    <span><span class="lsw" style="background:#d6e8d6;border-radius:50%"></span>Physiographic</span>
+    <span><span class="lsw" style="background:#eaf4ea"></span>Pioneer vegetation</span>
+    <span><span class="lsw" style="background:#e6ecf4"></span>Conifers</span>
+    <span><span class="lsw" style="background:#f0f0f0"></span>'Climax' dominants</span>
+    <span>——→ Direct succession &nbsp; - - → Alternative/reversible</span>
+  </div>
 
-<!-- =========================
-BLACK / WHITE OAK (FIXED)
-========================= -->
-<g>
-<rect x="330" y="490" width="130" height="82" fill="#f0f0f0" stroke="#666"/>
+  <!--
+  ═══════════════════════════════════════════════════════
+  COORDINATE SYSTEM  viewBox="0 0 1050 660"
+  Left label column: x 0–110  |  Divider line: x=110
+  Content: x=114 → x=1040
 
-<text x="395" y="508" text-anchor="middle" font-weight="bold">Black oak</text>
-<text x="395" y="522" text-anchor="middle">White oak</text>
+  ROW Y-BANDS (top of node → bottom of node):
+    R1 Initial conditions:    y  46 – 92
+    R2 Physiographic:         y 148 – 204  (ellipses cy=176)
+    R3 Pioneer vegetation:    y 252 – 330  (grasses group taller)
+    R4 Conifers:              y 372 – 446  (pines group taller)
+    R5 Climax dominants:      y 490 – 578
 
-<line x1="330" y1="530" x2="460" y2="530" stroke="#bbb"/>
+  NODE CENTRES X:
+    Damp depression:   cx 185
+    Upper beach:       cx 315
+    Eroding surfaces:  cx 472
+    Depositing crests: cx 634
+    Steep pockets:     cx 820
 
-<!-- c -->
-<text x="395" y="540" text-anchor="middle">c</text>
+    Foredune:          cx 315
+    Blowout:           cx 720
 
-<!-- fan arrows -->
-<line x1="392" y1="543" x2="360" y2="560" class="al" marker-end="url(#ah)"/>
-<line x1="395" y1="543" x2="395" y2="562" class="al" marker-end="url(#ah)"/>
-<line x1="398" y1="543" x2="430" y2="560" class="al" marker-end="url(#ah)"/>
+    Rush meadow:       cx 175
+    Cottonwood:        cx 315
+    Marram group:      cx 460  (left edge 390, right edge 536)
+    Shrubs:            cx 660
+    Basswood:          cx 840
 
-<!-- labels -->
-<text x="356" y="572">ρ</text>
-<text x="395" y="572">b</text>
-<text x="434" y="572">m</text>
-</g>
+    Pines group:       cx 460  (left edge 390, right edge 536)
+    Arbor vitae:       cx 668  (shares right border with Balsam fir)
+    Balsam fir:        cx 778  (left edge = right edge of Arbor vitae)
 
-<!-- =========================
-MARRAM BRACE (FIXED)
-========================= -->
-<path d="
-M 382 252
-C 370 252, 370 266, 382 266
-C 370 266, 370 290, 382 290
-C 370 290, 370 314, 382 314
-"
-stroke="#4a7a4a" fill="none" stroke-width="1.6"/>
+    Tall grass prairie: cx 158
+    Red maple swamp:    cx 272
+    Black/White oak:    cx 398
+    Oaks R/W:           cx 512
+    Maples:             cx 618  ┐
+    Beech:              cx 702  ├ share borders (no gap)
+    Hemlock:            cx 782  ┘
+    Birches:            cx 890
+  ═══════════════════════════════════════════════════════
+  -->
 
-<!-- =========================
-PINES BRACE (FIXED)
-========================= -->
-<path d="
-M 382 372
-C 370 372, 370 386, 382 386
-C 370 386, 370 410, 382 410
-C 370 410, 370 434, 382 434
-"
-stroke="#4a6a8a" fill="none" stroke-width="1.6"/>
+  <svg id="fig38svg" viewBox="0 0 1050 660" width="100%"
+       style="display:block;background:#fff;border-radius:6px;border:1px solid #d8e8d8;">
 
-<!-- =========================
-MAPLES / BEECH / HEMLOCK (TOUCHING)
-========================= -->
+    <defs>
+      <!-- Normal arrowhead -->
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+              markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M1,2 L9,5 L1,8" fill="none" stroke="#333"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+      <!-- Highlight arrowhead (orange) -->
+      <marker id="aho" viewBox="0 0 10 10" refX="9" refY="5"
+              markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M1,2 L9,5 L1,8" fill="none" stroke="#d35400"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+    </defs>
 
-<rect x="572" y="490" width="90" height="82" fill="#f0f0f0" stroke="#666"/>
-<rect x="662" y="490" width="74" height="82" fill="#f0f0f0" stroke="#666"/>
-<rect x="736" y="490" width="80" height="82" fill="#f0f0f0" stroke="#666"/>
+    <!-- ─────────────────────────────────────
+         ROW LABELS
+    ───────────────────────────────────── -->
+    <text x="4" y="64"  font-size="12" fill="#444" font-family="Arial">Initial</text>
+    <text x="4" y="79"  font-size="12" fill="#444" font-family="Arial">conditions</text>
+    <text x="4" y="162" font-size="12" fill="#444" font-family="Arial">Physiographic</text>
+    <text x="4" y="177" font-size="12" fill="#444" font-family="Arial">processes</text>
+    <text x="4" y="268" font-size="12" fill="#444" font-family="Arial">Pioneer</text>
+    <text x="4" y="283" font-size="12" fill="#444" font-family="Arial">vegetation</text>
+    <text x="4" y="385" font-size="12" fill="#444" font-family="Arial">Conifers</text>
+    <text x="4" y="400" font-size="12" fill="#444" font-family="Arial">(mostly</text>
+    <text x="4" y="415" font-size="12" fill="#444" font-family="Arial">temporary)</text>
+    <text x="4" y="510" font-size="12" fill="#444" font-family="Arial">'Climax'</text>
+    <text x="4" y="525" font-size="12" fill="#444" font-family="Arial">dominants</text>
 
-<!-- =========================
-CORRECT ? BETWEEN OAKS
-========================= -->
-<text x="462" y="520" font-size="14">?</text>
+    <!-- Vertical divider -->
+    <line x1="110" y1="40" x2="110" y2="600" stroke="#bbb" stroke-width="1"/>
 
-<!-- =========================
-RUSH → MAPLES (FIXED)
-========================= -->
-<path class="al" d="M 190 300 Q 350 380 600 488" marker-end="url(#ah)"/>
+    <!-- ═══════════════════════════════════
+         ROW 1 — INITIAL CONDITIONS
+         y=46–92
+    ═══════════════════════════════════ -->
 
-<!-- =========================
-REMOVED WRONG:
-COTTONWOOD → MAPLES
-========================= -->
+    <!-- Damp depression  x=120 w=130 cx=185 -->
+    <g class="n" id="n-damp"
+       data-t="Damp depression"
+       data-i="Low-lying wet inter-dune areas with high water table. Support hydrophytic rush communities leading to tall grass prairie or red maple swamp as climax vegetation.">
+      <rect x="120" y="46" width="130" height="46" rx="3" fill="#e4efe4" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="185" y="65" font-size="12.5" font-family="Arial" fill="#222">Damp</text>
+      <text text-anchor="middle" x="185" y="81" font-size="12.5" font-family="Arial" fill="#222">depression</text>
+    </g>
 
-<!-- =========================
-BASSWOOD TREE (FIXED)
-========================= -->
+    <!-- Upper beach  x=270 w=90 cx=315 -->
+    <g class="n" id="n-upper"
+       data-t="Upper beach"
+       data-i="Dry exposed upper beach — mobile and unstable. Initiates foredune formation through Ammophila colonisation. Bidirectionally linked with damp depression.">
+      <rect x="270" y="46" width="90" height="46" rx="3" fill="#e4efe4" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="315" y="65" font-size="12.5" font-family="Arial" fill="#222">Upper</text>
+      <text text-anchor="middle" x="315" y="81" font-size="12.5" font-family="Arial" fill="#222">beach</text>
+    </g>
 
-<!-- trunk -->
-<path class="al"
-d="M 820 300 Q 740 380 650 460" />
+    <!-- Eroding surfaces  x=414 w=116 cx=472 -->
+    <g class="n" id="n-erode"
+       data-t="Eroding surfaces"
+       data-i="Active wind-eroded dune faces where continuous sand removal prevents stable plant establishment. Connected to blowout initiation by dashed feedback arrows.">
+      <rect x="414" y="46" width="116" height="46" rx="3" fill="#e4efe4" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="472" y="65" font-size="12.5" font-family="Arial" fill="#222">Eroding</text>
+      <text text-anchor="middle" x="472" y="81" font-size="12.5" font-family="Arial" fill="#222">surfaces</text>
+    </g>
 
-<!-- branches -->
-<path class="al" d="M650 460 Q580 470 520 490" marker-end="url(#ah)"/>
-<path class="al" d="M650 460 Q610 470 620 490" marker-end="url(#ah)"/>
-<path class="al" d="M650 460 Q680 470 700 490" marker-end="url(#ah)"/>
-<path class="al" d="M650 460 Q750 470 780 490" marker-end="url(#ah)"/>
+    <!-- Depositing crests  x=576 w=116 cx=634 -->
+    <g class="n" id="n-deposit"
+       data-t="Depositing crests"
+       data-i="Dune crests where wind actively deposits sand. Subject to blowout initiation; can stabilise to support marram grass and pioneer communities.">
+      <rect x="576" y="46" width="116" height="46" rx="3" fill="#e4efe4" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="634" y="65" font-size="12.5" font-family="Arial" fill="#222">Depositing</text>
+      <text text-anchor="middle" x="634" y="81" font-size="12.5" font-family="Arial" fill="#222">crests</text>
+    </g>
 
-<!-- =========================
-CLEAN ARROWS (NO OVERLAP)
-========================= -->
+    <!-- Steep pockets / lee slopes  x=752 w=136 cx=820 -->
+    <g class="n" id="n-lee"
+       data-t="Steep pockets / lee slopes"
+       data-i="Sheltered lee slopes behind dune crests. Accumulate organic matter rapidly and support basswood directly, leading to the mesic forest climax without a prominent pine stage.">
+      <rect x="752" y="46" width="136" height="46" rx="3" fill="#e4efe4" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="820" y="65" font-size="12.5" font-family="Arial" fill="#222">Steep pockets</text>
+      <text text-anchor="middle" x="820" y="81" font-size="12.5" font-family="Arial" fill="#222">lee slopes</text>
+    </g>
 
-<!-- Pines → Oaks -->
-<path class="al"
-d="M 460 446 Q 420 470 380 490"
-marker-end="url(#ah)"/>
+    <!-- ═══════════════════════════
+         ROW 1 ARROWS
+         From original:
+         • Upper beach ←→ Damp depression  (solid bidirectional)
+         • Large dashed arc: Eroding surfaces sweeps up and over → Damp depression
+         • Dashed from Eroding/Depositing area → Blowout (crossing diagonals)
+         • Dashed from Depositing → back to Eroding (leftward at top)
+         • Dashed Steep pockets → Blowout
+    ═══════════════════════════ -->
 
-<!-- Pines → Oaks RW -->
-<path class="al"
-d="M 480 446 Q 500 470 520 490"
-marker-end="url(#ah)"/>
+    <!-- Upper beach → Damp depression (solid, left) -->
+    <line class="al" data-p="upper damp"
+          x1="270" y1="64" x2="252" y2="64"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+    <!-- Damp depression → Upper beach (solid, right, offset y) -->
+    <line class="al" data-p="upper damp"
+          x1="250" y1="76" x2="269" y2="76"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
 
-<!-- Pines → Maples -->
-<path class="al"
-d="M 500 446 Q 560 470 600 490"
-marker-end="url(#ah)"/>
+    <!-- Large dashed arc: Eroding surfaces → Damp depression (sweeps over top) -->
+    <path class="al" data-p="upper damp"
+          d="M 434 46 Q 310 4 252 50"
+          fill="none" stroke="#333" stroke-width="1.3"
+          stroke-dasharray="7 4" marker-end="url(#ah)"/>
 
-<!-- Pines → Beech -->
-<path class="al"
-d="M 520 440 Q 620 470 700 490"
-marker-end="url(#ah)"/>
+    <!-- Dashed: Depositing crests → Eroding surfaces (leftward dashed at top level) -->
+    <path class="al" data-p="blowout"
+          d="M 576 60 Q 548 44 532 50"
+          fill="none" stroke="#333" stroke-width="1.3"
+          stroke-dasharray="7 4" marker-end="url(#ah)"/>
 
-<!-- Pines → Hemlock -->
-<path class="al"
-d="M 530 438 Q 680 470 760 490"
-marker-end="url(#ah)"/>
+    <!-- Dashed crossing lines: Eroding/Depositing → Blowout initiation (two crossing diagonals) -->
+    <!-- From Eroding surfaces bottom-right → Blowout -->
+    <path class="al" data-p="blowout"
+          d="M 530 92 Q 600 130 660 150"
+          fill="none" stroke="#333" stroke-width="1.3"
+          stroke-dasharray="7 4" marker-end="url(#ah)"/>
+    <!-- From Depositing crests bottom-left → Blowout (crosses the above) -->
+    <path class="al" data-p="blowout"
+          d="M 634 92 Q 660 125 688 152"
+          fill="none" stroke="#333" stroke-width="1.3"
+          stroke-dasharray="7 4" marker-end="url(#ah)"/>
 
-</svg>
+    <!-- Dashed Blowout → Depositing crests (back up, dashed) -->
+    <path class="al" data-p="blowout"
+          d="M 718 152 Q 722 100 712 92"
+          fill="none" stroke="#333" stroke-width="1.3"
+          stroke-dasharray="7 4" marker-end="url(#ah)"/>
+
+    <!-- Dashed Steep pockets → Blowout -->
+    <path class="al" data-p="blowout lee"
+          d="M 772 82 Q 758 120 752 152"
+          fill="none" stroke="#333" stroke-width="1.3"
+          stroke-dasharray="7 4" marker-end="url(#ah)"/>
+
+    <!-- ═══════════════════════════════════
+         ROW 2 — PHYSIOGRAPHIC PROCESSES
+    ═══════════════════════════════════ -->
+
+    <!-- Foredune Initiation ellipse  cx=315 cy=176 rx=82 ry=26 -->
+    <g class="n" id="n-foredune"
+       data-t="Foredune Initiation"
+       data-i="Early dune building by pioneer grasses trapping wind-blown sand. Ammophila arenaria colonises the upper beach and builds the foredune, leading to cottonwood and marram grass communities.">
+      <ellipse cx="315" cy="176" rx="82" ry="26" fill="#d6e8d6" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="315" y="172" font-size="12.5" font-family="Arial" fill="#222">Foredune</text>
+      <text text-anchor="middle" x="315" y="187" font-size="12.5" font-family="Arial" fill="#222">Initiation</text>
+    </g>
+
+    <!-- Blowout Initiation ellipse  cx=720 cy=176 rx=82 ry=26 -->
+    <g class="n" id="n-blowout-node"
+       data-t="Blowout Initiation"
+       data-i="Wind scouring creates bowl-shaped blowout depressions. Blowouts may re-expose bare sand, restarting succession, or develop into new landforms. They feed into marram grasses, shrubs and grasses.">
+      <ellipse cx="720" cy="176" rx="82" ry="26" fill="#d6e8d6" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="720" y="172" font-size="12.5" font-family="Arial" fill="#222">Blowout</text>
+      <text text-anchor="middle" x="720" y="187" font-size="12.5" font-family="Arial" fill="#222">Initiation</text>
+    </g>
+
+    <!-- ROW 2 ARROWS -->
+    <!-- Upper beach → Foredune (straight down, hits top of ellipse) -->
+    <line class="al" data-p="upper"
+          x1="315" y1="92" x2="315" y2="150"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Damp depression → Foredune (curve right-down) -->
+    <path class="al" data-p="damp"
+          d="M 185 92 Q 210 148 235 162"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- ═══════════════════════════════════
+         ROW 3 — PIONEER VEGETATION
+         y=252–330
+    ═══════════════════════════════════ -->
+
+    <!-- Rush meadow  x=120 w=110 cx=175 -->
+    <g class="n" id="n-rush"
+       data-t="Rush meadow"
+       data-i="Hydrophytic rush communities in damp depressions. Lead to tall grass prairie or red maple swamp depending on drainage conditions.">
+      <rect x="120" y="252" width="110" height="46" rx="3" fill="#eaf4ea" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="175" y="271" font-size="12.5" font-family="Arial" fill="#222">Rush</text>
+      <text text-anchor="middle" x="175" y="287" font-size="12.5" font-family="Arial" fill="#222">meadow</text>
+    </g>
+
+    <!-- Cottonwood  x=262 w=106 cx=315 -->
+    <g class="n" id="n-cotton"
+       data-t="Cottonwood"
+       data-i="Eastern cottonwood (Populus deltoides) colonises mobile sand rapidly after foredune initiation. Bidirectionally linked with the marram/sand reed group.">
+      <rect x="262" y="252" width="106" height="46" rx="3" fill="#eaf4ea" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="315" y="279" font-size="12.5" font-family="Arial" fill="#222">Cottonwood</text>
+    </g>
+
+    <!--
+      Marram / Sand reed / Little bluestem — stacked boxes with LEFT curly brace
+      Left edge x=390, width=146, right edge x=536
+      Marram:         y=252–274
+      Sand reed:      y=276–298
+      Little bluestem:y=300–322
+    -->
+    <g class="n" id="n-marram"
+       data-t="Marram / Sand reed / Little bluestem"
+       data-i="Key dune-stabilising grasses. Marram (Ammophila breviligulata) is the primary sand-binder. Sand reed (Calamovilfa longifolia) and Little bluestem (Schizachyrium scoparium) follow as the dune stabilises. These bridge physiographic processes and conifer establishment.">
+      <rect x="390" y="252" width="146" height="24" rx="2" fill="#eaf4ea" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="463" y="268" font-size="12" font-family="Arial" fill="#222">Marram</text>
+      <rect x="390" y="278" width="146" height="24" rx="2" fill="#eaf4ea" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="463" y="294" font-size="12" font-family="Arial" fill="#222">Sand reed</text>
+      <rect x="390" y="304" width="146" height="24" rx="2" fill="#eaf4ea" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="463" y="320" font-size="12" font-family="Arial" fill="#222">Little bluestem</text>
+    </g>
+    <!-- LEFT curly brace for Marram group -->
+    <path d="M 388,252 Q 376,252 376,264 Q 376,276 388,276 Q 376,276 376,288 Q 376,300 388,300 Q 376,300 376,312 Q 376,324 388,324"
+          fill="none" stroke="#4a7a4a" stroke-width="1.3"/>
+
+    <!-- "Grasses" italic label -->
+    <text x="548" y="292" font-size="12" font-family="Arial" fill="#444" font-style="italic">Grasses</text>
+
+    <!-- Shrubs  x=610 w=100 cx=660 -->
+    <g class="n" id="n-shrubs"
+       data-t="Shrubs"
+       data-i="Shrub communities including bearberry, sandcherry and willows on stabilising dunes. Receive inputs from the grasses stage and blowout initiation. Lead to arbor vitae and balsam fir.">
+      <rect x="610" y="252" width="100" height="46" rx="3" fill="#eaf4ea" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="660" y="279" font-size="12.5" font-family="Arial" fill="#222">Shrubs</text>
+    </g>
+
+    <!-- Basswood  x=762 w=116 cx=820 -->
+    <g class="n" id="n-bass"
+       data-t="Basswood"
+       data-i="American basswood (Tilia americana) on sheltered lee slopes. Colonises directly from steep lee slope conditions without a prominent conifer stage. Has a long branching arrow leading to oaks, maples, beech and hemlock at the climax level.">
+      <rect x="762" y="252" width="116" height="46" rx="3" fill="#eaf4ea" stroke="#4a7a4a" stroke-width="1"/>
+      <text text-anchor="middle" x="820" y="279" font-size="12.5" font-family="Arial" fill="#222">Basswood</text>
+    </g>
+
+    <!-- ROW 3 ARROWS -->
+
+    <!-- Damp depression straight down → Rush meadow -->
+    <line class="al" data-p="damp"
+          x1="175" y1="92" x2="175" y2="252"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Foredune → Cottonwood (straight down) -->
+    <line class="al" data-p="upper"
+          x1="315" y1="202" x2="315" y2="252"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Foredune → Marram group top (diagonal right) -->
+    <path class="al" data-p="upper"
+          d="M 368 190 Q 405 222 416 252"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Cottonwood ↔ Marram bidirectional -->
+    <!-- Cottonwood → Marram -->
+    <line class="al" data-p="upper"
+          x1="368" y1="270" x2="388" y2="268"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+    <!-- Marram → Cottonwood -->
+    <line class="al" data-p="upper"
+          x1="388" y1="282" x2="368" y2="284"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Blowout → Marram group (long dashed diagonal — from left side of blowout ellipse) -->
+    <path class="al" data-p="blowout"
+          d="M 646 190 Q 575 228 538 258"
+          fill="none" stroke="#333" stroke-width="1.3"
+          stroke-dasharray="7 4" marker-end="url(#ah)"/>
+
+    <!-- Blowout → Shrubs (dashed, shorter diagonal) -->
+    <path class="al" data-p="blowout"
+          d="M 762 186 Q 738 222 712 252"
+          fill="none" stroke="#333" stroke-width="1.3"
+          stroke-dasharray="7 4" marker-end="url(#ah)"/>
+
+    <!-- Grasses → Shrubs (solid horizontal, from "Grasses" label area to Shrubs left edge) -->
+    <line class="al" data-p="blowout upper"
+          x1="604" y1="279" x2="612" y2="279"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Shrubs → Basswood (solid horizontal) -->
+    <line class="al" data-p="lee blowout"
+          x1="710" y1="275" x2="760" y2="275"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Steep pockets → Basswood (straight down) -->
+    <line class="al" data-p="lee"
+          x1="820" y1="92" x2="820" y2="252"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- ═══════════════════════════════════
+         ROW 4 — CONIFERS
+         y=372–446
+    ═══════════════════════════════════ -->
+
+    <!--
+      Pines: Jack / White / Red — stacked boxes with LEFT curly brace
+      Left edge x=390, width=146, right edge x=536
+    -->
+    <g class="n" id="n-pines"
+       data-t="Pines (Jack, White, Red)"
+       data-i="Jack pine (Pinus banksiana), White pine (P. strobus) and Red pine (P. resinosa) form a temporary conifer stage. They prepare soil for mesic hardwood species. Succession diverges to black/white oak on drier sites, or maples, beech and hemlock on mesic sites.">
+      <rect x="390" y="372" width="146" height="24" rx="2" fill="#e6ecf4" stroke="#4a6a8a" stroke-width="1"/>
+      <text text-anchor="middle" x="463" y="388" font-size="12" font-family="Arial" fill="#222">Jack</text>
+      <rect x="390" y="398" width="146" height="24" rx="2" fill="#e6ecf4" stroke="#4a6a8a" stroke-width="1"/>
+      <text text-anchor="middle" x="463" y="414" font-size="12" font-family="Arial" fill="#222">White</text>
+      <rect x="390" y="424" width="146" height="24" rx="2" fill="#e6ecf4" stroke="#4a6a8a" stroke-width="1"/>
+      <text text-anchor="middle" x="463" y="440" font-size="12" font-family="Arial" fill="#222">Red</text>
+    </g>
+    <!-- LEFT curly brace for Pines group -->
+    <path d="M 388,372 Q 376,372 376,384 Q 376,396 388,396 Q 376,396 376,408 Q 376,420 388,420 Q 376,420 376,432 Q 376,444 388,444"
+          fill="none" stroke="#4a6a8a" stroke-width="1.3"/>
+
+    <!-- "Pines" italic label -->
+    <text x="548" y="412" font-size="12" font-family="Arial" fill="#444" font-style="italic">Pines</text>
+
+    <!--
+      Arbor vitae | Balsam fir — two adjacent boxes sharing a border (no gap)
+      Arbor vitae: x=628 w=110 cx=683  right edge=738
+      Balsam fir:  x=738 w=104 cx=790  left edge=738
+    -->
+    <g class="n" id="n-arbor"
+       data-t="Arbor vitae"
+       data-i="White cedar (Thuja occidentalis) on moist dune sites. Arrives from shrub communities and leads toward maples and sugar maple climax forest.">
+      <rect x="628" y="386" width="110" height="40" rx="3" fill="#e6ecf4" stroke="#4a6a8a" stroke-width="1"/>
+      <text text-anchor="middle" x="683" y="410" font-size="12.5" font-family="Arial" fill="#222">Arbor vitae</text>
+    </g>
+    <g class="n" id="n-balsam"
+       data-t="Balsam fir"
+       data-i="Balsam fir (Abies balsamea) on sheltered moist lee slopes. Arrives from shrub communities. Leads to birches as the climax forest on cool northern sites.">
+      <rect x="738" y="386" width="104" height="40" rx="3" fill="#e6ecf4" stroke="#4a6a8a" stroke-width="1"/>
+      <text text-anchor="middle" x="790" y="410" font-size="12.5" font-family="Arial" fill="#222">Balsam fir</text>
+    </g>
+
+    <!-- ROW 4 ARROWS -->
+
+    <!-- Marram group → Pines (straight down, from bottom centre of group) -->
+    <line class="al" data-p="upper"
+          x1="463" y1="328" x2="463" y2="372"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!--
+      Shrubs crossing arrows to Arbor vitae AND Balsam fir
+      In original these cross each other (X pattern)
+      Shrubs bottom-left → Arbor vitae  (curves left-down)
+      Shrubs bottom-right → Balsam fir  (goes straight down-right)
+      These two lines cross = the X seen in the original
+    -->
+    <!-- Shrubs → Arbor vitae (diagonal crossing left) -->
+    <path class="al" data-p="blowout"
+          d="M 640 298 Q 660 345 665 386"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+    <!-- Shrubs → Balsam fir (diagonal crossing right) -->
+    <path class="al" data-p="blowout lee"
+          d="M 680 298 Q 730 345 756 386"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- ═══════════════════════════════════
+         ROW 5 — CLIMAX DOMINANTS
+         y=490–578
+
+         Maples/Beech/Hemlock share borders (no gaps):
+           Maples:  x=572 w=88  cx=616  right=660
+           Beech:   x=660 w=72  cx=696  right=732
+           Hemlock: x=732 w=78  cx=771  right=810
+    ═══════════════════════════════════ -->
+
+    <!-- Tall grass prairie  x=114 w=88 cx=158 -->
+    <g class="n" id="n-prairie"
+       data-t="Tall grass prairie"
+       data-i="Climax community of damp depressions in drier inland areas. Dominated by big bluestem (Andropogon gerardii) and Indian grass.">
+      <rect x="114" y="490" width="88" height="82" rx="3" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+      <text text-anchor="middle" x="158" y="512" font-size="12" font-family="Arial" fill="#222">Tall</text>
+      <text text-anchor="middle" x="158" y="527" font-size="12" font-family="Arial" fill="#222">grass</text>
+      <text text-anchor="middle" x="158" y="542" font-size="12" font-family="Arial" fill="#222">prairie</text>
+    </g>
+
+    <!-- Red maple swamp  x=214 w=96 cx=262 -->
+    <g class="n" id="n-swamp"
+       data-t="Red maple swamp"
+       data-i="Red maple (Acer rubrum) swamp — climax in the wettest dune depressions on poorly drained hydric soils. Preceded by rush meadow.">
+      <rect x="214" y="490" width="96" height="82" rx="3" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+      <text text-anchor="middle" x="262" y="512" font-size="12" font-family="Arial" fill="#222">Red</text>
+      <text text-anchor="middle" x="262" y="527" font-size="12" font-family="Arial" fill="#222">maple</text>
+      <text text-anchor="middle" x="262" y="542" font-size="12" font-family="Arial" fill="#222">swamp</text>
+    </g>
+
+    <!--
+      Black oak / White oak
+      x=330 w=130 cx=395
+      Internal: "Black oak" bold, "White oak", then divider line,
+      then c at top-centre with THREE dashed arrows fanning out:
+        c → ρ  (down-left diagonal)
+        c → b  (straight down)
+        c → m  (down-right diagonal)
+    -->
+    <g class="n" id="n-oaks-bw"
+       data-t="Black oak / White oak"
+       data-i="Black oak (Quercus velutina) and White oak (Q. alba) — the climax on dry dune ridges. The sub-stage diagram shows c (cottonwood) as the origin, with dashed arrows fanning to ρ (pine stage, left), b (black oak stage, centre-below), and m (mesic forest stage, right).">
+      <rect x="330" y="490" width="130" height="82" rx="3" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+      <text text-anchor="middle" x="395" y="508" font-size="12.5" font-family="Arial" fill="#222" font-weight="bold">Black oak</text>
+      <text text-anchor="middle" x="395" y="522" font-size="12" font-family="Arial" fill="#222">White oak</text>
+      <!-- Divider line inside box -->
+      <line x1="332" y1="530" x2="458" y2="530" stroke="#bbb" stroke-width="0.8"/>
+      <!--
+        Sub-stage diagram:
+        c is at (395, 542)
+        ρ is at (358, 562)  — down-left
+        b is at (395, 562)  — straight down
+        m is at (432, 562)  — down-right
+        Dashed arrows fan from c outward to each
+      -->
+      <text text-anchor="middle" x="395" y="542" font-size="12" font-family="Arial" fill="#333">c</text>
+      <!-- c → ρ dashed arrow -->
+      <line x1="390" y1="545" x2="363" y2="556"
+            stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ah)"/>
+      <!-- c → b dashed arrow (straight down) -->
+      <line x1="395" y1="545" x2="395" y2="556"
+            stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ah)"/>
+      <!-- c → m dashed arrow -->
+      <line x1="400" y1="545" x2="427" y2="556"
+            stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ah)"/>
+      <!-- Labels -->
+      <text text-anchor="middle" x="358" y="568" font-size="12" font-family="Arial" fill="#333">&#961;</text>
+      <text text-anchor="middle" x="395" y="568" font-size="12" font-family="Arial" fill="#333">b</text>
+      <text text-anchor="middle" x="432" y="568" font-size="12" font-family="Arial" fill="#333">m</text>
+    </g>
+
+    <!--
+      Oaks Red/White  x=470 w=96 cx=518
+      Species name area, divider, then "b  m" below
+    -->
+    <g class="n" id="n-oaks-rw"
+       data-t="Oaks (Red / White)"
+       data-i="Red oak (Quercus rubra) and White oak (Q. alba) on slightly more mesic sites. Linked to black oak by an uncertain pathway (?). Lead to maples and the mesic forest climax. b=black oak sub-stage, m=mesic forest sub-stage.">
+      <rect x="470" y="490" width="96" height="82" rx="3" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+      <text text-anchor="middle" x="518" y="510" font-size="12.5" font-family="Arial" fill="#222">Oaks</text>
+      <text text-anchor="middle" x="518" y="525" font-size="12" font-family="Arial" fill="#222">Red</text>
+      <text text-anchor="middle" x="518" y="539" font-size="12" font-family="Arial" fill="#222">White</text>
+      <line x1="472" y1="546" x2="564" y2="546" stroke="#bbb" stroke-width="0.8"/>
+      <text text-anchor="middle" x="518" y="560" font-size="11.5" font-family="Arial" fill="#444">b  m</text>
+    </g>
+
+    <!--
+      Maples | Beech | Hemlock — three boxes sharing borders
+      Maples:  x=572 w=90  right=662   cx=617
+      Beech:   x=662 w=74  right=736   cx=699
+      Hemlock: x=736 w=80  right=816   cx=776
+    -->
+    <g class="n" id="n-maples"
+       data-t="Maples (Sugar / Red)"
+       data-i="Sugar maple (Acer saccharum) and Red maple (A. rubrum) — mesic climax on sheltered moisture-retaining sites. Receive input from pines and arbor vitae stages. m=mesic forest sub-stage.">
+      <rect x="572" y="490" width="90" height="82" rx="3" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+      <text text-anchor="middle" x="617" y="510" font-size="12.5" font-family="Arial" fill="#222">Maples</text>
+      <text text-anchor="middle" x="617" y="525" font-size="12" font-family="Arial" fill="#222">Sugar</text>
+      <text text-anchor="middle" x="617" y="539" font-size="12" font-family="Arial" fill="#222">Red</text>
+      <line x1="574" y1="548" x2="660" y2="548" stroke="#bbb" stroke-width="0.8"/>
+      <text text-anchor="middle" x="617" y="562" font-size="11.5" font-family="Arial" fill="#444">m</text>
+    </g>
+    <g class="n" id="n-beech"
+       data-t="Beech"
+       data-i="American beech (Fagus grandifolia) — co-dominant in the mesic climax forest. Shares a border with maples and hemlock in the same climax band. m=mesic forest sub-stage.">
+      <!-- shares left border with Maples (x=662 = right of Maples), no gap -->
+      <rect x="662" y="490" width="74" height="82" rx="3" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+      <text text-anchor="middle" x="699" y="525" font-size="12.5" font-family="Arial" fill="#222">Beech</text>
+      <line x1="664" y1="548" x2="734" y2="548" stroke="#bbb" stroke-width="0.8"/>
+      <text text-anchor="middle" x="699" y="562" font-size="11.5" font-family="Arial" fill="#444">m</text>
+    </g>
+    <g class="n" id="n-hem"
+       data-t="Hemlock"
+       data-i="Eastern hemlock (Tsuga canadensis) on cool shaded north-facing slopes. Part of the mesic climax alongside beech and maples. m=mesic forest sub-stage.">
+      <!-- shares left border with Beech (x=736 = right of Beech) -->
+      <rect x="736" y="490" width="80" height="82" rx="3" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+      <text text-anchor="middle" x="776" y="525" font-size="12.5" font-family="Arial" fill="#222">Hemlock</text>
+      <line x1="738" y1="548" x2="814" y2="548" stroke="#bbb" stroke-width="0.8"/>
+      <text text-anchor="middle" x="776" y="562" font-size="11.5" font-family="Arial" fill="#444">m</text>
+    </g>
+
+    <!-- Birches Paper/Yellow  x=830 w=110 cx=885 -->
+    <g class="n" id="n-birch"
+       data-t="Birches (Paper / Yellow)"
+       data-i="Paper birch (Betula papyrifera) and Yellow birch (B. alleghaniensis) — climax on lee slope and moist northern sites. Follow balsam fir communities. m=mesic forest sub-stage.">
+      <rect x="830" y="490" width="110" height="82" rx="3" fill="#f0f0f0" stroke="#666" stroke-width="1"/>
+      <text text-anchor="middle" x="885" y="510" font-size="12.5" font-family="Arial" fill="#222">Birches</text>
+      <text text-anchor="middle" x="885" y="525" font-size="12" font-family="Arial" fill="#222">Paper</text>
+      <text text-anchor="middle" x="885" y="539" font-size="12" font-family="Arial" fill="#222">Yellow</text>
+      <line x1="832" y1="548" x2="938" y2="548" stroke="#bbb" stroke-width="0.8"/>
+      <text text-anchor="middle" x="885" y="562" font-size="11.5" font-family="Arial" fill="#444">m</text>
+    </g>
+
+    <!-- ═══════════════════════════════════
+         ROW 5 ARROWS
+
+         From original image study:
+         • Rush meadow branches: one down-left → Tall grass prairie,
+                                 one curve right → Red maple swamp
+         • Cottonwood → Red maple swamp  (NO connection to Maples)
+         • Pines → Black oak (down-left)
+         • Pines → Oaks R/W (down, slightly right)
+         • Pines → Maples (long curve right)
+         • Pines → Beech (longer curve right)
+         • Pines → Hemlock (longest curve right)
+         • Arbor vitae → Maples (down)
+         • Balsam fir → Birches (curve right-down)
+         • Basswood long curve → branches to Oaks, Maples, Beech, Hemlock
+           (NOT to Balsam fir — Basswood goes to climax level directly)
+         • Shrubs → Maples (long diagonal crossing)
+         • Shrubs → Beech (long diagonal crossing)
+         • Oaks R/W → Maples (horizontal arrow)
+         • Maples → Beech (horizontal, shared border, no space)
+         • Beech → Hemlock (horizontal, shared border)
+         • Hemlock ← Birches (leftward arrow)
+         • Black oak ←? Oaks R/W (dashed with ? label)
+    ═══════════════════════════════════ -->
+
+    <!-- Rush meadow → Tall grass prairie (straight down-left) -->
+    <path class="al" data-p="damp"
+          d="M 158 298 Q 155 400 158 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Rush meadow → Red maple swamp (branch curve right) -->
+    <path class="al" data-p="damp"
+          d="M 200 290 Q 240 400 254 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Cottonwood → Red maple swamp (long curve down) -->
+    <path class="al" data-p="upper damp"
+          d="M 300 298 Q 285 400 268 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Pines → Black oak (down-left diagonal, from left side of group bottom) -->
+    <line class="al" data-p="upper"
+          x1="430" y1="448" x2="382" y2="490"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Pines → Oaks R/W (slightly right of centre) -->
+    <line class="al" data-p="upper"
+          x1="480" y1="448" x2="502" y2="490"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Pines → Maples (curve right) -->
+    <path class="al" data-p="upper blowout"
+          d="M 510 444 Q 560 468 596 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Pines → Beech (longer curve right) -->
+    <path class="al" data-p="upper blowout"
+          d="M 520 440 Q 600 462 672 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Pines → Hemlock (longest curve right) -->
+    <path class="al" data-p="upper blowout"
+          d="M 528 436 Q 640 455 748 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Arbor vitae → Maples (down, offset slightly left) -->
+    <path class="al" data-p="blowout"
+          d="M 660 426 Q 645 460 620 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Balsam fir → Birches (curve down-right) -->
+    <path class="al" data-p="lee blowout"
+          d="M 818 426 Q 855 460 870 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!--
+      Basswood long branching arrow → Oaks, Maples, Beech, Hemlock
+      The original shows a single sweeping curve from Basswood that
+      branches (like a river delta) to multiple climax nodes.
+      We draw individual paths from Basswood to each target.
+    -->
+    <!-- Basswood → Oaks R/W -->
+    <path class="al" data-p="lee"
+          d="M 790 298 Q 700 395 528 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+    <!-- Basswood → Maples -->
+    <path class="al" data-p="lee"
+          d="M 810 298 Q 760 395 640 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+    <!-- Basswood → Beech -->
+    <path class="al" data-p="lee"
+          d="M 826 298 Q 800 395 712 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+    <!-- Basswood → Hemlock -->
+    <path class="al" data-p="lee"
+          d="M 840 298 Q 830 390 782 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!--
+      Shrubs crossing arrows to Maples and Beech
+      (In original these are long diagonals that cross the other arrows)
+    -->
+    <!-- Shrubs → Maples -->
+    <path class="al" data-p="blowout"
+          d="M 636 298 Q 628 400 622 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+    <!-- Shrubs → Beech -->
+    <path class="al" data-p="blowout"
+          d="M 658 298 Q 676 400 700 490"
+          fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Oaks R/W → Maples (horizontal right) -->
+    <line class="al" data-p="upper blowout"
+          x1="566" y1="522" x2="570" y2="522"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Maples → Beech (horizontal, at shared border — tiny gap) -->
+    <line class="al" data-p="blowout upper"
+          x1="662" y1="518" x2="660" y2="518"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Beech → Hemlock (horizontal) -->
+    <line class="al" data-p="blowout upper"
+          x1="736" y1="518" x2="734" y2="518"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!-- Hemlock ← Birches (leftward arrow) -->
+    <line class="al" data-p="lee blowout"
+          x1="830" y1="528" x2="818" y2="528"
+          stroke="#333" stroke-width="1.3" marker-end="url(#ah)"/>
+
+    <!--
+      Black oak ←? Oaks R/W
+      Dashed arrow from Oaks pointing LEFT to Black oak, with "?" label between them
+    -->
+    <line class="al" data-p="upper"
+          x1="470" y1="524" x2="462" y2="524"
+          stroke="#333" stroke-width="1.3"
+          stroke-dasharray="5 3" marker-end="url(#ah)"/>
+    <!-- "?" label centred between the two boxes -->
+    <text x="454" y="519" font-size="12" font-family="Arial" fill="#555">?</text>
+
+  </svg>
+
+  <!-- Info panel -->
+  <div id="fig38-panel">
+    <span id="panel-close" onclick="closePanel()">×</span>
+    <strong id="panel-title"></strong>
+    <p id="panel-body"></p>
+  </div>
+
+  <figcaption>
+    <strong>Fig. 3.8</strong> Schematic alternative dune successions in the Lake Michigan
+    dune systems. (From Olson, 1958; courtesy of <em>Bot. Gaz.</em>)<br>
+    <span style="font-style:normal;font-size:11px;color:#888;">
+      Hover any box to see its name &nbsp;·&nbsp; Click to read a full ecological description &nbsp;·&nbsp;
+      Use the pathway buttons to trace individual successional sequences
+    </span>
+  </figcaption>
 
 </figure>
+
+<div id="fig38-tip"></div>
+
+<script>
+(function(){
+  const tip    = document.getElementById('fig38-tip');
+  const panel  = document.getElementById('fig38-panel');
+  const pTitle = document.getElementById('panel-title');
+  const pBody  = document.getElementById('panel-body');
+
+  /* ── Tooltip + click ── */
+  document.querySelectorAll('#fig38svg .n').forEach(nd => {
+    nd.addEventListener('mouseenter', () => {
+      tip.textContent = nd.getAttribute('data-t') || '';
+      tip.style.opacity = '1';
+    });
+    nd.addEventListener('mousemove', e => {
+      tip.style.left = (e.clientX + 14) + 'px';
+      tip.style.top  = (e.clientY - 34) + 'px';
+    });
+    nd.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+    nd.addEventListener('click', () => {
+      pTitle.textContent = nd.getAttribute('data-t') || '';
+      pBody.textContent  = nd.getAttribute('data-i') || '';
+      panel.classList.add('open');
+      document.querySelectorAll('#fig38svg .n').forEach(x => x.classList.remove('sel'));
+      nd.classList.add('sel');
+    });
+  });
+
+  window.closePanel = function(){
+    panel.classList.remove('open');
+    document.querySelectorAll('#fig38svg .n').forEach(x => x.classList.remove('sel'));
+  };
+
+  /* ── Pathway highlight ── */
+  window.hilite = function(path){
+    const lines = document.querySelectorAll('#fig38svg .al');
+    document.querySelectorAll('.fig-controls button').forEach(b => b.classList.remove('active'));
+
+    if(!path){
+      lines.forEach(l => {
+        l.classList.remove('dim','hi');
+        l.setAttribute('marker-end','url(#ah)');
+      });
+      document.getElementById('b-all').classList.add('active');
+      return;
+    }
+
+    const bmap = { damp:'b-damp', upper:'b-upper', blowout:'b-blowout', lee:'b-lee' };
+    if(bmap[path]) document.getElementById(bmap[path]).classList.add('active');
+
+    lines.forEach(l => {
+      const ps = (l.getAttribute('data-p') || '').split(' ');
+      if(ps.includes(path)){
+        l.classList.remove('dim'); l.classList.add('hi');
+        l.setAttribute('marker-end','url(#aho)');
+      } else {
+        l.classList.add('dim'); l.classList.remove('hi');
+        l.setAttribute('marker-end','url(#ah)');
+      }
+    });
+  };
+
+  document.getElementById('b-all').classList.add('active');
+})();
+</script>
 
 </body>
 </html>
