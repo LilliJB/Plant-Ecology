@@ -212,14 +212,14 @@ figcaption strong { font-style:normal; }
   d="M 368,70 C 440,86 448,172 440,228"
   fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
 
-<!-- Upper beach → Sand reed (branches from above path near y=148, curves to Sand reed) -->
+<!-- Branch from Upper-beach→Marram path (~436,160) → connects onto Eroding→Sand reed path (~412,190) -->
 <path class="A" data-p="upper erode"
-  d="M 424,148 C 458,182 498,212 500,256"
+  d="M 436,158 C 428,170 418,180 412,190"
   fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
 
-<!-- Eroding surfaces → Sand reed (exits Eroding LEFT side x=458, curves left-down to Sand reed left) -->
+<!-- Eroding surfaces → Sand reed (exits Eroding LEFT x=458, straight left-down, then C-hooks right at bottom) -->
 <path class="A" data-p="erode"
-  d="M 458,68 C 426,116 416,186 424,256"
+  d="M 458,68 C 430,100 412,170 412,220 C 412,244 420,256 424,256"
   fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
 
 <!-- Depositing crests → Marram (exits Depositing left x=652, curves left-down to Marram top) -->
@@ -263,15 +263,14 @@ figcaption strong { font-style:normal; }
   d="M 346,282 C 366,322 406,344 422,358"
   fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
 
-<!-- Marram → Little bluestem (exits Marram RIGHT x=580, curves far right to x=626, arrives LB right side)
-     Stays clearly OUTSIDE R-bracket tip at x=598 -->
+<!-- Marram → Little bluestem (curves slightly inward/rightward within the bracket space) -->
 <path class="A" data-p="upper erode deposit"
-  d="M 580,239 C 626,239 632,276 600,288"
+  d="M 580,239 C 592,239 592,272 580,290"
   fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#ah)"/>
 
-<!-- Sand reed → Little bluestem (same: exits SR right x=580, curves to x=624, arrives LB right) -->
+<!-- Sand reed → Little bluestem (curves slightly inward within the bracket space) -->
 <path class="A" data-p="upper erode deposit"
-  d="M 580,263 C 622,263 626,278 600,292"
+  d="M 580,263 C 590,263 590,276 580,292"
   fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#ah)"/>
 
 <!-- Grasses R-bracket tip (598,267) → Shrubs left (682,260): curved arc, going above bracket -->
@@ -293,9 +292,9 @@ figcaption strong { font-style:normal; }
   d="M 580,296 C 636,296 640,350 600,395"
   fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
 
-<!-- LB branch → joins Shrubs→Arbor midpoint: exits from LB curve around x=624,y=326 -->
+<!-- LB branch: starts ON LB→Pines path at (626,329), ends ON Shrubs→Arbor at (800,311) -->
 <path class="A" data-p="upper erode deposit lee"
-  d="M 624,326 C 664,344 714,360 762,372"
+  d="M 626,329 C 680,326 744,318 800,311"
   fill="none" stroke="#222" stroke-width="1.2"/>
 
 <!-- Jack+White L-bracket tip (406,380) → Black oak top-centre (387,484) -->
@@ -308,34 +307,33 @@ figcaption strong { font-style:normal; }
   d="M 752,282 C 806,318 876,348 920,362"
   fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
 
-<!-- BASSWOOD: exits Basswood BOTTOM (1032,282), curves DOWN then sweeps LEFT *under* Shrubs
-     Goes to y=310 first (below Shrubs bot=282), then arcs left staying at y≈320
-     Arrives at trunk point (596,468) from the right, staying well below Pines/labels -->
+<!-- BASSWOOD: exits bottom (1032,282), sweeps under Shrubs (y≥300), then arcs left
+     Path kept right of Pines label (x=607) until y>430, then curves left to trunk -->
 <path class="A" data-p="lee"
-  d="M 1032,282 C 1032,320 940,330 820,330 C 700,330 638,350 610,400 C 592,436 592,456 594,468"
+  d="M 1032,282 C 1032,316 944,326 830,326 C 720,326 670,340 650,380 C 634,412 628,450 620,468"
   fill="none" stroke="#222" stroke-width="1.6"/>
 
-<!-- Pines R-bracket tip (598,440) → joins Basswood trunk at (594,468) -->
+<!-- Pines R-bracket tip (598,440) → joins Basswood trunk at (620,468) -->
 <path class="A" data-p="upper erode deposit"
-  d="M 598,440 C 598,452 596,462 594,468"
+  d="M 598,440 C 602,452 610,462 620,468"
   fill="none" stroke="#222" stroke-width="1.4"/>
 
 <!-- Trunk at (594,468): fans to climax nodes -->
 <!-- → Black oak top (387,484) -->
 <path class="A" data-p="lee upper"
-  d="M 594,470 C 558,474 488,480 390,484"
+  d="M 620,470 C 582,474 502,480 390,484"
   fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
 <!-- → Oaks R/W top (554,484) -->
 <path class="A" data-p="lee upper deposit"
-  d="M 594,471 C 580,476 566,480 558,484"
+  d="M 620,471 C 610,476 590,480 560,484"
   fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
 <!-- → Maples top (665,484) -->
 <path class="A" data-p="lee deposit"
-  d="M 594,471 C 608,476 638,480 658,484"
+  d="M 620,471 C 626,476 640,480 660,484"
   fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
 <!-- → Beech top (735,484) -->
 <path class="A" data-p="lee deposit"
-  d="M 594,470 C 626,472 694,478 710,484"
+  d="M 620,470 C 640,472 698,478 712,484"
   fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
 
 <!-- ══ ARBOR VITAE + BALSAM FIR → stem from border bottom (922,402) → branches ══ -->
@@ -361,11 +359,15 @@ figcaption strong { font-style:normal; }
 
 <!-- ══ R5: CLIMAX CHAIN ARROWS ══ -->
 
-<!-- Black oak ←?→ Oaks: double-headed dashed (Black oak right=446, Oaks left=506, 60px gap) -->
-<line class="A" data-p="upper" data-dh="1"
-  x1="446" y1="526" x2="506" y2="526"
-  stroke="#222" stroke-width="1.4" stroke-dasharray="4 3"
-  marker-start="url(#ahdrev)" marker-end="url(#ahd)"/>
+<!-- Black oak ←?→ Oaks: arrowheads point TO the nodes, ? interrupts in the middle -->
+<!-- Left half: arrowhead at Black oak end (x=446), pointing left INTO Black oak -->
+<line class="A" data-p="upper"
+  x1="472" y1="526" x2="446" y2="526"
+  stroke="#222" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ahd)"/>
+<!-- Right half: arrowhead at Oaks end (x=506), pointing right INTO Oaks -->
+<line class="A" data-p="upper"
+  x1="482" y1="526" x2="506" y2="526"
+  stroke="#222" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ahd)"/>
 
 <!-- Oaks → Maples (Oaks right=602, Maples left=622) -->
 <line class="A" data-p="upper deposit"
@@ -550,8 +552,8 @@ figcaption strong { font-style:normal; }
   <text text-anchor="middle" x="418" y="560" font-size="11.5" fill="#333">m</text>
 </g>
 
-<!-- ? centred in the 60px gap (black oak right=446, oaks left=506, mid=476) -->
-<text text-anchor="middle" x="476" y="522" font-size="13" fill="#666" font-weight="bold">?</text>
+<!-- ? centred between the two arrow halves, interrupting the path -->
+<text text-anchor="middle" x="476" y="531" font-size="13" fill="#555" font-weight="bold">?</text>
 
 <g id="n-oaksrw">
   <rect x="506" y="484" width="96" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
@@ -610,6 +612,35 @@ figcaption strong { font-style:normal; }
   const hasEnd   = el => !!el.getAttribute('marker-end');
   const hasStart = el => !!el.getAttribute('marker-start');
 
+  // Full cascade sets: each key lists ALL tags that should be highlighted
+  // when that initial condition button is pressed (including all indirect downstream routes)
+  const CASCADE = {
+    // Damp depression → Rush meadow → Tall grass / Red maple swamp
+    // Also → Cottonwood → (all upper pathways downstream)
+    damp:    ['damp','upper','upper erode','upper erode deposit','upper erode deposit lee','upper deposit','upper damp'],
+
+    // Upper beach → Foredune → Marram → Pines → climax
+    // Cottonwood is also fed by damp but upper beach feeds it via Foredune
+    upper:   ['upper','upper erode','upper erode deposit','upper erode deposit lee','upper deposit','upper damp'],
+
+    // Eroding surfaces → Sand reed → LB → Pines → climax
+    erode:   ['erode','upper erode','upper erode deposit','upper erode deposit lee','erode damp'],
+
+    // Depositing crests → Marram / Blowout → Grasses → Shrubs → Arbor/Balsam → climax
+    deposit: ['deposit','deposit erode','deposit lee','upper erode deposit','upper erode deposit lee','upper deposit','lee deposit'],
+
+    // Lee slopes → Shrubs / Basswood → Arbor/Balsam → climax
+    lee:     ['lee','lee deposit','upper erode deposit lee','deposit lee'],
+  };
+
+  // Check if arrow's data-p overlaps with any of the active tags
+  function matches(el, activeTags) {
+    const ps = (el.getAttribute('data-p') || '').split(' ');
+    // Arrow matches if ANY of its tags is in active set, OR if its full data-p string is in active set
+    const dp = el.getAttribute('data-p') || '';
+    return activeTags.some(tag => ps.includes(tag) || dp === tag);
+  }
+
   window.hl = function(p) {
     const arrows = document.querySelectorAll('#svg .A');
     document.querySelectorAll('.controls button').forEach(b => b.classList.remove('on'));
@@ -628,10 +659,11 @@ figcaption strong { font-style:normal; }
     const bmap = { damp:'b-damp', upper:'b-upper', erode:'b-erode', deposit:'b-deposit', lee:'b-lee' };
     if (bmap[p]) document.getElementById(bmap[p]).classList.add('on');
 
+    const activeTags = CASCADE[p] || [p];
+
     arrows.forEach(a => {
-      const ps = (a.getAttribute('data-p') || '').split(' ');
       const d = isDashed(a);
-      if (ps.includes(p)) {
+      if (matches(a, activeTags)) {
         a.classList.remove('dim'); a.classList.add('hi');
         if (hasEnd(a))   a.setAttribute('marker-end',   d ? 'url(#ahod)'   : 'url(#aho)');
         if (hasStart(a)) a.setAttribute('marker-start', d ? 'url(#ahod)'   : 'url(#ahorev)');
