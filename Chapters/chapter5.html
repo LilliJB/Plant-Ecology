@@ -1,23 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 5 - Quantitative and Dynamic Plant Ecology</title>
     <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        a.table-link {
+            color: #2f5d3a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.table-link:hover {
+            color: #3d7349;
+            text-decoration: none;
+        }
+
+        details.section > summary {
+            font-size: 1.17em;
+            font-weight: bold;
+            color: #2f5d3a;
+            cursor: pointer;
+            margin: 1em 0 0.5em 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        details.section > summary::-webkit-details-marker {
+            display: none;
+        }
+        details.section > summary::after {
+            content: '▼';
+            font-size: 0.75em;
+            color: #2f5d3a;
+            transition: transform 0.2s;
+        }
+        details.section[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        details.section > summary:hover {
+            color: #3d7349;
+        }
+
+        .abc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .abc-list li {
+            margin-bottom: 0.6em;
+        }
+
+        /* Data table for aligned values */
+        .data-table {
+            margin: 15px 0;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .data-table td {
+            padding: 4px 10px;
+            text-align: center;
+        }
+
+.data-table td.label {
+    text-align: left;
+    font-weight: bold;
+    padding-right: 15px;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #acd8af;
+}
+
+svg {
+width:100%;
+max-width:1000px;
+display:block;
+margin:auto;
+}
+
+.box {
+fill:#fff;
+stroke:#333;
+stroke-width:0.8;
+}
+
+.label {
+font-size:13px;
+text-anchor:middle;
+}
+
+.arr {
+stroke:#333;
+stroke-width:1;
+fill:none;
+marker-end:url(#arrow);
+}
+</style>
+
+
+    </style>
+
 </head>
+
 <body>
 
 <nav>
     <a href="../index.html">Home</a>
     <a href="../Chapters.html">Chapters</a>
     <a href="../Data.html">Data</a>
+<a href="../Index-page.html">Index</a>
 </nav>
 
 <main>
     <div class="chapter" id="chapter5">
-        <h2>Chapter 5: CORRELATION AND THE CAUSAL FACTORS OF POSITIVE AND NEGATIVE ASSOCIATION BETWEEN SPECIES</h2>
-        <p>Correlation coefficients. Causality of association or correlation between species. Similar or dissimilar environmental requirements. Modification of the environment by one species allowing establishment by other species. Production of toxic substances by plants. Competition leading to negative and positive correlation or association.</p>
+        <h2>Chapter 5: CYCLIC VEGETATIONAL CHANGE</h2>
+        <p>Most, if not all, data on the relative abundance of species in a given area will contain one or several correlations of species. The presence of such correlations reflects the pattern or, more usually, several scales of pattern in the vegetation. The existence of pattern in vegetation and the general factors underlying such patterns are dealt with in <a class="table-link" href="Chapters/chapter7.html">Chapter 7</a>, but it is necessary to consider at this point in more detail some of the factors that are operative. These causal factors can be studied either by using the techniques available for the detection of pattern ( <a class="table-link" href="Chapters/chapter9.html">Chapter 9</a>), or by the use of association, correlation, or regression techniques. The two methods of analysis are very closely linked and are only treated separately here for the sake of clarity. The causal factors are split into four sections for convenience, each section represents the level of detail at which it is studied rather than any rigid classification.</p>
+
+        <div class="chapter-section">
+            <h3>Similar or dissimilar environmental requirements</h3>
+    
+        <p>
+This is probably one of the fundamental reasons for negative or positive relationships that exist between species. On a large scale and with an obvious difference of species composition in two areas such correlations between species lead to the the separation of groupings which typify a 'community' (see below and <a class="table-link" href="Chapters/chapter9.html">Chapter 9</a>). On a smaller scale such relationships are rarely as obvious and usually need a careful quantitative approach to detect their existence.</p>
+
+<p> An example of such an environmentally-controlled relationship is taken from an area of hummocky grassland associated with a calcareous mire. The data for <em>Carex lepidocarpa, C. flacca</em> and <em>Potentilla erecta</em> (<a class="table-link" href="#table-5-1">Table 5.1</a>) were obtained in the form of ​​frequency, from 150 quadrats positioned by using random co-ordinates (approximately half the sample was related to a hummock). The apparent preference of <em>Potentilla</em> for the hummocks and conversely the preference of the <em>Carex species </em>for the hollows is readily tested by means of a t-test which shows a highly significant difference between the species. This difference is not readily visible on even a close examination of the area though an explanation in general terms is not difficult. </p>
+
+
+<figure class="figure-break" id="table-5-1">
+    <figcaption>
+        <strong>Table 5.1</strong> The relation between topography and the abundance of <em>Carex lepidocarpa</em>, <em>C. flacca</em> and <em>Potentilla erecta</em>.
+    </figcaption>
+
+    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
+        <thead>
+            <tr style="border-top: 2px solid #333;">
+                <th style="padding:6px 10px;">Species</th>
+                <th style="padding:6px 10px; text-align:center;" colspan="2">
+                    Mean frequency
+                </th>
+                <th style="padding:6px 10px; text-align:center;">SE</th>
+                <th style="padding:6px 10px; text-align:center;">
+                    Difference between frequencies
+                </th>
+                <th style="padding:6px 10px; text-align:center;">t</th>
+                <th style="padding:6px 10px; text-align:center;">p</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #333;">
+                <th></th>
+                <th style="text-align:center;">Hummock</th>
+                <th style="text-align:center;">Hollow</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td style="padding:5px 10px;"><em>Carex lepidocarpa</em></td>
+                <td style="text-align:center;">3.15</td>
+                <td style="text-align:center;">5.34</td>
+                <td style="text-align:center;">0.4163</td>
+                <td style="text-align:center;">2.19</td>
+                <td style="text-align:center;">5.260</td>
+                <td style="text-align:center;">0.001</td>
+            </tr>
+
+            <tr>
+                <td style="padding:5px 10px;"><em>C. flacca</em></td>
+                <td style="text-align:center;">0.82</td>
+                <td style="text-align:center;">2.0</td>
+                <td style="text-align:center;">0.2963</td>
+                <td style="text-align:center;">1.18</td>
+                <td style="text-align:center;">3.986</td>
+                <td style="text-align:center;">0.001</td>
+            </tr>
+
+            <tr style="border-bottom: 2px solid #333;">
+                <td style="padding:5px 10px;"><em>Potentilla erecta</em></td>
+                <td style="text-align:center;">4.19</td>
+                <td style="text-align:center;">1.38</td>
+                <td style="text-align:center;">0.1967</td>
+                <td style="text-align:center;">2.81</td>
+                <td style="text-align:center;">14.264</td>
+                <td style="text-align:center;">0.001</td>
+            </tr>
+        </tbody>
+    </table>
+</figure>
+
+<p>The hollows' act as runnels for base-rich water after a period of heavy rain and the
+pH of the soil is thus neutral to slightly alkaline. Conversely the tops of the hummocks are not affected by calcareous run-off and with leaching over a period of years, together with the steady accumulation of humus, have a pH of about 5.6-5.8 (slightly acidic). It is most probable that the distribution of these species is not governed directly by the pH of the soil, but by other factors which are in turn correlated with pH. The relationship between the environment is thus most easily appreciated by relating their abundance in a sample quadrat to pH. This relationship of abundance and topography obviously leads to correlations (positive or negative between pairs of species. In this example the distribution of the species is not sharply controlled by topography but merely influenced differentially by hummocks and hollows. The relationship accordingly cannot be appreciated merely by an inspection of the area. </p>
+
+
+<p>Harper and Sagar (1953) have shown that the spatial distribution of <em>Ranunculus repens, R. bulbosus</em> and <em>R. acris</em> shows a marked correlation with drainage. They investigated the relative abundance of the species along a transect orientated at right angles to furrows and ridges in a permanent pasture. The results (<a class="table-link" href="#fig-5-1">Fig. 5.1</a>) show quite clearly the differential environmental requirements of the three species,<em> Ranunculus repens</em> being abundant in the furrows, <em>R. bulbosus</em> more abundant on the ridges and <em>R. acris</em> showing an intermediate distribution on the sides of the ridges. Seedling establishment under experimental conditions at three levels of drainage suggest it is this part of the life cycle, i.e. germination and early establishment, which is susceptible to the drainage of the area as a whole (<a class="table-link" href="#fig-5-2">Fig. 5.2</a>).</p>
+
+<p>These results from a markedly variable habitat can be related to the non-random distribution of <em>Ranunculus</em> in more homogeneous grassland. Micro-variation of drainage will modify other nutritional factors to a greater or lesser extent, which will in turn influence the relative abundance of each species in a small area, and lead to negative correlation between them and to marked non-randomness in the population (see also <a class="table-link" href="Chapters/chapter7.html">Chapter 7</a>).</p>
+
+<p>Both these examples are related to micro-topography and to its effects on abundance of species either directly or, more probably, through other interrelated factors. They lllustrate how slight environmental variations can lead to the production of patterns in vegetation and to the existence of correlation or association between species. The choice of examples relating micro-topography and the distribution of species by no means excludes the importance of other variable factors which may operate, but it merely underlines the scarcity of data on such inter-relationships.</p>
+
+</div>
+
+        <div class="chapter-section">
+            <h3>Modification of the environment by one species allowing establishment by other species</h3>
+    
+        <p>Considerable interest was aroused by the publication of a paper by Went in 1942 which demonstrated a marked relationship between the distribution of annual species and perennial shrub species in a desert area in California. His data showed a general positive relationship between shrubs and annual herbs, but a more striking relationship between annual species and dead <em>Encelia farinosa</em> bushes than with living bushes. This he suggested was due to the production of a toxic substance by <em>Encelia</em> which accordingly limited the herb population closely adjacent to a living individual bush. Gray and Bonner (1948) subsequently isolated such a substance from the leaves of <em>Encelia</em>. Later workers in this field have suggested other equally plausible explanations of the phenomenon in terms of the relative build-up of humus content underneath <em>Encelia</em> and other species of shrubs. Whatever the causal explanation (see below for a detailed account of the presence of toxic substances in plants) this work did focus attention on the relationship between an individual and its environment and the possible effects of this interaction on other species within the community.</p>
+
+<figure class="figure-break" id="fig-5-1"> 
+<img src="../images/Fig.5.1.jpg" alt=”distribution of three species of Ranunculus"> 
+<figcaption> <strong>Fig. 5.1</strong> The distribution of three species of Ranunculus on ridge and furrow grassland. (From Harper and Sagar 1953; courtesy of British Weed Control Council.)  </figcaption> 
+</figure>
+
+<figure class="figure-break" id="fig-5-2"> 
+<img src="../images/Fig.5.2.jpg" alt=”distribution of three species of Ranunculus in pots"> 
+<figcaption> <strong>Fig. 5.2</strong> The early establishment of three species of Ranunculus sown in pots with the watertable maintained at different levels. Sowings were made on June 26 1953 and counts made on July 28 1953. (From Harper and Sagar 1953; courtesy of British Weed Control Council.)
+ </figcaption> 
+</figure>
+
+
+   <div class="media-block">
+  <figure class="figure-break" id="fig-5-3">
+    <img src="../images/Fig.5.3.jpg" alt="Fig.5.3">
+    <figcaption>
+      <strong>Fig. 5.3</strong> The marked luxuriance and increased abundance of herbaceous species under Astragalus (From Agnew and Haines, 1960; courtesy of Bull. Col. Sci.)    </figcaption>
+  </figure>
+
+<p>A clear example of this type of relationship taken from stony desert in Iraq is given by Agnew and Haines (1960). There is a considerable deposition of wind-borne material round the base of perennial plants in this area, which leads to the formation of low mounds around the individual shrubs. <em>Astragalus spinosus</em> is an outstanding example of this and there is a marked positive correlation between this species and small annual or perennial herbs, both in the sense of abundance as well as luxuriance. A typical diagram of such mounds is given in <a class="table-link" href="#fig-5-3">Fig. 5.3</a>. Astragalus spinosus is a straggling shrub with tough branches and an abundance of sharp spines which are formed from old leaf axes which have hardened after the leaflets have been shed in the summer. These axes remain firmly attached to the woody stems for several years. The relationship is explained by an interaction of several factors which in turn are related to the growth form and general morphology of <em>Astragalus</em>. The first important factor is the protection of the associated herb flora from grazing, which is provided by the spiny branches. This factor is of considerable importance in the Middle East where there is very heavy grazing by goats, sheep and camels even in apparently remote desert areas. Grazing will markedly affect both the luxuriance and abundance of individuals of a species. The second factor is the actual presence of wind-borne material which provides a limited area of soil capable of supporting plant growth. The desert area is largely stony and the soil mounds thus provide an excellent site for establishment and growth of herbaceous species. Further increments of debris are added annually; these include plant remains both from the Astragalus as well as from the herbaceous cover, thus steadily raising the humus content of the mounds. This has at least a two-fold effect; the concentration of soil nitrogen Is increased and enables a larger population of herbs to exist, and this in turn reduces wind velocity at the surface of the mound. The reduction of wind velocity lowers the rate of evaporation from the soil surface and in effect leads to a more efficient utilisation of the available rainfall. </p>
+
+</div>
+
+<p>Thus it is quite clear that the marked association outlined above is dependent on localized variations of several environmental factors, which in turn are related to the existence of a perennial species which has established itself in the first place. This example is clear cut since the environment is so extreme that it approaches the level below which plants cannot maintain themselves, and a slight (advantageous) shift of the environment produces a marked and a readily visible response in the vegetation. Similar relationships will hold in more temperate regions of the world, but here they are much less obvious and little is known about them at present.</p>
+
+   <div class="media-block">
+  <figure class="figure-break" id="fig-5-4">
+    <img src="../images/Fig.5.4.jpg" alt="Fig.5.4">
+    <figcaption>
+      <strong>Fig. 5.4</strong> Accumulation of organic carbon in the mineral soil and forest floor under Ainus crispa in Alaska. (From Crocker and Major, 1955; courtesy of J. Ecol.)  </figcaption>
+  </figure>
+
+<p>The fact that vegetation modifies and changes the environment to a considerable extent is largely responsible for plant succession in general (see Chapter 3). Numerous examples of environmental modification by vegetation are available (e.g. <a class="table-link" href="#fig-3-6">Fig. 3.6</a>) and quantitative data are given by Crocker and Major (1955) relating the accumulation of organic carbon to the age of a stand of <em>Alnus crispa</em> (<a class="table-link" href="#fig-5-4">Fig. 5.4</a>). This  ​​accumulation of carbon in a 50-year period and the resultant changes in the vegetation is in fact a characteristic and well marked succession (see <a class="table-link" href="Chapters/chapter3.html">Chapter 3</a>). Moreover, this example illustrates the steady build up of humus material in relation to vegetational cover. The rate of build up of humus is of course also dependent to a considerable extent on climate and drainage. Thus in <em>Astragalus</em> the nitrogen accumulation will be relatively small, but sufficient to have an effect on the associated vegetation, which leads to the marked positive correlation of species. It is a reasonable assumption that similar effects are present in temperate herbaceous vegetation, but the relatively infrequent occurrence of strong positive association between species in this type of vegetation would suggest that such modifications of the environment are often overshadowed by environmental variations resulting from other factors.</p>
+
+
+
+
+</div>
+
+     <div class="chapter-section">
+            <h3>Production of toxic substances by plants</h3>
+    
+        <p> As far back as 1832 De Candolle suggested the importance of root excretions and since 1900 considerable attention has been directed towards the detection of substances in plants which are toxic to other species. The demonstration of direct chemical interaction between species is surprisingly difficult, and much of the earlier work designed to prove an interaction between two species based on the exudation of a toxic substance can be criticized on the ground of experimental design or may be explained in terms of competition for some environmental factor.</p>
+
+<p>Bedford and Pickering (1919) examined in some detail the vigour of apple trees in relation to the grass cover of an orchard. Observation showed a very marked difference between the height and fruit production of trees grown in tilled soil compared with trees of similar age grown in plots with a complete grass cover. For example a plantation of Bramley's Seedling apples established for 23 years was selected and half of it laid down to grass. In the first year the grass did not establish well but even then the season's crop was reduced by 5% (compared with the crop from the tilled section). In the next year the crop was markedly affected as fruit production was reduced by 89% following the complete establishment of the grass. Similar results were obtained in several other experiments, all of which strongly suggested the action of a toxic substance produced by the grass. This possibility was examined further experimentally. Young apple trees were grown in pots while a "surface crop' of grass was suspended above in a perforated container. Water was supplied through the surface crop which leached any toxic substance into the pot below. The resultant inhibition by the surface crop was very marked.</p>
+
+<p>The results at first sight seem conclusive but the field observations can be explained in part by competition for nitrogen and water. The inhibition of the trees by grass cover can be almost completely eliminated by addition of nitrogenous fertilizers, together with irrigation of the orchard. The pot experiments are quite convincing, however, and one is forced to conclude that the presence of a toxic substance is probable, but under field conditions it is either destroyed by bacterial action or is absorbed by soil particles. It should, however, be borne in mind that the removal of an inhibitory effect by the addition of nitrogen and water does not necessarily prove that a toxic substance is <em>not</em> operative. It could be that the toxic substance produced by the grass for example reduces the root development of the apple trees and accordingly limits their ability to take up nitrogen and water. With the availability of abundant nitrogen and water the limiting effect of a reduced root system is minimal and the apparent toxic effect disappears. In other words the mechanism of competition for nitrogen and water could be through the action of the toxin.</p>
+
+<p>The relationship between apple trees and surface crop illustrates clearly the variety of suggestions that can be offered as an explanation of an observed result.
+The experiments have to be designed with considerable care, and the above example does emphasize the attendant difficulties in this field of research. More recent work has revealed numerous examples of inhibition of one species by another; these have been usefully reviewed by Rice (1974; 1979). Allelopathy is defined as any biochemical interaction between two plants, or a plant and micro-organisms which can be either beneficial or detrimental to their growth. Allelopathy is thus completely separate from competition which involves the <em>removal</em> or reduction of some factor from the environment that is utilized by another competing individual. However, the distinction between these two types of interactions, at a mechanistic level, is often difficult to achieve and Muller (1969) has suggested that the term 'interference', that includes both allelopathy and competition, should be reserved for the general case where there is an undefined but clear-cut influence' of one plant on another. </p>
+
+
+<p>Over the last 15 years there has been a considerable level of interest in allelopathy providing numerous examples of both interspecific and intraspecific interactions and several distinct concepts are now considered to be fundamentally important. <br>
+
+<strong>1.</strong> The interactive effects can be directly evident either as a suppression of germination, or as a reduction of growth and performance of mature individuals.<br>
+
+<strong>2.</strong> Where the interaction is evident in mature plants it can be mediated directly by one plant on another or it can operate indirectly as a secondary effect. Thus the inhibition of, for example, an organism in the rhizosphere can then reduce the availability of some soil factor resulting in a subsequent restraint to the growth of a third species.<br>
+
+<strong>3.</strong> The source of the active inhibitory substance can be from roots as an exudate, from leaves or buds as a leachate, or as breakdown products from raw humus. In some instances the allelopathic substance can be transferred in vapour form from the source to the site of interaction. A wide range of organic compounds are involved and these have been reviewed in detail by Rice (1974) and Horsley (1977).<br>
+
+<strong>4.</strong> Suggested mechanisms of action were widely variable ranging from effects on cell elongation, membrane permeability, rates of mineral uptake to indirect and direct effects on plant photosynthesis.<br>
+
+Friedman et al. (1977) provide a classical example of sagebrush allelopathy in the Negev desert, Israel, comparable with similar examples documented in California by Muller and co-workers (see below). Experimental manipulation of established individuals or particularly Artemisia herba-alba by either severe pruning or complete removal show a significant increase in the numbers as well as the dry matter production of associated annual plants growing in the experimental plots (<a class="table-link" href="#table-5-2">Table 5.2</a>).
+
+<figure class="figure-break" id="table-5-2">
+    <figcaption><strong>Table 5.2</strong> The numbers of dry matter yields of annual plants per 0.25 m² in variously treated plots: March 1975 (mean of five plots ± standard error). (Data from Friedmann et al., 1977, courtesy J. Ecol.)</figcaption>
+    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
+        <thead>
+            <tr style="border-bottom: 1px solid #333;">
+                <th rowspan="2" style="padding: 6px 10px;">Treatment</th>
+                <th colspan="2" style="text-align:center; border-top: 2px solid #333;">North-facing Slope</th>
+                <th colspan="2" style="text-align:center; border-top: 2px solid #333;">South-facing Slope</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #333;">
+                <th style="padding: 4px 6px; text-align:center;">Number of annual plants</th>
+                <th style="padding: 4px 6px; text-align:center;">Total dry matter (g)</th>
+                <th style="padding: 4px 6px; text-align:center;">Number of annual plants</th>
+                <th style="padding: 4px 6px; text-align:center;">Total dry matter (g)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 5px 10px;">(i) All perennials removed</td>
+                <td style="text-align:center;">7.5 ± 3.0 **</td>
+                <td style="text-align:center;">6.5 ± 2.2 **</td>
+                <td style="text-align:center;">19.1 ± 5.6 *</td>
+                <td style="text-align:center;">12.2 ± 2.4</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">(ii) All perennials pruned</td>
+                <td style="text-align:center;">3.2 ± 1.0 *</td>
+                <td style="text-align:center;">1.1 ± 3.2</td>
+                <td style="text-align:center;">17.7 ± 6.0 *</td>
+                <td style="text-align:center;">9.3 ± 2.4</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">(iii) Soil between perennials hoed</td>
+                <td style="text-align:center;">2.7 ± 0.8</td>
+                <td style="text-align:center;">1.8 ± 0.5 *</td>
+                <td style="text-align:center;">11.0 ± 3.6</td>
+                <td style="text-align:center;">5.9 ± 2.6</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">(iv) All perennials removed and soil between them hoed</td>
+                <td style="text-align:center;">8.7 ± 3.2 **</td>
+                <td style="text-align:center;">5.9 ± 2.8 **</td>
+                <td style="text-align:center;">12.5 ± 5.8</td>
+                <td style="text-align:center;">8.3 ± 2.6</td>
+            </tr>
+            <tr style="border-bottom: 2px solid #333;">
+                <td style="padding: 5px 10px;">(v) Control</td>
+                <td style="text-align:center;">1.2 ± 0.4</td>
+                <td style="text-align:center;">0.6 ± 0.2</td>
+                <td style="text-align:center;">11.9 ± 2.6</td>
+                <td style="text-align:center;">10.8 ± 4.4</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="font-size: 13px; margin-top: 6px;">Significance level of difference from control: * P &lt; 0.05; ** P &lt; 0.01.</div>
+</figure>
+
+<p>Similarly tomato seeds as a test species are markedly inhibited by aqueous leachates obtained directly from twigs of <em>Artemisia</em> as well as by volatiles from shoots placed separately in a small beaker inside the experimental vessel (<a class="table-link" href="#fig-5-5">Fig. 5.5</a>). Similarly Chou and Muller (1972) working with <em>Arctostaphylos glandulosa</em> var. <em>zacaensis</em>, one of the dominant shrub species of chaparral vegetation in California, showed that aqueous extracts from leaves strongly inhibited the subsequent elongation of the radicle following germination in a range of herbaceous plants normally associated with chaparral vegetation, particularly after fires (<a class="table-link" href="#fig-5-6">Fig. 5.6</a>). Fire is a regular feature of chaparral vegetation and after the destruction of the shrub layer and presumably the source of the allelopathic substances, there is an immediate flush of germination of herbaceous species from the seed pool in the soil. This growth of herbs is gradually suppressed as the shrubs re-sprout from underground perennating organs not killed by the fire: again re-establishing the source of allelopathic leachate. However more recently Kaminsky (1981) has established that for some species at least the inhibition of seed germination is largely associated with the soil and not necessarily the shrub layer itself and has proposed soil micro-organisms as the source of the active toxin. The evidence is derived from a number of experiments designed to interrupt or promote the activity of soil fungi or bacteria, and shows that indeed the soil toxicity appears to be the result of soil micro-organisms. These organisms produce substances that are in sufficient quantities in the soil to account for significant reductions in seed germination and seedling growth. The role of fire in fact is to suppress soil microbial activity bringing to an end, temporarily, the inhibition of seed germination. </p>
+
+
+ 
+  <figure class="figure-break" id="fig-5-5">
+    <img src="../images/Fig.5.5.jpg" alt="Fig.5.5">
+    <figcaption>
+      <strong>Fig. 5.5</strong> Germination with time of tomato seeds in the presence of increasing amounts of Artemisia herba-alba shoots: (<b>a</b>) immersion method; (<b>b</b>) volatiles method. (From Friedman et al., 1977; courtesy of the J. Ecol.) </figcaption>
+
+  </figure>
+  <figure class="figure-break" id="fig-5-6">
+    <img src="../images/Fig.5.6.jpg" alt="Fig.5.6">
+    <figcaption>
+      <strong>Fig. 5.6</strong> The toxic effect of 5% aqueous extract of freshly fallen leaves of Arctostaphylos upon the growth of various species in sand and sponge biassays. Values are expressed as the percent of distilled water controls. Results of tests are significantly different from the control at 0.1% of confidence, using the  \( \ t \)-test. (From Chou and Muller, 1972; courtesy of American Midland Naturalist.)
+</figcaption>
+  </figure>
+
+<p> Thus, drying and rewetting soil collected from under mature shrubs, which promotes a burst of microbial activity and presumably an exudation of toxin, also represses seed germination and root elongation of lettuce when it is used as a test organism (<a class="table-link" href="#fig-5-7">Fig. 5.7</a>). Furthermore 72 hours of incubation following rewetting is necessary for the toxic effects to develop, presumably in response to the build-up of the microbial population (<a class="table-link" href="#fig-5-8">Fig. 5.8</a>). Treatment with chloroform vapour which strongly inhibits microbial metabolism, immediately after the potential promotion of activity by drying and rewetting the soil, largely removed the usual level of inhibition of seed germination ​​induced by soil filtrates (<a class="table-link" href="#fig-5-9">Fig. 5.9</a>). Equally an additional incubation period after removal of the chloroform vapour, restored microbial metabolic activity and the subsequent normal levels of germination inhibition. </p>
+  <figure class="figure-break" id="fig-5-7">
+    <img src="../images/Fig.5.7.jpg" alt="Fig.5.7">
+    <figcaption>
+      <strong>Fig. 5.7</strong> Effects of soil drying and rewetting on the germination and growth of lettuce. (From Kaminsky, 1981; courtesy of Ecological Monographs.)
+</figcaption>
+  </figure>
+
+  <figure class="figure-break" id="fig-5-8">
+    <img src="../images/Fig.5.8.jpg" alt="Fig.5.8">
+    <figcaption>
+      <strong>Fig. 5.8</strong> Effect of time following rewetting of dried soil on the production of germination inhibition. (From Kaminsky, 1981; courtesy of Ecological Monographs.)
+</figcaption>
+  </figure>
+
+<p>Although <em>all</em> cases of allelopathy in chaparral vegetation need not invoke soil microbial toxicity, these data are particularly important in that they do demonstrate both active levels of toxicity in natural soils as well as the major potential provided by soil micro-organisms for the control of herbaceous growth and performance. The role of the allelopathy in natural conditions has often been questioned when the experimental evidence for the presence of toxic substances was developed from aqueous or sand cultures. Accordingly the level of inhibition reported by Kaminsky (1981) does substantiate the realistic role of allelopathy in the replacement of one species by another under natural field conditions.</p>
+
+   <div class="media-block">
+  <figure class="figure-break" id="fig-5-9">
+    <img src="../images/Fig.5.9.jpg" alt="Fig.5.9">
+    <figcaption>
+      <strong>Fig. 5.9</strong> Schematic layout of the procedures prior to, and after chloroform fumigation of experimental soil samples with the subsequent results of seed germination tests using soil leachates from the different combinations of treatments. (From Kaminsky, 1981; courtesy of Ecological Monographs.)
+
+</figcaption>
+  </figure>
+
+<figure class="figure-break" id="table-5-3">
+    <figcaption><strong>Table 5.3</strong> Effects of different parts of <em>Populus balsamifera</em> on nitrogenase activity (\[
+\text{mol C}_{2}\text{H}_{4}\ \text{h}^{-1}\ \text{(root dry weight)}^{-1} \times 10^{-11}
+\] ) (±SE). (Data from Jobidon and Thibault, 1982; courtesy Amer. J. Bot.)</figcaption>
+    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
+        <thead>
+            <tr style="border-bottom: 1px solid #333;">
+                <th style="padding: 6px 10px;">Treatments (%, w/v)</th>
+                <th style="padding: 6px 10px; text-align:center;">\[
+\text{mol C}_{2}\text{H}_{4}\ \text{h}^{-1}\ \text{(root dry weight)}^{-1} \times 10^{-11}
+\]</th>
+                <th style="padding: 6px 10px; text-align:center;">% of inhibition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 5px 10px;"><strong>Bud extracts</strong><br>2</td>
+                <td style="text-align:center;">4.36 ± 0.59a</td>
+                <td style="text-align:center;">61.72</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">1</td>
+                <td style="text-align:center;">4.12 ± 0.49a</td>
+                <td style="text-align:center;">63.88</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">0.5</td>
+                <td style="text-align:center;">5.26 ± 0.26ab</td>
+                <td style="text-align:center;">53.89</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">0.1</td>
+                <td style="text-align:center;">6.54 ± 0.63b</td>
+                <td style="text-align:center;">42.67</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">Control</td>
+                <td style="text-align:center;">11.41 ± 0.99c</td>
+                <td style="text-align:center;">0.00</td>
+            </tr>
+
+            <tr>
+                <td style="padding: 5px 10px;"><strong>Leaf litter extracts</strong><br>2</td>
+                <td style="text-align:center;">4.25 ± 0.96a</td>
+                <td style="text-align:center;">62.74</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">1</td>
+                <td style="text-align:center;">6.19 ± 0.78a</td>
+                <td style="text-align:center;">45.74</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">0.5</td>
+                <td style="text-align:center;">4.14 ± 0.54a</td>
+                <td style="text-align:center;">63.71</td>
+            </tr>
+            <tr>
+                <td style="padding: 5px 10px;">0.1</td>
+                <td style="text-align:center;">5.20 ± 0.55a</td>
+                <td style="text-align:center;">54.42</td>
+            </tr>
+            <tr style="border-bottom: 2px solid #333;">
+                <td style="padding: 5px 10px;">Control</td>
+                <td style="text-align:center;">11.41 ± 0.99b</td>
+                <td style="text-align:center;">0.00</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="font-size: 13px; margin-top: 6px;">
+        a = Within each treatment, means followed by the same letter are not different at 0.05 level, Duncan's new multiple range test.
+    </div>
+</figure>
+
+
+<p>There has been considerable interest in the potential importance of allelopathy as a major factor in old-field succession (Rice, 1974, 1979; Sarma, 1974; Grant and Clebsch, 1975; Jackson and Willemsen, 1976; Anaya and Del Amo, 1978). Evidence suggests that direct inhibition may be involved in some instances, but Rice (1974) and Kapustka and Rice (1976) have both emphasized that the inhibition of soil biological nitrogen-fixation by the species dominating the first stages of succession is of primary importance. Similarly Jobidon and Thibault (1982) have shown that aqueous extracts of leaves, buds, and leaf litter of <em>Populus balsamifera</em> actively inhibits growth of <em>Alnus crispa</em> seedlings as well as the rate of nitrogen-fixation in the <em>Alnus</em> root nodules (<a class="table-link" href="#Table-5-3”>Table 5.3</a>). Nitrification has also been shown to be sensitive to allelopathic influences, particularly in forest ecosystems (Lodhi, 1979; ​​Lodhi and Killingbeck, 1980), and Thibault et al.1982)for example show nitrification is almost completely inhibited by aqueous extracts of Abies balsame needles. The data were expressed either as residual ammonium in the experimental soil column after treatment with ammonium sulphate or as accumulation of nitrate (<a class="table-link" href="#fig-5-10">Fig. 5.10</a>), and particularly emphasize the difficulties of exactly documenting reaction as the causal mechanism in plant succession (see also discussion in <a class="table-link" href="Chapters/chapter3.html">Chapter 3</a>). It also remains to be seen whether allelopathy also plays an important role in population demographic changes. </p>
+
+   <div class="media-block">
+  <figure class="figure-break" id="fig-5-10">
+    <img src="../images/Fig.5.10.jpg" alt="Fig.5.10">
+    <figcaption>
+      <strong>Fig. 5.10</strong> Effect of aqueous extracts (2%, w/v) of A. balsame needles (⚫ – ⚫) and P. balsamifera dormant buds  (⬛ – ⬛) on rates of nitrification in forest soils, controls (▲ – ▲) Statistical t values for treatments and controls indicate significant difference at P < 0.05. (From Thibault et al., 1982; courtesy of American Journal of Botany.)
+</figcaption>
+  </figure>
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
         <a class="back-to-top" href="#top">Back to top</a>
     </div>
 </main>
@@ -25,6 +479,7 @@
 <footer>
     <p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p>
 </footer>
+
 
 </body>
 </html>
