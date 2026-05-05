@@ -1,682 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fig. 3.8 – Lake Michigan Dune Successions</title>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; background: #fff; }
-figure.figure-break { background: #f4f7f4; border-radius: 8px; padding: 18px; margin: 16px 0; }
-.controls { display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin-bottom:10px; }
-.controls strong { color:#2f5d3a; font-size:12px; }
-.controls button { padding:3px 11px; font-size:12px; border:1px solid #b0c4b0; border-radius:4px; background:#fff; cursor:pointer; }
-.controls button:hover { background:#e8f3e8; }
-.controls button.on { background:#2f5d3a; color:#fff; border-color:#2f5d3a; }
-.A { transition:opacity .18s,stroke .18s; }
-.A.dim { opacity:.07; }
-.A.hi { stroke:#b84800!important; stroke-width:2.4px!important; opacity:1!important; }
-figcaption { margin-top:10px; font-size:13px; font-style:italic; color:#555; line-height:1.5; }
-figcaption strong { font-style:normal; }
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4 - Quantitative and Dynamic Plant Ecology</title>
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        a.table-link {
+            color: #2f5d3a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.table-link:hover {
+            color: #3d7349;
+            text-decoration: none;
+        }
+
+        details.section > summary {
+            font-size: 1.17em;
+            font-weight: bold;
+            color: #2f5d3a;
+            cursor: pointer;
+            margin: 1em 0 0.5em 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        details.section > summary::-webkit-details-marker {
+            display: none;
+        }
+        details.section > summary::after {
+            content: '▼';
+            font-size: 0.75em;
+            color: #2f5d3a;
+            transition: transform 0.2s;
+        }
+        details.section[open] > summary::after {
+            transform: rotate(180deg);
+        }
+        details.section > summary:hover {
+            color: #3d7349;
+        }
+
+        .abc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .abc-list li {
+            margin-bottom: 0.6em;
+        }
+
+        /* Data table for aligned values */
+        .data-table {
+            margin: 15px 0;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .data-table td {
+            padding: 4px 10px;
+            text-align: center;
+        }
+
+.data-table td.label {
+    text-align: left;
+    font-weight: bold;
+    padding-right: 15px;
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #acd8af;
+}
+
+svg {
+width:100%;
+max-width:1000px;
+display:block;
+margin:auto;
+}
+
+.box {
+fill:#fff;
+stroke:#333;
+stroke-width:0.8;
+}
+
+.label {
+font-size:13px;
+text-anchor:middle;
+}
+
+.arr {
+stroke:#333;
+stroke-width:1;
+fill:none;
+marker-end:url(#arrow);
+}
 </style>
+
+
+    </style>
+
 </head>
+
 <body>
-<figure class="figure-break" id="fig-3-8">
-<div class="controls">
-  <strong>Highlight pathway:</strong>
-  <button onclick="hl('damp')"    id="b-damp">Damp depression</button>
-  <button onclick="hl('upper')"   id="b-upper">Upper beach</button>
-  <button onclick="hl('erode')"   id="b-erode">Eroding surfaces</button>
-  <button onclick="hl('deposit')" id="b-deposit">Depositing crests</button>
-  <button onclick="hl('lee')"     id="b-lee">Lee slopes</button>
-  <button onclick="hl(null)"      id="b-all" class="on">Show all</button>
-</div>
 
-<!--
-  viewBox="0 0 1380 660"
-
-  PRECISE NODE POSITIONS:
-
-  R1 (y=44 h=42 bot=86):
-    Damp depression:  x=126 w=130 cx=191  right=256
-    Upper beach:      x=298 w=70  cx=333  right=368
-    Eroding surfaces: x=458 w=128 cx=522  right=586
-    Depositing crests:x=652 w=136 cx=720  right=788
-    Steep pockets:    x=920 w=196 cx=1018 right=1116
-
-  R2 (cy=165 ry=26):
-    Foredune Init:    cx=333 rx=84  left=249 right=417
-    Blowout Init:     cx=910 rx=90  left=820 right=1000
-
-  R3 (singles y=242 h=40 bot=282; marram group y=228 bot=310):
-    Rush meadow:      x=126 w=104 cx=178 right=230
-    Cottonwood:       x=280 w=92  cx=326 right=372
-    Marram group:     boxes x=424 w=156 right=580
-      L-bracket tip:  x=406 (18px out from box left 424)
-      R-bracket tip:  x=598 (18px out from box right 580)
-    Grasses label:    x=608 y=270
-    Shrubs:           x=682 w=80  cx=722 right=762
-    Basswood:         x=990 w=84  cx=1032 right=1074 bot=282
-
-  R4 (pines group y=358 bot=436; singles y=362 h=40 bot=402):
-    Pines group:      boxes x=424 w=156 right=580
-      L-bracket tip:  x=406 (covers Jack+White: y=358-402)
-      R-bracket tip:  x=598 (covers all 3: y=358-440)
-    Pines label:      x=608 y=402
-    Arbor vitae:      x=786 w=136 cx=854 right=922
-    Balsam fir:       x=922 w=136 cx=990 right=1058
-    (Arbor|Balsam border at x=922, bot=402)
-
-  R5 (y=484 h=84 bot=568):
-    Tall grass:       x=126 w=92  cx=172  right=218
-    Red maple swamp:  x=228 w=90  cx=273  right=318
-    Black oak:        x=328 w=118 cx=387  right=446
-    [60px gap]
-    Oaks R/W:         x=506 w=96  cx=554  right=602
-    [20px gap]
-    Maples:           x=622 w=86  cx=665  right=708
-    Beech:            x=708 w=54  cx=735  right=762  (shares border)
-    Hemlock:          x=762 w=74  cx=799  right=836  (shares border)
-    [24px gap]
-    Birches:          x=860 w=110 cx=915  right=970
-
-  BASSWOOD ROUTE:
-    Exits BOTTOM of Basswood node at (1032, 282)
-    Curves DOWN and RIGHT initially, then wide sweep LEFT going UNDER Shrubs node (y>282)
-    Passes below Shrubs (bot=282) and below Arbor/Balsam area
-    Arrives at trunk point (590, 468) from the right
-    Then branches to climax nodes
-
-  Trunk point: (590, 468)
-  Pines R-bracket tip (598,440) → straight down to trunk (590,468) ← short join
-
-  MARRAM/SAND REED ARROWS:
-    Must go OUTSIDE R-bracket (tip at x=598)
-    Route: from Marram right edge (580, midY), curve out to x=624, back to LB right (598,290)
-    Same for Sand reed → LB
-
-  LITTLE BLUESTEM → PINES R-BRACKET:
-    From LB right side (580, 296), curve RIGHT to x=630, then down to bracket tip (598,395)
-    This stays clearly OUTSIDE the bracket
-
-  JACK+WHITE L-BRACKET → BLACK OAK:
-    From bracket tip (406, 380), curves LEFT-DOWN to Black oak top (387,484)
--->
-
-<svg id="svg" viewBox="0 0 1380 660" width="100%"
-     style="display:block;background:#fff;border-radius:6px;border:1px solid #cde0cd;">
-<title>Fig. 3.8 Lake Michigan Dune Successions (Olson 1958)</title>
-<defs>
-  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-    <path d="M1,2 L9,5 L1,8" fill="none" stroke="#222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-  <marker id="ahrev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-    <path d="M9,2 L1,5 L9,8" fill="none" stroke="#222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-  <marker id="ahd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
-    <path d="M1,2 L9,5 L1,8" fill="none" stroke="#222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-  <marker id="ahdrev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="9" markerHeight="9" orient="auto">
-    <path d="M9,2 L1,5 L9,8" fill="none" stroke="#222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-  <marker id="aho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-    <path d="M1,2 L9,5 L1,8" fill="none" stroke="#b84800" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-  <marker id="ahorev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-    <path d="M9,2 L1,5 L9,8" fill="none" stroke="#b84800" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-  <marker id="ahod" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
-    <path d="M1,2 L9,5 L1,8" fill="none" stroke="#b84800" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-  <marker id="ahti" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
-    <path d="M1,2 L9,5 L1,8" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-</defs>
-
-<!-- ROW LABELS centred in left column (x=0–118) -->
-<text text-anchor="middle" x="60" y="60"  font-size="13" fill="#444">Initial</text>
-<text text-anchor="middle" x="60" y="76"  font-size="13" fill="#444">conditions</text>
-<text text-anchor="middle" x="60" y="154" font-size="13" fill="#444">Physiographic</text>
-<text text-anchor="middle" x="60" y="170" font-size="13" fill="#444">processes</text>
-<text text-anchor="middle" x="60" y="254" font-size="13" fill="#444">Pioneer</text>
-<text text-anchor="middle" x="60" y="270" font-size="13" fill="#444">vegetation</text>
-<text text-anchor="middle" x="60" y="370" font-size="13" fill="#444">Conifers</text>
-<text text-anchor="middle" x="60" y="386" font-size="13" fill="#444">(mostly</text>
-<text text-anchor="middle" x="60" y="402" font-size="13" fill="#444">temporary)</text>
-<text text-anchor="middle" x="60" y="502" font-size="13" fill="#444">'Climax'</text>
-<text text-anchor="middle" x="60" y="518" font-size="13" fill="#444">dominants</text>
-<line x1="118" y1="36" x2="118" y2="596" stroke="#bbb" stroke-width="1"/>
-
-<!-- ================================================================
-     ALL ARROWS FIRST
-================================================================ -->
-
-<!-- ══ R1: INITIAL CONDITIONS ══ -->
-
-<!-- Upper beach → Damp depression (solid, leftward; UB left=298, Damp right=256) -->
-<line class="A" data-p="upper damp"
-  x1="298" y1="65" x2="258" y2="65"
-  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Eroding surfaces → Damp depression (dashed arc over top) -->
-<path class="A" data-p="erode damp"
-  d="M 490,44 C 400,2 256,2 254,62"
-  fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="8 4" marker-end="url(#ahd)"/>
-
-<!-- Blowout → Depositing crests (dashed, upward to Depositing right side) -->
-<path class="A" data-p="deposit"
-  d="M 862,142 C 844,114 816,96 786,86"
-  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#ahd)"/>
-
-<!-- Blowout → Eroding surfaces (dashed, left-up to Eroding right=586) -->
-<path class="A" data-p="deposit erode"
-  d="M 822,144 C 768,122 650,100 588,86"
-  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#ahd)"/>
-
-<!-- Blowout → Steep pockets (dashed, right-up to Steep left=920) -->
-<path class="A" data-p="deposit lee"
-  d="M 988,150 C 1006,126 1016,106 1018,86"
-  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#ahd)"/>
-
-<!-- Steep pockets: ONE trunk from bottom (1018,86), splits to Shrubs + Basswood -->
-<!-- Trunk down from Steep bottom-centre to branch point -->
-<path class="A" data-p="lee"
-  d="M 1018,86 L 1018,178"
-  fill="none" stroke="#222" stroke-width="1.4"/>
-<!-- Branch L → Shrubs top (722,242) -->
-<path class="A" data-p="lee"
-  d="M 1018,178 C 970,204 848,228 764,242"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-<!-- Branch R → Basswood top (1032,242) -->
-<path class="A" data-p="lee"
-  d="M 1018,178 C 1022,206 1028,226 1032,242"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- ══ R2: PHYSIOGRAPHIC ══ -->
-
-<!-- Damp depression: ONE trunk from bottom (191,86), splits to Rush + Cottonwood -->
-<path class="A" data-p="damp"
-  d="M 191,86 L 191,158"
-  fill="none" stroke="#222" stroke-width="1.4"/>
-<!-- Branch L → Rush meadow top (178,242) -->
-<path class="A" data-p="damp"
-  d="M 191,158 C 188,186 182,214 178,242"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-<!-- Branch R → Cottonwood top (326,242) -->
-<path class="A" data-p="damp"
-  d="M 191,158 C 234,178 298,210 316,242"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Upper beach → Marram (solid; exits UB RIGHT side x=368, arcs right of Foredune right=417) -->
-<path class="A" data-p="upper"
-  d="M 368,70 C 440,86 448,172 440,228"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Branch from Upper-beach→Marram path (~436,160) → connects onto Eroding→Sand reed path (~412,190) -->
-<path class="A" data-p="upper erode"
-  d="M 436,158 C 428,170 418,180 412,190"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Eroding surfaces → Sand reed (exits Eroding LEFT x=458, straight left-down, then C-hooks right at bottom) -->
-<path class="A" data-p="erode"
-  d="M 458,68 C 430,100 412,170 412,220 C 412,244 420,256 424,256"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Depositing crests → Marram (exits Depositing left x=652, curves left-down to Marram top) -->
-<path class="A" data-p="deposit"
-  d="M 662,86 C 626,134 596,180 582,228"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Cottonwood → Blowout (dashed, exits Cottonwood right x=372, arcs up-right to Blowout left=820) -->
-<path class="A" data-p="upper deposit"
-  d="M 372,258 C 468,214 672,184 822,170"
-  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#ahd)"/>
-
-<!-- Grasses R-bracket tip (598,267) → Blowout (dashed; arrowhead AT Blowout end = bottom-left of ellipse) -->
-<path class="A" data-p="deposit"
-  d="M 600,264 C 666,238 752,200 822,176"
-  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="7 4" marker-end="url(#ahd)"/>
-
-<!-- ══ R3: PIONEER VEGETATION ══ -->
-
-<!-- Rush meadow: ONE trunk from bottom (178,282), splits to Tall grass + Red maple -->
-<path class="A" data-p="damp"
-  d="M 178,282 C 168,336 160,396 160,424"
-  fill="none" stroke="#222" stroke-width="1.4"/>
-<!-- Branch L → Tall grass top (172,484) -->
-<path class="A" data-p="damp"
-  d="M 160,424 C 160,452 164,468 168,484"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-<!-- Branch R → Red maple top (273,484) -->
-<path class="A" data-p="damp"
-  d="M 160,424 C 196,428 248,456 260,484"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Cottonwood ↔ Grasses L-bracket tip: double-headed (Cotton right=372, L-tip=406) -->
-<line class="A" data-p="upper" data-dh="1"
-  x1="372" y1="265" x2="406" y2="265"
-  stroke="#222" stroke-width="1.4"
-  marker-start="url(#ahrev)" marker-end="url(#ah)"/>
-
-<!-- Cottonwood → Jack top (424,358): exits Cotton bottom-right, arrives Jack top-left -->
-<path class="A" data-p="upper"
-  d="M 346,282 C 366,322 406,344 422,358"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Marram → Little bluestem (curves slightly inward/rightward within the bracket space) -->
-<path class="A" data-p="upper erode deposit"
-  d="M 580,239 C 592,239 592,272 580,290"
-  fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#ah)"/>
-
-<!-- Sand reed → Little bluestem (curves slightly inward within the bracket space) -->
-<path class="A" data-p="upper erode deposit"
-  d="M 580,263 C 590,263 590,276 580,292"
-  fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#ah)"/>
-
-<!-- Grasses R-bracket tip (598,267) → Shrubs left (682,260): curved arc, going above bracket -->
-<path class="A" data-p="deposit upper"
-  d="M 598,258 C 630,244 672,248 680,252"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Shrubs → Basswood (exits Shrubs right=762, arrives Basswood left=990) -->
-<line class="A" data-p="lee"
-  x1="762" y1="262" x2="990" y2="262"
-  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- ══ R4: CONIFERS ══ -->
-
-<!-- Little bluestem → Pines R-bracket tip (598,395):
-     Exits LB right (580,296), curves FAR RIGHT to x=636, then down to tip (598,395).
-     Completely outside the R-bracket (tip at x=598). -->
-<path class="A" data-p="upper erode deposit"
-  d="M 580,296 C 636,296 640,350 600,395"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- LB branch: starts ON LB→Pines path at (626,329), ends ON Shrubs→Arbor at (800,311) -->
-<path class="A" data-p="upper erode deposit lee"
-  d="M 626,329 C 680,326 744,318 800,311"
-  fill="none" stroke="#222" stroke-width="1.2"/>
-
-<!-- Jack+White L-bracket tip (406,380) → Black oak top-centre (387,484) -->
-<path class="A" data-p="upper"
-  d="M 406,380 C 396,416 390,452 388,484"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Shrubs → Arbor|Balsam border (exits Shrubs bottom-right ~748,282, arrives at border x=922,y=362) -->
-<path class="A" data-p="lee deposit"
-  d="M 752,282 C 806,318 876,348 920,362"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- BASSWOOD: exits bottom (1032,282), sweeps under Shrubs (y≥300), then arcs left
-     Path kept right of Pines label (x=607) until y>430, then curves left to trunk -->
-<path class="A" data-p="lee"
-  d="M 1032,282 C 1032,316 944,326 830,326 C 720,326 670,340 650,380 C 634,412 628,450 620,468"
-  fill="none" stroke="#222" stroke-width="1.6"/>
-
-<!-- Pines R-bracket tip (598,440) → joins Basswood trunk at (620,468) -->
-<path class="A" data-p="upper erode deposit"
-  d="M 598,440 C 602,452 610,462 620,468"
-  fill="none" stroke="#222" stroke-width="1.4"/>
-
-<!-- Trunk at (594,468): fans to climax nodes -->
-<!-- → Black oak top (387,484) -->
-<path class="A" data-p="lee upper"
-  d="M 620,470 C 582,474 502,480 390,484"
-  fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
-<!-- → Oaks R/W top (554,484) -->
-<path class="A" data-p="lee upper deposit"
-  d="M 620,471 C 610,476 590,480 560,484"
-  fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
-<!-- → Maples top (665,484) -->
-<path class="A" data-p="lee deposit"
-  d="M 620,471 C 626,476 640,480 660,484"
-  fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
-<!-- → Beech top (735,484) -->
-<path class="A" data-p="lee deposit"
-  d="M 620,470 C 640,472 698,478 712,484"
-  fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
-
-<!-- ══ ARBOR VITAE + BALSAM FIR → stem from border bottom (922,402) → branches ══ -->
-<path class="A" data-p="lee deposit"
-  d="M 922,402 L 922,452"
-  fill="none" stroke="#222" stroke-width="1.4"/>
-<!-- → Maples (665,484) -->
-<path class="A" data-p="lee deposit"
-  d="M 922,452 C 876,464 794,474 668,484"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-<!-- → Beech (735,484) -->
-<path class="A" data-p="lee deposit"
-  d="M 922,452 C 896,464 836,474 738,484"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-<!-- → Hemlock (799,484) -->
-<path class="A" data-p="lee deposit"
-  d="M 922,452 C 908,464 876,474 802,484"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-<!-- → Birches (915,484) -->
-<path class="A" data-p="lee deposit"
-  d="M 922,452 C 920,464 918,474 916,484"
-  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- ══ R5: CLIMAX CHAIN ARROWS ══ -->
-
-<!-- Black oak ←?→ Oaks: arrowheads point TO the nodes, ? interrupts in the middle -->
-<!-- Left half: arrowhead at Black oak end (x=446), pointing left INTO Black oak -->
-<line class="A" data-p="upper"
-  x1="472" y1="526" x2="446" y2="526"
-  stroke="#222" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ahd)"/>
-<!-- Right half: arrowhead at Oaks end (x=506), pointing right INTO Oaks -->
-<line class="A" data-p="upper"
-  x1="482" y1="526" x2="506" y2="526"
-  stroke="#222" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ahd)"/>
-
-<!-- Oaks → Maples (Oaks right=602, Maples left=622) -->
-<line class="A" data-p="upper deposit"
-  x1="602" y1="520" x2="620" y2="520"
-  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Maples → Beech (shared border at x=708) -->
-<line class="A" data-p="upper deposit"
-  x1="710" y1="518" x2="706" y2="518"
-  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Beech → Hemlock (shared border at x=762) -->
-<line class="A" data-p="upper deposit"
-  x1="764" y1="518" x2="760" y2="518"
-  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- Birches → Hemlock (leftward; Birches left=860, Hemlock right=836) -->
-<line class="A" data-p="lee deposit"
-  x1="858" y1="526" x2="838" y2="526"
-  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
-
-<!-- ================================================================
-     NODES — drawn after all arrows
-================================================================ -->
-
-<!-- R1 -->
-<g id="n-damp">
-  <rect x="126" y="44" width="130" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="191" y="62" font-size="12.5" fill="#111">Damp</text>
-  <text text-anchor="middle" x="191" y="78" font-size="12.5" fill="#111">depression</text>
-</g>
-<g id="n-upper">
-  <rect x="298" y="44" width="70" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="333" y="62" font-size="12" fill="#111">Upper</text>
-  <text text-anchor="middle" x="333" y="78" font-size="12" fill="#111">beach</text>
-</g>
-<g id="n-erode">
-  <rect x="458" y="44" width="128" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="522" y="62" font-size="12.5" fill="#111">Eroding</text>
-  <text text-anchor="middle" x="522" y="78" font-size="12.5" fill="#111">surfaces</text>
-</g>
-<g id="n-deposit">
-  <rect x="652" y="44" width="136" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="720" y="62" font-size="12.5" fill="#111">Depositing</text>
-  <text text-anchor="middle" x="720" y="78" font-size="12.5" fill="#111">crests</text>
-</g>
-<g id="n-lee">
-  <rect x="920" y="44" width="196" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="1018" y="62" font-size="12.5" fill="#111">Steep pockets</text>
-  <text text-anchor="middle" x="1018" y="78" font-size="12.5" fill="#111">lee slopes</text>
-</g>
-
-<!-- R2 -->
-<g id="n-foredune">
-  <ellipse cx="333" cy="165" rx="84" ry="26" fill="#d8ecd8" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="333" y="161" font-size="12.5" fill="#111">Foredune</text>
-  <text text-anchor="middle" x="333" y="177" font-size="12.5" fill="#111">Initiation</text>
-</g>
-<g id="n-blowout">
-  <ellipse cx="910" cy="165" rx="90" ry="26" fill="#d8ecd8" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="910" y="161" font-size="12.5" fill="#111">Blowout</text>
-  <text text-anchor="middle" x="910" y="177" font-size="12.5" fill="#111">Initiation</text>
-</g>
-
-<!-- R3 -->
-<g id="n-rush">
-  <rect x="126" y="242" width="104" height="40" rx="3" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="178" y="259" font-size="12.5" fill="#111">Rush</text>
-  <text text-anchor="middle" x="178" y="275" font-size="12.5" fill="#111">meadow</text>
-</g>
-<g id="n-cotton">
-  <rect x="280" y="242" width="92" height="40" rx="3" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="326" y="265" font-size="12.5" fill="#111">Cottonwood</text>
-</g>
-
-<!-- MARRAM GROUP
-     Marram:          x=424 y=228 w=156 h=22  right=580 bot=250
-     Sand reed:       x=424 y=256 w=156 h=22  right=580 bot=278
-     Little bluestem: x=424 y=284 w=156 h=22  right=580 bot=306
-     L-bracket [: tip x=406 (18px from left=424), y=228-306
-     R-bracket ]: tip x=598 (18px from right=580), y=228-306
--->
-<g id="n-marram">
-  <rect x="424" y="228" width="156" height="22" rx="2" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="502" y="243" font-size="12" fill="#111">Marram</text>
-  <rect x="424" y="256" width="156" height="22" rx="2" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="502" y="271" font-size="12" fill="#111">Sand reed</text>
-  <rect x="424" y="284" width="156" height="22" rx="2" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="502" y="299" font-size="12" fill="#111">Little bluestem</text>
-</g>
-<!-- Left bracket [ -->
-<path d="M424,228 L406,228 L406,306 L424,306" fill="none" stroke="#4a7a4a" stroke-width="2.2"/>
-<!-- Right bracket ] -->
-<path d="M580,228 L598,228 L598,306 L580,306" fill="none" stroke="#4a7a4a" stroke-width="2.2"/>
-<!-- Grasses label — right of bracket, not on arrow path -->
-<text x="607" y="272" font-size="12" fill="#444" font-style="italic">Grasses</text>
-
-<g id="n-shrubs">
-  <rect x="682" y="242" width="80" height="40" rx="3" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="722" y="265" font-size="12.5" fill="#111">Shrubs</text>
-</g>
-<g id="n-bass">
-  <rect x="990" y="242" width="84" height="40" rx="3" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
-  <text text-anchor="middle" x="1032" y="265" font-size="12.5" fill="#111">Basswood</text>
-</g>
-
-<!-- PINES GROUP
-     Jack:  x=424 y=358 w=156 h=22  right=580 bot=380
-     White: x=424 y=386 w=156 h=22  right=580 bot=408
-     Red:   x=424 y=414 w=156 h=22  right=580 bot=436
-     L-bracket [: tip x=406, y=358-408 (Jack+White only)
-     R-bracket ]: tip x=598, y=358-440 (all three)
-     Pines label: x=607 y=402 (clear of Basswood which goes at y=320)
--->
-<g id="n-pines">
-  <rect x="424" y="358" width="156" height="22" rx="2" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
-  <text text-anchor="middle" x="502" y="373" font-size="12" fill="#111">Jack</text>
-  <rect x="424" y="386" width="156" height="22" rx="2" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
-  <text text-anchor="middle" x="502" y="401" font-size="12" fill="#111">White</text>
-  <rect x="424" y="414" width="156" height="22" rx="2" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
-  <text text-anchor="middle" x="502" y="429" font-size="12" fill="#111">Red</text>
-</g>
-<!-- Left bracket [ covers Jack+White: y=358-408 -->
-<path d="M424,358 L406,358 L406,408 L424,408" fill="none" stroke="#4a6a8a" stroke-width="2.2"/>
-<!-- Right bracket ] covers all three: y=358-440 -->
-<path d="M580,358 L598,358 L598,440 L580,440" fill="none" stroke="#4a6a8a" stroke-width="2.2"/>
-<!-- Pines label at y=402, right of bracket -->
-<text x="607" y="406" font-size="12" fill="#444" font-style="italic">Pines</text>
-
-<!-- Arbor vitae | Balsam fir (touching, border at x=922)
-     Arbor vitae: x=786 w=136 right=922  cx=854
-     Balsam fir:  x=922 w=136 right=1058 cx=990
--->
-<g id="n-arbor">
-  <rect x="786" y="362" width="136" height="40" rx="3" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
-  <text text-anchor="middle" x="854" y="386" font-size="12.5" fill="#111">Arbor vitae</text>
-</g>
-<g id="n-balsam">
-  <rect x="922" y="362" width="136" height="40" rx="3" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
-  <text text-anchor="middle" x="990" y="386" font-size="12.5" fill="#111">Balsam fir</text>
-</g>
-
-<!-- R5 CLIMAX — spread out with explicit gaps
-     Tall grass:  x=126 w=92  right=218  cx=172
-     Red maple:   x=228 w=90  right=318  cx=273
-     Black oak:   x=328 w=118 right=446  cx=387
-     [60px gap → Oaks left=506]
-     Oaks R/W:    x=506 w=96  right=602  cx=554
-     [20px gap → Maples left=622]
-     Maples:      x=622 w=86  right=708  cx=665
-     Beech:       x=708 w=54  right=762  cx=735  (shared border)
-     Hemlock:     x=762 w=74  right=836  cx=799  (shared border)
-     [24px gap → Birches left=860]
-     Birches:     x=860 w=110 right=970  cx=915
--->
-<g id="n-prairie">
-  <rect x="126" y="484" width="92" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
-  <text text-anchor="middle" x="172" y="505" font-size="12" fill="#111">Tall</text>
-  <text text-anchor="middle" x="172" y="521" font-size="12" fill="#111">grass</text>
-  <text text-anchor="middle" x="172" y="537" font-size="12" fill="#111">prairie</text>
-</g>
-
-<g id="n-swamp">
-  <rect x="228" y="484" width="90" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
-  <text text-anchor="middle" x="273" y="505" font-size="12" fill="#111">Red</text>
-  <text text-anchor="middle" x="273" y="521" font-size="12" fill="#111">maple</text>
-  <text text-anchor="middle" x="273" y="537" font-size="12" fill="#111">swamp</text>
-</g>
-
-<!-- Black oak / White oak: not bold, with c→ρ,b,m sub-diagram -->
-<g id="n-oaksbw">
-  <rect x="328" y="484" width="118" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
-  <text text-anchor="middle" x="387" y="502" font-size="12" fill="#111">Black oak</text>
-  <text text-anchor="middle" x="387" y="516" font-size="11.5" fill="#111">White oak</text>
-  <line x1="330" y1="524" x2="444" y2="524" stroke="#ccc" stroke-width="0.8"/>
-  <text text-anchor="middle" x="387" y="536" font-size="11.5" fill="#333">c</text>
-  <line x1="381" y1="539" x2="360" y2="549" stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ahti)"/>
-  <line x1="387" y1="539" x2="387" y2="549" stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ahti)"/>
-  <line x1="393" y1="539" x2="414" y2="549" stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ahti)"/>
-  <text text-anchor="middle" x="356" y="560" font-size="11.5" fill="#333">&#961;</text>
-  <text text-anchor="middle" x="387" y="560" font-size="11.5" fill="#333">b</text>
-  <text text-anchor="middle" x="418" y="560" font-size="11.5" fill="#333">m</text>
-</g>
-
-<!-- ? centred between the two arrow halves, interrupting the path -->
-<text text-anchor="middle" x="476" y="531" font-size="13" fill="#555" font-weight="bold">?</text>
-
-<g id="n-oaksrw">
-  <rect x="506" y="484" width="96" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
-  <text text-anchor="middle" x="554" y="505" font-size="12" fill="#111">Oaks</text>
-  <text text-anchor="middle" x="554" y="521" font-size="11.5" fill="#111">Red</text>
-  <text text-anchor="middle" x="554" y="537" font-size="11.5" fill="#111">White</text>
-  <line x1="508" y1="546" x2="600" y2="546" stroke="#ccc" stroke-width="0.8"/>
-  <text text-anchor="middle" x="554" y="560" font-size="11" fill="#444">b  m</text>
-</g>
-
-<!-- Maples | Beech | Hemlock sharing borders -->
-<g id="n-maples">
-  <rect x="622" y="484" width="86" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
-  <text text-anchor="middle" x="665" y="505" font-size="12" fill="#111">Maples</text>
-  <text text-anchor="middle" x="665" y="521" font-size="11.5" fill="#111">Sugar</text>
-  <text text-anchor="middle" x="665" y="537" font-size="11.5" fill="#111">Red</text>
-  <line x1="624" y1="546" x2="706" y2="546" stroke="#ccc" stroke-width="0.8"/>
-  <text text-anchor="middle" x="665" y="560" font-size="11" fill="#444">m</text>
-</g>
-<!-- Beech: left=708 = right of Maples -->
-<g id="n-beech">
-  <rect x="708" y="484" width="54" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
-  <text text-anchor="middle" x="735" y="526" font-size="12" fill="#111">Beech</text>
-  <line x1="710" y1="546" x2="760" y2="546" stroke="#ccc" stroke-width="0.8"/>
-  <text text-anchor="middle" x="735" y="560" font-size="11" fill="#444">m</text>
-</g>
-<!-- Hemlock: left=762 = right of Beech -->
-<g id="n-hem">
-  <rect x="762" y="484" width="74" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
-  <text text-anchor="middle" x="799" y="526" font-size="12" fill="#111">Hemlock</text>
-  <line x1="764" y1="546" x2="834" y2="546" stroke="#ccc" stroke-width="0.8"/>
-  <text text-anchor="middle" x="799" y="560" font-size="11" fill="#444">m</text>
-</g>
-
-<!-- Birches: left=860 (24px gap from Hemlock right=836) -->
-<g id="n-birch">
-  <rect x="860" y="484" width="110" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
-  <text text-anchor="middle" x="915" y="505" font-size="12" fill="#111">Birches</text>
-  <text text-anchor="middle" x="915" y="521" font-size="11.5" fill="#111">Paper</text>
-  <text text-anchor="middle" x="915" y="537" font-size="11.5" fill="#111">Yellow</text>
-  <line x1="862" y1="546" x2="968" y2="546" stroke="#ccc" stroke-width="0.8"/>
-  <text text-anchor="middle" x="915" y="560" font-size="11" fill="#444">m</text>
-</g>
-
-</svg>
-
-<figcaption>
-  <strong>Fig. 3.8</strong> Schematic alternative dune successions in the Lake Michigan dune systems. (From Olson, 1958; courtesy of <em>Bot. Gaz.</em>)<br>
-  <span style="font-style:normal;font-size:11px;color:#999;">Use the buttons above to highlight individual successional pathways</span>
-</figcaption>
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="../Chapters.html">Chapters</a>
+    <a href="../Data.html">Data</a>
+<a href="../Index-page.html">Index</a>
+</nav>
+
+<main>
+    <div class="chapter" id="chapter4">
+        <h2>Chapter 4: CYCLIC VEGETATIONAL CHANGE</h2>
+        <p>It is commonplace to regard vegetation which is stable and in equilibrium with its environment as a static entity, which having gone through various stages of succession has finally reached an ultimate level of stability and ceases to change any further. This superficial impression is misleading since in addition to the external environmental factors which regulate the over-all composition of the vegetation, there exists a series of intrinsic factors which continues to induce vegetational change. This intrinsic vegetational change is not manifested as a continuation of succession but as a cycle of events at any particular point in a community. These events are replicated many times over the whole of the community, and are apparent as a series of phases present at a number of points at any instant in time. The over-all summation of these phases constitutes the composition of the community. Thus while plant succession is a <em>directional change</em>, cyclic changes represent <em>fluctuations about a mean value.</em></p>
+
+        <div class="chapter-section">
+            <h3>Hummock and hollow cycle</h3>
+            <p>
+Watt (1947<em>a</em>) outlined a number of examples of cyclic fluctuations containing several marked phases which are now regarded as classic examples of cyclic change. The regeneration complex which occurs on actively growing raised bog (the "hummock and hollow cycle' as it is often called) is an outstanding example of a series of dynamic phases which are related to each other in time. The phases form a mosaic of patches. each at a different stage from its neighbours. Oswald (1923) and Godwin and Conway (1939) have shown the relation of the phases to each other by examination of the stratigraphy of the underlying peat. The initial phase is represented by <em>Sphagnum cuspidatum</em> which invades small pools of water. This species is invaded by <em>S. pulchrum</em> which in turn is replaced by <em>S. papillosum</em>. The latter species build up low hummocks which are eventually colonized by <em>Calluna vulgaris, Erica tetralix, Eriophorum vaginatum</em> and <em>Trichophorum caespitosum</em>. At a later stage the lichen species <em>Cladonia arbuscula</em> (<em>C. sylvatica</em>) enters the sequence, each sequence being abundantly preserved as stratified deposits of peat. At this stage the sequence is identical to a micro-succession' and each of the subsequent stages is dependent on the reactions on the environment by its predecessors. However, as the <em>Calluna</em> ages and dies the hummock is eroded and a pool of open water re-established largely by the activity of the adjacent phases building up hummocks. Thus, under these conditions, an area of raised bog is a mosaic of patches each of which represents a phase of a cycle; each patch will progress eventually and repeatedly through the same cycle of events and although a given (small) area will change over a period of time the whole community remains essentially the same.</p>
+
+<figure class="figure-break" id="fig-4-1"> 
+<img src="../images/Fig.4.1.jpg" alt=" Diagrammatic representation of the Festuca ovina"> 
+<figcaption> <strong>Fig. 4.1</strong> Diagrammatic representation of the Festuca ovina erosion cycle indicating "fossil shoot bases in the soil. (From Watt, 1947a; courtesy of J. Ecol.) </figcaption> 
 </figure>
 
-<script>
-(function(){
-  const isDashed = el => (el.getAttribute('stroke-dasharray') || '').trim().length > 0;
-  const hasEnd   = el => !!el.getAttribute('marker-end');
-  const hasStart = el => !!el.getAttribute('marker-start');
+<p>A similar example is drawn by Watt from grassland, where the vegetational variation is related to microtopography. Four phases are present, descriptively termed 'hollow', 'building', 'mature' and ‘degenerate' (Watt, 1940). The hollows are invaded by seedlings of <em>Festuca ovina</em> around which accumulates a variety of wind-borne particles in addition to humus remains of the parent plant. Over a period of time a small hummock is formed, representing the 'building' phase (<a class="table-link" href="#fig-4-2">Fig. 4.1</a>). In the mature phase the hummocks reach a height of about 4cm and are colonized by several lichen species notably <em>Cladonia alcicornis</em> and <em>C. rangiformis</em>. The lichen species slowly assume a more dominant role in the early stages of the 'degenerate" phase and are gradually replaced by crustaceous lichen species. Erosion of the hummock follows completing the full cycle of events back to the 'hollow' phase. Again the over-all structure and composition of the community remains unchanged since each phase is represented by a mosaic of cyclic units related spatially to each other as well as representing a time sequence.</p>
 
-  // Full cascade sets: each key lists ALL tags that should be highlighted
-  // when that initial condition button is pressed (including all indirect downstream routes)
-  const CASCADE = {
-    // Damp depression → Rush meadow → Tall grass / Red maple swamp
-    // Also → Cottonwood → (all upper pathways downstream)
-    damp:    ['damp','upper','upper erode','upper erode deposit','upper erode deposit lee','upper deposit','upper damp'],
 
-    // Upper beach → Foredune → Marram → Pines → climax
-    // Cottonwood is also fed by damp but upper beach feeds it via Foredune
-    upper:   ['upper','upper erode','upper erode deposit','upper erode deposit lee','upper deposit','upper damp'],
+<p>The occurrence of cyclical phases is not restricted to perennial herbaceous species and Watt (1947<em>a</em>) also describes a cyclical development which occurs over a long period in beech woodland on chalk plateau. Following the death of a full grown tree the gap that is left is initially devoid of vegetation and represents the first phase of the cycle. This is invaded initially by <em>Oxalis</em> and subsequently by <em>Rubus</em>, representing the next two phases of the cycle. Concurrently beech and ash seedlings become established forming a reproduction circle' (Watt, 1925) with the ash in the centre surrounded by a circle of young beech originating from seed shed by the surrounding mature beech. Eventually the ash is over-topped by the beech saplings and the gap finally closed. The cycle is finally completed by the ultimate degeneration and death of the beech colonizers initiating the same cycle again. The time scale in this example is very long but the nature of the process is identical.</p>
 
-    // Eroding surfaces → Sand reed → LB → Pines → climax
-    erode:   ['erode','upper erode','upper erode deposit','upper erode deposit lee','erode damp'],
+<p>In general the sequence of events is similar in all the examples given by Watt (1947<em>a</em>) and these he descriptively terms pioneer, building, mature and degenerate. The productivity of each phase appears to follow a generalized curve of increasing productivity in the early phases of a cycle, leading to an optimum in the mature phase and followed by reduced productivity in the degenerate phase (<a class="table-link" href="#fig-4-2">Fig. 4.2</a>). Billings and occurrence of frost hummocks and polygons is extremely characteristic of arctic and sub-arctic zones, where intense frost produces a number of marked topographical features. Billings and Mooney relate the formation of polygons in this area to the degradation of the frost hummocks of peat. When a hummock rises to a certain level so that it protrudes above the general level of the snow in winter, the species on the crest of the hummock are killed and eroded away by the repeated action of wind and wind-borne ice/snow particles. With continued exposure the hummock itself is eroded exposing rocks and silt which are pushed up concurrently from below by further frost action. Eventually the hummock is completely eroded to its base and this stage appears as a stone polygon surrounded with a ‘rim' of peat.</p>
 
-    // Depositing crests → Marram / Blowout → Grasses → Shrubs → Arbor/Balsam → climax
-    deposit: ['deposit','deposit erode','deposit lee','upper erode deposit','upper erode deposit lee','upper deposit','lee deposit'],
+<figure class="figure-break" id="fig-4-2"> 
+<img src="../images/Fig.4.2.jpg" alt=" Diagrammatic representation of the Festuca ovina"> 
+<figcaption> <strong>Fig. 4.2</strong> Generalized productivity curve.
+(Redrawn from Watt, 1947a.)</figcaption> 
+</figure>
 
-    // Lee slopes → Shrubs / Basswood → Arbor/Balsam → climax
-    lee:     ['lee','lee deposit','upper erode deposit lee','deposit lee'],
-  };
+<p>The water table in the whole area fluctuates from year to year; the hollows usually are fairly wet and often whole areas of polygons are completely submerged. During these submerged periods the hummock formation appears to be initiated by Carex aquatilis which invades the rocky intervals of the polygons. The general sequence of events is shown in Fig. <a class="table-link" href="#fig-4-3">Fig. 4.3</a>. Following the establishment of <em>C. aquatilis, Sedum rhodanthum</em> and several bryophyte species become established. Eventually these species are replaced by <em>Geum turbinatum</em> and <em>Polygonum viviparum</em> which form a closed turf with other additional species on the mature hummocks. The erosion commences at this stage of the cycle and subsequent drowning of polygons initiates the next cycle. Thus there is a continuous cycle of change, hummocks alternating with the centre of polygons and the margin of the polygons alternating with subsequent hummocks. The general phasic development of this cycle is strikingly similar to the hummock and hollow cycles discussed by Watt (1947<em>a</em>). The mechanism is partly different and the species involved obviously different, but the same general principle is common to all three cases. The pioneer phase in this instance is dominated by <em>Carex aquatilis</em>, the building phase by <em>Carex</em> and <em>Sedum</em> and the mature phase by <em>Geum</em> and <em>Polygonum</em>.</p>
 
-  // Check if arrow's data-p overlaps with any of the active tags
-  function matches(el, activeTags) {
-    const ps = (el.getAttribute('data-p') || '').split(' ');
-    // Arrow matches if ANY of its tags is in active set, OR if its full data-p string is in active set
-    const dp = el.getAttribute('data-p') || '';
-    return activeTags.some(tag => ps.includes(tag) || dp === tag);
-  }
+</div>
 
-  window.hl = function(p) {
-    const arrows = document.querySelectorAll('#svg .A');
-    document.querySelectorAll('.controls button').forEach(b => b.classList.remove('on'));
+        <div class="chapter-section">
+            <h3>Marginal effects</h3>
+            <p>
+<figure class="figure-break" id="fig-4-3"> 
+<img src="../images/Fig.4.3.jpg" alt=" Diagrammatic representation of the hummock"> 
+<figcaption> <strong>Fig. 4.3</strong>Diagrammatic representation of the hummock, frost scar and polygon cycle. (From Billings and Mooney, 1959; courtesy of Ecology.)
+</figcaption> 
+</figure>
 
-    if (!p) {
-      arrows.forEach(a => {
-        a.classList.remove('dim','hi');
-        const d = isDashed(a);
-        if (hasEnd(a))   a.setAttribute('marker-end',   d ? 'url(#ahd)'    : 'url(#ah)');
-        if (hasStart(a)) a.setAttribute('marker-start', d ? 'url(#ahdrev)' : 'url(#ahrev)');
-      });
-      document.getElementById('b-all').classList.add('on');
-      return;
-    }
+​​Cyclic phases as described above are partly dependent on intrisic properties of the plants themselves and partly dependent on intrinsic properiesof the community, both of which are modified and controlled to a greater or lesser extent by the environment. Thus the ability of <em>Sphagnum papillosum</em> to form hummocks is an intrinsic property of that species, the availability of the other species involved in the cycle is an intrinsic property of the community, and the final partial erosion of the hummock is a result of environmental control. The downgrade phases of the cycle are terminated by erosion of the hummock but it is interesting to speculate as to the actual initiation of the downgrade phase. A possible explanation lies in the relationship between the general vigour of a perennial plant and its age. This important concept was originally outlined by Watt (1947<em>b</em>) in relation to the vigour of bracken invading grassland where the marginal zone was considerably taller and apparently more vigorous than in the 'hinterland'. The difference in height of the fronds in the margin and hinterland is considerable (<a class="table-link" href="#fig-4-4">Fig. 4.4</a>). The immediate possibility which would account for this ‘marginal effect' would be the presence of some factor necessary for the full development of the fronds which is markedly reduced in quantity by the advancing front and is in short supply in the hinterland. However, analysis of the soil (<a class="table-link" href="#table-4-1"> Table. 4.1</a>) shows no consistent trend to support such a hypothesis and furthermore the addition of different combinations of fertilizers containing nitrogen, potash and phosphorus to sample plots in the hinterland had no significant effect.</p>
 
-    const bmap = { damp:'b-damp', upper:'b-upper', erode:'b-erode', deposit:'b-deposit', lee:'b-lee' };
-    if (bmap[p]) document.getElementById(bmap[p]).classList.add('on');
+<figure class="figure-break" id="fig-4-4"> 
+<img src="../images/Fig.4.4.jpg" alt=" Diagrammatic representation of the hummock"> 
+<figcaption> <strong>Fig. 4.4</strong>(<b>a</b>) the average height of fronds across the advancing margin of bracken; (<b>b</b>) plan and (<b>c</b>) elevation of main rhizome. (From Watt, 1940; courtesy of New Phytol.)
+</figcaption> 
+</figure>
 
-    const activeTags = CASCADE[p] || [p];
 
-    arrows.forEach(a => {
-      const d = isDashed(a);
-      if (matches(a, activeTags)) {
-        a.classList.remove('dim'); a.classList.add('hi');
-        if (hasEnd(a))   a.setAttribute('marker-end',   d ? 'url(#ahod)'   : 'url(#aho)');
-        if (hasStart(a)) a.setAttribute('marker-start', d ? 'url(#ahod)'   : 'url(#ahorev)');
-      } else {
-        a.classList.add('dim'); a.classList.remove('hi');
-        if (hasEnd(a))   a.setAttribute('marker-end',   d ? 'url(#ahd)'    : 'url(#ah)');
-        if (hasStart(a)) a.setAttribute('marker-start', d ? 'url(#ahdrev)' : 'url(#ahrev)');
-      }
-    });
-  };
+<figure class="figure-break" id="table-4-1">
+    <figcaption>
+        <strong>Table 4.1</strong> Soil data from surface layers (0–7.6 cm) in different zones of bracken invading grassland. (From Watt, 1940; courtesy of New Phytol.)
+    </figcaption>
 
-  document.getElementById('b-all').classList.add('on');
-})();
-</script>
+    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
+        <thead>
+            <tr style="border-top: 2px solid #333; border-bottom: 1px solid #333;">
+                <th style="padding: 6px 10px;"></th>
+                <th style="padding: 6px 10px; text-align: center;">In grassland</th>
+                <th style="padding: 6px 10px; text-align: center;">In zone of<br>maximum height</th>
+                <th style="padding: 6px 10px; text-align: center;">In dense uniform<br>bracken</th>
+                <th style="padding: 6px 10px; text-align: center;">In hinterland</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td style="padding: 5px 10px;">pH</td>
+                <td style="text-align:center;">4.2</td>
+                <td style="text-align:center;">4.0</td>
+                <td style="text-align:center;">3.8</td>
+                <td style="text-align:center;">4.0</td>
+            </tr>
+
+            <tr>
+                <td style="padding: 5px 10px;">Carbon per cent</td>
+                <td style="text-align:center;">1.785</td>
+                <td style="text-align:center;">1.425</td>
+                <td style="text-align:center;">1.740</td>
+                <td style="text-align:center;">1.610</td>
+            </tr>
+
+            <tr>
+                <td style="padding: 5px 10px;">Carbon / Nitrogen</td>
+                <td style="text-align:center;">19.40</td>
+                <td style="text-align:center;">19.79</td>
+                <td style="text-align:center;">19.12</td>
+                <td style="text-align:center;">19.63</td>
+            </tr>
+
+            <tr>
+                <td style="padding: 5px 10px;">Exchangeable Calcium (marginal effect)</td>
+                <td style="text-align:center;">1.44</td>
+                <td style="text-align:center;">1.28</td>
+                <td style="text-align:center;">1.28</td>
+                <td style="text-align:center;">1.36</td>
+            </tr>
+
+            <tr style="border-bottom: 2px solid #333;">
+                <td style="padding: 5px 10px;">Total exchangeable bases</td>
+                <td style="text-align:center;">2.40</td>
+                <td style="text-align:center;">2.00</td>
+                <td style="text-align:center;">1.61</td>
+                <td style="text-align:center;">1.61</td>
+            </tr>
+        </tbody>
+    </table>
+</figure>
+
+<p>The significant feature is the progressive increase of rhizome age back from the margin to the hinterland where the oldest part of the rhizome decays and lateral shoots become separated as individuals. Thus the margin has a large number of young even-aged rhizomes orientated parallel to each other. These younger parts of the rhizome produce larger and more vigorous shoots resulting in the marked marginal effect. Conversely in the hinterland the rhizomes are initially much older and the shoots smaller. As the main rhizome decays lateral shoots of different ages are separated as individuals, each of which will subsequently follow the same progressive change of vigour as each individual ages. Thus the hinterland consists of very unevenly aged groups of individuals at all stages of the cycle, forming a mosaic of phases. In addition to the height of frond being at its maximum in the mature phase the length of petiole above ground follows the same trend and the length of petiole below ground level follows an inverse trend (<a class="table-link" href="#fig-4-5">Fig. 4.5</a>). There is a marked relationship between the age of the rhizome and its morphology, and also between the vigour or pertormance ot the aerial shoots trom young and older parts of the same rhizome. This feature may explain the onset of the downgrade stage of the cyclic phases outlined above. As the principal species of the mature phase age, their performance falls markedly and the degenerate phase commences. </p>
+
+<figure class="figure-break" id="fig-4-5"> 
+<img src="../images/Fig.4.5.jpg" alt=" positions and dimensions of bracken fronds"> 
+<figcaption> <strong>Fig. 4.5</strong> The positions and dimensions of bracken fronds showing the sequence of phases from pioneer to degenerate. The dots indicate the depth of origin, petiole length and height of fronds. (From Watt, 1947b; courtesy of New Phytol.)</figcaption> 
+</figure>
+
+
+<p>The general occurrence of a phasic development of perennial plants is indicated from the numerous reports of marginal effects in the literature. Kershaw (1962<em>a</em>) describes as very marked marginal effect in <em>Eriophorum angustifolium</em> invading a <em>Salix herbacea| Polygonum viviparum</em> community in central Iceland. The density and performance (expressed as leaf length, leaf width and length of leaf tip) both show a similar relationship to the advancing front in <em>Pteridium</em> described by Watt (<a class="table-link" href="#fig-4-6">Fig. 4.6</a>).</p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 30px 0;">
+        <figure class="figure-break" id="fig-4-6" style="flex: 1 1 300px; margin: 0;">
+            <img src="../images/Fig.4.6a.jpg" alt="The variation of performance of Eriophorum (leaf length) along a transect running through the circular advancing margin.">
+            <figcaption>
+                <strong>Fig. 4.6 (a)</strong> The variation of performance of Eriophorum (leaf length) along a transect running through the circular advancing margin.
+
+            </figcaption>
+        </figure>
+        <figure class="figure-break" id="fig-4-6b" style="flex: 1 1 300px; margin: 0;">
+            <img src="../images/Fig.4.6b.jpg" alt="Profile diagram of primary forest in the West Indies">
+            <figcaption>
+                <strong>(b)</strong> The variation of performance of Eriophorum (leaf width) along a transect running through the circular advancing margin.
+            </figcaption>
+        </figure>
+    </div>
+
+   <div class="media-block">
+  <figure class="figure-break" id="fig-4-6c">
+    <img src="../images/Fig.4.6c.jpg" alt="Fig.4.6c">
+    <figcaption>
+      <strong>(c)</strong> The variation of performance of Eriophorum (tip length) along a transect running through the circular advancing margin. The length of tip is inversely proportional to performance. (From Kershaw, 1962a; courtesy of J. Ecol.)
+    </figcaption>
+  </figure>
+<p>Similarly Ovington (1953), Caldwell (1957) and Pénzes (1958, 1960) have described numerous examples of advancing fronts of even-aged rhizomes at an optimum level of performance relative to the hinterland with its very much lower level. Watt (1955) shows that <em>Calluna</em> follows the same phase development and furthermore where <em>Pteridium</em> is present there is an inverse relationship between the two species. Where Calluna is at its building/mature phase, competing bracken is at its minimum development. Similarly where <em>Calluna</em> is in its degenerate phase, bracken is at the building or mature phase. Thus concurrently the competitive ability changes with the phasic series pioneer, building, mature and degenerate. The phasic development of <em>Pteridium</em> and <em>Calluna</em> have been confirmed by Anderson (196la, 1961<em>b</em>) and Nicholson and Robertson (1958).</p>
+</div>
+
+<p>The interaction between phasic development of perennial species and their competitive ability has been well documented by Watt (1981) who monitored the fluctuating abundance of a number of grassland species between 1936 and 1973 following the cessation of rabbit grazing. The changes are summarized in <a class="table-link" href="#fig-4-7">Fig. 4.7</a> for the three dominant species, <em>Festuca ovina, Hieracium pilosella and Thymus drucei.</em> The change of abundance of each species is primarily related to the year it enters the plot and secondarily to differences in their competitive abilities. Each species differs specifically in its life-form of course, but also the level of competitive ability changes continuously as a function of the stage of phasic development of each component.</p>
+
+<figure class="figure-break" id="fig-4-7"> 
+<img src="../images/Fig.4.7.jpg" alt=" Changes in cover of the three dominant species of grassland and after the cessation of rabbit grazing. (From Watt, 1981; courtesy of the J. Ecol.)"> 
+<figcaption> <strong>Fig. 4.7</strong>Changes in cover of the three dominant species of grassland and after the cessation of rabbit grazing. (From Watt, 1981; courtesy of the J. Ecol.) </figcaption> 
+</figure>
+
+
+<p>Thus the original population of <em>Festuca ovina</em> at the start of the experimental period was in the mature phase and since its early and degenerate phases are both susceptible to frost-heaving the initial population increase, subsequent decline and the final increase are a response to the initial release of grazing pressure, a cumulative sequence of severe winter frosts, and a final sequence of more moderate winter periods (1947-48) respectively (<a class="table-link" href="#fig-4-8">Fig. 4.8</a>). The final decline of <em>Festuca</em> coincides with its degenerate phase, and is presumably accelerated by the competitive vigour of <em>Hieracium</em>. Subsequently the variation of macroclimate from year to year has no appreciable effect on the curve of abundance change in <em>Hieracium</em> which simply progresses through the classically upgrade and downgrade cycle, or pioneer, building, mature and degenerate phase of <em>Hieracium</em> which exposes bare soil and allows the entry of seedling individuals of Thymus drucei. Watt 1981) suggests however the supression of <em>Hieracium pilosella</em> also appears to involve active competition between the two species and is not solely a function of the degenerate phasic stage reached by the even aged <em>Hieracium</em>.</p>
+
+<p>Thus we now have long-term data that clearly confirms the importance of phasic vegetation cycles probably mediated through corresponding cycles of competitive ability. It is also very probable that some of the demographic changes discussed in <a class="table-link" href="Chapters/chapter6.html">Chapter 6</a> similarly involve phasic changes of perennial species.</p>
+
+<figure class="figure-break" id="fig-4-8"> 
+<img src="../images/Fig.4.8.jpg" alt=" Changes in cover of the three dominant species of grassland and after the cessation of rabbit grazing. (From Watt, 1981; courtesy of the J. Ecol.)"> 
+<figcaption> <strong>Fig. 4.8</strong>Meteorological data from Elvedon. Horizontal lines are mean values. (<b>a</b>) Rainfall for May and June (mean 94 mm) and for September, October and November (mean 166 mm). (<b>b</b>) Cumulative degrees (°C) of ground frost for December of the named year, and January, February and March of the following year (mean 206 °C). There was one observation, at 09.00 hours G.M.T. on each day, of a thermometer on the ground. (<b>c</b>) Cumulative degrees ( °C) of temperature over 4.4°C (40°C) for May (mean 226 °C) and June (mean 317 °C). There was on observation, at 09.00 hours G.M.T. on each day, of a thermometer at 150 cm height in a Stevenson screen. (From Watt, 1981; courtesy of the J. Ecol.) </figcaption> 
+</figure>
+
+</div>
+        <div class="chapter-section">
+            <h3>Interaction of age and performance</h3>
+            <p>
+
+Confirmation of the relationship between age of an individual and its competitive ability is given by Kershaw (1962<em>a</em> and <em>c</em>). The effect of the advancing front of Eriophorum (<a class="table-link" href="fig-4-6">see above</a>) was related to the density of Salix herbace, the density of Salix being inversely related to the density and performance of Eriophorum (<a class="table-link" href="#fig-4-9">Fig. 4.9</a>). In effect where the density of Salix was at a minimum <em>Eriophorum</em> had a maximum level of performance and abundance, indicating the greater competitive ability of <em>Eriophorum</em> in its building and mature phases. Thus in general terms there exists a direct relationship between age, performance and competitive ability, potentially, for most if not all perennial plants.</p>
+
+<figure class="figure-break" id="fig-4-9"> 
+<img src="../images/Fig.4.9.jpg" alt=" fig.4.9"> 
+<figcaption> <strong>Fig. 4.9</strong> (<b>a</b>) Relationship between the densities of Eriophorum and Salix herbacea. (<b>b</b>) Relationship between the density of Salix herbace and performance (leaf length) of Eriophorum (see text). (From Kershaw 1962a; courtesy of J. Ecol.) </figcaption> 
+</figure>
+
+<p>The quantitative assessment of the age/performance relation presents some difficulties since it is often impossible to determine the age of most herbaceous perennials.
+Data for two species only are available (Kershaw 1960<em>b</em>, 1962<em>c</em>), for
+<em>Alchemilla alpina</em> and <em>Carex bigelowii</em> the assessment of age being based on ring counts and the rhizome morphology respectively. The mean leaf diameter and leaf number per individual of <em>Alchemilla</em> were used as a measure of performance, each individual being aged by a count of growth rings. A considerable variation of performance is present (<a class="table-link" href="#fig-4-10">Fig. 4.10</a>) between individuals of the same age reflecting local environmental effects, but the total data show a clear rise and fall in the relationship between performance and age. A regression of the form
+\( \ Y \)=\( \ a \)+\( \ b \)\( \ x \) + \( \ c \)\( \ x^2 \) is highly significant and indicates the mature phase to fall within the age groups 9-15 years (<a class="table-link" href="#fig-4-11">Fig. 4.11<em>a</em></a>). </p>
+
+<figure class="figure-break" id="fig-4-10"> 
+<img src="../images/Fig.4.10.jpg" alt=" fig.4.10"> 
+<figcaption> <strong>Fig. 4.10</strong> The scatter of mean values of leaf diameter (performance) for individual plants of Alchemilla alpina of all ages. (From Kershaw, 1960b; courtesy of J. Ecol.)</figcaption> 
+</figure>
+
+
+<p>The relationship between leaf number and age is similar but with a larger scatter of values (<a class="table-link" href="#fig-4-11">Fig. 4.11<em>b</em></a>). The data clearly confirm the relationship initially proposed by Watt to describe the phasic development of <em>Pteridium</em>. The data for <em>Carex bigelowii</em> are similar (<a class="table-link" href="#fig-4-12">Fig. 4.12). Leaf length and leaf width are used as measure of the performance and the age of a rhizome system determined by careful morphological examination. At the end of a season's growth, the aerial parts die, the basal leaf sheaths remain as a humified knot on the rhizome and it is relatively straightforward to determine the age of a rhizome system with a tair degree of accuracy.</p>
+
+
+<figure class="figure-break" id="fig-4-11" style="margin: 30px 0;">
+  
+   <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+      
+       <div style="flex: 1 1 300px;">
+           <img src="../images/Fig.4.611a.jpg" alt="Leaf diameter variation">
+       </div>
+
+       <div style="flex: 1 1 300px;">
+           <img src="../images/Fig.4.11b.jpg" alt="Leaf number variation">
+       </div>
+
+   </div>
+
+   <figcaption>
+       <strong>Fig. 4.11</strong> (<b>a</b>) Fitted curve of the type  \( \ Y \)=\( \ a \)+\( \ b \)\( \ x \) + \( \ c \)\( \ x^2 \) for the total leaf diameter/age data of Alchemilla
+       (<b>b</b>) Fitted curve of the type  \( \ Y \)=\( \ a \)+\( \ b \)\( \ x \) + \( \ c \)\( \ x^2 \) for the total number of leaves/age data of Alchemilla. (From Kershaw, 1960b; courtesy of J. Ecol.)
+
+   </figcaption>
+
+</figure>
+
+   <div class="media-block">
+  <figure class="figure-break" id="fig-4-12">
+    <img src="../images/Fig.4.12.jpg" alt="Fig.4.12">
+    <figcaption>
+      <b>(c)</b> Performance /age relationship of Carex bigelowii as expressed by leaf length. A curve of the type \( \ Y \)=\( \ a \)+\( \ b \)\( \ x \) + \( \ c \)\( \ x^2 \) is fitted. (From Kershaw, 1962c; courtesy of J. Ecol.)
+    </figcaption>
+  </figure>
+
+<p>It seems highly probable that similar growth curves will exist for many other perennial species. For this reason phasic development and relationships between other species are likely to be widespread and the lack of additional evidence reflects the difficulties of detecting such cyclic relationships. Phasic development involving several species in a definite sequence seems unlikely to be as widespread as a mosaic of density phases reflecting the age/performance interaction with the attendant variation of competitive ability and the potential effects on associated species. Thus a stable community will be in a constant state of phasic fluctuation, one species becoming locally more abundant as another species reaches its degenerate phase, the fluctuation in density being however slight and not visually distinct. Only by careful quantitative measurement of abundance and performance can phasic developments be detected in vegetation where there is a complete cover, and then only in those species which possess some morphological or anatomical feature which enables their age to be assessed. Where the vegetational cover is discontinuous, and the but apparently rather uncommon. However, it is clear that this form of relationship is likely to be widespread and is the mechanism underlying the dynamic nature of vegetation.
+The initial demonstration of non-randomness in vegetation was somewhat surprising to the early workers in this field and they were at a loss to degenerate stage is eroded and followed by a 'bare' phase, cyclic relationships become visually more obvious account for it apart from consideration of morphology and localized seed dispersal (see <a class="table-link" href="Chapters/chapter8.html">Chapter 8</a>). In the light of the evidence outlined above it is clear that a non-random distribution of individuals will always occur however uniform the environment, as long as several age groups are present.</p>
+</div>
+
+
+<p>Such patterns have been detected by Kershaw (1958; 1962<em>b</em> and <em>c</em>) in <em>Agrostis tenuis</em>, <em>Calamagrostis neglecta</em> and <em>Carex bigelowii</em> where small clumps of tillers a few centimetres in diameter are formed from different rhizome systems (p.153). A typical turf from upland rough grazing in Wales consisted of a mosaic of <em>Agrostis</em> tillers surrounded by <em>Festuca</em> and various bryophyte species, and in all cases the groups of Agrostis shoots arose from several different rhizome systems (Figs <a class="table-link" href="#fig-8-15">8.15</a> and <a class="table-link" href="#fig-8-16">8.16</a>). The mechanism of this rhizome orientation is somewhat obscure but if any one group of tillers is considered in isolation over a period of time it follows a typical phasic development. Initially a group of young tillers is established from a tew pioneer rhizomes, representing the pioneer stage. The following year the clump produces several axillary shoots and is enlarged by the arrival further pioneer rhizomes; the building phase. In subsequent years this process is continued through a mature phase until there is a preponderance of dead tiller bases in the clump and the degenerate phase follows with increasing numbers of dead tiller bases and weaker aerial shoots. Finally the whole phase is represented merely by humified remains of shoot bases which can be found underlying a small patch of <em>Festuca</em>. By careful examination the different phases can be picked out by the size and colour of the leaves of <em>Agrostis</em>. The early phases have bright green small leaves, the building phase bright green and larger leaves with little evidence of dead leaf bases. The mature phase though similar has a number of dead leaf bases present, a trend which becomes increasingly evident in the degenerate phase where there is a preponderance of dead leaves with a few small and often yellowish-green aerial leaves.</p>
+
+
+<p>The underlying mechanism of these varying levels of performance of individual plants and the corresponding relationship of their competitive ability has been obscure. However a fuller understanding of the competition for light by crop plants has been achieved (Donald, 1961) and these results seem to be of direct significance in this present context. If water and nutrients are in adequate supply, then light will become the limiting factor controlling rate of growth and the production of dry matter. In any stratified vegetation there exists a very sharp decline in light intensity from the surface layers downwards and very often the lowest leaves will make a negative contribution to the net assimilation of the whole 'canopy’ since the light intensity will be insufficient to keep them above compensation point. The respiration of these lower leaves in fact exceeds their photosynthesis. Expressing leaf area as a leaf area index (i.e. leaf area per unit of land area, it can be shown theoretically that if the relationship of photosynthesis to respiration is extrapolated for a continued increase of leaf area index, then a leaf area index will be reached at which the respiration of the whole canopy of foliage will equal its photosynthesis. Under natural conditions there is little evidence to suggest that this state is ever achieved in crop plants, but it seems more likely that perennial plants may
+reach this compensation point. From an ecological point of view it is this possibility which is of significance, since not only are the aerial parts of importance but the underground parts also. Thus a perennial plant with an extensive rhizome system has a large actively respiring volume with a relatively small (theoretically peripheral) zone of aerial shoots, and the compensation point is likely to be reached or exceeded in old individuals. <em>Carex bigelowii</em> is a case in point. A complete rhizome system 20 years of age will cover one square metre with a complex system of branches, each ultimate branch having a terminal aerial shoot and only one or two axillary shoots in the last two years' growth increment. In such a system it is very likely that the compensation point has been reached or exceeded and the plant is in its ‘degenerate phase'. Conversely a young plant of 6-12 years of age has a much less extensive rhizome system and with a normally developed leaf canopy is at its optimum level of growth.</p>
+
+
+<p>Went (1957) has referred to the build-up of non-photosynthesizing tissues in old strawberry plants until the whole plant is barely at compensation point at a high light intensity and it seems probable that the ratio between the photosthesis and respiration of a perennial plant largely controls its general level of performance and its ability to compete with its neighbours. This possible explanation is equally satisfactory when applied to the parts of a fragmented degenerate individual. In <em>Alchemilla, Agrostis, Pteridium</em> and <em>Carex</em> the older parts of the rhizome slowly decay and as the zone of decay reaches a lateral branch this becomes separated off as an individual. The oldest plants of low peformance thus release ‘propagules’ with, initially at least, a low performance but with a morphologically optimal age. A propagule from a 25-year-old parent is likely to be 8-12 years of age. However the average performance of all individuals in this age group is optimal and accordingly it would appear that the level of performance of such a propagule immediately rises to its 'morphological age'. This seems quite logical when considered as a small rhizome system being severed from a very large system which was respiring actively. Immediately the photosynthesis/respiration ratio becomes unequal, the terminal leaves provide an excess of metabolites relative to the now small rhizome system, and active growth can take place at once.</p>
+
+<figure class="figure-break" id="fig-4-13"> 
+<img src="../images/Fig.4.13.jpg" alt=" fig.4.13"> 
+<figcaption> <strong>Fig. 4.13</strong> Surface maximum and minimum temperatures for the period January 1964 -January 1966. (<b>a</b>) Mean maximum temperatures; (<b>b</b>) Mean minimum temperatures. –\( \ O \–, Pioneer: –\( \ x \)– building: -- \( \ O \ -- mature; -- \( \ x \) --, degenerate. (From Barclay-Estrup, 1971; courtesy of J. Ecol.)
+</figcaption> 
+</figure>
+
+<figure class="figure-break" id="fig-4-13"> 
+<img src="../images/Fig.4.14.jpg" alt=" fig.4.14"> 
+<figcaption> <strong>Fig. 4.14</strong> Means of all ground-level photocell measurements. Each graph shows the light values along two lines crossing the quadrat in a south-north
+direction (\( \ O \) and an east-west direction ( \( \ x \ ). (From Barclay-Estrup, 1971; courtesy of J. Ecol.)
+</figcaption> 
+</figure>
+
+
+<p>
+In all the cycles described above, the species involved are in one sense, part of a truncated succession. There is no directional change, the cycle eventually returning to its original position. However, just as in plant succession where there is a marked reaction of the species on the environment, there is a similar reaction on the environment throughout the cycle of phases. Furthermore, because of the phasic sequence the level of reaction will also vary sequentially. Barclay-Estrup (1971) examined the microclimate and its variation in relation to the phasic development of Calluna vulgaris (Watt, 1955), and showed the existence of considerable differences between the different phases. Soil surface temperatures during the summer months were much higher under the building phase than elsewhere and followed a decreasing sequence through the building phase and mature phase to the degenerate phase (<a class="table-link" href="#fig-4-13">4.13</a>). Conversely in the winter months the lowest temperatures recorded are under the pioneer and degenerate phases where the low biomass of the Calluna allows a greater loss of radiant energy from the soil. Similar considerations apply to soil temperature although the differences are not as clear cut. Interception of light is also related to the phasic sequence and during the building/mature phases, the light at the soil surface falls to 10-20% of full illumination, as opposed to 60-80% in the pioneer phase. and 40-60% in the degenerate phase (<a class="table-link" href="#fig-4-14">4.14</a>). Rainfall interception follows the same sequence with maximum interception by the canopy of the mature and building phases, decreasing through the degenerate phase to the pioneer phase where cumulative precipitation is fairly close to full precipitation measured in the open (<a class="table-link" href="#fig-4-15">4.15</a>). </p>
+
+<figure class="figure-break" id="fig-4-15"> 
+<img src="../images/Fig.4.15.jpg" alt=" fig.4.15"> 
+<figcaption> <strong>Fig. 4.15</strong>Cumulative micro-precipitation under Calluna each phase.–\( \ O \)–, Pioneer: –\( \ x \)– building: -- \( \ O \) -- mature; -- \( \ x \) --, degenerate – \( \ ⚫ \ )– 
+</figcaption> 
+</figure>
+
+<p>
+
+Clearly the microclimate at the soil surface varies markedly over a period of time in response to the phasic changes in the <em>Calluna</em>. In response to this mosaic of microclimate there is a development of corresponding mosaics of abundance levels in associated species (Fig. 4.16). Notably <em>Vaccinum vitis-idaea, V. myrtillus, Empetrum nigrum</em>, and the moss species <em>Polytrichum commune, Pleurozium schreberi</em> and <em>Hylocomium splendens</em> dominate the more open areas during the pioneer phase, disappearing during the building and mature phases, and reappearing again in the degenerate phase. These results amplify the previous discussion on cyclic phases as a causal mechanism of pattern in vegetation. Thus the phasic development of <em>Calluna</em> affects other associated species through its changing levels of competitive ability. This is evident as a direct interaction with the environment inducing a change in the microclimate. The resultant spatial patterns of the bryophyte species especially are controlled by this changing microclimate.
+</p>
+
+<figure class="figure-break" id="fig-4-16"> 
+<img src="../images/Fig.4.16.jpg" alt=" fig.4.16"> 
+<figcaption> <strong>Fig. 4.16</strong> Periodic maps of quadrat 8, containing Calluna in the degenerate phase. (i) Calluna: hatched areas, adjacent building plant; unshaded outlined areas, pioneer plant; outlined area (broken line), gap boundary. (ii) Other vascular plants. (iii) Bryophytes, \( \ C \), Calluna; \( \ d \). Deschampsia flexuosa; \( \ h \), Plagiothecium undulatum; \( \ m \), Vaccinium vitis-idaea; \( \ o \), Hylocomium splendens; \( \ p \). Hypnum cupressiforme; \( \ r \), Aulacomnium palustre; \( \ u \), Pleurozium schreberi; \( \ v \), Empetrum nigrum; \( \ x \), Polytrichum commune. (From Barclay-Estrup and Gimingham, 1969; courtesy of J. Ecol.)
+</figcaption> 
+</figure>
+
+
+        <a class="back-to-top" href="#top">Back to top</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p>
+</footer>
+
+
+<script> (function () { const tip = document.getElementById('fig38-tip'); const panel = document.getElementById('fig38-panel'); const pTitle= document.getElementById('fig38-panel-title'); const pBody = document.getElementById('fig38-panel-body'); /* ── Tooltip ── */ document.querySelectorAll('#fig38svg .n').forEach(node => { node.addEventListener('mouseenter', e => { const t = node.getAttribute('data-title') || ''; if (!t) return; tip.textContent = t; tip.style.opacity = 1; }); node.addEventListener('mousemove', e => { tip.style.left = (e.clientX + 14) + 'px'; tip.style.top = (e.clientY - 34) + 'px'; }); node.addEventListener('mouseleave', () => { tip.style.opacity = 0; }); /* ── Click → info panel ── */ node.addEventListener('click', () => { const title = node.getAttribute('data-title') || ''; const info = node.getAttribute('data-info') || ''; pTitle.textContent = title; pBody.textContent = info; panel.classList.add('open'); // highlight selected node document.querySelectorAll('#fig38svg .n').forEach(n => n.classList.remove('selected')); node.classList.add('selected'); }); }); window.closePanel = function () { panel.classList.remove('open'); document.querySelectorAll('#fig38svg .n').forEach(n => n.classList.remove('selected')); }; /* ── Pathway highlighting ── */ let activeBtn = null; window.highlightPath = function (path) { const lines = document.querySelectorAll('#fig38svg .arr-line'); // reset buttons document.querySelectorAll('.fig-controls button').forEach(b => b.classList.remove('active')); if (!path) { // show all lines.forEach(l => { l.classList.remove('dimmed','highlighted'); }); document.getElementById('btn-reset').classList.add('active'); activeBtn = null; return; } const btnMap = {damp:'btn-damp', upper:'btn-upper', blowout:'btn-blowout', lee:'btn-lee'}; if (btnMap[path]) document.getElementById(btnMap[path]).classList.add('active'); lines.forEach(l => { const paths = (l.getAttribute('data-paths') || '').split(' '); if (paths.includes(path)) { l.classList.remove('dimmed'); l.classList.add('highlighted'); // swap to orange arrowhead l.setAttribute('marker-end','url(#ah-hi)'); } else { l.classList.add('dimmed'); l.classList.remove('highlighted'); l.setAttribute('marker-end','url(#ah)'); } }); activeBtn = path; }; // start with all shown document.getElementById('btn-reset').classList.add('active'); })(); </script> 
+
 </body>
 </html>
+
+
+
+
+
