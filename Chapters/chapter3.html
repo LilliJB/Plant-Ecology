@@ -102,6 +102,21 @@ stroke-width:1;
 fill:none;
 marker-end:url(#arrow);
 }
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #fff; }
+figure.figure-break { background: #f4f7f4; border-radius: 8px; padding: 18px; margin: 16px 0; }
+.controls { display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin-bottom:10px; }
+.controls strong { color:#2f5d3a; font-size:12px; }
+.controls button { padding:3px 11px; font-size:12px; border:1px solid #b0c4b0; border-radius:4px; background:#fff; cursor:pointer; }
+.controls button:hover { background:#e8f3e8; }
+.controls button.on { background:#2f5d3a; color:#fff; border-color:#2f5d3a; }
+.A { transition:opacity .18s,stroke .18s; }
+.A.dim { opacity:.07; }
+.A.hi { stroke:#b84800!important; stroke-width:2.4px!important; opacity:1!important; }
+figcaption { margin-top:10px; font-size:13px; font-style:italic; color:#555; line-height:1.5; }
+figcaption strong { font-style:normal; }
 </style>
 
 
@@ -249,114 +264,596 @@ One or two outstanding exceptions to this have appeared in the literature, notab
 <figcaption> <strong>Fig. 3.8</strong> Schematic alternative dune successions in the Lake Michigan dune systems. (From Olson, 1958; courtesy of Bot. Gaz.) </figcaption> 
 </figure>
 
-<figure class="figure-break" id="fig-3-8"> <!-- Controls --> <div class="fig-controls"> <strong style="font-size:12px;color:#2f5d3a;">Highlight pathway:</strong> <button onclick="highlightPath('damp')" id="btn-damp">Damp depression</button> <button onclick="highlightPath('upper')" id="btn-upper">Upper beach</button> <button onclick="highlightPath('blowout')" id="btn-blowout">Blowout</button> <button onclick="highlightPath('lee')" id="btn-lee">Lee slopes</button> <button onclick="highlightPath(null)" id="btn-reset">Show all</button> </div> <!-- Legend --> <div class="fig38-legend"> <span><span class="leg-swatch" style="background:#ddeedd;"></span> Initial conditions</span> <span><span class="leg-swatch" style="background:#d0e8d0;border-radius:50%;"></span> Physiographic processes</span> <span><span class="leg-swatch" style="background:#e8f4e8;"></span> Pioneer vegetation</span> <span><span class="leg-swatch" style="background:#e4eef4;"></span> Conifers</span> <span><span class="leg-swatch" style="background:#f0f0f0;"></span> 'Climax' dominants</span> <span><span class="leg-line" style="background:#333;"></span> Solid arrow = direct succession</span> <span><span class="leg-line" style="background:#333;border-top:2px dashed #333;height:0;"></span> Dashed = alternative/reversible</span> </div>
-
-<svg viewBox="0 0 1000 650">
-
+<figure class="figure-break" id="fig-3-8">
+<div class="controls">
+  <strong>Highlight pathway:</strong>
+  <button onclick="hl('damp')"    id="b-damp">Damp depression</button>
+  <button onclick="hl('upper')"   id="b-upper">Upper beach</button>
+  <button onclick="hl('erode')"   id="b-erode">Eroding surfaces</button>
+  <button onclick="hl('deposit')" id="b-deposit">Depositing crests</button>
+  <button onclick="hl('lee')"     id="b-lee">Lee slopes</button>
+  <button onclick="hl(null)"      id="b-all" class="on">Show all</button>
+</div>
+ 
+<!--
+  viewBox="0 0 1380 660"
+ 
+  PRECISE NODE POSITIONS:
+ 
+  R1 (y=44 h=42 bot=86):
+    Damp depression:  x=126 w=130 cx=191  right=256
+    Upper beach:      x=298 w=70  cx=333  right=368
+    Eroding surfaces: x=458 w=128 cx=522  right=586
+    Depositing crests:x=652 w=136 cx=720  right=788
+    Steep pockets:    x=920 w=196 cx=1018 right=1116
+ 
+  R2 (cy=165 ry=26):
+    Foredune Init:    cx=333 rx=84  left=249 right=417
+    Blowout Init:     cx=910 rx=90  left=820 right=1000
+ 
+  R3 (singles y=242 h=40 bot=282; marram group y=228 bot=310):
+    Rush meadow:      x=126 w=104 cx=178 right=230
+    Cottonwood:       x=280 w=92  cx=326 right=372
+    Marram group:     boxes x=424 w=156 right=580
+      L-bracket tip:  x=406 (18px out from box left 424)
+      R-bracket tip:  x=598 (18px out from box right 580)
+    Grasses label:    x=608 y=270
+    Shrubs:           x=682 w=80  cx=722 right=762
+    Basswood:         x=990 w=84  cx=1032 right=1074 bot=282
+ 
+  R4 (pines group y=358 bot=436; singles y=362 h=40 bot=402):
+    Pines group:      boxes x=424 w=156 right=580
+      L-bracket tip:  x=406 (covers Jack+White: y=358-402)
+      R-bracket tip:  x=598 (covers all 3: y=358-440)
+    Pines label:      x=608 y=402
+    Arbor vitae:      x=786 w=136 cx=854 right=922
+    Balsam fir:       x=922 w=136 cx=990 right=1058
+    (Arbor|Balsam border at x=922, bot=402)
+ 
+  R5 (y=484 h=84 bot=568):
+    Tall grass:       x=126 w=92  cx=172  right=218
+    Red maple swamp:  x=228 w=90  cx=273  right=318
+    Black oak:        x=328 w=118 cx=387  right=446
+    [60px gap]
+    Oaks R/W:         x=506 w=96  cx=554  right=602
+    [20px gap]
+    Maples:           x=622 w=86  cx=665  right=708
+    Beech:            x=708 w=54  cx=735  right=762  (shares border)
+    Hemlock:          x=762 w=74  cx=799  right=836  (shares border)
+    [24px gap]
+    Birches:          x=860 w=110 cx=915  right=970
+ 
+  BASSWOOD ROUTE:
+    Exits BOTTOM of Basswood node at (1032, 282)
+    Curves DOWN and RIGHT initially, then wide sweep LEFT going UNDER Shrubs node (y>282)
+    Passes below Shrubs (bot=282) and below Arbor/Balsam area
+    Arrives at trunk point (590, 468) from the right
+    Then branches to climax nodes
+ 
+  Trunk point: (590, 468)
+  Pines R-bracket tip (598,440) → straight down to trunk (590,468) ← short join
+ 
+  MARRAM/SAND REED ARROWS:
+    Must go OUTSIDE R-bracket (tip at x=598)
+    Route: from Marram right edge (580, midY), curve out to x=624, back to LB right (598,290)
+    Same for Sand reed → LB
+ 
+  LITTLE BLUESTEM → PINES R-BRACKET:
+    From LB right side (580, 296), curve RIGHT to x=630, then down to bracket tip (598,395)
+    This stays clearly OUTSIDE the bracket
+ 
+  JACK+WHITE L-BRACKET → BLACK OAK:
+    From bracket tip (406, 380), curves LEFT-DOWN to Black oak top (387,484)
+-->
+ 
+<svg id="svg" viewBox="0 0 1380 660" width="100%"
+     style="display:block;background:#fff;border-radius:6px;border:1px solid #cde0cd;">
+<title>Fig. 3.8 Lake Michigan Dune Successions (Olson 1958)</title>
 <defs>
-<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
-markerWidth="5" markerHeight="5" orient="auto">
-<path d="M1 1 L9 5 L1 9" fill="none" stroke="#333"/>
-</marker>
+  <!-- Solid filled triangle arrowheads — dark, forward -->
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <polygon points="1,1 9,5 1,9" fill="#222"/>
+  </marker>
+  <!-- Solid filled triangle — dark, reverse -->
+  <marker id="ahrev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <polygon points="9,1 1,5 9,9" fill="#222"/>
+  </marker>
+  <!-- Solid filled triangle — dark, forward, larger for dashed lines -->
+  <marker id="ahd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+    <polygon points="1,1 9,5 1,9" fill="#222"/>
+  </marker>
+  <!-- Solid filled triangle — dark, reverse, larger -->
+  <marker id="ahdrev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+    <polygon points="9,1 1,5 9,9" fill="#222"/>
+  </marker>
+  <!-- Solid filled triangle — orange, forward (highlight) -->
+  <marker id="aho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <polygon points="1,1 9,5 1,9" fill="#b84800"/>
+  </marker>
+  <!-- Solid filled triangle — orange, reverse (highlight) -->
+  <marker id="ahorev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <polygon points="9,1 1,5 9,9" fill="#b84800"/>
+  </marker>
+  <!-- Solid filled triangle — orange, larger (highlight dashed) -->
+  <marker id="ahod" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+    <polygon points="1,1 9,5 1,9" fill="#b84800"/>
+  </marker>
+  <!-- Small solid triangle for internal c→ρ,b,m diagram -->
+  <marker id="ahti" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+    <polygon points="1,1 9,5 1,9" fill="#444"/>
+  </marker>
 </defs>
-
-<!-- ROW 1 -->
-<rect class="box" x="140" y="70" width="120" height="50"/>
-<text class="label" x="200" y="100">Damp depression</text>
-
-<rect class="box" x="305" y="70" width="120" height="50"/>
-<text class="label" x="365" y="100">Upper beach</text>
-
-<rect class="box" x="465" y="70" width="120" height="50"/>
-<text class="label" x="525" y="100">Eroding surfaces</text>
-
-<rect class="box" x="625" y="70" width="120" height="50"/>
-<text class="label" x="685" y="100">Depositing crests</text>
-
-<rect class="box" x="785" y="70" width="130" height="50"/>
-<text class="label" x="850" y="100">Steep pockets</text>
-
-<!-- ROW 2 -->
-<ellipse cx="365" cy="180" rx="80" ry="30" class="box"/>
-<text class="label" x="365" y="185">Foredune</text>
-
-<ellipse cx="700" cy="180" rx="80" ry="30" class="box"/>
-<text class="label" x="700" y="185">Blowout</text>
-
-<!-- ROW 3 -->
-<rect class="box" x="140" y="290" width="120" height="50"/>
-<text class="label" x="200" y="320">Rush meadow</text>
-
-<rect class="box" x="305" y="290" width="120" height="50"/>
-<text class="label" x="365" y="320">Cottonwood</text>
-
-<rect class="box" x="465" y="280" width="120" height="20"/>
-<rect class="box" x="465" y="305" width="120" height="20"/>
-<rect class="box" x="465" y="330" width="120" height="20"/>
-
-<text class="label" x="525" y="295">Marram</text>
-<text class="label" x="525" y="320">Sand reed</text>
-<text class="label" x="525" y="345">Little bluestem</text>
-
-<!-- bracket -->
-<path d="M585 280 L595 280 L595 350 L585 350" stroke="#333" fill="none"/>
-
-<rect class="box" x="625" y="290" width="120" height="50"/>
-<text class="label" x="685" y="320">Shrubs</text>
-
-<rect class="box" x="785" y="290" width="120" height="50"/>
-<text class="label" x="845" y="320">Basswood</text>
-
-<!-- ROW 4 -->
-<rect class="box" x="465" y="390" width="120" height="20"/>
-<rect class="box" x="465" y="415" width="120" height="20"/>
-<rect class="box" x="465" y="440" width="120" height="20"/>
-
-<text class="label" x="525" y="405">Jack</text>
-<text class="label" x="525" y="430">White</text>
-<text class="label" x="525" y="455">Red</text>
-
-<path d="M585 390 L595 390 L595 460 L585 460" stroke="#333"/>
-
-<rect class="box" x="625" y="400" width="120" height="40"/>
-<text class="label" x="685" y="425">Arbor vitae</text>
-
-<rect class="box" x="785" y="400" width="120" height="40"/>
-<text class="label" x="845" y="425">Balsam fir</text>
-
-<!-- ROW 5 -->
-<rect class="box" x="140" y="520" width="120" height="60"/>
-<text class="label" x="200" y="555">Tall grass</text>
-
-<rect class="box" x="300" y="520" width="120" height="60"/>
-<text class="label" x="360" y="555">Red maple</text>
-
-<rect class="box" x="460" y="520" width="120" height="60"/>
-<text class="label" x="520" y="540">Black oak</text>
-<text class="label" x="520" y="560">c b m</text>
-
-<rect class="box" x="620" y="520" width="80" height="60"/>
-<text class="label" x="660" y="555">Maples</text>
-
-<rect class="box" x="705" y="520" width="80" height="60"/>
-<text class="label" x="745" y="555">Beech</text>
-
-<rect class="box" x="790" y="520" width="80" height="60"/>
-<text class="label" x="830" y="555">Hemlock</text>
-
-<!-- KEY ARROWS -->
-<line class="arr" x1="200" y1="120" x2="200" y2="290"/>
-<line class="arr" x1="365" y1="120" x2="365" y2="150"/>
-<line class="arr" x1="365" y1="210" x2="365" y2="290"/>
-<line class="arr" x1="525" y1="350" x2="525" y2="390"/>
-<line class="arr" x1="525" y1="460" x2="525" y2="520"/>
-
-<!-- question mark -->
-<text x="580" y="550">?</text>
-
+ 
+<!-- ROW LABELS centred in left column (x=0–118) -->
+<text text-anchor="middle" x="60" y="60"  font-size="13" fill="#444">Initial</text>
+<text text-anchor="middle" x="60" y="76"  font-size="13" fill="#444">conditions</text>
+<text text-anchor="middle" x="60" y="154" font-size="13" fill="#444">Physiographic</text>
+<text text-anchor="middle" x="60" y="170" font-size="13" fill="#444">processes</text>
+<text text-anchor="middle" x="60" y="254" font-size="13" fill="#444">Pioneer</text>
+<text text-anchor="middle" x="60" y="270" font-size="13" fill="#444">vegetation</text>
+<text text-anchor="middle" x="60" y="370" font-size="13" fill="#444">Conifers</text>
+<text text-anchor="middle" x="60" y="386" font-size="13" fill="#444">(mostly</text>
+<text text-anchor="middle" x="60" y="402" font-size="13" fill="#444">temporary)</text>
+<text text-anchor="middle" x="60" y="502" font-size="13" fill="#444">'Climax'</text>
+<text text-anchor="middle" x="60" y="518" font-size="13" fill="#444">dominants</text>
+<line x1="118" y1="36" x2="118" y2="596" stroke="#bbb" stroke-width="1"/>
+ 
+<!-- ================================================================
+     ALL ARROWS FIRST
+================================================================ -->
+ 
+<!-- ══ R1: INITIAL CONDITIONS ══ -->
+ 
+<!-- Upper beach → Damp depression (solid, leftward; UB left=298, Damp right=256) -->
+<line class="A" data-id="ub-damp"
+  x1="298" y1="65" x2="258" y2="65"
+  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Eroding surfaces → Damp depression (dashed arc over top) -->
+<path class="A" data-id="erode-damp"
+  d="M 490,44 C 400,2 256,2 254,62"
+  fill="none" stroke="#222" stroke-width="1.3" stroke-dasharray="8 4" marker-end="url(#ahd)"/>
+ 
+<!-- Blowout → Depositing crests (dashed; starts on ellipse at θ=235° → (858,144)) -->
+<path class="A" data-id="blowout-deposit"
+  d="M 858,144 C 840,114 814,96 786,86"
+  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#ahd)"/>
+ 
+<!-- Blowout → Eroding surfaces (dashed; starts on ellipse at θ=195° → (823,158)) -->
+<path class="A" data-id="blowout-erode"
+  d="M 823,158 C 768,130 650,96 586,65"
+  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#ahd)"/>
+ 
+<!-- Blowout → Steep pockets (dashed, right-up to Steep left=920) -->
+<path class="A" data-id="blowout-steep"
+  d="M 988,150 C 1006,126 1016,106 1018,86"
+  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#ahd)"/>
+ 
+<!-- Steep pockets: ONE trunk from bottom (1018,86), splits to Shrubs + Basswood -->
+<!-- Trunk down from Steep bottom-centre to branch point -->
+<path class="A" data-id="steep-trunk"
+  d="M 1018,86 L 1018,178"
+  fill="none" stroke="#222" stroke-width="1.4"/>
+<!-- Branch L → Shrubs top (722,242) -->
+<path class="A" data-id="steep-shrubs"
+  d="M 1018,178 C 970,204 848,228 764,242"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+<!-- Branch R → Basswood top (1032,242) -->
+<path class="A" data-id="steep-bass"
+  d="M 1018,178 C 1022,206 1028,226 1032,242"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- ══ R2: PHYSIOGRAPHIC ══ -->
+ 
+<!-- Damp depression: ONE trunk from bottom (191,86), splits to Rush + Cottonwood -->
+<path class="A" data-id="damp-trunk"
+  d="M 191,86 L 191,158"
+  fill="none" stroke="#222" stroke-width="1.4"/>
+<!-- Branch L → Rush meadow top (178,242) -->
+<path class="A" data-id="damp-rush"
+  d="M 191,158 C 188,186 182,214 178,242"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+<!-- Branch R → Cottonwood top (326,242) -->
+<path class="A" data-id="damp-cotton"
+  d="M 191,158 C 234,178 298,210 316,242"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Upper beach → Marram (solid; exits UB RIGHT side x=368, arcs right of Foredune right=417) -->
+<path class="A" data-id="ub-marram"
+  d="M 368,70 C 440,86 448,172 440,228"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Branch: starts ON UB→Marram at t=0.55 (437,143), ends ON Eroding→SR at t=0.65 (418,163) -->
+<path class="A" data-id="ub-erode-branch"
+  d="M 437,143 C 432,150 424,158 418,163"
+  fill="none" stroke="#222" stroke-width="1.4"/>
+ 
+<!-- Eroding surfaces → Sand reed (exits Eroding LEFT x=458, straight left-down, then C-hooks right at bottom) -->
+<path class="A" data-id="erode-sr"
+  d="M 458,68 C 430,100 412,170 412,220 C 412,244 420,256 424,256"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Depositing crests → Marram (exits Depositing left x=652, curves left-down to Marram top) -->
+<path class="A" data-id="deposit-marram"
+  d="M 662,86 C 626,134 596,180 582,228"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Cottonwood → Blowout (dashed, exits Cottonwood right x=372, arcs up-right to Blowout left=820) -->
+<path class="A" data-id="cotton-blowout"
+  d="M 372,258 C 468,214 672,184 822,170"
+  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="6 4" marker-end="url(#ahd)"/>
+ 
+<!-- Grasses R-bracket tip (598,267) → Blowout (dashed; arrowhead AT Blowout end = bottom-left of ellipse) -->
+<path class="A" data-id="grasses-blowout"
+  d="M 600,264 C 666,238 752,208 825,156"
+  fill="none" stroke="#222" stroke-width="1.2" stroke-dasharray="7 4" marker-end="url(#ahd)"/>
+ 
+<!-- ══ R3: PIONEER VEGETATION ══ -->
+ 
+<!-- Rush meadow: ONE trunk from bottom (178,282), splits to Tall grass + Red maple -->
+<path class="A" data-id="rush-trunk"
+  d="M 178,282 C 168,336 160,396 160,424"
+  fill="none" stroke="#222" stroke-width="1.4"/>
+<!-- Branch L → Tall grass top (172,484) -->
+<path class="A" data-id="rush-tallgrass"
+  d="M 160,424 C 160,452 164,468 168,484"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+<!-- Branch R → Red maple top (273,484) -->
+<path class="A" data-id="rush-redmaple"
+  d="M 160,424 C 196,428 248,456 260,484"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Cottonwood ↔ Grasses L-bracket tip: double-headed (Cotton right=372, L-tip=406) -->
+<line class="A" data-id="cotton-grasses" data-dh="1"
+  x1="372" y1="265" x2="406" y2="265"
+  stroke="#222" stroke-width="1.4"
+  marker-start="url(#ahrev)" marker-end="url(#ah)"/>
+ 
+<!-- Cottonwood → Jack: exits Cotton bottom-centre (326,282), arrives Jack top-centre (502,358) -->
+<path class="A" data-id="cotton-jack"
+  d="M 326,282 C 360,320 440,344 500,358"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Marram → Little bluestem (curves slightly inward/rightward within the bracket space) -->
+<path class="A" data-id="marram-lb"
+  d="M 580,239 C 592,239 592,272 580,290"
+  fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#ah)"/>
+ 
+<!-- Sand reed → Little bluestem (curves slightly inward within the bracket space) -->
+<path class="A" data-id="sr-lb"
+  d="M 580,263 C 590,263 590,276 580,292"
+  fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#ah)"/>
+ 
+<!-- Grasses R-bracket tip (598,267) → Shrubs left (682,260): curved arc, going above bracket -->
+<path class="A" data-id="grasses-shrubs"
+  d="M 598,258 C 630,244 672,248 680,252"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Shrubs → Basswood (exits Shrubs right=762, arrives Basswood left=990) -->
+<line class="A" data-id="shrubs-bass"
+  x1="762" y1="262" x2="990" y2="262"
+  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- ══ R4: CONIFERS ══ -->
+ 
+<!-- Little bluestem → Pines R-bracket tip (598,395):
+     Exits LB right (580,296), curves FAR RIGHT to x=636, then down to tip (598,395).
+     Completely outside the R-bracket (tip at x=598). -->
+<path class="A" data-id="lb-pines"
+  d="M 580,296 C 636,296 640,350 600,395"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- LB branch: starts ON LB→Pines path at (626,329), ends ON Shrubs→Arbor at (800,311) -->
+<path class="A" data-id="lb-shrubsarbor"
+  d="M 626,329 C 680,326 744,318 800,311"
+  fill="none" stroke="#222" stroke-width="1.2"/>
+ 
+<!-- Jack+White L-bracket tip (406,380) → Black oak top-centre (387,484) -->
+<path class="A" data-id="jackwhite-blackoak"
+  d="M 406,380 C 396,416 390,452 388,484"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Shrubs → Arbor|Balsam border (exits Shrubs bottom-right ~748,282, arrives at border x=922,y=362) -->
+<path class="A" data-id="shrubs-arbor"
+  d="M 752,282 C 806,318 876,348 920,362"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- BASSWOOD: exits bottom (1032,282), sweeps under Shrubs (y≥300), then arcs left
+     Path kept right of Pines label (x=607) until y>430, then curves left to trunk -->
+<path class="A" data-id="bass-trunk"
+  d="M 1032,282 C 1032,316 944,326 830,326 C 720,326 670,340 650,380 C 634,412 628,450 620,468"
+  fill="none" stroke="#222" stroke-width="1.6"/>
+ 
+<!-- Pines R-bracket tip (598,440) → joins Basswood trunk at (620,468) -->
+<path class="A" data-id="pines-trunk"
+  d="M 598,436 C 601,448 610,460 620,468"
+  fill="none" stroke="#222" stroke-width="1.4"/>
+ 
+<!-- Trunk at (594,468): fans to climax nodes -->
+<!-- → Black oak top (387,484) -->
+<path class="A" data-id="trunk-blackoak"
+  d="M 620,468 C 582,474 502,480 390,484"
+  fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
+<!-- → Oaks R/W top (554,484) -->
+<path class="A" data-id="trunk-oaks"
+  d="M 620,468 C 610,476 590,480 560,484"
+  fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
+<!-- → Maples top (665,484) -->
+<path class="A" data-id="trunk-maples"
+  d="M 620,468 C 626,476 640,480 660,484"
+  fill="none" stroke="#222" stroke-width="1.6" marker-end="url(#ah)"/>
+<!-- Basswood does NOT connect to Beech directly -->
+ 
+<!-- ══ ARBOR VITAE + BALSAM FIR → stem from border bottom (922,402) → branches ══ -->
+<path class="A" data-id="arbor-stem"
+  d="M 922,402 L 922,452"
+  fill="none" stroke="#222" stroke-width="1.4"/>
+<!-- → Maples (665,484) -->
+<path class="A" data-id="arbor-maples"
+  d="M 922,452 C 876,464 794,474 668,484"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+<!-- → Beech (735,484) -->
+<path class="A" data-id="arbor-beech"
+  d="M 922,452 C 896,464 836,474 738,484"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+<!-- → Hemlock (799,484) -->
+<path class="A" data-id="arbor-hemlock"
+  d="M 922,452 C 908,464 876,474 802,484"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+<!-- → Birches (915,484) -->
+<path class="A" data-id="arbor-birches"
+  d="M 922,452 C 920,464 918,474 916,484"
+  fill="none" stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- ══ R5: CLIMAX CHAIN ARROWS ══ -->
+ 
+<!-- Black oak ←?→ Oaks: arrowheads point TO the nodes, ? interrupts in the middle -->
+<!-- Left half: arrowhead at Black oak end (x=446), pointing left INTO Black oak -->
+<line class="A" data-id="q-left"
+  x1="472" y1="526" x2="446" y2="526"
+  stroke="#222" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ahd)"/>
+<!-- Right half: arrowhead at Oaks end (x=506), pointing right INTO Oaks -->
+<line class="A" data-id="q-right"
+  x1="482" y1="526" x2="506" y2="526"
+  stroke="#222" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ahd)"/>
+ 
+<!-- Oaks → Maples (Oaks right=602, Maples left=622) -->
+<line class="A" data-id="oaks-maples"
+  x1="602" y1="520" x2="620" y2="520"
+  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Maples → Beech (shared border at x=708) -->
+<line class="A" data-id="maples-beech"
+  x1="710" y1="518" x2="706" y2="518"
+  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Beech → Hemlock (shared border at x=762) -->
+<line class="A" data-id="beech-hemlock"
+  x1="764" y1="518" x2="760" y2="518"
+  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- Birches → Hemlock (leftward; Birches left=860, Hemlock right=836) -->
+<line class="A" data-id="birches-hemlock"
+  x1="858" y1="526" x2="838" y2="526"
+  stroke="#222" stroke-width="1.4" marker-end="url(#ah)"/>
+ 
+<!-- ================================================================
+     NODES — drawn after all arrows
+================================================================ -->
+ 
+<!-- R1 -->
+<g id="n-damp">
+  <rect x="126" y="44" width="130" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="191" y="62" font-size="12.5" fill="#111">Damp</text>
+  <text text-anchor="middle" x="191" y="78" font-size="12.5" fill="#111">depression</text>
+</g>
+<g id="n-upper">
+  <rect x="298" y="44" width="70" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="333" y="62" font-size="12" fill="#111">Upper</text>
+  <text text-anchor="middle" x="333" y="78" font-size="12" fill="#111">beach</text>
+</g>
+<g id="n-erode">
+  <rect x="458" y="44" width="128" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="522" y="62" font-size="12.5" fill="#111">Eroding</text>
+  <text text-anchor="middle" x="522" y="78" font-size="12.5" fill="#111">surfaces</text>
+</g>
+<g id="n-deposit">
+  <rect x="652" y="44" width="136" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="720" y="62" font-size="12.5" fill="#111">Depositing</text>
+  <text text-anchor="middle" x="720" y="78" font-size="12.5" fill="#111">crests</text>
+</g>
+<g id="n-lee">
+  <rect x="920" y="44" width="196" height="42" rx="3" fill="#e8f2e8" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="1018" y="62" font-size="12.5" fill="#111">Steep pockets</text>
+  <text text-anchor="middle" x="1018" y="78" font-size="12.5" fill="#111">lee slopes</text>
+</g>
+ 
+<!-- R2 -->
+<g id="n-foredune">
+  <ellipse cx="333" cy="165" rx="84" ry="26" fill="#d8ecd8" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="333" y="161" font-size="12.5" fill="#111">Foredune</text>
+  <text text-anchor="middle" x="333" y="177" font-size="12.5" fill="#111">Initiation</text>
+</g>
+<g id="n-blowout">
+  <ellipse cx="910" cy="165" rx="90" ry="26" fill="#d8ecd8" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="910" y="161" font-size="12.5" fill="#111">Blowout</text>
+  <text text-anchor="middle" x="910" y="177" font-size="12.5" fill="#111">Initiation</text>
+</g>
+ 
+<!-- R3 -->
+<g id="n-rush">
+  <rect x="126" y="242" width="104" height="40" rx="3" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="178" y="259" font-size="12.5" fill="#111">Rush</text>
+  <text text-anchor="middle" x="178" y="275" font-size="12.5" fill="#111">meadow</text>
+</g>
+<g id="n-cotton">
+  <rect x="280" y="242" width="92" height="40" rx="3" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="326" y="265" font-size="12.5" fill="#111">Cottonwood</text>
+</g>
+ 
+<!-- MARRAM GROUP
+     Marram:          x=424 y=228 w=156 h=22  right=580 bot=250
+     Sand reed:       x=424 y=256 w=156 h=22  right=580 bot=278
+     Little bluestem: x=424 y=284 w=156 h=22  right=580 bot=306
+     L-bracket [: tip x=406 (18px from left=424), y=228-306
+     R-bracket ]: tip x=598 (18px from right=580), y=228-306
+-->
+<g id="n-marram">
+  <rect x="424" y="228" width="156" height="22" rx="2" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="502" y="243" font-size="12" fill="#111">Marram</text>
+  <rect x="424" y="256" width="156" height="22" rx="2" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="502" y="271" font-size="12" fill="#111">Sand reed</text>
+  <rect x="424" y="284" width="156" height="22" rx="2" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="502" y="299" font-size="12" fill="#111">Little bluestem</text>
+</g>
+<!-- Left bracket [ -->
+<path d="M424,228 L406,228 L406,306 L424,306" fill="none" stroke="#4a7a4a" stroke-width="2.2"/>
+<!-- Right bracket ] -->
+<path d="M580,228 L598,228 L598,306 L580,306" fill="none" stroke="#4a7a4a" stroke-width="2.2"/>
+<!-- Grasses label — right of bracket, not on arrow path -->
+<text x="607" y="272" font-size="12" fill="#444" font-style="italic">Grasses</text>
+ 
+<g id="n-shrubs">
+  <rect x="682" y="242" width="80" height="40" rx="3" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="722" y="265" font-size="12.5" fill="#111">Shrubs</text>
+</g>
+<g id="n-bass">
+  <rect x="990" y="242" width="84" height="40" rx="3" fill="#eaf5ea" stroke="#4a7a4a" stroke-width="1"/>
+  <text text-anchor="middle" x="1032" y="265" font-size="12.5" fill="#111">Basswood</text>
+</g>
+ 
+<!-- PINES GROUP
+     Jack:  x=424 y=358 w=156 h=22  right=580 bot=380
+     White: x=424 y=386 w=156 h=22  right=580 bot=408
+     Red:   x=424 y=414 w=156 h=22  right=580 bot=436
+     L-bracket [: tip x=406, y=358-408 (Jack+White only)
+     R-bracket ]: tip x=598, y=358-440 (all three)
+     Pines label: x=607 y=402 (clear of Basswood which goes at y=320)
+-->
+<g id="n-pines">
+  <rect x="424" y="358" width="156" height="22" rx="2" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
+  <text text-anchor="middle" x="502" y="373" font-size="12" fill="#111">Jack</text>
+  <rect x="424" y="386" width="156" height="22" rx="2" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
+  <text text-anchor="middle" x="502" y="401" font-size="12" fill="#111">White</text>
+  <rect x="424" y="414" width="156" height="22" rx="2" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
+  <text text-anchor="middle" x="502" y="429" font-size="12" fill="#111">Red</text>
+</g>
+<!-- Left bracket [ covers Jack+White: y=358-408 -->
+<path d="M424,358 L406,358 L406,408 L424,408" fill="none" stroke="#4a6a8a" stroke-width="2.2"/>
+<!-- Right bracket ] covers all three: y=358-436 (aligns with Red pine box bottom) -->
+<path d="M580,358 L598,358 L598,436 L580,436" fill="none" stroke="#4a6a8a" stroke-width="2.2"/>
+<!-- Pines label at y=402, right of bracket -->
+<text x="607" y="406" font-size="12" fill="#444" font-style="italic">Pines</text>
+ 
+<!-- Arbor vitae | Balsam fir (touching, border at x=922)
+     Arbor vitae: x=786 w=136 right=922  cx=854
+     Balsam fir:  x=922 w=136 right=1058 cx=990
+-->
+<g id="n-arbor">
+  <rect x="786" y="362" width="136" height="40" rx="3" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
+  <text text-anchor="middle" x="854" y="386" font-size="12.5" fill="#111">Arbor vitae</text>
+</g>
+<g id="n-balsam">
+  <rect x="922" y="362" width="136" height="40" rx="3" fill="#e4ecf6" stroke="#4a6a8a" stroke-width="1"/>
+  <text text-anchor="middle" x="990" y="386" font-size="12.5" fill="#111">Balsam fir</text>
+</g>
+ 
+<!-- R5 CLIMAX — spread out with explicit gaps
+     Tall grass:  x=126 w=92  right=218  cx=172
+     Red maple:   x=228 w=90  right=318  cx=273
+     Black oak:   x=328 w=118 right=446  cx=387
+     [60px gap → Oaks left=506]
+     Oaks R/W:    x=506 w=96  right=602  cx=554
+     [20px gap → Maples left=622]
+     Maples:      x=622 w=86  right=708  cx=665
+     Beech:       x=708 w=54  right=762  cx=735  (shared border)
+     Hemlock:     x=762 w=74  right=836  cx=799  (shared border)
+     [24px gap → Birches left=860]
+     Birches:     x=860 w=110 right=970  cx=915
+-->
+<g id="n-prairie">
+  <rect x="126" y="484" width="92" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
+  <text text-anchor="middle" x="172" y="505" font-size="12" fill="#111">Tall</text>
+  <text text-anchor="middle" x="172" y="521" font-size="12" fill="#111">grass</text>
+  <text text-anchor="middle" x="172" y="537" font-size="12" fill="#111">prairie</text>
+</g>
+ 
+<g id="n-swamp">
+  <rect x="228" y="484" width="90" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
+  <text text-anchor="middle" x="273" y="505" font-size="12" fill="#111">Red</text>
+  <text text-anchor="middle" x="273" y="521" font-size="12" fill="#111">maple</text>
+  <text text-anchor="middle" x="273" y="537" font-size="12" fill="#111">swamp</text>
+</g>
+ 
+<!-- Black oak / White oak: not bold, with c→ρ,b,m sub-diagram -->
+<g id="n-oaksbw">
+  <rect x="328" y="484" width="118" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
+  <text text-anchor="middle" x="387" y="502" font-size="12" fill="#111">Black oak</text>
+  <text text-anchor="middle" x="387" y="516" font-size="11.5" fill="#111">White oak</text>
+  <line x1="330" y1="524" x2="444" y2="524" stroke="#ccc" stroke-width="0.8"/>
+  <text text-anchor="middle" x="387" y="536" font-size="11.5" fill="#333">c</text>
+  <line x1="381" y1="539" x2="360" y2="549" stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ahti)"/>
+  <line x1="387" y1="539" x2="387" y2="549" stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ahti)"/>
+  <line x1="393" y1="539" x2="414" y2="549" stroke="#555" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ahti)"/>
+  <text text-anchor="middle" x="356" y="560" font-size="11.5" fill="#333">&#961;</text>
+  <text text-anchor="middle" x="387" y="560" font-size="11.5" fill="#333">b</text>
+  <text text-anchor="middle" x="418" y="560" font-size="11.5" fill="#333">m</text>
+</g>
+ 
+<!-- ? centred between the two arrow halves, interrupting the path -->
+<text text-anchor="middle" x="476" y="531" font-size="13" fill="#555" font-weight="bold">?</text>
+ 
+<g id="n-oaksrw">
+  <rect x="506" y="484" width="96" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
+  <text text-anchor="middle" x="554" y="505" font-size="12" fill="#111">Oaks</text>
+  <text text-anchor="middle" x="554" y="521" font-size="11.5" fill="#111">Red</text>
+  <text text-anchor="middle" x="554" y="537" font-size="11.5" fill="#111">White</text>
+  <line x1="508" y1="546" x2="600" y2="546" stroke="#ccc" stroke-width="0.8"/>
+  <text text-anchor="middle" x="554" y="560" font-size="11" fill="#444">b  m</text>
+</g>
+ 
+<!-- Maples | Beech | Hemlock sharing borders -->
+<g id="n-maples">
+  <rect x="622" y="484" width="86" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
+  <text text-anchor="middle" x="665" y="505" font-size="12" fill="#111">Maples</text>
+  <text text-anchor="middle" x="665" y="521" font-size="11.5" fill="#111">Sugar</text>
+  <text text-anchor="middle" x="665" y="537" font-size="11.5" fill="#111">Red</text>
+  <line x1="624" y1="546" x2="706" y2="546" stroke="#ccc" stroke-width="0.8"/>
+  <text text-anchor="middle" x="665" y="560" font-size="11" fill="#444">m</text>
+</g>
+<!-- Beech: left=708 = right of Maples -->
+<g id="n-beech">
+  <rect x="708" y="484" width="54" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
+  <text text-anchor="middle" x="735" y="526" font-size="12" fill="#111">Beech</text>
+  <line x1="710" y1="546" x2="760" y2="546" stroke="#ccc" stroke-width="0.8"/>
+  <text text-anchor="middle" x="735" y="560" font-size="11" fill="#444">m</text>
+</g>
+<!-- Hemlock: left=762 = right of Beech -->
+<g id="n-hem">
+  <rect x="762" y="484" width="74" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
+  <text text-anchor="middle" x="799" y="526" font-size="12" fill="#111">Hemlock</text>
+  <line x1="764" y1="546" x2="834" y2="546" stroke="#ccc" stroke-width="0.8"/>
+  <text text-anchor="middle" x="799" y="560" font-size="11" fill="#444">m</text>
+</g>
+ 
+<!-- Birches: left=860 (24px gap from Hemlock right=836) -->
+<g id="n-birch">
+  <rect x="860" y="484" width="110" height="84" rx="3" fill="#efefef" stroke="#666" stroke-width="1"/>
+  <text text-anchor="middle" x="915" y="505" font-size="12" fill="#111">Birches</text>
+  <text text-anchor="middle" x="915" y="521" font-size="11.5" fill="#111">Paper</text>
+  <text text-anchor="middle" x="915" y="537" font-size="11.5" fill="#111">Yellow</text>
+  <line x1="862" y1="546" x2="968" y2="546" stroke="#ccc" stroke-width="0.8"/>
+  <text text-anchor="middle" x="915" y="560" font-size="11" fill="#444">m</text>
+</g>
+ 
 </svg>
+ 
+<figcaption>
+  <strong>Fig. 3.8</strong> Schematic alternative dune successions in the Lake Michigan dune systems. (From Olson, 1958; courtesy of <em>Bot. Gaz.</em>)<br>
+  <span style="font-style:normal;font-size:11px;color:#999;">Use the buttons above to highlight individual successional pathways</span>
+</figcaption>
+</figure>
 
-  <figcaption> <strong>Fig. 3.8</strong> Schematic alternative dune successions in the Lake Michigan dune systems. (From Olson, 1958; courtesy of <em>Bot. Gaz.</em>)<br> <span style="font-style:normal;font-size:11.5px;color:#666;"> Click to pin the information panel. Use the pathway buttons above to highlight individual successional sequences. </span> </figcaption> </figure> <!-- Tooltip element --> <div id="fig38-tip"></div>
 
 <p>The pioneer stage of the succession is dominated by <em>Ammophila breviligulata</em> which occasionally becomes established from seed but normally invades freshly deposited sand by rhizomes from young previously established dunes. The rate of dune formation established from a morphological examination of <em>Ammophila</em> is rapid and stable dunes are formed in about six years. Dunes which have been established for 20 years or more still have <em>Ammophila</em> but with an obviously reduced level of vigour. This loss of vigour has been related to potential leaching of nutrients over a 20-year period. Another suggestion invokes the inherent tendency of this species for internodal elongation which does not cease completely when stabilization has been reached. This results in the growing apex being pushed into the dry surface layers of the sand which are unfavourable for plant growth, with the consequent reduction of vigour of the plant as a whole. A further possibility may be found in the average age of the plants themselves, the loss of vigour being due to the slowing down of physiolgical mechanisms, resulting directly from old age (see <a class="table-link" href="Chapters/chapter4.html">Chapter 4</a>). The next stage of the main line of succession is the arrival of <em>Pinus banksiana</em> and <em>P. strobus</em> which enter immediately after dune stabilization is reached. These species eventually are replaced by the final stage dominated by <em>Quercus velutina</em>. This main succession is summarized in <a class="table-link" href="#fig-3-8">Fig. 3.8</a> together with the modifications present in those dune systems where local variation of the environment can change the course of the succession markedly. Thus damp depressions caused by impeded drainage develop into a ​​grassland community and, on the other hand, sheltered pockets on the lee slopes progress to a <em>Tilia americana</em> dominated intermediate stage. This different course of succession is related, in part at least, to the microclimate of these pockets which are largely protected from excessive solar radiation and wind effects. Accordingly moisture availability will be higher, which in addition to the obvious relation to plant growth would contribute some protection from fires which occur frequently in the area, the relatively moist pockets tending to be by-passed. In addition these dune pockets tend to accumulate fallen leaves brought in from the more exposed parts of the dune system and the general nutrient status of the soil increases at the expense of the rest of the area. The reaction of the vegetation on the properties of the soil is broadly similar to the example discussed above but the rate of change is considerably slower. The leaching of carbonate from the soil is very rapid (Fig. 3.9) and the surface layers (10 cm) are more or less devoid of carbonate from the soil after a few hundred years. There is a slow building up of organic carbon (<a class="table-link" href="#fig-3-10">Fig. 3.10</a>) and soil nitrogen (<a class="table-link" href="#fig-3-11">Fig. 3.11</a>). These three environmental changes are virtually completed in 1000 years and subsequent generations of <em>Quercus</em> have little effect on these soil properties.</p>
 
@@ -422,7 +919,329 @@ Such considerations are by no means as absurd as would be imagined. There is a c
 
 <p>One further aspect of the climax concept with profound implication in the delimitation of 'community units' is of importance: Clements regarded association as a complex organism [or quasi-organism, Tansley (1920)] which arose through a variety of causes and subsequently grew, matured and died. In actively changing vegetation the association which replaces a given seral stage is different whereas in climax vegetation the 'death' of an association results in the establishment of a subsequent identical association. Implicit in this concept of the association as an organic entity or living organism' is the concept that climax associations can be readily recognized, <em>defined</em> and <em>classified</em>. The other extreme is presented by Gleason (1917, 1926) who proposed the individualistic concept of the plant association, which basically relates the continuously variable environment to an equally continuously variable vegetation. Thus no two associations are identical and implicit here is the fact that accordingly they cannot be classified and often cannot be clearly defined. Embodied in these two concepts are the two extremes of approach to community classification in use today. This will be considered in some detail at a later stage (see <a class="table-link" href="Chapters/chapter9.html">Chapter 9</a>). In addition to this aspect of the climax association as a distinct and recognizable entity Greig-Smith (1952<em>b</em>) points out: ‘This (the complex organism of Clements) implies direct interaction between individuals both of the same and of different species.’ Interaction between species or individuals of the same species can be conveniently measured by means of a \( \sum x^2 \)-test or by an analysis of the 'pattern' of species distribution respectively (see <a class="table-link" href="Chapters/chapter2.html">Chapter 2</a> and <a class="table-link" href="Chapters/chapter9.html">6</a>). Greig-Smith investigated several sites in secondary forest ranging from areas recently disturbed (Site D) to areas disturbed many years before the investigation and only imperceptibly different from (undisturbed) primary forest (Site B). In addition an area of primary forest was sampled for comparison (Site E). The association between species is given in <a class="table-link" href="#table-3-12">Table 3.1</a>,<a class="table-link" href="#table-3-2"> 3.2</a> and <a class="table-link" href="#table-3-3"> 3.3</a> as the numbers of observed and expected joint occurrences of pairs of species. Clearly the maximum amount of association is present in Site \(\mathcal{D}\) (most recently disturbed) and least evidence of association occurs in Site  \(\mathcal{E}\) (primary forest). This is clear evidence that the maximum interaction between species inherent in the complex organistic' concept of climax vegetation is not valid at least in tropical rain forest. Greig-Smith thus concludes that the individualistic concept of Gleason is a more satisfatory alternative in part at least. The evidence relating the pattern of distribution of the individuals of a species in an area to the 'stability' of the vegetation, suggests equally a minimum of interaction in stable vegetation. Greig-Smith (1961<em>b</em>) examined the different pattern scales in <em>Ammophila arenaria</em>, sampling young developing dunes, stable dunes and dune 'slacks'. His data (<a class="table-link" href="#fig-3-13">Fig. 3.13</a>) show almost complete absence of pattern in the early formation of dunes (NAD 12), a maximum of pattern in the stabilizing dunes (NAD 7, 8 and 9) and only slight indications of pattern in the most stable sites examined (NAD 2, 3 and 4). The amplitude of the peaks is proportional to the intensity of the patterns. In this example the pattern varies from one consisting of patches of slightly higher density which alternate with similar patches of lower density, to sites where the patches are more aptly described as 'clumps'. Again the evidence suggests random distribution in the final stable vegetation, that is to say no interaction between individuals of a species.</p>
 
+<figure class="figure-break" id="table-3-1">
+    <figcaption>
+        <strong>Table 3.1</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site D (secondary forest). (From Greig-Smith, 1952b; courtesy of J. Ecol.)
+    </figcaption>
+
+    <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: center; font-size: 13px;">
+        <thead>
+            <tr style="border-top: 2px solid #333; border-bottom: 1px solid #333;">
+                <th style="text-align:left; padding:6px;">Species</th>
+                <th>Pis</th><th>Rud</th><th>Ama</th><th>Mic</th><th>Lac</th><th>Ali</th><th>Pro</th><th>Coc</th><th>Vis</th><th>Bac</th><th>Ise</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        <tr>
+            <td style="text-align:left;">Pisonia cuspidata (73)</td>
+            <td>—</td>
+            <td>52.56 / 53</td>
+            <td>42.34 / 44</td>
+            <td>42.34 / 39</td>
+            <td>39.42 / 43</td>
+            <td>30.66 / 33</td>
+            <td>30.66 / 34</td>
+            <td>25.55 / 23</td>
+            <td>16.79 / 16</td>
+            <td>14.60 / 17</td>
+            <td>13.87 / 13</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Rudgea freemani (72)</td>
+            <td></td><td>—</td>
+            <td>41.76 / 38*</td>
+            <td>41.76 / 34**</td>
+            <td>38.88 / 48</td>
+            <td>30.24 / 26*</td>
+            <td>30.24 / 32</td>
+            <td>25.20 / 27</td>
+            <td>16.56 / 13*</td>
+            <td>14.40 / 17</td>
+            <td>13.68 / 14</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Amaioua corymbosa (58)</td>
+            <td></td><td></td><td>—</td>
+            <td>33.64 / 24***</td>
+            <td>31.32 / 37*</td>
+            <td>24.36 / 19*</td>
+            <td>24.36 / 26</td>
+            <td>20.30 / 25*</td>
+            <td>13.34 / 15</td>
+            <td>11.60 / 11</td>
+            <td>11.02 / 10</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Miconia prasina (58)</td>
+            <td></td><td></td><td></td><td>—</td>
+            <td>31.32 / 26*</td>
+            <td>24.36 / 29</td>
+            <td>24.36 / 22</td>
+            <td>20.30 / 13*</td>
+            <td>13.34 / 10</td>
+            <td>11.60 / 12</td>
+            <td>11.02 / 11</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Lacistema aggregatum (54)</td>
+            <td></td><td></td><td></td><td></td><td>—</td>
+            <td>22.68 / 29*</td>
+            <td>22.68 / 30**</td>
+            <td>18.90 / 21</td>
+            <td>12.42 / 12</td>
+            <td>10.80 / 7</td>
+            <td>10.26 / 6*</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Alibertia acuminata (42)</td>
+            <td></td><td></td><td></td><td></td><td></td><td>—</td>
+            <td>17.64 / 17</td>
+            <td>14.70 / 11</td>
+            <td>9.66 / 8</td>
+            <td>8.40 / 12</td>
+            <td>7.98 / 8</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Protium guianense (42)</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
+            <td>14.70 / 13</td>
+            <td>9.66 / 7</td>
+            <td>8.40 / 7</td>
+            <td>7.98 / 8</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Coccoloba latifolia (35)</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
+            <td>8.05 / 7</td>
+            <td>7.00 / 7</td>
+            <td>6.65 / 4</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Vismia guianensis (23)</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
+            <td>7</td>
+            <td>6</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Bactris sp. (20)</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
+            <td>7</td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">Isertia parviflora (19)</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
+        </tr>
+
+        <tr style="border-bottom: 2px solid #333;">
+            <td colspan="12" style="text-align:left; padding:10px;">
+                Values shown as <em>expected / observed</em>.  
+                * P = 0.01–0.05, ** P = 0.001–0.01, *** P &lt; 0.001.
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    </div>
+</figure>
+
+<figure class="figure-break" id="table-3-2">
+    <figcaption>
+        <strong>Table 3.2</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site B (secondary forest). (From Greig-Smith, 1952b; courtesy of J. Ecol.)
+    </figcaption>
+
+    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
+        <thead>
+            <tr style="border-top: 2px solid #333; border-bottom: 1px solid #333;">
+                <th style="padding:6px 10px;">Species A</th>
+                <th style="padding:6px 10px;">Species B</th>
+                <th style="padding:6px 10px; text-align:center;">Expected</th>
+                <th style="padding:6px 10px; text-align:center;">Observed</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td><em>Rudgea freemani</em></td>
+                <td><em>Cordia curassavica</em></td>
+                <td style="text-align:center;">30.00</td>
+                <td style="text-align:center;">34</td>
+            </tr>
+
+            <tr>
+                <td><em>Casearia spinescens</em></td>
+                <td><em>Rudgea freemani</em></td>
+                <td style="text-align:center;">22.50</td>
+                <td style="text-align:center;">30 *</td>
+            </tr>
+
+            <tr>
+                <td><em>Bactris sp. (stems)</em></td>
+                <td><em>Casearia spinescens</em></td>
+                <td style="text-align:center;">15.75</td>
+                <td style="text-align:center;">11 *</td>
+            </tr>
+
+            <tr>
+                <td><em>Fagara martinicensis</em></td>
+                <td><em>Bactris sp. (stems)</em></td>
+                <td style="text-align:center;">11.55</td>
+                <td style="text-align:center;">10</td>
+            </tr>
+
+            <tr>
+                <td><em>Bactris sp. (seedlings)</em></td>
+                <td><em>Fagara martinicensis</em></td>
+                <td style="text-align:center;">10.56</td>
+                <td style="text-align:center;">10</td>
+            </tr>
+
+            <tr>
+                <td><em>Acnistus arborescens</em></td>
+                <td><em>Bactris sp. (seedlings)</em></td>
+                <td style="text-align:center;">9.92</td>
+                <td style="text-align:center;">10</td>
+            </tr>
+
+            <tr>
+                <td><em>Casearia decandra</em></td>
+                <td><em>Acnistus arborescens</em></td>
+                <td style="text-align:center;">6.30</td>
+                <td style="text-align:center;">13 ***</td>
+            </tr>
+
+            <tr style="border-bottom: 2px solid #333;">
+                <td><em>Casearia guianensis</em></td>
+                <td><em>Casearia decandra</em></td>
+                <td style="text-align:center;">5.85</td>
+                <td style="text-align:center;">10 **</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <p style="font-size: 0.9em; margin-top: 8px;">
+        * P = 0.01–0.05, ** P = 0.001–0.01, *** P = &lt; 0.001
+    </p>
+</figure>
+
+
+
 <p>A similar set of data is given by Kershaw(1963) collected from associations of <em>Calamagrostis neglecta</em> in central iceland. It behaves here as a primary coloniser of open water and remains at a reduced level of performance and density while the silting up of the area continues. The recent volcanic nature of the rock in the area results in the annual deposition of vast quantities of cindery silt on the valley floors and by an inspection of the depth of water table below a stand of <em>Calamagrostis</em> it is possible to arrange a relative time scale for each stand. The deeper the water table and the more the silting, the longer the <em>Calamagrostis</em> has maintained itself in that ​​particular site. In detail such a method of dating would be open to severe criticism but it does give an indication of the relative age of stands. Samples were taken from numerous sites. The data (<a class="table-link" href="#fig-3-14">Fig. 3.14</a>) show an identical trend. There is a minimal ​​pattern intensity in the early stages of Calamagrostis establishment (<a class="table-link" href="#fig-3-14a">Fig. 3.14a</a>) followed by an increase in intensity until silt accumulation lowers the water table to about 25 cm (<a class="table-link" href="#fig-3-14b">Fig. 3.14b</a> and <a class="table-link" href="#fig-3-14c">Fig. 3.14c</a>). At about 50 cm the pattern of Calamagrostis though still clear is very much reduced in intensity. This trend is continued (<a class="table-link" href="#fig-3-14d">Fig. 3.14d-g</a>) in the series until the maximum depth of water table underlying Calamagrostis is reached at about 105 m in the 'desert areas', after which most vegetation disappears altogether. A further collection of data was made in the area in a topographically uniform <em>Rhacomitrium</em> heath situated at about 790 m on the flat summit of a mountain. From the remoteness and past history of the region is would appear that the area had been completely undisturbed and from the evidence outlined above little pattern should have been present, apart from that produced by the morphology of the species. Again the analysis of the data (<a class="table-link" href="#fig-3-15">Fig. 3.15</a>) is consistent with the concept of a minimum of pattern (interaction between individuals) in stable vegetation. The pattern detected is due to the morphology of the plant and is equivalent to the dimensions of the area covered by the rhizome system of an individual plant.</p>
+
+<figure class="figure-break" id="table-3-3">
+    <figcaption>
+        <strong>Table 3.3</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site E (primary forest). (From Greig-Smith, 1952b; courtesy of J. Ecol.)
+    </figcaption>
+
+    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
+        <thead>
+            <tr style="border-top: 2px solid #333; border-bottom: 1px solid #333;">
+                <th style="padding:6px 10px;">Species A</th>
+                <th style="padding:6px 10px;">Species B</th>
+                <th style="padding:6px 10px; text-align:center;">Expected</th>
+                <th style="padding:6px 10px; text-align:center;">Observed</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td><em>Rudgea freemani</em></td>
+                <td><em>Myrcia granulata</em></td>
+                <td style="text-align:center;">26.55</td>
+                <td style="text-align:center;">30</td>
+            </tr>
+
+            <tr>
+                <td><em>Hymenaea courbaril</em></td>
+                <td><em>Rudgea freemani</em></td>
+                <td style="text-align:center;">16.65</td>
+                <td style="text-align:center;">17</td>
+            </tr>
+
+            <tr>
+                <td><em>Rinorea lindeniana</em></td>
+                <td><em>Hymenaea courbaril</em></td>
+                <td style="text-align:center;">12.21</td>
+                <td style="text-align:center;">7 *</td>
+            </tr>
+
+            <tr>
+                <td><em>Eugenia perplexans</em></td>
+                <td><em>Rinorea lindeniana</em></td>
+                <td style="text-align:center;">8.58</td>
+                <td style="text-align:center;">10</td>
+            </tr>
+
+            <tr>
+                <td><em>Peltogyne porphyrocardia</em></td>
+                <td><em>Eugenia perplexans</em></td>
+                <td style="text-align:center;">6.24</td>
+                <td style="text-align:center;">7</td>
+            </tr>
+
+            <tr>
+                <td><em>Swartzia simplex</em></td>
+                <td><em>Peltogyne porphyrocardia</em></td>
+                <td style="text-align:center;">5.20</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+
+            <tr>
+                <td><em>Calyptranthes fasciculata</em></td>
+                <td><em>Swartzia simplex</em></td>
+                <td style="text-align:center;">5.28</td>
+                <td style="text-align:center;">7</td>
+            </tr>
+
+            <tr>
+                <td><em>Clathrotropis brachypetala</em></td>
+                <td><em>Calyptranthes fasciculata</em></td>
+                <td style="text-align:center;">5.28</td>
+                <td style="text-align:center;">3</td>
+            </tr>
+
+            <tr>
+                <td><em>Brownea latifolia</em></td>
+                <td><em>Clathrotropis brachypetala</em></td>
+                <td style="text-align:center;">5.28</td>
+                <td style="text-align:center;">5</td>
+            </tr>
+
+            <tr>
+                <td><em>Eschweilera subglandulosa</em></td>
+                <td><em>Brownea latifolia</em></td>
+                <td style="text-align:center;">5.55</td>
+                <td style="text-align:center;">7</td>
+            </tr>
+
+            <tr style="border-bottom: 2px solid #333;">
+                <td><em>Bactris sp.</em></td>
+                <td><em>Eschweilera subglandulosa</em></td>
+                <td style="text-align:center;">5.18</td>
+                <td style="text-align:center;">7</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <p style="font-size: 0.9em; margin-top: 8px;">
+        * P = 0.01–0.05, ** P = 0.001–0.01, *** P = &lt; 0.001
+    </p>
+</figure>
+
 
 <p>Brereton (1971) examining scales of pattern and their intensity (measured as peak height) showed for two salt marsh species <em>Puccinellia</em> and <em>Salicornia</em> a marked change in both pattern scale as well as pattern intensity. The sites sampled ranged from high water mark spring tides (stand 1) successively down through the marsh, to the lower limit of <em>Salicornia</em> at approximately the level of high water at ordinary neap tides (stand 6). The results (<a class="table-link" href="#fig-3-16">Fig. 3.16</a>) are extremely clear cut and call for little comment. </p>
 
@@ -430,7 +1249,6 @@ Such considerations are by no means as absurd as would be imagined. There is a c
 
 
 
-TAVLE 3.3
 
 <p>\( * P = 0.01\text{–}0.05 \quad ** P = 0.001\text{–}0.01 \quad *** P < 0.001 \)</p>
 
@@ -443,7 +1261,7 @@ TAVLE 3.3
             <details class="section">
                 <summary> Alternative models of succession </summary>
 
-<p>​​Over the last decade there has been a number of criticisms of the generality of the mechanisms of succession implied by the original deterministic model proposed by Clements: where the initial species of the succession alter the environment in such a way that it is then more suitable for other subsequent invading species. The corollary of this is that the actual sequence is predictable and accordingly the form and composition of the climax vegetation virtually pre-defined; the Clementsian model is thus completely deterministic. However, a body of evidence has accumulated indicating that this is not necessarily the case. Thus, Walker (1970) examined the peat stratigraphy at the margins of a number of replicate ponds in Great Britain where the classical succession sequence, starting with open water and running through submerged aquatics to floating-leaved aquatics, reed-swamp, and finally to an alder-willow woodland, should be evident. His data in fact showed that there was no consistent sequence at all, emphasizing the difficulties inherent in ordering successional phases by 'intuitive' methods. The succession sequence, open-water; submerged, floating-leaved aquatics; reed swamp; willow, alder woodland certainly is intuitively a reasonable sequence and can actually sometimes occur. However, since this primary succession takes so long, experimental and sequential field evidence is difficult to obtain, and the intuitive sequential ordering of disjunct stages of both this, or equally, other primary successions can lead to erroneous conclusions Egler (1954), Drury and Nisbet (1973), Colinvaux (1973) and others, have all now questioned the validity of the completely deterministic sequence in any primary plant succession and the validity of these criticisms have forced an equivalent level of rigorous re-examination of determinism in secondary plant successions as well (Hulst, 1978; Peet and Christensen, 1980; Pickett, 1976 and 1982; Horn, 1974; etc). Connell and Slatyer (1977) and Noble and Slatyer (1980) have very elegantly summarized the problems that have now been identified in the deterministic model of primary or secondary plant succession and have outlined two alternative models Their three models are given in Fig. 3.17 and outline the mechanisms that  would bring about a successional change after a perturbation, assuming no further significant changes in the abiotic environment. Between the first two steps in the diagram (A to B) there is a major dichotomy between alternative models of succession. Model 1 assumes that only certain 'early successional' species are able to colonize the site in the conditions that occur immediately following the perturbation Models 2 and 3 assume that any arriving species, including those which usually appear later, may be able to colonize. This dichotomy emphasizes the fundamental difference between the original conception of succession proposed by Clements (1916) and the alternative ones described here. </p>
+<p>​​Over the last decade there has been a number of criticisms of the generality of the mechanisms of succession implied by the original deterministic model proposed by Clements: where the initial species of the succession alter the environment in such a way that it is then more suitable for other subsequent invading species. The corollary of this is that the actual sequence is predictable and accordingly the form and composition of the climax vegetation virtually pre-defined; the Clementsian model is thus completely deterministic. However, a body of evidence has accumulated indicating that this is not necessarily the case. Thus, Walker (1970) examined the peat stratigraphy at the margins of a number of replicate ponds in Great Britain where the classical succession sequence, starting with open water and running through submerged aquatics to floating-leaved aquatics, reed-swamp, and finally to an alder-willow woodland, should be evident. His data in fact showed that there was no consistent sequence at all, emphasizing the difficulties inherent in ordering successional phases by 'intuitive' methods. The succession sequence, open-water; submerged, floating-leaved aquatics; reed swamp; willow, alder woodland certainly is intuitively a reasonable sequence and can actually sometimes occur. However, since this primary succession takes so long, experimental and sequential field evidence is difficult to obtain, and the intuitive sequential ordering of disjunct stages of both this, or equally, other primary successions can lead to erroneous conclusions Egler (1954), Drury and Nisbet (1973), Colinvaux (1973) and others, have all now questioned the validity of the completely deterministic sequence in any primary plant succession and the validity of these criticisms have forced an equivalent level of rigorous re-examination of determinism in secondary plant successions as well (Hulst, 1978; Peet and Christensen, 1980; Pickett, 1976 and 1982; Horn, 1974; etc). Connell and Slatyer (1977) and Noble and Slatyer (1980) have very elegantly summarized the problems that have now been identified in the deterministic model of primary or secondary plant succession and have outlined two alternative models Their three models are given in <a class="table-link" href="#fid-3-1">Fig. 3.17</a> and outline the mechanisms that  would bring about a successional change after a perturbation, assuming no further significant changes in the abiotic environment. Between the first two steps in the diagram (A to B) there is a major dichotomy between alternative models of succession. Model 1 assumes that only certain 'early successional' species are able to colonize the site in the conditions that occur immediately following the perturbation Models 2 and 3 assume that any arriving species, including those which usually appear later, may be able to colonize. This dichotomy emphasizes the fundamental difference between the original conception of succession proposed by Clements (1916) and the alternative ones described here. </p>
 
 
 <p>Up to this point all models agree that certain species will usually appear first because they have evolved colonizing' characteristics such as the ability to produce large numbers of propagules which have good dispersal powers, to survive in a dormant state for a long time once they arrive (Marks, 1974), to germinate and become established in unoccupied places, and to grow quickly to maturity. They are not well adapted to germinating, growing, and surviving in occupied sites, where there is heavy shade, deep litter etc., so that offspring seldom survive in the presence of their parents or other adults. Thus in all models, early occupants modify the environment so that it is unsuitable for further recruitment of these early successional species. In the <strong><em>deterministic</strong></em> model (Model 1) this process of reaction continues as the classical Clements sequence. </p>
@@ -498,13 +1316,124 @@ replacement is by the same species succession will not take place. Conversely if
 </footer>
 
 
-<script> (function () { const tip = document.getElementById('fig38-tip'); const panel = document.getElementById('fig38-panel'); const pTitle= document.getElementById('fig38-panel-title'); const pBody = document.getElementById('fig38-panel-body'); /* ── Tooltip ── */ document.querySelectorAll('#fig38svg .n').forEach(node => { node.addEventListener('mouseenter', e => { const t = node.getAttribute('data-title') || ''; if (!t) return; tip.textContent = t; tip.style.opacity = 1; }); node.addEventListener('mousemove', e => { tip.style.left = (e.clientX + 14) + 'px'; tip.style.top = (e.clientY - 34) + 'px'; }); node.addEventListener('mouseleave', () => { tip.style.opacity = 0; }); /* ── Click → info panel ── */ node.addEventListener('click', () => { const title = node.getAttribute('data-title') || ''; const info = node.getAttribute('data-info') || ''; pTitle.textContent = title; pBody.textContent = info; panel.classList.add('open'); // highlight selected node document.querySelectorAll('#fig38svg .n').forEach(n => n.classList.remove('selected')); node.classList.add('selected'); }); }); window.closePanel = function () { panel.classList.remove('open'); document.querySelectorAll('#fig38svg .n').forEach(n => n.classList.remove('selected')); }; /* ── Pathway highlighting ── */ let activeBtn = null; window.highlightPath = function (path) { const lines = document.querySelectorAll('#fig38svg .arr-line'); // reset buttons document.querySelectorAll('.fig-controls button').forEach(b => b.classList.remove('active')); if (!path) { // show all lines.forEach(l => { l.classList.remove('dimmed','highlighted'); }); document.getElementById('btn-reset').classList.add('active'); activeBtn = null; return; } const btnMap = {damp:'btn-damp', upper:'btn-upper', blowout:'btn-blowout', lee:'btn-lee'}; if (btnMap[path]) document.getElementById(btnMap[path]).classList.add('active'); lines.forEach(l => { const paths = (l.getAttribute('data-paths') || '').split(' '); if (paths.includes(path)) { l.classList.remove('dimmed'); l.classList.add('highlighted'); // swap to orange arrowhead l.setAttribute('marker-end','url(#ah-hi)'); } else { l.classList.add('dimmed'); l.classList.remove('highlighted'); l.setAttribute('marker-end','url(#ah)'); } }); activeBtn = path; }; // start with all shown document.getElementById('btn-reset').classList.add('active'); })(); </script> 
+<script>
+(function(){
+ // Map each data-id to a Set of pathway button keys that should highlight it
+ // Spec per button:
+ const PATHS = {
+   // Damp depression: trunk → rush + cottonwood, rush → tall grass + red maple,
+   // cottonwood → blowout, grasses, jack; jack+white → black oak; black oak ↔ oaks
+   damp: new Set([
+     'damp-trunk','damp-rush','damp-cotton',
+     'rush-trunk','rush-tallgrass','rush-redmaple',
+     'cotton-blowout','cotton-grasses','cotton-jack',
+     'jackwhite-blackoak',
+     'q-left','q-right',
+   ]),
+   // Upper beach: → damp; → marram; branch to erode-SR; marram+SR → LB;
+   // LB → pines; pines → black oak, oaks, maples; LB branch → shrubs→arbor;
+   // arbor/balsam → maples, beech, hemlock, birches; birches → hemlock;
+   // oaks → maples; black oak ↔ oaks
+   upper: new Set([
+     'ub-damp',
+     'ub-marram','ub-erode-branch',
+     'marram-lb','sr-lb',
+     'lb-pines',
+     'lb-shrubsarbor','shrubs-arbor',
+     'pines-trunk','trunk-blackoak','trunk-oaks','trunk-maples',
+     'jackwhite-blackoak',
+     'arbor-stem','arbor-maples','arbor-beech','arbor-hemlock','arbor-birches',
+     'birches-hemlock','oaks-maples','maples-beech','beech-hemlock',
+     'q-left','q-right',
+     'cotton-grasses',
+   ]),
+   // Eroding surfaces: → sand reed; SR → LB; LB → pines; pines → black oak, oaks, maples;
+   // LB branch → shrubs→arbor; arbor → maples, beech, hemlock, birches;
+   // birches → hemlock; oaks → maples; black oak ↔ oaks
+   erode: new Set([
+     'erode-sr',
+     'sr-lb',
+     'lb-pines',
+     'lb-shrubsarbor','shrubs-arbor',
+     'pines-trunk','trunk-blackoak','trunk-oaks','trunk-maples',
+     'arbor-stem','arbor-maples','arbor-beech','arbor-hemlock','arbor-birches',
+     'birches-hemlock','oaks-maples','maples-beech','beech-hemlock',
+     'q-left','q-right',
+   ]),
+   // Depositing crests: blowout → depositing; depositing → marram; marram → LB;
+   // LB → pines; pines → black oak, oaks, maples; LB branch → shrubs→arbor;
+   // arbor → maples, beech, hemlock, birches; birches → hemlock;
+   // oaks → maples; black oak ↔ oaks; grasses bracket → blowout
+   deposit: new Set([
+     'blowout-deposit',
+     'deposit-marram',
+     'marram-lb',
+     'lb-pines',
+     'pines-trunk','trunk-blackoak','trunk-oaks','trunk-maples',
+     'lb-shrubsarbor','shrubs-arbor',
+     'arbor-stem','arbor-maples','arbor-beech','arbor-hemlock','arbor-birches',
+     'birches-hemlock','oaks-maples','maples-beech','beech-hemlock',
+     'q-left','q-right',
+     'grasses-blowout',
+   ]),
+   // Lee slopes: blowout → steep; steep → shrubs + basswood; shrubs → basswood;
+   // basswood → black oak, oaks, maples; shrubs → arbor|balsam;
+   // arbor → maples, beech, hemlock, birches; birches → hemlock;
+   // oaks → maples; black oak ↔ oaks
+   lee: new Set([
+     'blowout-steep',
+     'steep-trunk','steep-shrubs','steep-bass',
+     'shrubs-bass',
+     'bass-trunk','trunk-blackoak','trunk-oaks','trunk-maples',
+     'shrubs-arbor',
+     'arbor-stem','arbor-maples','arbor-beech','arbor-hemlock','arbor-birches',
+     'birches-hemlock','oaks-maples','maples-beech','beech-hemlock',
+     'q-left','q-right',
+   ]),
+ };
+ 
+ const isDashed = el => (el.getAttribute('stroke-dasharray') || '').trim().length > 0;
+ const hasEnd   = el => !!el.getAttribute('marker-end');
+ const hasStart = el => !!el.getAttribute('marker-start');
+ 
+ window.hl = function(p) {
+   const arrows = document.querySelectorAll('#svg .A');
+   document.querySelectorAll('.controls button').forEach(b => b.classList.remove('on'));
+ 
+   if (!p) {
+     arrows.forEach(a => {
+       a.classList.remove('dim','hi');
+       const d = isDashed(a);
+       if (hasEnd(a))   a.setAttribute('marker-end',   d ? 'url(#ahd)'    : 'url(#ah)');
+       if (hasStart(a)) a.setAttribute('marker-start', d ? 'url(#ahdrev)' : 'url(#ahrev)');
+     });
+     document.getElementById('b-all').classList.add('on');
+     return;
+   }
+ 
+   const bmap = {damp:'b-damp', upper:'b-upper', erode:'b-erode', deposit:'b-deposit', lee:'b-lee'};
+   if (bmap[p]) document.getElementById(bmap[p]).classList.add('on');
+ 
+   const active = PATHS[p] || new Set();
+   arrows.forEach(a => {
+     const id = a.getAttribute('data-id') || '';
+     const d  = isDashed(a);
+     if (active.has(id)) {
+       a.classList.remove('dim'); a.classList.add('hi');
+       if (hasEnd(a))   a.setAttribute('marker-end',   d ? 'url(#ahod)'   : 'url(#aho)');
+       if (hasStart(a)) a.setAttribute('marker-start', d ? 'url(#ahod)'   : 'url(#ahorev)');
+     } else {
+       a.classList.add('dim'); a.classList.remove('hi');
+       if (hasEnd(a))   a.setAttribute('marker-end',   d ? 'url(#ahd)'    : 'url(#ah)');
+       if (hasStart(a)) a.setAttribute('marker-start', d ? 'url(#ahdrev)' : 'url(#ahrev)');
+     }
+   });
+ };
+ 
+ document.getElementById('b-all').classList.add('on');
+})();
+</script>
+
 
 </body>
 </html>
-
-
-
-
-
-
