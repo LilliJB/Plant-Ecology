@@ -375,3 +375,44 @@ tr:has(.brace[rowspan="4"]) .brace-svg { height: 104px; }
     stroke: #2f5d3a;
     stroke-width: 2;
 }
+
+
+/* FIGURE 3.8 INTERACTIVE DIAGRAM */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.controls strong {
+    color: #2f5d3a;
+    font-size: 12px;
+}
+.controls button {
+    padding: 3px 11px;
+    font-size: 12px;
+    border: 1px solid #b0c4b0;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+}
+.controls button:hover {
+    background: #e8f3e8;
+}
+.controls button.on {
+    background: #2f5d3a;
+    color: #fff;
+    border-color: #2f5d3a;
+}
+.A {
+    transition: opacity 0.18s, stroke 0.18s;
+}
+.A.dim {
+    opacity: 0.07;
+}
+.A.hi {
+    stroke: #b84800 !important;
+    stroke-width: 2.4px !important;
+    opacity: 1 !important;
+}
