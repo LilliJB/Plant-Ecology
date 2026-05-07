@@ -65,6 +65,35 @@
         font-weight: bold;
         padding-right: 15px;
     }
+
+  .joint-table {
+    border-collapse: collapse;
+    font-size: 0.82em;
+    font-family: Georgia, serif;
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+  .joint-table td {
+    padding: 2px 8px;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  .joint-table .sp-label { font-style: italic; text-align: left; padding-right: 12px; }
+  .joint-table .col-header { font-style: italic; text-align: left; padding-bottom: 2px; }
+  .joint-table .exp { color: #555; }
+  .joint-table .sig { font-weight: bold; }
+  .joint-table .top-rule td { border-top: 1.5px solid #888; padding-top: 6px; }
+  .joint-table .bot-rule td { border-bottom: 1.5px solid #888; padding-bottom: 6px; }
+  .joint-table .indent { padding-left: 18px; }
+  .table-note {
+    font-size: 0.82em;
+    color: #444;
+    margin-top: 8px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
 </style>
 
 </head>
@@ -874,220 +903,119 @@ One marked aspect of the theoretical climax relative to the stages of succession
 <p>It is conceivable that climatic variation over long time scales is absent in the equatorial region, or is minimal relative to the marked glacier activity in the arctic and resultant plant successions outlined previously. No evidence is available which would demonstrate previous vegetational types in areas of present day primary rain forests and it is possible that the 'abstract' climax may in fact exist in such areas where there has been a minimum of climatic disturbance. On the other hand the fluctuation of climate has only recently been studied in detail and a decision as to the likelihood of major equatorial variations will have to wait further developments in meteor-ology. It is well known however that raised beaches occur around several of the large African lakes reflecting (presumably) different climatic conditions in the past.</p>
 
 
-<p>One further aspect of the climax concept with profound implication in the delimitation of 'community units' is of importance: Clements regarded association as a complex organism [or quasi-organism, Tansley (1920)] which arose through a variety of causes and subsequently grew, matured and died. In actively changing vegetation the association which replaces a given seral stage is different whereas in climax vegetation the 'death' of an association results in the establishment of a subsequent identical association. Implicit in this concept of the association as an organic entity or living organism' is the concept that climax associations can be readily recognized, <em>defined</em> and <em>classified</em>. The other extreme is presented by Gleason (1917, 1926) who proposed the individualistic concept of the plant association, which basically relates the continuously variable environment to an equally continuously variable vegetation. Thus no two associations are identical and implicit here is the fact that accordingly they cannot be classified and often cannot be clearly defined. Embodied in these two concepts are the two extremes of approach to community classification in use today. This will be considered in some detail at a later stage (see <a class="table-link" href="Chapters/chapter9.html">Chapter 9</a>). In addition to this aspect of the climax association as a distinct and recognizable entity Greig-Smith (1952<em>b</em>) points out: ‘This (the complex organism of Clements) implies direct interaction between individuals both of the same and of different species.’ Interaction between species or individuals of the same species can be conveniently measured by means of a \( \ x^2 \)-test or by an analysis of the 'pattern' of species distribution respectively (see <a class="table-link" href="Chapters/chapter2.html">Chapter 2</a> and <a class="table-link" href="Chapters/chapter9.html">6</a>). Greig-Smith investigated several sites in secondary forest ranging from areas recently disturbed (Site D) to areas disturbed many years before the investigation and only imperceptibly different from (undisturbed) primary forest (Site B). In addition an area of primary forest was sampled for comparison (Site E). The association between species is given in <a class="table-link" href="#table-3-12">Table 3.1</a>,<a class="table-link" href="#table-3-2"> 3.2</a> and <a class="table-link" href="#table-3-3"> 3.3</a> as the numbers of observed and expected joint occurrences of pairs of species. Clearly the maximum amount of association is present in Site \(\mathcal{D}\) (most recently disturbed) and least evidence of association occurs in Site  \(\mathcal{E}\) (primary forest). This is clear evidence that the maximum interaction between species inherent in the complex organistic' concept of climax vegetation is not valid at least in tropical rain forest. Greig-Smith thus concludes that the individualistic concept of Gleason is a more satisfatory alternative in part at least. The evidence relating the pattern of distribution of the individuals of a species in an area to the 'stability' of the vegetation, suggests equally a minimum of interaction in stable vegetation. Greig-Smith (1961<em>b</em>) examined the different pattern scales in <em>Ammophila arenaria</em>, sampling young developing dunes, stable dunes and dune 'slacks'. His data (<a class="table-link" href="#fig-3-13">Fig. 3.13</a>) show almost complete absence of pattern in the early formation of dunes (NAD 12), a maximum of pattern in the stabilizing dunes (NAD 7, 8 and 9) and only slight indications of pattern in the most stable sites examined (NAD 2, 3 and 4). The amplitude of the peaks is proportional to the intensity of the patterns. In this example the pattern varies from one consisting of patches of slightly higher density which alternate with similar patches of lower density, to sites where the patches are more aptly described as 'clumps'. Again the evidence suggests random distribution in the final stable vegetation, that is to say no interaction between individuals of a species.</p>
+<p>One further aspect of the climax concept with profound implication in the delimitation of 'community units' is of importance: Clements regarded association as a complex organism [or quasi-organism, Tansley (1920)] which arose through a variety of causes and subsequently grew, matured and died. In actively changing vegetation the association which replaces a given seral stage is different whereas in climax vegetation the 'death' of an association results in the establishment of a subsequent identical association. Implicit in this concept of the association as an organic entity or living organism' is the concept that climax associations can be readily recognized, <em>defined</em> and <em>classified</em>. The other extreme is presented by Gleason (1917, 1926) who proposed the individualistic concept of the plant association, which basically relates the continuously variable environment to an equally continuously variable vegetation. Thus no two associations are identical and implicit here is the fact that accordingly they cannot be classified and often cannot be clearly defined. Embodied in these two concepts are the two extremes of approach to community classification in use today. This will be considered in some detail at a later stage (see <a class="table-link" href="Chapters/chapter9.html">Chapter 9</a>). In addition to this aspect of the climax association as a distinct and recognizable entity Greig-Smith (1952<em>b</em>) points out: ‘This (the complex organism of Clements) implies direct interaction between individuals both of the same and of different species.’ Interaction between species or individuals of the same species can be conveniently measured by means of a \( \ x^2 \)-test or by an analysis of the 'pattern' of species distribution respectively (see <a class="table-link" href="Chapters/chapter2.html">Chapter 2</a> and <a class="table-link" href="Chapters/chapter9.html">6</a>). Greig-Smith investigated several sites in secondary forest ranging from areas recently disturbed (Site D) to areas disturbed many years before the investigation and only imperceptibly different from (undisturbed) primary forest (Site B). In addition an area of primary forest was sampled for comparison (Site E). The association between species is given in <a class="table-link" href="#table-3-1">Table 3.1</a>,<a class="table-link" href="#table-3-2"> 3.2</a> and <a class="table-link" href="#table-3-3"> 3.3</a> as the numbers of observed and expected joint occurrences of pairs of species. Clearly the maximum amount of association is present in Site \(\mathcal{D}\) (most recently disturbed) and least evidence of association occurs in Site  \(\mathcal{E}\) (primary forest). This is clear evidence that the maximum interaction between species inherent in the complex organistic' concept of climax vegetation is not valid at least in tropical rain forest. Greig-Smith thus concludes that the individualistic concept of Gleason is a more satisfatory alternative in part at least. The evidence relating the pattern of distribution of the individuals of a species in an area to the 'stability' of the vegetation, suggests equally a minimum of interaction in stable vegetation. Greig-Smith (1961<em>b</em>) examined the different pattern scales in <em>Ammophila arenaria</em>, sampling young developing dunes, stable dunes and dune 'slacks'. His data (<a class="table-link" href="#fig-3-13">Fig. 3.13</a>) show almost complete absence of pattern in the early formation of dunes (NAD 12), a maximum of pattern in the stabilizing dunes (NAD 7, 8 and 9) and only slight indications of pattern in the most stable sites examined (NAD 2, 3 and 4). The amplitude of the peaks is proportional to the intensity of the patterns. In this example the pattern varies from one consisting of patches of slightly higher density which alternate with similar patches of lower density, to sites where the patches are more aptly described as 'clumps'. Again the evidence suggests random distribution in the final stable vegetation, that is to say no interaction between individuals of a species.</p>
 
-<figure class="figure-break" id="table-3-1">
-    <figcaption>
-        <strong>Table 3.1</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site D (secondary forest). (From Greig-Smith, 1952b; courtesy of J. Ecol.)
-    </figcaption>
+<p><strong>Table 3.1</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site D (secondary forest). (From Greig-Smith, 1952b; courtesy of <em>J. Ecol.</em>)</p>
+ 
+<div style="overflow-x:auto;">
+<table class="joint-table">
+  <tbody>
+    <tr class="top-rule">
+      <td></td>
+      <td class="col-header"><em>Pisonia cuspidata</em> 73</td>
+      <td class="col-header"><em>Rudgea freemani</em> 72</td>
+      <td class="col-header"><em>Amaioua corymbosa</em> 58</td>
+      <td class="col-header"><em>Miconia prasina</em> 58</td>
+      <td class="col-header"><em>Lacistema aggregatum</em> 54</td>
+      <td class="col-header"><em>Alibertia acuminata</em> 42</td>
+      <td class="col-header"><em>Protium guianense</em> 42</td>
+      <td class="col-header"><em>Coccoloba latifolia</em> 35</td>
+    </tr>
+    <tr><td class="sp-label"><em>Rudgea freemani</em></td><td class="exp">52.56</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">72</td><td>53</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Amaioua corymbosa</em></td><td class="exp">42.34</td><td class="exp">41.76</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">58</td><td><span class="sig">38 *</span></td><td>44</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Miconia prasina</em></td><td class="exp">42.34</td><td class="exp">41.76</td><td class="exp">33.64</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">58</td><td><span class="sig">34 ***</span></td><td>39</td><td><span class="sig">24 ***</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Lacistema aggregatum</em></td><td class="exp">39.42</td><td class="exp">38.88</td><td class="exp">31.32</td><td class="exp">31.32</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">54</td><td>48</td><td>43</td><td><span class="sig">37 *</span></td><td><span class="sig">26 *</span></td><td></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Alibertia acuminata</em></td><td class="exp">30.66</td><td class="exp">30.24</td><td class="exp">24.36</td><td class="exp">24.36</td><td class="exp">22.68</td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">42</td><td><span class="sig">26 *</span></td><td>33</td><td>29</td><td><span class="sig">19 *</span></td><td><span class="sig">29 *</span></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Protium guianense</em></td><td class="exp">30.66</td><td class="exp">30.24</td><td class="exp">24.36</td><td class="exp">24.36</td><td class="exp">22.68</td><td class="exp">17.64</td><td></td><td></td></tr>
+    <tr><td class="indent">42</td><td>32</td><td>34</td><td>26</td><td>22</td><td><span class="sig">30 **</span></td><td>17</td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Coccoloba latifolia</em></td><td class="exp">25.55</td><td class="exp">25.20</td><td class="exp">20.30</td><td class="exp">20.30</td><td class="exp">18.90</td><td class="exp">14.70</td><td class="exp">14.70</td><td></td></tr>
+    <tr><td class="indent">35</td><td>27</td><td>23</td><td><span class="sig">25 *</span></td><td><span class="sig">13 *</span></td><td>21</td><td>11</td><td>13</td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Vismia guianensis</em></td><td class="exp">16.79</td><td class="exp">16.56</td><td class="exp">13.34</td><td class="exp">13.34</td><td class="exp">12.42</td><td class="exp">9.66</td><td class="exp">9.66</td><td class="exp">8.05</td></tr>
+    <tr><td class="indent">23</td><td><span class="sig">13 *</span></td><td>16</td><td>15</td><td>10</td><td>10</td><td>12</td><td>8</td><td>7</td></tr>
+ 
+    <tr><td class="sp-label"><em>Bactris</em> sp.</td><td class="exp">14.60</td><td class="exp">14.40</td><td class="exp">11.60</td><td class="exp">11.60</td><td class="exp">10.80</td><td class="exp">8.40</td><td class="exp">8.40</td><td class="exp">7.00</td></tr>
+    <tr><td class="indent">20</td><td>17</td><td>17</td><td>11</td><td>11</td><td>12</td><td>7</td><td>12</td><td>7</td></tr>
+ 
+    <tr><td class="sp-label"><em>Isertia parviflora</em></td><td class="exp">13.87</td><td class="exp">13.68</td><td class="exp">11.02</td><td class="exp">11.02</td><td class="exp">10.26</td><td class="exp">7.98</td><td class="exp">7.98</td><td class="exp">6.65</td></tr>
+    <tr><td class="indent">19</td><td>14</td><td>13</td><td>10</td><td><span class="sig">6 *</span></td><td>6</td><td>8</td><td>4</td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Clusia minor</em></td><td class="exp">—</td><td class="exp">—</td><td class="exp">—</td><td class="exp">8.12</td><td class="exp">8.12</td><td class="exp">7.56</td><td class="exp">5.88</td><td class="exp">5.88</td></tr>
+    <tr><td class="indent">14</td><td>—</td><td>—</td><td>—</td><td>9</td><td>8</td><td>7</td><td>5</td><td>5</td></tr>
+ 
+    <tr><td class="sp-label"><em>Cassia fruticosa</em></td><td class="exp">—</td><td class="exp">—</td><td class="exp">—</td><td class="exp">7.54</td><td class="exp">7.54</td><td class="exp">7.02</td><td class="exp">5.46</td><td class="exp">5.46</td></tr>
+    <tr><td class="indent">13</td><td>—</td><td>—</td><td>—</td><td>8</td><td>5</td><td><span class="sig">11 *</span></td><td>5</td><td>7</td></tr>
+ 
+    <tr><td class="sp-label"><em>Casearia spinescens</em></td><td class="exp">—</td><td class="exp">—</td><td class="exp">—</td><td class="exp">7.54</td><td class="exp">7.54</td><td class="exp">7.02</td><td class="exp">5.46</td><td class="exp">5.46</td></tr>
+    <tr class="bot-rule"><td class="indent">13</td><td>—</td><td>—</td><td>—</td><td>8</td><td>6</td><td>10</td><td>8</td><td>7</td></tr>
+  </tbody>
+</table>
+</div>
+ 
+<p class="table-note">
+  The number against each species is the total number of plots in which that species occurred. The numbers against each pair of species are the expected (above) and observed (below) numbers of joint occurrences.<br>
+  * <em>P</em> = 0.01–0.05.&nbsp;&nbsp; ** <em>P</em> = 0.001–0.01.&nbsp;&nbsp; *** <em>P</em> = &lt;0.001.
+</p>
 
-    <div style="overflow-x:auto;">
-    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: center; font-size: 13px;">
-        <thead>
-            <tr style="border-top: 2px solid #333; border-bottom: 1px solid #333;">
-                <th style="text-align:left; padding:6px;">Species</th>
-                <th>Pis</th><th>Rud</th><th>Ama</th><th>Mic</th><th>Lac</th><th>Ali</th><th>Pro</th><th>Coc</th><th>Vis</th><th>Bac</th><th>Ise</th>
-            </tr>
-        </thead>
 
-        <tbody>
+<p><strong>Table 3.2</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site B (secondary forest). (From Greig-Smith, 1952b; courtesy of <em>J. Ecol.</em>)</p>
+ 
+<div style="overflow-x:auto;">
+<table class="joint-table">
+  <tbody>
+    <tr class="top-rule">
+      <td></td>
+      <td class="col-header"><em>Cordia curassavica</em> 60</td>
+      <td class="col-header"><em>Rudgea freemani</em> 50</td>
+      <td class="col-header"><em>Casearia spinescens</em> 45</td>
+      <td class="col-header"><em>Bactris</em> sp. (stems) 35</td>
+      <td class="col-header"><em>Fagara martinicensis</em> 33</td>
+      <td class="col-header"><em>Bactris</em> sp. (seedlings) 32</td>
+    </tr>
+    <tr><td class="sp-label"><em>Rudgea freemani</em></td><td class="exp">30.00</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">50</td><td>34</td><td></td><td></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Casearia spinescens</em></td><td class="exp">27.00</td><td class="exp">22.50</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">45</td><td>31</td><td><span class="sig">30 **</span></td><td></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Bactris</em> sp. (stems)</td><td class="exp">21.00</td><td class="exp">17.50</td><td class="exp">15.75</td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">35</td><td>21</td><td>18</td><td><span class="sig">11 *</span></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Fagara martinicensis</em></td><td class="exp">19.80</td><td class="exp">16.50</td><td class="exp">14.85</td><td class="exp">11.55</td><td></td><td></td></tr>
+    <tr><td class="indent">33</td><td>21</td><td>15</td><td>18</td><td>10</td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Bactris</em> sp. (seedlings)</td><td class="exp">19.20</td><td class="exp">16.00</td><td class="exp">14.40</td><td class="exp">11.20</td><td class="exp">10.56</td><td></td></tr>
+    <tr><td class="indent">32</td><td>17</td><td>14</td><td>16</td><td>12</td><td>10</td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Acnistus arborescens</em></td><td class="exp">18.60</td><td class="exp">15.50</td><td class="exp">13.95</td><td class="exp">10.85</td><td class="exp">10.23</td><td class="exp">9.92</td></tr>
+    <tr><td class="indent">31</td><td>21</td><td>15</td><td>14</td><td>13</td><td>14</td><td>10</td></tr>
+ 
+    <tr><td class="sp-label"><em>Casearia decandra</em></td><td class="exp">18.40</td><td class="exp">7.00</td><td class="exp">6.30</td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">14</td><td>8</td><td>9</td><td><span class="sig">13 ***</span></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Casearia guianensis</em></td><td class="exp">7.80</td><td class="exp">6.50</td><td class="exp">5.85</td><td></td><td></td><td></td></tr>
+    <tr class="bot-rule"><td class="indent">13</td><td>10</td><td>9</td><td><span class="sig">10 **</span></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+ 
+<p class="table-note">
+  The number against each species is the total number of plots in which that species occurred. The numbers against each pair of species are the expected (above) and observed (below) numbers of joint occurrences.<br>
+  * <em>P</em> = 0.01–0.05.&nbsp;&nbsp; ** <em>P</em> = 0.001–0.01.&nbsp;&nbsp; *** <em>P</em> = &lt;0.001.
+</p>
+ 
 
-        <tr>
-            <td style="text-align:left;">Pisonia cuspidata (73)</td>
-            <td>—</td>
-            <td>52.56 / 53</td>
-            <td>42.34 / 44</td>
-            <td>42.34 / 39</td>
-            <td>39.42 / 43</td>
-            <td>30.66 / 33</td>
-            <td>30.66 / 34</td>
-            <td>25.55 / 23</td>
-            <td>16.79 / 16</td>
-            <td>14.60 / 17</td>
-            <td>13.87 / 13</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Rudgea freemani (72)</td>
-            <td></td><td>—</td>
-            <td>41.76 / 38*</td>
-            <td>41.76 / 34**</td>
-            <td>38.88 / 48</td>
-            <td>30.24 / 26*</td>
-            <td>30.24 / 32</td>
-            <td>25.20 / 27</td>
-            <td>16.56 / 13*</td>
-            <td>14.40 / 17</td>
-            <td>13.68 / 14</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Amaioua corymbosa (58)</td>
-            <td></td><td></td><td>—</td>
-            <td>33.64 / 24***</td>
-            <td>31.32 / 37*</td>
-            <td>24.36 / 19*</td>
-            <td>24.36 / 26</td>
-            <td>20.30 / 25*</td>
-            <td>13.34 / 15</td>
-            <td>11.60 / 11</td>
-            <td>11.02 / 10</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Miconia prasina (58)</td>
-            <td></td><td></td><td></td><td>—</td>
-            <td>31.32 / 26*</td>
-            <td>24.36 / 29</td>
-            <td>24.36 / 22</td>
-            <td>20.30 / 13*</td>
-            <td>13.34 / 10</td>
-            <td>11.60 / 12</td>
-            <td>11.02 / 11</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Lacistema aggregatum (54)</td>
-            <td></td><td></td><td></td><td></td><td>—</td>
-            <td>22.68 / 29*</td>
-            <td>22.68 / 30**</td>
-            <td>18.90 / 21</td>
-            <td>12.42 / 12</td>
-            <td>10.80 / 7</td>
-            <td>10.26 / 6*</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Alibertia acuminata (42)</td>
-            <td></td><td></td><td></td><td></td><td></td><td>—</td>
-            <td>17.64 / 17</td>
-            <td>14.70 / 11</td>
-            <td>9.66 / 8</td>
-            <td>8.40 / 12</td>
-            <td>7.98 / 8</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Protium guianense (42)</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
-            <td>14.70 / 13</td>
-            <td>9.66 / 7</td>
-            <td>8.40 / 7</td>
-            <td>7.98 / 8</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Coccoloba latifolia (35)</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
-            <td>8.05 / 7</td>
-            <td>7.00 / 7</td>
-            <td>6.65 / 4</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Vismia guianensis (23)</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
-            <td>7</td>
-            <td>6</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Bactris sp. (20)</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
-            <td>7</td>
-        </tr>
-
-        <tr>
-            <td style="text-align:left;">Isertia parviflora (19)</td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>—</td>
-        </tr>
-
-        <tr style="border-bottom: 2px solid #333;">
-            <td colspan="12" style="text-align:left; padding:10px;">
-                Values shown as <em>expected / observed</em>.  
-                * P = 0.01–0.05, ** P = 0.001–0.01, *** P &lt; 0.001.
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
-    </div>
-</figure>
-
-<figure class="figure-break" id="table-3-2">
-    <figcaption>
-        <strong>Table 3.2</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site B (secondary forest). (From Greig-Smith, 1952b; courtesy of J. Ecol.)
-    </figcaption>
-
-    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
-        <thead>
-            <tr style="border-top: 2px solid #333; border-bottom: 1px solid #333;">
-                <th style="padding:6px 10px;">Species A</th>
-                <th style="padding:6px 10px;">Species B</th>
-                <th style="padding:6px 10px; text-align:center;">Expected</th>
-                <th style="padding:6px 10px; text-align:center;">Observed</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr>
-                <td><em>Rudgea freemani</em></td>
-                <td><em>Cordia curassavica</em></td>
-                <td style="text-align:center;">30.00</td>
-                <td style="text-align:center;">34</td>
-            </tr>
-
-            <tr>
-                <td><em>Casearia spinescens</em></td>
-                <td><em>Rudgea freemani</em></td>
-                <td style="text-align:center;">22.50</td>
-                <td style="text-align:center;">30 *</td>
-            </tr>
-
-            <tr>
-                <td><em>Bactris sp. (stems)</em></td>
-                <td><em>Casearia spinescens</em></td>
-                <td style="text-align:center;">15.75</td>
-                <td style="text-align:center;">11 *</td>
-            </tr>
-
-            <tr>
-                <td><em>Fagara martinicensis</em></td>
-                <td><em>Bactris sp. (stems)</em></td>
-                <td style="text-align:center;">11.55</td>
-                <td style="text-align:center;">10</td>
-            </tr>
-
-            <tr>
-                <td><em>Bactris sp. (seedlings)</em></td>
-                <td><em>Fagara martinicensis</em></td>
-                <td style="text-align:center;">10.56</td>
-                <td style="text-align:center;">10</td>
-            </tr>
-
-            <tr>
-                <td><em>Acnistus arborescens</em></td>
-                <td><em>Bactris sp. (seedlings)</em></td>
-                <td style="text-align:center;">9.92</td>
-                <td style="text-align:center;">10</td>
-            </tr>
-
-            <tr>
-                <td><em>Casearia decandra</em></td>
-                <td><em>Acnistus arborescens</em></td>
-                <td style="text-align:center;">6.30</td>
-                <td style="text-align:center;">13 ***</td>
-            </tr>
-
-            <tr style="border-bottom: 2px solid #333;">
-                <td><em>Casearia guianensis</em></td>
-                <td><em>Casearia decandra</em></td>
-                <td style="text-align:center;">5.85</td>
-                <td style="text-align:center;">10 **</td>
-            </tr>
-
-        </tbody>
-    </table>
 
     <p style="font-size: 0.9em; margin-top: 8px;">
         * P = 0.01–0.05, ** P = 0.001–0.01, *** P = &lt; 0.001
@@ -1104,101 +1032,60 @@ One marked aspect of the theoretical climax relative to the stages of succession
 
 <p>A similar set of data is given by Kershaw(1963) collected from associations of <em>Calamagrostis neglecta</em> in central iceland. It behaves here as a primary coloniser of open water and remains at a reduced level of performance and density while the silting up of the area continues. The recent volcanic nature of the rock in the area results in the annual deposition of vast quantities of cindery silt on the valley floors and by an inspection of the depth of water table below a stand of <em>Calamagrostis</em> it is possible to arrange a relative time scale for each stand. The deeper the water table and the more the silting, the longer the <em>Calamagrostis</em> has maintained itself in that ​​particular site. In detail such a method of dating would be open to severe criticism but it does give an indication of the relative age of stands. Samples were taken from numerous sites. The data (<a class="table-link" href="#fig-3-14">Fig. 3.14</a>) show an identical trend. There is a minimal ​​pattern intensity in the early stages of Calamagrostis establishment (<a class="table-link" href="#fig-3-14a">Fig. 3.14a</a>) followed by an increase in intensity until silt accumulation lowers the water table to about 25 cm (<a class="table-link" href="#fig-3-14b">Fig. 3.14b</a> and <a class="table-link" href="#fig-3-14c">Fig. 3.14c</a>). At about 50 cm the pattern of Calamagrostis though still clear is very much reduced in intensity. This trend is continued (<a class="table-link" href="#fig-3-14d">Fig. 3.14d-g</a>) in the series until the maximum depth of water table underlying Calamagrostis is reached at about 105 m in the 'desert areas', after which most vegetation disappears altogether. A further collection of data was made in the area in a topographically uniform <em>Rhacomitrium</em> heath situated at about 790 m on the flat summit of a mountain. From the remoteness and past history of the region is would appear that the area had been completely undisturbed and from the evidence outlined above little pattern should have been present, apart from that produced by the morphology of the species. Again the analysis of the data (<a class="table-link" href="#fig-3-15">Fig. 3.15</a>) is consistent with the concept of a minimum of pattern (interaction between individuals) in stable vegetation. The pattern detected is due to the morphology of the plant and is equivalent to the dimensions of the area covered by the rhizome system of an individual plant.</p>
 
-<figure class="figure-break" id="table-3-3">
-    <figcaption>
-        <strong>Table 3.3</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site E (primary forest). (From Greig-Smith, 1952b; courtesy of J. Ecol.)
-    </figcaption>
+<p><strong>Table 3.3</strong> Expected and observed numbers of joint occurrences of pairs of species in plots at site E (primary forest). (From Greig-Smith, 1952b; courtesy of <em>J. Ecol.</em>)</p>
+ 
+<div style="overflow-x:auto;">
+<table class="joint-table">
+  <tbody>
+    <tr class="top-rule">
+      <td></td>
+      <td class="col-header"><em>Myrcia granulata</em> 59</td>
+      <td class="col-header"><em>Rudgea freemani</em> 45</td>
+      <td class="col-header"><em>Hymenaea courbaril</em> 37</td>
+      <td class="col-header"><em>Rinorea lindeniana</em> 33</td>
+      <td class="col-header"><em>Eugenia perplexans</em> 26</td>
+    </tr>
+    <tr><td class="sp-label"><em>Rudgea freemani</em></td><td class="exp">26.55</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">45</td><td>30</td><td></td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Hymenaea courbaril</em></td><td class="exp">21.83</td><td class="exp">16.65</td><td></td><td></td><td></td></tr>
+    <tr><td class="indent">37</td><td>25</td><td>17</td><td></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Rinorea lindeniana</em></td><td class="exp">19.47</td><td class="exp">14.85</td><td class="exp">12.21</td><td></td><td></td></tr>
+    <tr><td class="indent">33</td><td>17</td><td><span class="sig">20 *</span></td><td><span class="sig">7 *</span></td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Eugenia perplexans</em></td><td class="exp">15.34</td><td class="exp">11.70</td><td class="exp">9.62</td><td class="exp">8.58</td><td></td></tr>
+    <tr><td class="indent">26</td><td>17</td><td>15</td><td>12</td><td>10</td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Peltogyne porphyrocardia</em></td><td class="exp">14.16</td><td class="exp">10.80</td><td class="exp">8.88</td><td class="exp">7.92</td><td class="exp">6.24</td></tr>
+    <tr><td class="indent">24</td><td>16</td><td>8</td><td>6</td><td>5</td><td>7</td></tr>
+ 
+    <tr><td class="sp-label"><em>Swartzia simplex</em></td><td class="exp">11.80</td><td class="exp">9.00</td><td class="exp">7.40</td><td class="exp">6.60</td><td class="exp">5.20</td></tr>
+    <tr><td class="indent">20</td><td>11</td><td>8</td><td>10</td><td>3</td><td>5</td></tr>
+ 
+    <tr><td class="sp-label"><em>Calptranthes fasciculata</em></td><td class="exp">9.44</td><td class="exp">7.20</td><td class="exp">5.92</td><td class="exp">5.28</td><td></td></tr>
+    <tr><td class="indent">16</td><td>8</td><td>8</td><td>3</td><td>7</td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Clathrotropis brachypetala</em></td><td class="exp">9.44</td><td class="exp">7.20</td><td class="exp">5.92</td><td class="exp">5.28</td><td></td></tr>
+    <tr><td class="indent">16</td><td>8</td><td>6</td><td>4</td><td>3</td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Brownea latifolia</em></td><td class="exp">9.44</td><td class="exp">7.20</td><td class="exp">5.92</td><td class="exp">5.28</td><td></td></tr>
+    <tr><td class="indent">16</td><td>7</td><td>6</td><td>6</td><td>5</td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Eschweilera subglandulosa</em></td><td class="exp">8.85</td><td class="exp">6.75</td><td class="exp">5.55</td><td></td><td></td></tr>
+    <tr><td class="indent">15</td><td>9</td><td>9</td><td>7</td><td></td><td></td></tr>
+ 
+    <tr><td class="sp-label"><em>Bactris</em> sp.</td><td class="exp">8.26</td><td class="exp">6.30</td><td class="exp">5.18</td><td></td><td></td></tr>
+    <tr class="bot-rule"><td class="indent">14</td><td>10</td><td>7</td><td>7</td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+ 
+<p class="table-note">
+  The number against each species is the total number of plots in which that species occurred. The numbers against each pair of species are the expected (above) and observed (below) numbers of joint occurrences.<br>
+  * <em>P</em> = 0.01–0.05.&nbsp;&nbsp; ** <em>P</em> = 0.001–0.01.&nbsp;&nbsp; *** <em>P</em> = &lt;0.001.
+</p>
 
-    <table style="width:100%; border-collapse: collapse; margin-top: 10px; text-align: left;">
-        <thead>
-            <tr style="border-top: 2px solid #333; border-bottom: 1px solid #333;">
-                <th style="padding:6px 10px;">Species A</th>
-                <th style="padding:6px 10px;">Species B</th>
-                <th style="padding:6px 10px; text-align:center;">Expected</th>
-                <th style="padding:6px 10px; text-align:center;">Observed</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr>
-                <td><em>Rudgea freemani</em></td>
-                <td><em>Myrcia granulata</em></td>
-                <td style="text-align:center;">26.55</td>
-                <td style="text-align:center;">30</td>
-            </tr>
-
-            <tr>
-                <td><em>Hymenaea courbaril</em></td>
-                <td><em>Rudgea freemani</em></td>
-                <td style="text-align:center;">16.65</td>
-                <td style="text-align:center;">17</td>
-            </tr>
-
-            <tr>
-                <td><em>Rinorea lindeniana</em></td>
-                <td><em>Hymenaea courbaril</em></td>
-                <td style="text-align:center;">12.21</td>
-                <td style="text-align:center;">7 *</td>
-            </tr>
-
-            <tr>
-                <td><em>Eugenia perplexans</em></td>
-                <td><em>Rinorea lindeniana</em></td>
-                <td style="text-align:center;">8.58</td>
-                <td style="text-align:center;">10</td>
-            </tr>
-
-            <tr>
-                <td><em>Peltogyne porphyrocardia</em></td>
-                <td><em>Eugenia perplexans</em></td>
-                <td style="text-align:center;">6.24</td>
-                <td style="text-align:center;">7</td>
-            </tr>
-
-            <tr>
-                <td><em>Swartzia simplex</em></td>
-                <td><em>Peltogyne porphyrocardia</em></td>
-                <td style="text-align:center;">5.20</td>
-                <td style="text-align:center;">5</td>
-            </tr>
-
-            <tr>
-                <td><em>Calyptranthes fasciculata</em></td>
-                <td><em>Swartzia simplex</em></td>
-                <td style="text-align:center;">5.28</td>
-                <td style="text-align:center;">7</td>
-            </tr>
-
-            <tr>
-                <td><em>Clathrotropis brachypetala</em></td>
-                <td><em>Calyptranthes fasciculata</em></td>
-                <td style="text-align:center;">5.28</td>
-                <td style="text-align:center;">3</td>
-            </tr>
-
-            <tr>
-                <td><em>Brownea latifolia</em></td>
-                <td><em>Clathrotropis brachypetala</em></td>
-                <td style="text-align:center;">5.28</td>
-                <td style="text-align:center;">5</td>
-            </tr>
-
-            <tr>
-                <td><em>Eschweilera subglandulosa</em></td>
-                <td><em>Brownea latifolia</em></td>
-                <td style="text-align:center;">5.55</td>
-                <td style="text-align:center;">7</td>
-            </tr>
-
-            <tr style="border-bottom: 2px solid #333;">
-                <td><em>Bactris sp.</em></td>
-                <td><em>Eschweilera subglandulosa</em></td>
-                <td style="text-align:center;">5.18</td>
-                <td style="text-align:center;">7</td>
-            </tr>
-
-        </tbody>
-    </table>
 
     <p style="font-size: 0.9em; margin-top: 8px;">
         * P = 0.01–0.05, ** P = 0.001–0.01, *** P = &lt; 0.001
@@ -1474,3 +1361,8 @@ replacement is by the same species succession will not take place. Conversely if
 
 </body>
 </html>
+
+
+
+
+
