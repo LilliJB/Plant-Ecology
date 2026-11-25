@@ -1,30 +1,431 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 6 - Quantitative and Dynamic Plant Ecology</title>
+
+    <title>Chapter 6 - Plant Population Dynamics</title>
+
     <link rel="stylesheet" href="../css/styles.css">
+
+
+
+    <style>
+
+        a.table-link {
+
+            color: #2f5d3a;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+        a.table-link:hover {
+
+            color: #3d7349;
+
+            text-decoration: none;
+
+        }
+
+
+
+        details.section > summary {
+
+            font-size: 1.17em;
+
+            font-weight: bold;
+
+            color: #2f5d3a;
+
+            cursor: pointer;
+
+            margin: 1em 0 0.5em 0;
+
+            list-style: none;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+        }
+
+        details.section > summary::-webkit-details-marker {
+
+            display: none;
+
+        }
+
+        details.section > summary::after {
+
+            content: '▼';
+
+            font-size: 0.75em;
+
+            color: #2f5d3a;
+
+            transition: transform 0.2s;
+
+        }
+
+        details.section[open] > summary::after {
+
+            transform: rotate(180deg);
+
+        }
+
+        details.section > summary:hover {
+
+            color: #3d7349;
+
+        }
+
+
+
+        .abc-list {
+
+            list-style: none;
+
+            padding-left: 0;
+
+        }
+
+        .abc-list li {
+
+            margin-bottom: 0.6em;
+
+        }
+
+
+
+        /* Data table for aligned values */
+
+        .data-table {
+
+            margin: 15px 0;
+
+            border-collapse: collapse;
+
+            font-size: 14px;
+
+        }
+
+        .data-table td {
+
+            padding: 4px 10px;
+
+            text-align: center;
+
+        }
+
+
+
+.data-table td.label {
+
+    text-align: left;
+
+    font-weight: bold;
+
+    padding-right: 15px;
+
+}
+
+
+
+
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #acd8af;
+
+}
+
+
+
+svg {
+
+width:100%;
+
+max-width:1000px;
+
+display:block;
+
+margin:auto;
+
+}
+
+
+
+.box {
+
+fill:#fff;
+
+stroke:#333;
+
+stroke-width:0.8;
+
+}
+
+
+
+.label {
+
+font-size:13px;
+
+text-anchor:middle;
+
+}
+
+
+
+.arr {
+
+stroke:#333;
+
+stroke-width:1;
+
+fill:none;
+
+marker-end:url(#arrow);
+
+}
+
+</style>
+
+
+
+
+
+    </style>
+
+
+
 </head>
 <body>
-
 <nav>
     <a href="../index.html">Home</a>
     <a href="../Chapters.html">Chapters</a>
     <a href="../Data.html">Data</a>
+    <a href="../Index-page.html">Index</a>
 </nav>
-
-<main>
-    <div class="chapter" id="chapter6">
-        <h2>Chapter 6: PLANT POPULATION DYNAMICS</h2>
-        <p>Events in the soil. Establishment and growth. Growth and interaction. Genetic control, seed production and total system interaction.</p>
-        <a class="back-to-top" href="#top">Back to top</a>
-    </div>
+<main id="top">
+<div class="chapter" id="chapter6">
+<h2>Chapter 6: PLANT POPULATION DYNAMICS</h2>
+<p>Studies of animal populations involving a census of their numbers have occupied a central position in animal ecology for a considerable period of time. Plant ecology however, has been largely dominated by investigations into the spatial configurations of species in relation to their environment. At a small scale such configurations are termed pattern (Chapter 7) and at larger scales, plant associations, which can be characterized by their &#x27;unique&#x27; species spectrum (Chapters 9 and 10). Until relatively recently very little attention has been focused on plant populations and the control of the numbers of individuals involved. This lack of information partly stems from the pre-occupation with spatial configurations and partly from the difficulties inherent in studying changes in natural populations of plants. In animal populations changes can be fairly readily documented by changes in numbers. In plant populations, changes in numbers of individuals do occur, but more frequently a population change is initially reflected by much less obvious criteria. Changes in dry weight, growth morphology, number of seeds per individual, all indicate pressure on the population from environmental changes or by increased interference from other species. A change in actual numbers of mature individuals is a much more gradual process, especially where perennial species are involved. Understandably what information is available is largely derived from experimental studies on populations of annual weed species, which with their short life cycle are more amenable to an experimental approach. The evidence available for perennial species suggests that at least the numbers of the population established by seed are controlled in the same way as annual species.</p>
+<p>Harper (1977) has extensively reviewed in depth the development of plant population dynamics whilst Silvertown (1982) has provided an excellent yet more concise coverage of the topic. Only examples of the more salient points are covered here and these are summarized as a simple flow diagram for two hypothetical species A and B (Fig. 6.1). Each stage of the life cycle which interacts with or is affected by either an environmental parameter or another species is shown. Equally the overall importance of season, biotic factors, and genetical make-up of the potential population is indicated.</p>
+<div class="chapter-section"><details class="section"><summary>Events in the soil</summary>
+<p>The number of individuals reaching maturity in a population at any given point in time is clearly not only a function of how many seeds are available, but also of what physiological state they are in. Many plant species produce seeds which do not germinate immediately but which lie dormant until a particular sequence of either intrinsic events, extrinsic events, or both, trigger germination. Harper (1977) conveniently classifies dormancy into three categories: innate dormancy, which is a specific property of a species and requires a particular treatment to break it; induced dormancy which can develop when a non-dormant seed is exposed to a particular (harsh) environmental situation; and enforced dormancy developed in response to external conditions but removed immediately when the conditions are suitably modified.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p class="figure-caption"><strong>Fig. 6.1</strong></p>
+<p>Schematic representation as a flow diagram of the seed germination, establishment.</p>
+<p>interference, and seed production of two hypothetical species A and B.</p>
+<p>Increasing O, tension around the seed embryo by pricking or abrading the seed coat, giving a fluctuating temperature or low temperature treatment, light treatment, or an increased level of nitrate availability, have all been shown to induce germination (Stokes, 1965; Thurston, 1959; Toole et al., 1956; Vegis, 1963). All of these parameters are likely to be operative in all plant systems. Seed coats decay with time allowing an increased oxygen supply to the embryo and equally temperature fluctuates seasonally. Since nitrate concentration also varies throughout the season due to the temperature dependence of nitrogen-fixing organisms, the control of the actual number of seeds available for germination at time N is extremely complex.</p>
+<p>Popay and Roberts (1970a and b) examined the emergence of populations of the weed species Senecio vulgaris and Capsella bursa-pastoris over a two-year period and correlated in part the observed flushes of germination with the breaking of dormancy.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Fig.</p>
+<p>6.3</p>
+<p>The effect of dry storage at different temperatures on the germination of Senecio seeds over</p>
+<p>a range of temperatures. (-</p>
+<p>\- Germination after 8 weeks storage: (---) after 4 weeks&#x27; storage. The</p>
+<p>seeds were exposed to diffuse light for a few minutes each day. (From Popay and Roberts 1970a; courtesy of J. Ecol.)</p>
+<p>suppression of germination is produced by darkness, low temperatures, low oxygen supply and high CO, concentration. Conversely Capsella requires as an essential factor a low-temperature treatment (below 10°C) as well as light. Dry storage has little or no effect. Popay and Roberts also showed a marked interaction between per cent germination and concentation of nitrate whilst a fluctuating temperature régime was employed in the experimental lay-out. Low concentrations of nitrate solution</p>
+<p>(10-&#x27; or 10-2 mol dm 3) coupled with a diurnal temperature fluctuation of 19 h at 4°C</p>
+<p>and 5 h at 30°C gave a very marked response (Fig. 6.4).</p>
+<p>The resultant ecological implications are clear-cut: The germination behaviour of freshly collected Senecio seed varies tremendously throughout the year (Fig. 6.5).</p>
+<p>There is little dormancy in seeds collected in the summer, whilst conversely, material collected in the spring showed only 30 per cent germination at the optimum temperature of 10°C.</p>
+<p>Thus the dry storage treatment (see above) seems to be</p>
+<p>effectively accomplished during July and early August, whilst the seeds are ripening on the plant, allowing subsequently a wide temperature range for successful germination.</p>
+<p>Their results indicate a burst of germination in Senecio as the soil</p>
+<p>temperature rises above 10°C in January and again in February (Fig. 6.6). There is also a marked emergence of a further population of both species in June to August which is correlated with maximal diurnal soil temperature fluctuation and simultaneously an increase in soil nitrate level.</p>
+<p>Other sources of variation in germination of seed populations are known.</p>
+<p>Black (1955) has shown that depth of sowing affects the pre-emergence weight changes and cotyledon area in Trifolium subterraneum. The latter has considerable effect on the subsequent performance of the plant (see below). This parameter is only likely to affect those plant populations where there is a regular soil disturbance factor, notably populations of weed species. The possibility of a biotic interaction and the burying of seeds by such a vector cannot be ignored, however, in natural populations. Watt (1919) showed, for example, that the viability of acorns depended on their percent moisture content being maintained by trampling into the soil by grazing animals. Other similar relationships may also exist.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Germination of Capsella seeds in the presence of inorganic nitrogen sources at different concentrations and temperatures. 4/30°C refers to diurnal fluctuations in the ratio of 19/5h between 4° and 30°C. The tests were continued for 28 days, during which the seeds were exposed to light for a few minutes each day. (a) 10-&#x27;M, (b) 10 = M, (c) 10-&quot; M solution. (From Popay and Roberts, 1970a; courtesy of J. Ecol.)</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>6.5 Germination behaviour of Senecio seeds freshly collected at different times of the year from the same habitat. The seeds were exposed to diffuse light for a few minutes each day during the 32-day germination tests. (From Popay and Roberts, 1970b; courtesy of J. Ecol.)</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Nitrate concentration is expressed in parts per million (p.p.m.) of nitrate in solution in the soil water. (From Popay and Roberts, 1970b; courtesy of J. Ecol.)</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>(From Black, 1956; courtesy of Aust. J.Agric. Res.)</p>
+<p>The size of a seed can have considerable control over its subsequent germination pattern and growth. Black (1956) using subterranean clover and three seed size classes of mean weights 3 mg (or less), 5 mg and 8 mg respectively, showed a marked relationship with both dry weight of seedlings and establishing plants as well as leaf area (Fig. 6.7). Similarly, Cavers and Harper (1966) show slight but significant differences in seed weight taken from panicles on the same plant but from different parts of the same panicle, as well as at different harvest times from the same individual plant. These differences are correlated with percentage germination data obtained under alternating temperature (15-30°C) in the dark with a measure of seed viability using a light treatment with an alternating temperature of 10-20°C giving 100 per cent germination. The seeds all show a uniformly high level of viability yet with clear differences in germination response to the test conditions, in addition to the marked differences between the replicates A-D collected from separate locations (see below).</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>(a) Plan showing the distribution of various types of objects (1-8) placed on a soil surface own with seeds of Plantago species. = worm casts. (b) The distribution of seedlings of Planceolata in relation to objects and depressions on the soil surface. (c) As for (b) with seedlings of P. media. (d) Seedlings of P. major. (From Harper et al., 1965; courtesy of J. Ecol.)</p>
+<p>The implications of these results on population size and population dynamics are of obvious importance. Clearly the balance between species composition will depend in part on the climatic régime of the preceding months interacting with the particular dormancy/germination characteristics</p>
+<p>of the species components.</p>
+<p>Different sites having slightly different microclimates will as a result carry slightly different species populations. For perennial species, originally having established by seed, these differences could be perpetuated or even intensified by subsequent interactions (see below).</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>189.5 mm; (O) = 166.5 mm;</p>
+<p>( ) = 60.6 mm\*; ( ) = 2.8</p>
+<p>mm?. (From Harper et al., 1965; courtesy of J. Ecol.)</p>
+<p>Harper et al. (1965) have further demonstrated the importance of both soil surface texture and small modifications of soil microtopography on germination of Plantago and Bromus species. Sheets of glass were used to make square depressions 1.25 cm and 2.5 cm deep, or were left on the soil surface. Sheets of plate-glass were inserted vertically into the soil leaving different heights projecting above the soil surface and aligned either N-S or E-W. Thin-walled wooden boxes without top or bottom were also inserted to different depths in the soil. The results (Fig. 6.8) show a marked positive correlation of position of germination with the different objects and surface microtopography. Additional experiments using soil clods of different grades, as a surface layer on top of a soil-sand mixture, again demonstrated a marked relationship between surface irregularity (expressed as microtopographical</p>
+<p>variance) and numbers of seeds germinating (Fig. 6.9). Furthermore,</p>
+<p>Bromus</p>
+<p>madritensis established much more effectively on rough-surfaced soils than B. rigidus. Seedlings of Kale and Chenopodium album showed a similar response to surface roughness establishing much better on rough surfaces than on smooth. These roughness effects could be cancelled out by covering with polythene covers, and Harper et al. interpret this result as indicating seed-water relationships to be the factor affected by surface roughness, with temperature playing a lesser part.</p>
+<p>However, in the light of the findings of Popay and Roberts (1970a, b) (see above) the relationship may be much more complex.</p>
+<p>In addition to the control of seed dormancy and germination by the environment, there exists a considerable number of soil pathogens capable of reducing the seed population prior to germination (Wernham,</p>
+<p>1951\). Mortality of seeds prior to</p>
+<p>germination and emergence, as a result of exposure to unexpected low temperatures, is a further source of loss of viable seeds. Harper et al. (1955) show clearly that maize grains (4 varieties used) are unable to tolerate the cold and wet soil conditions of late autumn through to spring in Britain. This factor alone, over and above any requirement of a longer growing season,</p>
+<p>limits the extension of maize into</p>
+<p>temperate regions. Similar considerations will apply to other &#x27;exotic species and raises the opposite problem of how in fact the seeds of indigenous species do successfully overwinter. Clearly other factors are involved in the soil about which we have as yet, no detailed information.</p>
+</details></div>
+<div class="chapter-section"><details class="section"><summary>Establishment and growth</summary>
+<p>Harper and McNaughton (1962) showed that the number of mature plants of Papaver species, sown in pure and mixed populations does not relate to the number of seeds sown, above a certain density of seed. Self-thinning occurs, minimizing the interference between individuals (see also Chapter 5), and furthermore,</p>
+<p>\*The</p>
+<p>density-induced establishment risk for each species in a mixture is largely controlled by its own density. In addition to changes in numbers of individuals reaching maturity, the dry weight of mature individuals is also profoundly affected (see also Harper and Chancellor, 1959, and Aspinall and Milthorpe, 1959). Yoda et al. (1963)</p>
+<p>made a survey of a number of species and proposed a relationship W = C.p-3/2</p>
+<p>between dry weight of the surviving plants and density, where W is the dry weight, p is the density of surviving individuals, and is a constant related to the growth architecture of the species.</p>
+<p>Thus if a plant has a linear dimension L, covering an area S then:</p>
+<p>So L2</p>
+<p>and</p>
+<p>From 1 and 2</p>
+<p>Since density is also related to area</p>
+<p>(1)</p>
+<p>(2)</p>
+<p>(3)</p>
+<p>S oc</p>
+<p>(4)</p>
+<p>From 3 and 4</p>
+<p>W2/3 x</p>
+<p>(5)</p>
+<p>W-2/3 x p</p>
+<p>W x p 3/2</p>
+<p>W=C.p-3/2</p>
+<p>(6)</p>
+<p>The full significance of this 3/2 power law was recognized by White and Harper</p>
+<p>(1970) who extended its application to a wide range of both species and species mixtures (Fig. 6.10), and showed it to be of general application. Root and shoot components of plant yield appear to follow the same law and equally the yield tables employed by foresters also closely coincide. In addition they tested and confirmed the assumption that it is the smallest plants in a population which are the first to thin, leaving the larger ones to grow more rapidly. This is an important relationship and enables the subsequent pathway of a population to be predicted from initial events.</p>
+<p>The cause of the thinning phenomenon is not clear. However, the factors influencing seed germination discussed above indicate some of the likely parameters and emphasize the irregularity of emergence likely from a population of seeds. There will be an immediate disparity in age imparting morphological differences which will be rapidly intensified by effects of seed size and soil microtopography. In turn this will influence and alter the canopy nanoclimate generating still further differentials within the population over a period of time.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>6.10</p>
+<p>Changes in numbers and individual plant weight with time of Brassica napus H</p>
+<p>-) and</p>
+<p>Raphanus sativus (.....) in pure stands and in mixtures; the mixtures consisted of 37% Brassica, 63% Raphanus (- - -) and 66% Brassica, 34% Raphanus =</p>
+<p>\--2 weeks after sowing, before changes in</p>
+<p>numbers occurred. Three fertility levels (O low: . medium; A.</p>
+<p>night were imposed on tne</p>
+<p>populations. Harvests were taken at 6½ (Ol. 13() and 17() weeks after sowing. Confidence limits are drawn at P= 0.05. (From White and Harper, 1970; courtesy of J. Ecol.)</p>
+</details></div>
+<div class="chapter-section"><details class="section"><summary>Growth and interaction</summary>
+<p>Black (1955, 1956, 1958, 1960) in an elegant series of papers examined the population numbers of subterranean clover, and how they changed. They are especially interesting since they demonstrate one of the mechanisms of interference pressure between individuals.</p>
+<p>The influence of seed size on the area of the cotyledons has been discussed briefly before (p. 99, Fig. 6.7) and similarly the interaction with depth of sowing. Black (1955, 1956) showed that seed size determined the depth from which successful seedling emergence can take place and also the initial area of cotyledons. It appears that once successful emergence has been achieved the area of the cotyledons determines the extent of the difference in the early stages of growth. It should be noted that this relationship only holds for seeds with epigeal germination and where the whole seed is embryo plus coat and there is no endosperm.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Dry weight increases, per square link (a), and per plant (b). (From Black, 1958; courtesy of</p>
+<p>lust. J. Agric. Res.)</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Leaf area at each</p>
+<p>2-cm layer of large-seeded small-seeded,</p>
+<p>and mixed</p>
+<p>swards. (From Black, 1958; courtesy of Aust. J.Agric.</p>
+<p>Res.)</p>
+<p>The early differences are maintained during subsequent development not only in the first weeks (Fig. 6.7) but also during establishment of a sward when there is any interference pressure. Not only do numbers of individuals in the population alter at differential rates, but there are also dry weight increases per plant, dry weight increase per area, leaf area per plant and leaf area per unit of ground (Figs 6.11 and 6.12). Black</p>
+<p>(1958) analysed the distribution of foliage in relation to height above ground (Fig</p>
+<p>6.13). The leaf area in a particular layer is represented by the length of a horizontal line at the appropriate height on the y-axis. Pure swards grown from two different seed sizes show closely similar results, both producing the bulk of their leaves between 25 and 30 cm above ground and by the final harvest (August 16) also having little difference in dry weight yield or leaf area (Figs 6.11 and 6.12). The sward from mixed seed sizes is markedly different. The leaves of the small-seeded plants are shown to the left and the large-seeded plants to the right of the vertical axis. The spatial distribution of the leaves is quite different, the leaves of the large-seeded plants completely dominating the small-seeded plants. The light microclimate of the sward (Fig. 6.14) shows typical light profile curves, the only marked differences being the relative position of each curve at each harvest date. The initial effect of cotyledon area can be seen in the light profiles for June and early July where the small-seeded plants are shorter, this effect being eliminated by August 16. The plants from small seeds are thus at a continual disadvantage when grown in mixed population: They emerge with smaller cotyledons which limits their early growth thus allowing the rapid dominance of large-seeded individuals. This in turn alters the light microclimate and further checks the development of the small-seeded individuals.</p>
+<p>In pure swards, however, small-seeded individuals behave in an</p>
+<p>identical fashion to large-seeded individuals after they have overcome their initial slow start. It is significant that the change of population number is at the expense of small-seeded individuals only, in mixed swards (Fig. 6.15).</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>1958; courtesy of Aust. J. Agric. Res.)</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Changes in plant numbers for large-seeded, small-seeded, and mixed swards, and for both</p>
+<p>components of the mixed sward. (From Black, 1958; courtesy of Aust. J. Agric. Res.)</p>
+<p>An interesting comparison with Black&#x27;s findings is given by Harperand Clatworthy</p>
+<p>(1963), using Trifolium repens and T. fragiferum which have markedly different seed sizes (Fig. 6.16). Growth of pure swards shows that T. repens develops more rapidly in the first 14 weeks than T. fragiferum and has a higher leaf area index (the ratio of leaf area per unit of ground covered - L.A.I.) (Fig. 6.17); subsequently, T. fragiferum develops a higher L.A.I. which levels out around 16-18 weeks, whilst that of T. repens falls off reflecting its growth habit (the results were partly affected by rotting of some leaves after lodging). In mixed swards, a similar sequence of events occurs with T. repens maintaining a slightly higher L.A.I. and both species coming into equilibrium with each other at 15 weeks. Similarly the vertical distribution of leaf area in relation to light profiles indicates a sharing of the incoming energy, substantiating the trend of a satisfactory level of cohabitation of the two species. The results are particularly interesting in that they relate to the establishment of perennial species.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>1963; courtesy of J. Exp. Bot.)</p>
+<p>Thus seed size is merely one factor in a complex system which interacts with one or several other factors to decide the final outcome of population balance. Black&#x27;s data demonstrate a situation where the initial slight advantage of one seedling over another becomes exaggerated by other factors in the system. Conversely, Harper&#x27;s data show a system where the reverse is true and potential deleterious effects of seed size are eliminated by other factors in the system, again emphasizing the extremely complex control mechanisms of population numbers.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>The development of leaf area in swards of Trifolium repens and T. fragiferum. (a) 32 plant per</p>
+<p>900 cm, (b) 64 plants per 900 cm\*. (From Harper and Clatworthy, 1963; courtesy of J. Exp. Bot.)</p>
+<p>A provisional summary of the factors that have so far been identified as involved during the initial establishment and early growth phases of a species is given in Fig. 6.18.</p>
+<p>It should be recognized that the interaction of the environment&quot;, which may also include intrinsic properties of each species in addition to climate, occurs not only during establishment and early growth, but is a continuous process that also operates on mature annuals or perennials. Such interactions are often termed competition and have in part been considered in the previous chapter (Chapter 5). More detailed case studies however are considered below. The second important and fundamental point to recognize in Fig. 6.18, is that only a fragment of the potential species diversity in an area of vegetation is included in the diagram. This level of simplification is also usually inherent in the field studies so far completed.</p>
+</details></div>
+<div class="chapter-section"><details class="section"><summary>Depletion and survivorship curves in natural populations</summary>
+<p>A population of individuals is in a state of continual flux as the unit constituents die, survive or reproduce.</p>
+<p>There has been some discussion as to the exact form a unit</p>
+<p>constituent of the population takes. Thus it has been argued that the number of embryos within a population of seeds, for example, that reaches maturity constitutes the primary population in any one year. A proportion of these may be destroyed by pathogens, grazed by herbivores, or over-stressed by macroclimate.</p>
+<p>Subsequently there is potentially a further sizeable decline of the seedling population in the soil, before even any seedlings can be identified and any further population changes documented. However, because of the formidable, if not impossible, nature of following such pre-germination events with accuracy, it has been standard practice to accept the population unit as an emergent seedling, where establishment by seed is important, or where a vegetative unit is involved, some measure of the stolon/rhizome number provides the established population. These two forms of recruits&#x27; are termed genets (Kays and Harper, 1974; Harper, 1977) and ramets respectively. A genet is a single seedling or, in many perennial plants, an extensive clone of individual rhizomes which then can be subdivided into ramet units. Normally genets are expressed by N whereas n is reserved for the number of ramets per genet, and thus Nn gives the total number of propagules (Harper, 1977) present in the whole population.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>There are several ways of expressing the changes in numbers of individuals of a species with time. In Fig. 6.19 the changes in number of individuals of Ranunculus acris (Sarukhán and Harper, 1973) are expressed over a two year experimental period in different ways. Thus there is a &#x27;net&#x27; population at any point in time which cycles regularly up and down as individuals are recruited from seed or as seedlings and mature individuals are eliminated from the population. However, this net population can also be examined as a sequence of new recruits added to the existing population or as a sequence of deaths and this information is best presented as cumulative gains and losses. Two points then clearly emerge: (1) although there is little difference between the absolute numbers of individuals at the end of each of the two years there has been a tremendous flux of individuals over the experimental period; (2) there is a very marked period of synchronous recruitment and mortality, with an almost constant level of survivorship throughout the intervening periods of the year. Examination of net numbers together with cumulative gains and losses does not however give any information of events which may correlate with specific age groups of individuals. At the start of an experimental period the age structure of the population is clearly unknown. However, if each individual is tagged, subsequent annual recruitment to the population can then be documented together with the subsequent mortality. The term cohort has been applied extensively to the group of individuals that are recruited in any one year, i.e. one generation of recruits.</p>
+<p>Detailed analysis of each group of cohorts can then provide an accurate survivorship curve on an annual basis. Such curves are age-specific (see for example Angevine,</p>
+<p>1983\) and contrast with depletion curves which follow the numbers of plants of all ages that survive.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>The population flux of Ranunculus acris within a plot of 1m in permanent grassland. 0=</p>
+<p>cumulative gains;</p>
+<p>• - cumulative losses;/</p>
+<p>• = actual population present. (From Sarukhán and</p>
+<p>Harper, 1973; courtesy of J. Ecol.)</p>
+<p>A survivorship curve for an annual species Cerastium atrovirens is given in Fig. 6.20.</p>
+<p>Established individuals over winter as vegetative rosettes with an almost constant but low mortality rate until late March when flowering and anthesis occurs. During this period greater demands are made on the energy resources of the environment as a result of this growth and development but at the same time the seedlings also experience interference both from each other as well as from other associated species. This results in a slight increase in the rate of mortality. Harper also provides survivorship curves for other annual species (Fig. 6.21), and it is evident that increased levels of mortality are often (although not always) associated with specific seasonal events, particularly during the initial establishment period and/or during reproductive phases. Similarly, Ranunculus acris (Fig. 6.19) clearly has a rate of mortality more or less restricted to the establishment phase.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Perennial species also show a higher risk of mortality associated with seedling establishment as well as with the season of most active growth. However, if the reproductive unit is vegetative, usually the mortality risk associated with the establishment phase is little different from that experienced by fully established mature plants. However, over several years, established ramets and genets typically show a log-linear decline in numbers of survivors with a slight superimposed seasonal pattern of increased and decreased mortality. Thus it appears that a more or less constant interference pressure controls survivorship of cohorts over time, rather than year-to-year variations of macro- or microclimate. In Fig. 6.22, the survivorship curves of six populations of Fragaria vesca and F. virginiana provided by Angevine</p>
+<p>(1983) show clearly that although recruitment varies from year to year and from population to population, rates of mortality within each group of cohorts are remarkably log-linear although they can vary significantly from year to year as well as from population to population.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>• Spergula vernalis on fixed dunes in the Torun Basin,</p>
+<p>\= Minuartia uniflora and A =Sedum smallii on granitic outcrops, Georgia, USA. (From</p>
+<p>Harper, 1977; courtesy of Academic Press.)</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>over 4 years. Straight lines represent fitted least-squares regressions. Symbols: = plants of mixed age, born in 1976 or previously: O= born in</p>
+<p>1977; [ = born in 1978; A = born in 1979. (From Angevine, 1983; courtesy of J. Ecol)</p>
+<p>Despite the prolific work that has appeared on plant demography over the last decade, part of which has been well summarised by Harper (1977), depressingly few general concepts have emerged. Equally unfortunately a good proportion of these data are relentlessly descriptive with very little attempt to relate the findings to potential mechanisms of change. Despite the potential complexity of even the simplest system further progress in an understanding of plant population dynamics, hopefully in the next decade, will very much depend on an identification of the specific mechanisms involved in even a few selected cases.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Leaf development in three strains of subterranean clover grown under reduced light</p>
+<p>intensity. (From Black, 1960; courtesy of Aust. J. Agric. Res.)</p>
+</details></div>
+<div class="chapter-section"><details class="section"><summary>Genetic control, seed production and total system interaction</summary>
+<p>Overall control of the growth pattern and behaviour is controlled by the genetic make-up of the individuals, and in many instances occurs at a level where phenotypic differences are not necessarily evident. Black (1960) showed that three strains of subterranean clover with leaf development at different heights above ground (Fig. 6.23) produced different light profiles resulting in marked interference between individuals in mixed populations (Fig. 6.24). Cavers and Harper (1966) using replicates of individuals of Rumex crispus and R. obtusifolius from six different locations showed an extremely variable response to two contrasting germination conditions (Fig. 6.25).</p>
+<p>Not only were there marked differences between locations but different individuals from the same site showed as much variation (Fig. 6.26). Although this polymorphism can be related to the nanoclimate of different parts of the inflorescence, or the microclimate of different parts of the site, it is highly probable that there remains a residuum of variability directly related to genetic control. These two cases suggest for some species at least, that predictions as to population behaviour pattern will have to allow for the distribution of the gene population and its effect on seed germination and seedling development. There is now available a wide range of well-documented examples of ecotypic variation which has been very usefully collated by Heslop-Harrison (1964). In addition to relatively gross morphological differences (leaf lengths, hairiness, etc.) there is a wide range of physiological ecotypes. McKell et al. (1960) compared two races of Dactylis glomerata and showed very different responses to differing conditions of soil moisture stress, which correlated with their known distribution. Björkman and Holmgren (1963) in a study of photosynthetic efficiency in the sun and shade ecotypes of Solidago virgaurea found a more efficient use of weak light in shade ecotypes than in those from open habitats.</p>
+<p>Conversely,</p>
+<p>clones from open habitats utilised intense light more efficiently.</p>
+<p>Similarly, Mooney and Billings (1961) for Oxyria digyna showed that plants of northern populations had higher respiration rates at all temperatures than plants of southern alpine populations. Numerous additional examples are also available in the literature. Although many of these ecotypic differences relate to geographically separated populations, similar though less extreme variability will occur in adjacent populations, where environmental pressure has been exerted on the gene population.</p>
+<p>Equally, although the documented examples above do not relate directly to seed characteristics, they are all indirectly related and will control to a greater or lesser extent seed numbers, or quantity of stored metabolites and hence seed size.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>6.24</p>
+<p>Changes in dry weight and leaf area index of the components of mixed swards. (From Black,</p>
+<p>1960; courtesy of Aust. J. Agric. Res.)</p>
+<p>The evidence from Cavers and Harper (1966) also indicates a marked seasonal effect on seed weight, harvested at three different times from individual plants of Rumex crispus and R. obtusifolius. This results in a corresponding variation percentage germination (Fig. 6.27a and b). There is a marked dynamic situation existing in the fruiting panicle. Variations of temperature and light induced by the detailed structure of the panicle and its particular orientation to the sun will not remain constant throughout the year. Both the continued development of the panicle itself, as well as the progressive change in angle of inclination of the sun&#x27;s rays will profoundly affect nanoclimate at any one sample point. Where there is a temperature requirement for after-ripening of the seed, a further level of heterogeneity will thus be imposed on the seed population. In addition, seed weight which is known to subsequently affect the performance of the resultant seedlings, is</p>
+<p>of reserve</p>
+<p>controlled by translocation of reserve metabolites up from the leaves. The availability of these metabolites is also a function of time of year.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>The percentage germination of seeds from ten different plants in each of six different habitats tested under contrasting germination conditions. Vertical lines: Light, alternating temperature:</p>
+<p>Black bars: darkness, constant temperature (20°C); White bars: (a-d) darkness, alternating temperature (10-20°C), (e) and (f) darkness, constant temperature (20°C) interrupted by one brief exposure to daylight. (From Cavers and Harper, 1966; courtesy of J. Ecol.)</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>The interactions outlined above relate only to documented examples and are not an exhaustive list. They result finally in the control of the reproductive efficiency of a species by a dynamic complex of factors. Harper (1960) has shown that the numbers of seeds produced is one resultant of intraspecific, or interspecific interference (see also Fig. 5.11). Thus the feedback into the soil of seed number is also a variable, and the complexity of a system involving more than two species will be considerable. In addition, Burden (1980a and b) has shown that the degree of variability of a population of Trifolium repens, sampled from a single field (Turkington, 1975) is considerable. Using a range of biochemical, morphological and phenological comparative traits the level of variation was shown to be equivalent to that found in comparisons of populations sampled from distinctly different environments.</p>
+<p>Furthermore, there was significant variation in the resistance of individual members of the population to two foliar pathogens (Fig. 6.28).</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Black bars, eary harvest; stippled bars, medium harvest; white bars, late harvest. (b) Percentage germination of seeds harvested at different times from plants (A-D) as above. Histograms record germination under darkness and alternating temperature, vertical lines under light and alternating temperature. (From Cavers and Harper, 1966; courtesy of J. Ecol.)</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>Cymadothea trifoliı and (b) Pseudopeziza trifolii. Resistance was assessed on a 10-point scale, with highly resistant individuals scoring low values and highly susceptible individuals scoring high values. The</p>
+<p>horizontal bars above the histogram indicate which values are not significantly different at P = 0.01 on</p>
+<p>the basis of a Student-Newman-Keuls test: clones with disease-ratings which fall under a common bar are not significantly different. (From Burden, 1980b, courtesy of the J. Ecol.)</p>
+<p>Thus the level of complexity in even a &#x27; simple&#x27; system is formidable and this has prompted a number of ecologists to provide a rather bleak assessment of current and future progress (Grime, 1984; Harper, 1982; Woolhouse, 1981). This has prompted Grime (1979; 1984) and others to examine alternatives to the rather descriptive approaches that have very much dominated community and population ecology.</p>
+<p>Thus information on the contrasting field distributions of a range of plants and animals reveals the importance of sets of traits which in turn has focussed attention on particular strategies, the most widely known being that of r- and K- selection (MacArthur and Wilson, 1967; Pianka, 1983). The term strategy, when used in an ecological context, has attracted some criticism, but in agreement with Grime</p>
+<p>(1984), we retain the concept here as a grouping of similar or analogous genetic characteristics that recur repeatedly among species or populations and underlie the similarities of their ecology.</p>
+<p>Despite the apparent ready and embracing acceptance of r-and K-selection, it is quite incomplete in terms of the full range of plant ecology (see Grime, 1979 particularly), and the alternative triangular-model approach proposed by Grime</p>
+<p>(1974; 1979; 1984) offers a more satisfactory alternative. The model involves three primary strategies characteristic of competitors (C), ruderal species (R) and those species that tolerate stress (S), respectively (Fig. 6.29). This approach provides a framework in which information from a range of ecological studies can be related together. The central assertion is that intensity of competition declines progressively under increased levels of stress or disturbance and as a result the equilibrium between</p>
+<p>C,</p>
+<p>Sand Dis</p>
+<p>a major determinant of vegetational structure and</p>
+<p>composition. Only at the three apexes will vegetation be exclusively composed of species with identical strategies and conversely an understanding of the diversity of he strategies within vegetation will also provide an appreciation of the mechanisms that control dominance, co-existence and the relative abundances of the constituent species.</p>
+<figure class="figure-break"><div class="image-placeholder">[Figure image not supplied in the source text]</div></figure>
+<p>A triangular ordination of the strategies developed by plants in relation to competition, stress</p>
+<p>and disturbance. relative importance of competition (—); relative importance of stress ( - - -); relative importance of disturbance (---). (From Grime, 1979; courtesy of John Wiley and Sons.)</p>
+</details></div>
+<a class="back-to-top" href="#top">Back to top</a>
+</div>
 </main>
-
-<footer>
-    <p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p>
-</footer>
-
+<footer><p>&copy; 2026 Quantitative and Dynamic Plant Ecology</p></footer>
 </body>
 </html>
